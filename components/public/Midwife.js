@@ -5,11 +5,15 @@ import SecondStep from './SecondStep';
 import ThirdStep from './ThirdStep';
 import ForthStep from './ForthStep';
 import FadeInOut from '../common/FadeInOut';
+import FifthStep from './FifthStep';
+import SixthStep from './SixthStep';
+import { createUser } from '@/api/public';
 
 const Midwife = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [wantedName, setWantedName] = useState('')
   const [wantedDollars, setWantedDollars] = useState(0.00)
+  const [generatedUser, setGeneratedUser] = useState({})
 
   const stepHelper = () => {
     switch (currentStep) {
@@ -18,11 +22,15 @@ const Midwife = () => {
       case 1:
         return <SecondStep setCurrentStep={setCurrentStep} setWantedName={setWantedName} />;
       case 2:
-        return <ThirdStep setCurrentStep={setCurrentStep} setWantedDollars={setWantedDollars} />;
+        return <ThirdStep setCurrentStep={setCurrentStep}  />;
       case 3:
-        return <ForthStep setCurrentStep={setCurrentStep} />;
+        return <ForthStep setCurrentStep={setCurrentStep} setWantedDollars={setWantedDollars} />;
+      case 4:
+        return <FifthStep setCurrentStep={setCurrentStep} handleCreateUser={handleCreateUser} />;
+      case 5:
+        return <SixthStep setCurrentStep={setCurrentStep} />;
       default:
-        return <FirstStep setCurrentStep={setCurrentStep}  />;
+        return <FirstStep setCurrentStep={setCurrentStep} />;
     }
   }
 
@@ -30,6 +38,11 @@ const Midwife = () => {
     console.log("The wanted name: ", wantedName)
     console.log("The wanted dollars: ", wantedDollars)
   }, [wantedName, wantedDollars])
+
+  const handleCreateUser = () => {
+    const response = createUser(wantedName, wantedDollars);
+    console.log("Response: ", response)
+  }
 
   return (
     <FadeInOut>
