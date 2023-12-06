@@ -7,13 +7,14 @@ import ForthStep from './ForthStep';
 import FadeInOut from '../common/FadeInOut';
 import FifthStep from './FifthStep';
 import SixthStep from './SixthStep';
-import { createUser } from '@/api/public';
+import { createUser, publicApi } from '@/api/public';
 
 const Midwife = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [wantedName, setWantedName] = useState('')
   const [wantedDollars, setWantedDollars] = useState(0.00)
   const [generatedUser, setGeneratedUser] = useState({})
+  const [createdUser, setCreatedUser] = useState({});
 
   const stepHelper = () => {
     switch (currentStep) {
@@ -28,20 +29,16 @@ const Midwife = () => {
       case 4:
         return <FifthStep setCurrentStep={setCurrentStep} handleCreateUser={handleCreateUser} />;
       case 5:
-        return <SixthStep setCurrentStep={setCurrentStep} />;
+        return <SixthStep createdUser={createdUser} />;
       default:
         return <FirstStep setCurrentStep={setCurrentStep} />;
     }
   }
 
-  useEffect(() => {
-    console.log("The wanted name: ", wantedName)
-    console.log("The wanted dollars: ", wantedDollars)
-  }, [wantedName, wantedDollars])
-
   const handleCreateUser = () => {
-    const response = createUser(wantedName, wantedDollars);
-    console.log("Response: ", response)
+    createUser(wantedName, wantedDollars).then((response) => {
+      setCreatedUser(response.data.user);
+    })
   }
 
   return (

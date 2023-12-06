@@ -1,28 +1,26 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import FadeInOut from '../common/FadeInOut';
 
-const SixthStep = ({ handleCreateUser }) => {
-   const handleLogin = () => {
+const SixthStep = ({ createdUser }) => {
+ 
+   const handleRedirectLogin = () => {
 
    }
-
-   useEffect(() => {
-   }, [])
- 
+   
    return (
      <FadeInOut>
          <h1>You are created!</h1>
 
          <div>
             <p>Name:</p>
-            <p className='scale-125'>-USERNAME-</p>
+            <p className='scale-125'>{createdUser.name}</p>
          </div>
          <div>
-            <p>Password:</p>
-            <p className='scale-125'>-PASSWORD-</p>
+            <p>Identity Number:</p>
+            <p className='scale-125'>{createdUser.identityNumber}</p>
          </div>
          <div>
-            <button onClick={handleLogin}>Login</button>
+            <button onClick={() => handleRedirectLogin()}>Login</button>
          </div>
      </FadeInOut>
    );

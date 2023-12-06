@@ -1,14 +1,10 @@
 import axios from 'axios';
 
+const baseURL = process.env.NEXT_PUBLIC_BACKEND_URI + '/api/public';
+
 export const createUser = async (wantedName, wantedDollars) => {
-   await axios.post(process.env.NEXT_PUBLIC_BACKEND_URI + '/api/public/create-user', {
+   return await axios.post(baseURL + '/create-user', {
       wantedName,
       wantedDollars
-   }).then((response) => {
-      console.log("Response: ", response)
-      return response;
-   }).catch((error) => {
-      console.log("Error: ", error)
-      return error;
    });
 }
