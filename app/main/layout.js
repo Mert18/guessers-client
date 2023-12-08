@@ -1,29 +1,16 @@
-"use client"
-import React, { useEffect } from 'react'
-import Keycloak from "keycloak-js";
+"use client";
+import AuthStatus from "@/components/authStatus";
+import React from "react";
 
-const keycloak = new Keycloak({
-  url: "http://localhost:2222",
-  realm: "quarkus",
-  clientId: "backend-service",
-});
-
-const MainLayout = ({children}) => {
-   const initKeycloak = async () => {
-      try {
-        await keycloak.init({ onLoad: "login-required" });
-        console.log(keycloak);
-      } catch (error) {
-        console.error("Failed to initialize Keycloak.", error);
-      }
-    };
-  
-   useEffect(() => { 
-      initKeycloak();
-    }, [])
+const MainLayout = ({ children }) => {
   return (
-     <div>{children}</div>
+    <div className="flex flex-col relative">
+      <div>
+        <AuthStatus />
+      </div>
+      <div className="p-3 w-screen">{children}</div>
+    </div>
   )
-}
+};
 
-export default MainLayout
+export default MainLayout;
