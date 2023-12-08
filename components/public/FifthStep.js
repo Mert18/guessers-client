@@ -16,7 +16,7 @@ const FifthStep = ({ setCurrentStep, handleCreateUser }) => {
  
    return (
      <FadeInOut fadeOut={true}>
-       <h1>
+       <h1 className='flex flex-col justify-center items-center'>
          <p>Calculating your luck...</p>
          <p>A dice is being thrown for you.</p>
        </h1>

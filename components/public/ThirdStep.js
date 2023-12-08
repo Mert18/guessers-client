@@ -15,7 +15,7 @@ const ThirdStep = ({ setCurrentStep }) => {
 
   return (
     <FadeInOut fadeOut={true}>
-      <h1>
+      <h1 className="flex flex-col justify-center items-center">
         <p>You cannot choose your name.</p>
         <p>We will choose your name for you.</p>
       </h1>

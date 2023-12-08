@@ -13,7 +13,7 @@ export async function GET() {
     var url = `${process.env.END_SESSION_URL}?id_token_hint=${idToken}&post_logout_redirect_uri=${encodeURIComponent(process.env.NEXTAUTH_URL)}`;
 
     try {
-      const resp = await fetch(url, { method: "GET" });
+      await fetch(url, { method: "GET" });
     } catch (err) {
       console.error(err);
       return new Response({ status: 500 });
