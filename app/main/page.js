@@ -1,9 +1,11 @@
-import React from 'react'
+"use client"
+import CurrentAuction from '@/components/auction/CurrentAuction'
+import React, {useState, useEffect} from 'react'
 
 const Main = () => {
   return (
     <div>
-      <h1>Main Page</h1>
+      <CurrentAuction />
     </div>
   )
 }

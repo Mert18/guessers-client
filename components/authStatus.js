@@ -29,7 +29,7 @@ export default function AuthStatus() {
       return <div className="my-3">Loading...</div>;
     } else if (session) {
       return (
-        <div className="my-3">
+        <div className="">
           Logged in as <span className="font-bold">{session.user.name}</span>{" "}
           <button
             className="bg-blue-900 font-bold text-white py-1 px-2 rounded border border-gray-50"

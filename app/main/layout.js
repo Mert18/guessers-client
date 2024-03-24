@@ -1,13 +1,11 @@
 "use client";
-import AuthStatus from "@/components/authStatus";
+import Navbar from "@/components/common/Navbar";
 import React from "react";
 
 const MainLayout = ({ children }) => {
   return (
     <div className="flex flex-col relative">
-      <div>
-        <AuthStatus />
-      </div>
+      <Navbar />
       <div className="p-3 w-screen">{children}</div>
     </div>
   )
