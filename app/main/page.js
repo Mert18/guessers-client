@@ -1,10 +1,10 @@
-"use client"
 import CurrentAuction from '@/components/auction/CurrentAuction'
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 
 const Main = () => {
+
   return (
-    <div>
+    <div className='flex justify-center'>
       <CurrentAuction />
     </div>
   )

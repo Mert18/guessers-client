@@ -1,12 +1,16 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import CurrentBid from "./CurrentBid";
+import Countdown from "./Countdown";
+import { useSession } from "next-auth/react";
+import IncreaseBid from "./IncreaseBid";
+import AuctionItemHeader from "./AuctionItemHeader";
 
 const CurrentAuction = () => {
   const [auction, setAuction] = useState({});
   const [socket, setSocket] = useState(null);
-  const [currentBid, setCurrentBid] = useState({bid: 0, bidder: ""});
+  const [currentBid, setCurrentBid] = useState({ bid: 0, bidder: "" });
+  const { data: session } = useSession();
 
   const getCurrentAuction = async () => {
     try {
@@ -16,7 +20,7 @@ const CurrentAuction = () => {
       );
       const data = await res.json();
       setAuction(data);
-      setCurrentBid({bid: data.currentBid, bidder: data.currentBidder});
+      setCurrentBid({ bid: data.currentBid, bidder: data.currentBidder });
       console.log("data:", data);
     } catch (err) {
       console.error("ERror revc:", err);
@@ -60,40 +64,36 @@ const CurrentAuction = () => {
     }
   };
 
-  const handleIncreaseBid = () => {
-    console.log("Increase bid clicked");
+  const handleIncreaseBid = (amount) => {
+    console.log("amount:", amount);
     const message = {
       auctionId: auction.auctionId,
       itemId: auction.itemId,
-      bidder: "test",
-      bid: currentBid.bid + 100,
+      bidder: session.user.name,
+      bid: currentBid.bid + amount,
+    };
+    sendMessage(message);
+  };
+
+  const handleSetBid = (amount) => {
+    const message = {
+      auctionId: auction.auctionId,
+      itemId: auction.itemId,
+      bidder: session.user.name,
+      bid: amount,
     };
     sendMessage(message);
   };
 
   return (
-    <div>
-      <div>
-        <h1>{auction.itemName}</h1>
-        <Image
-          src={auction.itemPhotoUrl}
-          alt={auction.itemName}
-          width={150}
-          height={150}
-        />
-
-        <CurrentBid
-          currentBid={currentBid}
-        />
-        <div>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={handleIncreaseBid}
-          >
-            Increase Bid
-          </button>
-        </div>
-      </div>
+    <div className="flex flex-col justify-center items-center w-full sm:w-2/3 md:w-1/3 border border-red-400 p-4">
+      <AuctionItemHeader auction={auction} />
+      <Countdown date={new Date(auction.auctionEnd)} />
+      <CurrentBid currentBid={currentBid} />
+      <IncreaseBid
+        handleIncreaseBid={handleIncreaseBid}
+        handleSetBid={handleSetBid}
+      />
     </div>
   );
 };

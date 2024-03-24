@@ -2,14 +2,14 @@ import React from "react";
 
 const CurrentBid = ({ currentBid }) => {
   return (
-    <div>
-      <div className="flex flex-col">
-        <p>Current Bid</p>
-        <h2>{currentBid.bid}</h2>
+    <div className="p-4">
+      <div className="flex flex-col justify-center items-center p-4">
+        <p className="text-xs">Current Bid</p>
+        <h2 className="text-2xl">${Math.round(currentBid.bid)}</h2>
       </div>
-      <div className="flex flex-col">
-        <p>Current Bidder</p>
-        <h3>{currentBid.bidder}</h3>
+      <div className="flex flex-col justify-center items-center p-4">
+        <p className="text-xs">Current Bidder</p>
+        <h3 className="text-xl">{currentBid.bidder}</h3>
       </div>
     </div>
   );
