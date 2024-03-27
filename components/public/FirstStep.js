@@ -1,11 +1,12 @@
 import React from "react";
 import FadeInOut from "../common/FadeInOut";
 
-const FirstStep = ({ setCurrentStep }) => {
+const FirstStep = ({ handleCreateUser }) => {
 
   const handleFirstStepDone = () => {
-    setCurrentStep(1);
+    handleCreateUser();
   }
+
   return (
     <FadeInOut>
       <button onClick={handleFirstStepDone}>Born</button>

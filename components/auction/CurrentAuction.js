@@ -12,25 +12,6 @@ const CurrentAuction = () => {
   const [currentBid, setCurrentBid] = useState({ bid: 0, bidder: "" });
   const { data: session } = useSession();
 
-  const getCurrentAuction = async () => {
-    try {
-      const res = await fetch(
-        process.env.NEXT_PUBLIC_BACKEND_URI + `/api/auction/active`,
-        { method: "GET" }
-      );
-      const data = await res.json();
-      setAuction(data);
-      setCurrentBid({ bid: data.currentBid, bidder: data.currentBidder });
-      console.log("data:", data);
-    } catch (err) {
-      console.error("ERror revc:", err);
-    }
-  };
-
-  useEffect(() => {
-    getCurrentAuction();
-  }, []);
-
   useEffect(() => {
     // Create a WebSocket connection
     const newSocket = new WebSocket("ws://localhost:8080/auction");
@@ -41,7 +22,20 @@ const CurrentAuction = () => {
     });
 
     newSocket.addEventListener("message", (event) => {
-      setCurrentBid(JSON.parse(event.data));
+      const incomingMessage = JSON.parse(event.data);
+      console.log("EVENT INCOMING!: ", incomingMessage)
+
+      if(incomingMessage.type === "auctionUpdate") {
+        setAuction(incomingMessage.data);
+        if(incomingMessage.data.currentBid && incomingMessage.data.currentBidder) {
+          setCurrentBid({
+            bid: incomingMessage.data.currentBid,
+            bidder: incomingMessage.data.currentBidder
+          });
+        }
+      } else if(incomingMessage.type === "bidUpdate") {
+        setCurrentBid(incomingMessage.data);
+      }
     });
 
     newSocket.addEventListener("close", (event) => {
