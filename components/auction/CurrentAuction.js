@@ -26,11 +26,17 @@ const CurrentAuction = () => {
       console.log("EVENT INCOMING!: ", incomingMessage)
 
       if(incomingMessage.type === "auctionUpdate") {
+        console.log("setting auction: ", incomingMessage.data);
         setAuction(incomingMessage.data);
-        if(incomingMessage.data.currentBid && incomingMessage.data.currentBidder) {
+        if(incomingMessage.data.currentBid || incomingMessage.data.currentBidder) {
           setCurrentBid({
             bid: incomingMessage.data.currentBid,
             bidder: incomingMessage.data.currentBidder
+          });
+        }else {
+          setCurrentBid({
+            bid: 0,
+            bidder: ""
           });
         }
       } else if(incomingMessage.type === "bidUpdate") {
@@ -59,7 +65,7 @@ const CurrentAuction = () => {
   };
 
   const handleIncreaseBid = (amount) => {
-    console.log("amount:", amount);
+    console.log("amount:", amount, "currentBidder:", session.user.name);
     const message = {
       auctionId: auction.auctionId,
       itemId: auction.itemId,
