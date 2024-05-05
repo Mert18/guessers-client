@@ -7,6 +7,7 @@ import IncreaseBid from "./IncreaseBid";
 import AuctionItemHeader from "./AuctionItemHeader";
 import { getUserBalance } from "@/api/user";
 import UserBalance from "./UserBalance";
+import { toast } from "react-toastify";
 
 const CurrentAuction = () => {
   const [auction, setAuction] = useState({});
@@ -33,28 +34,36 @@ const CurrentAuction = () => {
 
     newSocket.addEventListener("message", (event) => {
       const incomingMessage = JSON.parse(event.data);
+      console.log("Incoming message", incomingMessage);
 
-      if (incomingMessage.type === "auctionUpdate") {
-        setAuction(incomingMessage.data);
-        if (
-          incomingMessage.data.currentBid ||
-          incomingMessage.data.currentBidder
-        ) {
-          setCurrentBid({
-            bid: incomingMessage.data.currentBid,
-            bidder: incomingMessage.data.currentBidder,
+      switch (incomingMessage.type) {
+        case "auctionUpdate":
+          setAuction(incomingMessage.data);
+          if (
+            incomingMessage.data.currentBid ||
+            incomingMessage.data.currentBidder
+          ) {
+            setCurrentBid({
+              bid: incomingMessage.data.currentBid,
+              bidder: incomingMessage.data.currentBidder,
+            });
+          } else {
+            setCurrentBid({
+              bid: 0,
+              bidder: "",
+            });
+          }
+          getUserBalance(session?.user?.name).then((response) => {
+            setUserBalance(response.data);
           });
-        } else {
-          setCurrentBid({
-            bid: 0,
-            bidder: "",
-          });
-        }
-        getUserBalance(session?.user?.name).then((response) => {
-          setUserBalance(response.data);
-        });
-      } else if (incomingMessage.type === "bidUpdate") {
-        setCurrentBid(incomingMessage.data);
+          break;
+        case "bidUpdate":
+          toast.success("Your bid received.");
+          setCurrentBid(incomingMessage.data);
+          break;
+        case "invalidBid":
+          toast.error("Invalid bid. The bid must be higher than the current bid.");
+          break;
       }
     });
 
