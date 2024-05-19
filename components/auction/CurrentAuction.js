@@ -17,10 +17,6 @@ const CurrentAuction = () => {
   const { data: session } = useSession();
 
   useEffect(() => {
-    console.log("User balance updated", userBalance);
-  }, [userBalance]);
-
-  useEffect(() => {
     // Create a WebSocket connection
     const newSocket = new WebSocket("ws://localhost:8080/auction");
     // WebSocket event handlers
@@ -63,6 +59,9 @@ const CurrentAuction = () => {
           break;
         case "invalidBid":
           toast.error("Invalid bid. The bid must be higher than the current bid.");
+          break
+        case "sessionClosed":
+          window.location.reload();
           break;
       }
     });

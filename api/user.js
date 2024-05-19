@@ -7,3 +7,7 @@ export const getUserBalance = async (name) => {
     name
    });
 }
+
+export const getUserOwnedItems = async (user) =>  {
+   return await axios.get(baseURL + '/owned-items?user=' + user);
+}
