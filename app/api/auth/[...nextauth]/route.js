@@ -70,6 +70,9 @@ export const authOptions = {
       session.error = token.error;
       return session;
     },
+    async redirect({ url, baseUrl }) {
+      return url.startsWith(baseUrl) ? url : baseUrl + "/main";
+    }
   },
 };
 
