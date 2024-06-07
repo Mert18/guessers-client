@@ -1,18 +1,16 @@
 "use client"
-import CurrentAuction from '@/components/auction/CurrentAuction'
 import { useSession } from 'next-auth/react';
 import React, { useEffect } from 'react'
 
 const Main = () => {
-  const { data } = useSession();
+  const { data: session } = useSession();
 
   useEffect(() => {
-    console.log('data', data)
-  }, [data])
-
+    console.log("Sesssion: ", session?.user);
+  }, [session]);
   return (
     <div className='flex justify-center'>
-      <CurrentAuction />
+      <h1 className='text-4xl font-bold'>Main Page</h1>
     </div>
   )
 }
