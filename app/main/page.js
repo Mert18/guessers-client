@@ -1,4 +1,5 @@
 "use client";
+import { placeBet } from "@/api/betslip";
 import { getEvents } from "@/api/event";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
@@ -6,8 +7,12 @@ import React, { useEffect, useState } from "react";
 const Main = () => {
   const [paging, setPaging] = useState({ page: 0, size: 10 });
   const [events, setEvents] = useState([]);
-  const [betSlip, setBetSlip] = useState([]);
-  const [betSlipWins, setBetSlipWins] = useState();
+  const [betSlip, setBetSlip] = useState({
+    bets: [],
+    stakes: 100,
+    totalOdds: 1,
+    wins: 100
+  });
   const [betAmount, setBetAmount] = useState(100);
   const { data: session } = useSession();
 
@@ -17,33 +22,49 @@ const Main = () => {
 
   useEffect(() => {
     getEvents(paging).then((res) => {
-      setEvents(res.data.data.content);
+      setEvents(res.data.content);
     });
   }, [paging]);
 
   useEffect(() => {
-    setBetSlipWins(
-      betSlip.reduce((acc, bet) => acc * bet.option.odds, 1).toFixed(2) *
-        betAmount
-    );
-  }, [betSlip]);
-
-  useEffect(() => {
-    setBetSlipWins(
-      betSlip.reduce((acc, bet) => acc * bet.option.odds, 1).toFixed(2) *
-        betAmount
-    );
-  }, [betAmount]);
+    setBetSlip(prevState => ({
+      ...prevState,
+      stakes: betAmount,
+      totalOdds: betSlip?.bets.reduce((acc, bet) => acc * bet.option.odds, 1).toFixed(2),
+      wins: betSlip?.bets.reduce((acc, bet) => acc * bet.option.odds, 1).toFixed(2) * betAmount
+    }))
+  }, [betAmount, betSlip?.bets]);
 
   const handleOptionSelected = (event, option) => {
-    const index = betSlip.findIndex((bet) => bet.event.id === event.id);
+    const index = betSlip?.bets.findIndex((bet) => bet.event.id === event.id);
     if (index === -1) {
-      setBetSlip([...betSlip, { event, option }]);
+      setBetSlip((prevState) => ({
+        ...prevState,
+        bets: [...betSlip.bets, { event, option }],
+      }));
     } else {
-      const newBetSlip = [...betSlip];
+      const newBetSlip = [...betSlip?.bets];
+      console.log("New Bet Slip: ", newBetSlip);
+      console.log("Index: ", index);
       newBetSlip[index].option = option;
-      setBetSlip(newBetSlip);
+      setBetSlip((prevState) => ({
+        ...prevState,
+        bets: newBetSlip,
+      }));
     }
+  };
+
+  const handlePlaceBet = () => {
+    console.log("Bet Slip: ", betSlip);
+    placeBet({
+      bets: betSlip.bets,
+      stakes: betSlip.stakes
+    }).then((res) => {
+      console.log("Bet Placed: ", res);
+    }).catch((error) => {
+      console.error("Error placing bet: ", error);
+    }
+    );
   };
 
   return (
@@ -56,7 +77,7 @@ const Main = () => {
           ) : (
             <div>
               <div className="flex flex-col justify-center items-start">
-                {betSlip.map((bet) => {
+                {betSlip?.bets.map((bet) => {
                   return (
                     <div
                       key={bet.event.id}
@@ -73,7 +94,7 @@ const Main = () => {
                 <p>
                   Toplam Oran:{" "}
                   <span className="font-bold">
-                    {betSlip
+                    {betSlip?.bets
                       .reduce((acc, bet) => acc * bet.option.odds, 1)
                       .toFixed(2)}
                   </span>
@@ -86,17 +107,22 @@ const Main = () => {
                     setBetAmount(e.target.value);
                   }}
                 >
-                  <option>100</option>
-                  <option>200</option>
-                  <option>500</option>
-                  <option>1000</option>
+                  <option key="100">100</option>
+                  <option key="200">200</option>
+                  <option key="500">500</option>
+                  <option key="1000">1000</option>
                 </select>
 
-                <button className="border border-black p-1">Oyna</button>
+                <button
+                  className="border border-black p-1"
+                  onClick={() => handlePlaceBet()}
+                >
+                  Oyna
+                </button>
               </div>
               <div className="flex justify-center items-center">
                 <p>
-                  Kazanç: <span className="font-bold">{betSlipWins}</span>
+                  Kazanç: <span className="font-bold">{betSlip?.wins}</span>
                 </p>
               </div>
             </div>
@@ -118,6 +144,7 @@ const Main = () => {
                 {event.options.slice(0, 3).map((option) => {
                   return (
                     <button
+                      key={option.id}
                       onClick={() => handleOptionSelected(event, option)}
                       className="flex-1 flex-col justify-center items-center border border-black"
                     >

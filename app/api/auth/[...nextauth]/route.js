@@ -34,13 +34,12 @@ export const authOptions = {
       clientId: `${process.env.KEYCLOAK_CLIENT_ID}`,
       clientSecret: `${process.env.KEYCLOAK_CLIENT_SECRET}`,
       issuer: `${process.env.KEYCLOAK_ISSUER}`,
-    }),
+    })
   ],
 
   callbacks: {
     async jwt({ token, account }) {
       const nowTimeStamp = Math.floor(Date.now() / 1000);
-
       if (account) {
         // account is only available the first time this callback is called on a new session (after the user signs in)
         token.decoded = jwt_decode(account.access_token);

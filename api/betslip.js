@@ -1,11 +1,11 @@
 import { axiosInstance } from "./base";
 
-const baseURL = process.env.NEXT_PUBLIC_BACKEND_URI + "/api/events";
+const baseURL = process.env.NEXT_PUBLIC_BACKEND_URI + "/api/bet-slips";
 
-export const getEvents = async (paging) => {
+export const placeBet = async (betslip) => {
   const localAxios = await axiosInstance();
   try {
-    const response = await localAxios.post(baseURL + "/list", paging);
+    const response = await localAxios.post(baseURL, betslip);
     return response.data;
   } catch (error) {
     console.error("Error fetching from backend", error);

@@ -1,15 +1,26 @@
 "use client";
 import { createUser } from "@/api/authentication";
 import { Field, Form, Formik } from "formik";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Register = () => {
+  const { data: session, status } = useSession();
   const [loading, setLoading] = useState(false);
   const initialValues = {
     username: "",
     password: "",
   };
+
+  const router = useRouter();
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }else if (session) {
+    router.push("/main");
+  }
+
   return (
     <>
       <Formik
