@@ -1,12 +1,12 @@
-import { placeBet } from "@/api/betslip";
+import { placeBet } from "@/api/bet";
 import React from "react";
 
-const CurrentBetSlip = ({ betSlip, setBetAmount }) => {
-    
+const CurrentBetSlip = ({ betSlip, setBetAmount, roomId }) => {
   const handlePlaceBet = () => {
     placeBet({
       bets: betSlip.bets,
       stakes: betSlip.stakes,
+      roomId: roomId
     })
       .then((res) => {
         console.log("Bet Placed: ", res);
@@ -20,9 +20,9 @@ const CurrentBetSlip = ({ betSlip, setBetAmount }) => {
   return (
     <div className="w-full border-b border-b-black flex justify-center items-center">
       <div className="flex justify-center items-center flex-col w-96">
-        <p>Kupon</p>
+        <p>Predictions</p>
         {betSlip.length === 0 ? (
-          <p>Kuponunuzda bahis yok</p>
+          <p>No predictions</p>
         ) : (
           <div>
             <div className="flex flex-col justify-center items-start">
@@ -41,7 +41,7 @@ const CurrentBetSlip = ({ betSlip, setBetAmount }) => {
             </div>
             <div className="flex justify-between items-center my-2 w-full">
               <p>
-                Toplam Oran:{" "}
+                Total odds:{" "}
                 <span className="font-bold">
                   {betSlip?.bets
                     .reduce((acc, bet) => acc * bet.option.odds, 1)
@@ -66,12 +66,12 @@ const CurrentBetSlip = ({ betSlip, setBetAmount }) => {
                 className="border border-black p-1"
                 onClick={() => handlePlaceBet()}
               >
-                Oyna
+                Place Bet
               </button>
             </div>
             <div className="flex justify-center items-center">
               <p>
-                Kazanç: <span className="font-bold">{betSlip?.wins}</span>
+                Wins: <span className="font-bold">{betSlip?.wins.toFixed(2)}</span>
               </p>
             </div>
           </div>

@@ -2,26 +2,16 @@
 import React, { useEffect, useState } from "react";
 import CurrentBetSlip from "./betslip/CurrentBetSlip";
 import ActiveEvents from "./events/ActiveEvents";
-import { getEvents } from "@/api/event";
 
-const BetScreen = () => {
-  const [events, setEvents] = useState([]);
-  const [paging, setPaging] = useState({ page: 0, size: 10 });
-
+const BetScreen = ({events, roomId}) => {
   const [betAmount, setBetAmount] = useState(100);
 
   const [betSlip, setBetSlip] = useState({
     bets: [],
     stakes: 100,
     totalOdds: 1,
-    wins: 100,
+    wins: 100
   });
-    
-  useEffect(() => {
-    getEvents(paging).then((res) => {
-      setEvents(res.data.content);
-    });
-  }, [paging]);
 
   useEffect(() => {
     setBetSlip((prevState) => ({
@@ -57,7 +47,7 @@ const BetScreen = () => {
   };
   return (
     <div>
-      <CurrentBetSlip betSlip={betSlip} setBetAmount={setBetAmount} />
+      <CurrentBetSlip betSlip={betSlip} setBetAmount={setBetAmount} roomId={roomId} />
       <ActiveEvents
         events={events}
         handleOptionSelected={handleOptionSelected}

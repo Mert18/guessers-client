@@ -1,46 +1,33 @@
 "use client";
-import { createUser } from "@/api/authentication";
+import { createRoom } from "@/api/room";
 import { Field, Form, Formik } from "formik";
-import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const Register = () => {
-  const { data: session, status } = useSession();
+const CreateRoom = () => {
   const [loading, setLoading] = useState(false);
   const initialValues = {
-    username: "",
-    password: "",
+    name: "",
   };
-
-  const router = useRouter();
-
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }else if (session) {
-    router.push("/room");
-  }
-
   return (
-    <>
+    <div>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          createUser(values);
+          createRoom(values);
         }}
       >
         <Form className="flex flex-col justify-center items-center">
           <Field
-            name="username"
+            name="name"
             className="text-center text-sm px-2 py-1 text-red outline-none focus:border-b-2 border-b bg-white border-red input-field"
             type="text"
             autoComplete="off"
           />
 
           <Field
-            name="password"
+            name="description"
             className="text-center text-sm px-2 py-1 text-red outline-none focus:border-b-2 border-b bg-white border-red input-field"
-            type="password"
+            type="text"
             autoComplete="off"
           />
 
@@ -49,19 +36,14 @@ const Register = () => {
               {loading ? (
                 <Loader />
               ) : (
-                <p className="text-red text-sm">Register</p>
+                <p className="text-red text-sm">Create Room</p>
               )}
             </button>
           </div>
         </Form>
       </Formik>
-      <div className="flex justify-center items-center">
-        <button className="text-sm p-2" onClick={() => signIn("keycloak")}>
-          Login
-        </button>
-      </div>
-    </>
+    </div>
   );
 };
 
-export default Register;
+export default CreateRoom;

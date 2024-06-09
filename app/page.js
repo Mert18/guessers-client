@@ -10,7 +10,7 @@ export default function Home() {
   if (status === "loading") {
     return <div>Loading...</div>;
   }else if (session) {
-    router.push("/main");
+    router.push("/room");
   }
 
   return (
