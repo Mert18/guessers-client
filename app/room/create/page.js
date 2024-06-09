@@ -1,10 +1,12 @@
 "use client";
 import { createRoom } from "@/api/room";
 import { Field, Form, Formik } from "formik";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const CreateRoom = () => {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const initialValues = {
     name: "",
   };
@@ -13,7 +15,11 @@ const CreateRoom = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          createRoom(values);
+          createRoom(values).then((response) => {
+            setTimeout(() => {
+              router.push(`/room/${response.data.id}`);
+            }, 2000)
+          })
         }}
       >
         <Form className="flex flex-col justify-center items-center">

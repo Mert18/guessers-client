@@ -2,6 +2,17 @@ import { axiosInstance } from "./base";
 
 const baseURL = process.env.NEXT_PUBLIC_BACKEND_URI + "/api/rooms";
 
+export const getRoom = async (roomId) => {
+  const localAxios = await axiosInstance();
+  try {
+    const response = await localAxios.get(baseURL + "/" + roomId);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching from backend", error);
+    throw error;
+  }
+}
+
 export const getBetSlips = async (roomId, paging) => {
   const localAxios = await axiosInstance();
   try {
@@ -46,10 +57,10 @@ export const isOwner = async (roomId) => {
   }
 }
 
-export const invitePeople = async (request) => {
+export const invitePeople = async (request, roomId) => {
   const localAxios = await axiosInstance();
   try {
-    const response = await localAxios.post(baseURL + "/invite", request);
+    const response = await localAxios.post(baseURL + "/" + roomId + "/invite", request);
     return response.data;
   } catch (error) {
     console.error("Error fetching from backend", error);
