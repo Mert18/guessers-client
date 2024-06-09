@@ -1,17 +1,12 @@
-"use client";
 import { useSession } from "next-auth/react";
-import React, { useEffect } from "react";
+import React from "react";
 
-const Profile = () => {
+const User = () => {
   const { data: session } = useSession();
 
   useEffect(() => {
     console.log("Sesssion: ", session?.user);
   }, [session]);
-  return (
-    <div>
-    </div>
-  );
+  return <div></div>;
 };
-
-export default Profile;
+export default User;

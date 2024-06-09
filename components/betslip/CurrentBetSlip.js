@@ -56,10 +56,12 @@ const CurrentBetSlip = ({ betSlip, setBetAmount, roomId }) => {
                   setBetAmount(e.target.value);
                 }}
               >
-                <option key="100">100</option>
-                <option key="200">200</option>
-                <option key="500">500</option>
-                <option key="1000">1000</option>
+                <option key="100" value={100}>100₺</option>
+                <option key="200" value={200}>200₺</option>
+                <option key="500" value={500}>500₺</option>
+                <option key="1000" value={1000}>1000₺</option>
+                <option key="5000" value={5000}>5000₺</option>
+                <option key="10000" value={10000}>10000₺</option>
               </select>
 
               <button
@@ -71,7 +73,7 @@ const CurrentBetSlip = ({ betSlip, setBetAmount, roomId }) => {
             </div>
             <div className="flex justify-center items-center">
               <p>
-                Wins: <span className="font-bold">{betSlip?.wins.toFixed(2)}</span>
+                Wins: <span className="font-bold">{betSlip?.wins.toFixed(2)}₺</span>
               </p>
             </div>
           </div>

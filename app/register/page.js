@@ -31,6 +31,7 @@ const Register = () => {
       >
         <Form className="flex flex-col justify-center items-center">
           <Field
+          placeholder="Username"
             name="username"
             className="text-center text-sm px-2 py-1 text-red outline-none focus:border-b-2 border-b bg-white border-red input-field"
             type="text"
@@ -38,6 +39,7 @@ const Register = () => {
           />
 
           <Field
+          placeholder="Password"
             name="password"
             className="text-center text-sm px-2 py-1 text-red outline-none focus:border-b-2 border-b bg-white border-red input-field"
             type="password"

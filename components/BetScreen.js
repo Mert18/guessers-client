@@ -3,14 +3,14 @@ import React, { useEffect, useState } from "react";
 import CurrentBetSlip from "./betslip/CurrentBetSlip";
 import ActiveEvents from "./events/ActiveEvents";
 
-const BetScreen = ({events, roomId}) => {
+const BetScreen = ({ events, roomId }) => {
   const [betAmount, setBetAmount] = useState(100);
 
   const [betSlip, setBetSlip] = useState({
     bets: [],
     stakes: 100,
     totalOdds: 1,
-    wins: 100
+    wins: 100,
   });
 
   useEffect(() => {
@@ -47,7 +47,13 @@ const BetScreen = ({events, roomId}) => {
   };
   return (
     <div>
-      <CurrentBetSlip betSlip={betSlip} setBetAmount={setBetAmount} roomId={roomId} />
+      {betSlip?.bets.length > 0 && (
+        <CurrentBetSlip
+          betSlip={betSlip}
+          setBetAmount={setBetAmount}
+          roomId={roomId}
+        />
+      )}
       <ActiveEvents
         events={events}
         handleOptionSelected={handleOptionSelected}

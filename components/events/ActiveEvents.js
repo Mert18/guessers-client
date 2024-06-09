@@ -12,9 +12,6 @@ const ActiveEvents = ({ events, handleOptionSelected }) => {
             key={event.id}
             className="flex flex-col justify-center items-center w-96 h-48 m-4"
           >
-            <p className="p-2">
-              {new Date(event.date).toLocaleTimeString("tr-TR")}
-            </p>
             <p className="p-2">{event.name}</p>
             <div className="flex w-full">
               {event.options.slice(0, 3).map((option) => {

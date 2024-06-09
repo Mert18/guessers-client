@@ -13,14 +13,14 @@ export const getUserBalance = async () => {
   }
 };
 
-export const getUserBetSlips = async () => {
+
+export const getInvites = async () => {
   const localAxios = await axiosInstance();
   try {
-    const response = await localAxios.get(baseURL + "/list-user-bet-slips");
+    const response = await localAxios.get(baseURL + "/invites");
     return response.data;
   } catch (error) {
     console.error("Error fetching from backend", error);
     throw error;
   }
 };
-
