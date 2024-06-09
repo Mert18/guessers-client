@@ -2,15 +2,20 @@
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/room");
+    }
+  }, [status, router]);
+
   if (status === "loading") {
     return <div>Loading...</div>;
-  }else if (session) {
-    router.push("/room");
   }
 
   return (

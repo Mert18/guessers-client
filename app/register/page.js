@@ -4,6 +4,7 @@ import { Field, Form, Formik } from "formik";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const { data: session, status } = useSession();
@@ -17,7 +18,7 @@ const Register = () => {
 
   if (status === "loading") {
     return <div>Loading...</div>;
-  }else if (session) {
+  } else if (session) {
     router.push("/room");
   }
 
@@ -26,12 +27,16 @@ const Register = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          createUser(values);
+          createUser(values).then((response) => {
+            toast.success(response?.data?.message);
+          }).catch(() => {
+            toast.error("An error occurred while registering.");
+          })
         }}
       >
         <Form className="flex flex-col justify-center items-center">
           <Field
-          placeholder="Username"
+            placeholder="Username"
             name="username"
             className="text-center text-sm px-2 py-1 text-red outline-none focus:border-b-2 border-b bg-white border-red input-field"
             type="text"
@@ -39,7 +44,7 @@ const Register = () => {
           />
 
           <Field
-          placeholder="Password"
+            placeholder="Password"
             name="password"
             className="text-center text-sm px-2 py-1 text-red outline-none focus:border-b-2 border-b bg-white border-red input-field"
             type="password"

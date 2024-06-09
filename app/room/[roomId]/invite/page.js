@@ -13,8 +13,7 @@ const InvitePeople = ({ params }) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          values.roomId = params.roomId;
-          invitePeople(values);
+          invitePeople(values, params.roomId);
         }}
       >
         <Form className="flex flex-col justify-center items-center">

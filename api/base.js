@@ -1,5 +1,6 @@
 import { getAccessToken } from "@/util/sessionTokenAccessor";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const axiosInstance = async () => {
   const accessToken = await getAccessToken();
@@ -14,6 +15,18 @@ export const axiosInstance = async () => {
       Authorization: `Bearer ${accessToken}`,
     },
   });
+
+  instance.interceptors.response.use(
+    (response) => {
+      if(response?.data?.showNotification) {
+        toast.info(response?.data?.message);
+      }
+      return response;
+    },
+    () => {
+      toast.error('An error occurred.');
+    }
+  );
 
   return instance;
 };

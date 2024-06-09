@@ -1,10 +1,12 @@
 'use client'
 import { createEvent } from '@/api/event';
 import { Field, FieldArray, Form, Formik } from 'formik';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 
 const CreateEvent = ({params}) => {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const initialValues = {
     name: "",
     description: "",
@@ -15,8 +17,11 @@ const CreateEvent = ({params}) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          values.roomId = params.roomId;
-          createEvent(values);
+          createEvent(values, params.roomId).then(() => {
+            setTimeout(() => {
+              router.push(`/room/${params.roomId}`);
+            }, 2000)
+          })
         }}
       >
         {({ values }) => (

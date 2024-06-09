@@ -1,6 +1,6 @@
 "use client";
 import { getEvents } from "@/api/event";
-import { isOwner } from "@/api/room";
+import { getRoom, isOwner } from "@/api/room";
 import BetScreen from "@/components/BetScreen";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -9,15 +9,20 @@ const Room = ({ params }) => {
   const [paging, setPaging] = useState({ page: 0, size: 10 });
   const [owner, setOwner] = useState(false);
   const [activeEvents, setActiveEvents] = useState([]);
+  const [room, setRoom] = useState({});
 
   useEffect(() => {
-    isOwner(params.roomId).then((data) => {
-      setOwner(data.data.owner)
+    getRoom(params.roomId).then((response) => {
+      setRoom(response.data);
     });
 
-    getEvents({roomId: params.roomId, paging: paging}).then((res) => {
-      console.log(res.data.content);
-      setActiveEvents(res.data.content);
+    isOwner(params.roomId).then((response) => {
+      setOwner(response.data.owner)
+    });
+
+    getEvents({roomId: params.roomId, paging: paging}).then((response) => {
+      console.log(response.data.content);
+      setActiveEvents(response.data.content);
     });
   }, []);
 
