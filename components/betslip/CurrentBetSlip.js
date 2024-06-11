@@ -6,7 +6,8 @@ const CurrentBetSlip = ({ betSlip, setBetAmount, roomId }) => {
     placeBet({
       bets: betSlip.bets,
       stakes: betSlip.stakes,
-      roomId: roomId
+      roomId: roomId,
+      totalOdds: betSlip.bets.reduce((acc, bet) => acc * bet.option.odds, 1),
     })
       .then((res) => {
         console.log("Bet Placed: ", res);
