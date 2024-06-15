@@ -23,7 +23,6 @@ const Room = ({ params }) => {
     });
 
     getEvents({ roomId: params.roomId, paging: paging }).then((response) => {
-      console.log(response.data.content);
       setActiveEvents(response.data.content);
     });
   }, []);
@@ -38,9 +37,9 @@ const Room = ({ params }) => {
 
       {owner && (
         <div>
-          <Link href={`/room/${params.roomId}/event/create`}>Create Event</Link>
-          <Link href={`/room/${params.roomId}/invite`}>Invite People</Link>
-          <button onClick={() => checkBetSlips(params.roomId)}>
+          <Link href={`/room/${params.roomId}/event/create`} className="p-2">Create Event</Link>
+          <Link href={`/room/${params.roomId}/invite`} className="p-2">Invite People</Link>
+          <button className="p-2" onClick={() => checkBetSlips(params.roomId)}>
             Check Betslips
           </button>
         </div>

@@ -11,23 +11,37 @@ const PlacedBets = ({ roomId }) => {
       setBetSlips(response.data.content);
     });
   }, []);
-  return <div>
-    {betSlips.map((betSlip) => {
-        return <div key={betSlip.id} style={betSlip.status === "LOST" ? {backgroundColor: "red"} : betSlip.status === "WON" ? {backgroundColor: "green"} : {} }>
-            <p>User: {betSlip.username}</p>
-            <p>Amount: {betSlip.stakes}</p>
-            <div>
-            {betSlip.bets.map((bet) => {
-                return <div key={bet.id}>
-                <p>Event: {bet.event.name}</p>
-                <p>Option: {bet.option.name}</p>
-                <p>Odds: {bet.option.odds}</p>
-                </div>;
-            })}
-            </div>
-        </div>;
-    } )}
-  </div>;
+  return (
+    <div>
+      {betSlips.map((betSlip) => {
+        return (
+          <div
+            key={betSlip.id}
+            className="text-white"
+            style={
+              betSlip.status === "LOST"
+                ? { backgroundColor: "red" }
+                : betSlip.status === "WON"
+                ? { backgroundColor: "green" }
+                : {}
+            }
+          >
+            <p className="p-2 m-2">
+              <b>{betSlip.username}</b> placed <b>{betSlip.stakes}</b> to {" "}
+              {betSlip.bets.map((bet) => {
+                return (
+                  <span key={bet.id}>
+                    <b>{bet.event.name}</b> for option <b>{bet.option.name}</b>
+                  </span>
+                );
+              })}
+              <span> at date {new Date(betSlip.date).toLocaleDateString()} {new Date(betSlip.date).toLocaleTimeString()}</span>
+            </p>
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 export default PlacedBets;

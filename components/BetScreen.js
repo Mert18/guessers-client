@@ -36,8 +36,6 @@ const BetScreen = ({ events, roomId, owner }) => {
       }));
     } else {
       const newBetSlip = [...betSlip?.bets];
-      console.log("New Bet Slip: ", newBetSlip);
-      console.log("Index: ", index);
       newBetSlip[index].option = option;
       setBetSlip((prevState) => ({
         ...prevState,
