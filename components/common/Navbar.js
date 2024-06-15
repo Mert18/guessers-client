@@ -7,6 +7,7 @@ import Image from "next/image";
 import { acceptRoomInvite, getUserRooms, rejectRoomInvite } from "@/api/room";
 import RoomsMenu from "../navbar/RoomsMenu";
 import { useParams } from "next/navigation";
+import InvitesMenu from "../navbar/InvitesMenu";
 
 const Navbar = () => {
   const [roomsMenuOpen, setRoomsMenuOpen] = useState(false);
@@ -82,41 +83,13 @@ const Navbar = () => {
           )}
         </div>
         <div className="relative w-64" ref={invitesMenuRef}>
-          <button onClick={() => setInvitesMenuOpen(!invitesMenuOpen)}>
-            Invites
-            {invites.length > 0 && (
-              <span className="w-2 h-2 bg-red-600 rounded-full absolute top-0 -left-3"></span>
-            )}
-          </button>
           {invitesMenuOpen && (
-            <div className="absolute top-full left-0 bg-black w-64 p-2">
-              {invites.length === 0 && <p>No invites</p>}
-              {invites.map((room) => (
-                <div
-                  key={room.id}
-                  className="flex justify-between items-center"
-                >
-                  <p>{room.name}</p>
-                  <div className="flex">
-                    <button
-                      className="mr-2"
-                      onClick={() => {
-                        acceptRoomInvite(room.id);
-                      }}
-                    >
-                      Accept
-                    </button>
-                    <button
-                      onClick={() => {
-                        rejectRoomInvite(room.id);
-                      }}
-                    >
-                      Reject
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <InvitesMenu
+              invites={invites}
+              setInvitesMenuOpen={setInvitesMenuOpen}
+              acceptRoomInvite={acceptRoomInvite}
+              rejectRoomInvite={rejectRoomInvite}
+            />
           )}
         </div>
       </div>

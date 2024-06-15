@@ -5,12 +5,9 @@ import React, { useEffect, useState } from "react";
 const EventFinalize = ({ params }) => {
   const [event, setEvent] = useState({});
   const [winningOptions, setWinningOptions] = useState([]);
-  console.log("params.eventId: ", params.eventId);
-  console.log("params.roomId: ", params.roomId);
 
   useEffect(() => {
     getEvent(params.eventId).then((response) => {
-      console.log("Event: ", response.data);
       setEvent(response.data);
     });
   }, []);
@@ -27,9 +24,7 @@ const EventFinalize = ({ params }) => {
 
   const handleFinalize = () => {
     const winningOptionNumbers = winningOptions.map((option) => option.optionNumber);
-    finalizeEvent({ eventId: params.eventId, roomId: params.roomId, winnerOptionNumbers: winningOptionNumbers }).then((response) => {
-      console.log("Finalize Response: ", response.data);
-    });
+    finalizeEvent({ eventId: params.eventId, roomId: params.roomId, winnerOptionNumbers: winningOptionNumbers });
   }
   return (
     <div>

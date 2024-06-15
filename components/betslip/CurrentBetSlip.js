@@ -8,14 +8,7 @@ const CurrentBetSlip = ({ betSlip, setBetAmount, roomId }) => {
       stakes: betSlip.stakes,
       roomId: roomId,
       totalOdds: betSlip.bets.reduce((acc, bet) => acc * bet.option.odds, 1),
-    })
-      .then((res) => {
-        console.log("Bet Placed: ", res);
-        
-      })
-      .catch((error) => {
-        console.error("Error placing bet: ", error);
-      });
+    });
   };
 
   return (
