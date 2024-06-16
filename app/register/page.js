@@ -27,11 +27,7 @@ const Register = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          createUser(values).then((response) => {
-            toast.success(response?.data?.message);
-          }).catch(() => {
-            toast.error("An error occurred while registering.");
-          })
+          createUser(values);
         }}
       >
         <Form className="flex flex-col justify-center items-center">
