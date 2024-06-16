@@ -38,18 +38,12 @@ const Room = ({ params }) => {
 
   return (
     <div>
-      {owner ? (
-        <p>You are the owner of this room</p>
-      ) : (
-        <p>You are not the owner of this room</p>
-      )}
-
       {owner && (
         <div>
-          <Link href={`/room/${params.roomId}/event/create`} className="p-2">
+          <Link href={`/room/${params.roomId}/event/create`} className="p-2 bg-tertiary-darker text-background font-bold hover:bg-tertiary">
             Create Event
           </Link>
-          <Link href={`/room/${params.roomId}/invite`} className="p-2">
+          <Link href={`/room/${params.roomId}/invite`} className="p-2 bg-secondary-darker text-background font-bold hover:bg-secondary">
             Invite People
           </Link>
         </div>

@@ -1,10 +1,10 @@
 "use client";
 import { createUser } from "@/api/authentication";
+import Loader from "@/components/common/Loader";
 import { Field, Form, Formik } from "formik";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { toast } from "react-toastify";
 
 const Register = () => {
   const { data: session, status } = useSession();
@@ -17,7 +17,7 @@ const Register = () => {
   const router = useRouter();
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return <div><Loader /></div>;
   } else if (session) {
     router.push("/room");
   }

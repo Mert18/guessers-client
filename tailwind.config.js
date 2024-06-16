@@ -14,6 +14,17 @@ module.exports = {
       },
       transitionDuration: {
         '3000': '3000ms',
+      },
+      colors: {
+        'primary': '#000000',
+        'primary-brighter': '#333333',
+        'background': '#ECF0F1',
+        'secondary': '#E25555',
+        'secondary-darker': '#B02B2B',
+        'tertiary': '#A1C398',
+        'tertiary-darker': '#71B060',
+        'quaternary': '#EBBF8C',
+        'quaternary-darker': '#CC924E',
       }
     },
   },

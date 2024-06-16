@@ -1,4 +1,5 @@
 "use client"
+import Loader from "@/components/common/Loader";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -15,7 +16,7 @@ export default function Home() {
   }, [status, router]);
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return <div><Loader /></div>;
   }
 
   return (

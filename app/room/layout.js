@@ -1,4 +1,5 @@
 'use client'
+import Loader from "@/components/common/Loader";
 import Navbar from "@/components/common/Navbar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -8,7 +9,7 @@ const RoomLayout = ({ children }) => {
     const { data: session, status } = useSession();
     const router = useRouter();
     if (status === "loading") {
-      return <div>Loading...</div>;
+      return <div><Loader /></div>;
     }else if (!session) {
       router.push("/");
     }else if (session) {

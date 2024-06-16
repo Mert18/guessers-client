@@ -2,6 +2,7 @@
 
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useEffect } from "react";
+import Loader from "./common/Loader";
 
 async function keycloakSessionLogOut() {
   try {
@@ -26,13 +27,13 @@ export default function AuthStatus() {
 
   const loginStatus = () => {
     if (status == "loading") {
-      return <div className="my-3">Loading...</div>;
+      return <div className="my-3"><Loader /></div>;
     } else if (session) {
       return (
         <div className="">
           Logged in as <span className="font-bold">{session.username}</span>{" "}
           <button
-            className="bg-blue-900 font-bold text-white py-1 px-2 rounded border border-gray-50"
+            className="bg-secondary font-bold text-white py-1 px-2 rounded border border-gray-50"
             onClick={() => {
               keycloakSessionLogOut().then(() => signOut({ callbackUrl: "/" }));
             }}
