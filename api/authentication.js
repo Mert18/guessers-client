@@ -9,11 +9,7 @@ export const createUser = async (user) => {
     .post(baseURLAuthentication + "/create-user", user)
     .then((response) => {
       if (!response.data.success) {
-        for (const key in response.data.data) {
-          if (response.data.data.hasOwnProperty(key)) {
-            toast.error(response.data.data[key]);
-          }
-        }
+        toast.error(response.data.message);
       }else {
          toast.success("User created successfully.");
       }

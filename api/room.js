@@ -78,3 +78,25 @@ export const rejectRoomInvite = async (roomId) => {
     throw error;
   }
 }
+
+export const rankPredictions = async (roomId) => {
+  const localAxios = await axiosInstance();
+  try {
+    const response = await localAxios.get(baseURL + "/" + roomId + "/rank-predictions");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching from backend", error);
+    throw error;
+  }
+}
+
+export const rankRiches = async (roomId) => {
+  const localAxios = await axiosInstance();
+  try {
+    const response = await localAxios.get(baseURL + "/" + roomId + "/rank-riches");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching from backend", error);
+    throw error;
+  }
+}

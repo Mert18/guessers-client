@@ -28,14 +28,3 @@ export const getRoomBetSlips = async (roomId, paging) => {
     throw error;
   }
 }
-
-export const checkBetSlips = async (roomId) => {
-  const localAxios = await axiosInstance();
-  try {
-    const response = await localAxios.get(baseURL + "/check/room/"+ roomId);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching from backend", error);
-    throw error;
-  }
-}

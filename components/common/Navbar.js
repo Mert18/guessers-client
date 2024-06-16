@@ -12,7 +12,7 @@ import InvitesMenu from "../navbar/InvitesMenu";
 const Navbar = () => {
   const [roomsMenuOpen, setRoomsMenuOpen] = useState(false);
   const [invitesMenuOpen, setInvitesMenuOpen] = useState(false);
-  const params = useParams()
+  const params = useParams();
 
   const [balance, setBalance] = useState();
   const [rooms, setRooms] = useState([]);
@@ -79,14 +79,23 @@ const Navbar = () => {
             Rooms
           </button>
           {roomsMenuOpen && (
-            <RoomsMenu rooms={rooms} setRoomsMenuOpen={setRoomsMenuOpen} roomId={params.roomId} />
+            <RoomsMenu
+              rooms={rooms}
+              setRoomsMenuOpen={setRoomsMenuOpen}
+              roomId={params.roomId}
+            />
           )}
         </div>
         <div className="relative w-64" ref={invitesMenuRef}>
+          <button onClick={() => setInvitesMenuOpen(!invitesMenuOpen)}>
+            Invites
+            {invites.length > 0 && (
+              <span className="w-2 h-2 bg-red-600 rounded-full absolute top-0 -left-3"></span>
+            )}
+          </button>
           {invitesMenuOpen && (
             <InvitesMenu
               invites={invites}
-              setInvitesMenuOpen={setInvitesMenuOpen}
               acceptRoomInvite={acceptRoomInvite}
               rejectRoomInvite={rejectRoomInvite}
             />

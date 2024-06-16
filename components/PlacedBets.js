@@ -23,7 +23,7 @@ const PlacedBets = ({ roomId }) => {
                 ? { backgroundColor: "red" }
                 : betSlip.status === "WON"
                 ? { backgroundColor: "green" }
-                : {}
+                : {backgroundColor: "gray"}
             }
           >
             <p className="p-2 m-2">

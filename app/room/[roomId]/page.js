@@ -1,7 +1,6 @@
 "use client";
-import { checkBetSlips } from "@/api/bet";
 import { getEvents } from "@/api/event";
-import { getRoom, isOwner } from "@/api/room";
+import { getRoom, isOwner, rankPredictions, rankRiches } from "@/api/room";
 import BetScreen from "@/components/BetScreen";
 import PlacedBets from "@/components/PlacedBets";
 import Link from "next/link";
@@ -12,6 +11,8 @@ const Room = ({ params }) => {
   const [owner, setOwner] = useState(false);
   const [activeEvents, setActiveEvents] = useState([]);
   const [room, setRoom] = useState({});
+  const [rankedPredictions, setRankedPredictions] = useState([]);
+  const [rankedRiches, setRankedRiches] = useState([]);
 
   useEffect(() => {
     getRoom(params.roomId).then((response) => {
@@ -25,6 +26,14 @@ const Room = ({ params }) => {
     getEvents({ roomId: params.roomId, paging: paging }).then((response) => {
       setActiveEvents(response.data.content);
     });
+
+    rankPredictions(params.roomId).then((response) => {
+      setRankedPredictions(response.data);
+    });
+
+    rankRiches(params.roomId).then((response) => {
+      setRankedRiches(response.data);
+    });
   }, []);
 
   return (
@@ -37,11 +46,12 @@ const Room = ({ params }) => {
 
       {owner && (
         <div>
-          <Link href={`/room/${params.roomId}/event/create`} className="p-2">Create Event</Link>
-          <Link href={`/room/${params.roomId}/invite`} className="p-2">Invite People</Link>
-          <button className="p-2" onClick={() => checkBetSlips(params.roomId)}>
-            Check Betslips
-          </button>
+          <Link href={`/room/${params.roomId}/event/create`} className="p-2">
+            Create Event
+          </Link>
+          <Link href={`/room/${params.roomId}/invite`} className="p-2">
+            Invite People
+          </Link>
         </div>
       )}
 
