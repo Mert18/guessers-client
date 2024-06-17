@@ -23,20 +23,28 @@ const PlacedBets = ({ roomId }) => {
                 ? { backgroundColor: "red" }
                 : betSlip.status === "WON"
                 ? { backgroundColor: "green" }
-                : {backgroundColor: "gray"}
+                : { backgroundColor: "gray" }
             }
           >
-            <p className="p-2 m-2">
-              <b>{betSlip.username}</b> placed <b>{betSlip.stakes}</b> to {" "}
+            <div className="p-2 m-2">
+              <b>{betSlip.username}</b> placed <b>{betSlip.stakes}₺</b>
               {betSlip.bets.map((bet) => {
                 return (
-                  <span key={bet.id}>
-                    <b>{bet.event.name}</b> for option <b>{bet.option.name}</b>
-                  </span>
+                  <div key={bet.id} className="w-64 flex justify-between">
+                    <p>
+                      <b>{bet.event.name}</b>
+                    </p>{" "}
+                    <p>
+                      <b>{bet.option.name}</b>
+                    </p>
+                  </div>
                 );
               })}
-              <span> at date {new Date(betSlip.date).toLocaleDateString()} {new Date(betSlip.date).toLocaleTimeString()}</span>
-            </p>
+              <span>
+                {new Date(betSlip.date).toLocaleDateString()}{" "}
+                {new Date(betSlip.date).toLocaleTimeString()}
+              </span>
+            </div>
           </div>
         );
       })}
