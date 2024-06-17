@@ -14,14 +14,18 @@ const InvitesMenu = ({ invites, acceptRoomInvite, rejectRoomInvite }) => {
             <button
               className="mr-2"
               onClick={() => {
-                acceptRoomInvite(room.id);
+                acceptRoomInvite(room.id).finally(() => {
+                  window.location.reload();
+                });
               }}
             >
               <Image src="/check.svg" alt="check" width={15} height={15} />
             </button>
             <button
               onClick={() => {
-                rejectRoomInvite(room.id);
+                rejectRoomInvite(room.id).finally(() => {
+                  window.location.reload();
+                });
               }}
             >
               <Image src="/cross.svg" alt="cross" width={15} height={15} />

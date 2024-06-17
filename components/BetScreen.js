@@ -35,6 +35,15 @@ const BetScreen = ({ events, roomId, owner }) => {
         bets: [...betSlip.bets, { event, option }],
       }));
     } else {
+      if(betSlip?.bets[index].option.optionNumber === option.optionNumber) {
+        const newBetSlip = [...betSlip?.bets];
+        newBetSlip.splice(index, 1);
+        setBetSlip((prevState) => ({
+          ...prevState,
+          bets: newBetSlip,
+        }));
+        return;
+      }
       const newBetSlip = [...betSlip?.bets];
       newBetSlip[index].option = option;
       setBetSlip((prevState) => ({
@@ -43,13 +52,15 @@ const BetScreen = ({ events, roomId, owner }) => {
       }));
     }
   };
+
   return (
-    <div>
+    <div className="relative">
       {betSlip?.bets.length > 0 && (
         <CurrentBetSlip
           betSlip={betSlip}
           setBetAmount={setBetAmount}
           roomId={roomId}
+          setBetSlip={setBetSlip}
         />
       )}
       <ActiveEvents
@@ -57,6 +68,7 @@ const BetScreen = ({ events, roomId, owner }) => {
         handleOptionSelected={handleOptionSelected}
         owner={owner}
         roomId={roomId}
+        betSlip={betSlip}
       />
     </div>
   );

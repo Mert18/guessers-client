@@ -1,9 +1,9 @@
 import React from "react";
 import EventCard from "./EventCard";
 
-const ActiveEvents = ({ events, handleOptionSelected, owner, roomId }) => {
+const ActiveEvents = ({ events, handleOptionSelected, owner, roomId, betSlip }) => {
   return (
-    <div className="flex flex-wrap justify-start items-center">
+    <div className="flex flex-wrap justify-start items-start">
       {events.map((event) => (
         <EventCard
           key={event.id}
@@ -11,6 +11,7 @@ const ActiveEvents = ({ events, handleOptionSelected, owner, roomId }) => {
           handleOptionSelected={handleOptionSelected}
           owner={owner}
           roomId={roomId}
+          betSlip={betSlip}
         />
       ))}
     </div>
