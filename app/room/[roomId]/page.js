@@ -1,6 +1,6 @@
 "use client";
 import { getEvents } from "@/api/event";
-import { getRoom, isOwner, rankPredictions, rankRiches } from "@/api/room";
+import { getMetadataAndRanks, getRoom, isOwner, rankPredictions, rankRiches } from "@/api/room";
 import BetScreen from "@/components/BetScreen";
 import PlacedBets from "@/components/PlacedBets";
 import RoomHeader from "@/components/room/RoomHeader";
@@ -12,30 +12,21 @@ const Room = ({ params }) => {
   const [owner, setOwner] = useState(false);
   const [activeEvents, setActiveEvents] = useState([]);
   const [room, setRoom] = useState({});
-  const [rankedPredictions, setRankedPredictions] = useState([]);
   const [rankedRiches, setRankedRiches] = useState([]);
 
   useEffect(() => {
-    getRoom(params.roomId).then((response) => {
-      setRoom(response.data);
-    });
-
-    isOwner(params.roomId).then((response) => {
+    getMetadataAndRanks(params.roomId).then((response) => {
       setOwner(response.data.owner);
+      setRankedRiches(response.data.riches);
+      setRoom(response.data.room);
     });
+  }, [params.roomId]);
 
-    getEvents({ roomId: params.roomId, paging: paging }).then((response) => {
+  useEffect(() => {
+    getEvents(params.roomId, paging).then((response) => {
       setActiveEvents(response.data.content);
-    });
-
-    rankPredictions(params.roomId).then((response) => {
-      setRankedPredictions(response.data);
-    });
-
-    rankRiches(params.roomId).then((response) => {
-      setRankedRiches(response.data);
-    });
-  }, []);
+    })
+  }, [params.roomId])
 
   return (
     <div>
@@ -49,7 +40,7 @@ const Room = ({ params }) => {
           </Link>
         </div>
       )}
-      <RoomHeader room={room} />
+      <RoomHeader room={room} rankedRiches={rankedRiches} />
 
       <BetScreen events={activeEvents} roomId={params.roomId} owner={owner} />
 

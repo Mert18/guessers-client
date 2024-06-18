@@ -5,7 +5,7 @@ import ComponentWithHeader from "../common/ComponentWithHeader";
 import RoomTopPredictors from "./RoomTopPredictors";
 import RoomRichests from "./RoomRichests";
 
-const RoomHeader = ({ room }) => {
+const RoomHeader = ({ room, rankedRiches }) => {
   return (
     <div className="my-10 flex justify-evenly">
       <div className="">
@@ -35,7 +35,7 @@ const RoomHeader = ({ room }) => {
       <div>
         <ComponentWithHeader
           name="RICHESTS"
-          children={<RoomRichests roomId={room.id} />}
+          children={<RoomRichests rankedRiches={rankedRiches} />}
         />
       </div>
     </div>

@@ -21,7 +21,7 @@ const CurrentBetSlip = ({ betSlip, setBetAmount, roomId, setBetSlip }) => {
   };
 
   return (
-    <div className="w-96 p-2 border border-black flex justify-center items-center fixed right-10 bottom-10 bg-background-darker">
+    <div className="w-96 p-2 border border-background-darker flex justify-center items-center fixed right-10 bottom-10 bg-background-accent">
       <div className="flex justify-start items-start flex-col w-96">
         <p className="font-bold text-xs mb-5">CURRENT BETSLIP</p>
 
@@ -71,7 +71,7 @@ const CurrentBetSlip = ({ betSlip, setBetAmount, roomId, setBetSlip }) => {
 
         <div className="flex justify-between items-center w-full flex-row-reverse mt-4">
           <button
-            className="bg-primary text-background font-bold rounded-md p-2"
+            className="bg-primary text-background text-xs font-bold rounded-md p-2"
             onClick={() => handlePlaceBet()}
           >
             Place Bet

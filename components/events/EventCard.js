@@ -8,11 +8,11 @@ const EventCard = ({ event, handleOptionSelected, owner, roomId, betSlip }) => {
   return (
     <div
       key={event.id}
-      className={`flex flex-col justify-center items-center w-96 min-h-48 my-2 mr-2 rounder-md border border-primary text-primary ${event.status === "IN_PROGRESS" ? "bg-quaternary-darker" : "bg-background-darker"}`}
+      className={`flex flex-col justify-center items-center w-96 min-h-48 my-2 mr-2 rounder-md text-primary ${event.status === "IN_PROGRESS" ? "bg-quaternary-darker" : "bg-background-accent"}`}
     >
       <div className="w-full">
         {owner && (
-          <div className="flex justify-end w-full">
+          <div className="flex justify-end w-full p-2">
             <button className="p-1" onClick={() => {
               startEvent(event.id);
             }}>
@@ -33,19 +33,19 @@ const EventCard = ({ event, handleOptionSelected, owner, roomId, betSlip }) => {
         )}
       </div>
 
-      <div className="flex flex-col justify-center items-center w-full border-b border-primary">
+      <div className="flex flex-col justify-center items-center w-full border-b border-background-accent">
         <p className="p-2">{event.name}</p>
         <p className="p-2">{event.description}</p>
       </div>
-      <div className="w-full">
+      <div className="w-full flex justify-center items-center text-xs p-2">
         {event.status === "IN_PROGRESS" ? "EVENT IN PROGRESS" : (
           <div className="flex flex-col items-center justify-between w-full">
             {event.options.map((option) => (
               <button
                 key={option.id}
                 onClick={() => handleOptionSelected(event, option)}
-                className={`flex justify-between items-center w-full min-h-32 p-1 border-b border-primary 
-                  ${betSlip?.bets.find((bet) => bet.event.id === event.id && bet.option.optionNumber === option.optionNumber) ? "bg-tertiary-darker" : "bg-background-darker"}`}
+                className={`flex justify-between items-center w-full min-h-32 p-1 
+                  ${betSlip?.bets.find((bet) => bet.event.id === event.id && bet.option.optionNumber === option.optionNumber) ? "bg-tertiary-darker" : "even:bg-background-accent bg-background-darker"}`}
               >
                 <p className="text-primary">{option.name}</p>
                 <p className="font-bold p-1 bg-primary rounded-md text-sm text-background">{option.odds.toFixed(2)}</p>

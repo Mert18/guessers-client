@@ -21,6 +21,7 @@ module.exports = {
         'background': '#ECF0F1',
         'background-darker': '#D5DCDE',
         'background-brighter': '#FFFFFF',
+        'background-accent': '#E1E7E9',
         'secondary': '#E25555',
         'secondary-darker': '#B02B2B',
         'tertiary': '#A1C398',
