@@ -1,7 +1,11 @@
+'use client'
 import Link from "next/link";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const RoomsMenu = ({ rooms, setRoomsMenuOpen, roomId }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="absolute top-full left-0 w-32">
       {rooms.map((room) => (
@@ -19,7 +23,7 @@ const RoomsMenu = ({ rooms, setRoomsMenuOpen, roomId }) => {
         href="/room/create"
         onClick={() => setRoomsMenuOpen(false)}
       >
-        Create Room
+        {t("roomCreate")}
       </Link>
     </div>
   );

@@ -20,7 +20,7 @@ const RoomTopPredictors = ({ userCorrectPredictions }) => {
               {key}
               </p>
             </div>
-            <p className="font-bold text-tertiary-darker">{value}</p>
+            <p className="font-bold text-secondary-darker">{value}</p>
           </li>
         ))}
     </ul>

@@ -3,6 +3,7 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useEffect } from "react";
 import Loader from "./common/Loader";
+import { useTranslation } from "react-i18next";
 
 async function keycloakSessionLogOut() {
   try {
@@ -13,6 +14,7 @@ async function keycloakSessionLogOut() {
 }
 
 export default function AuthStatus() {
+  const { t } = useTranslation();
   const { data: session, status } = useSession();
 
   useEffect(() => {
@@ -27,30 +29,33 @@ export default function AuthStatus() {
 
   const loginStatus = () => {
     if (status == "loading") {
-      return <div className="my-3"><Loader /></div>;
+      return (
+        <div className="my-3">
+          <Loader />
+        </div>
+      );
     } else if (session) {
       return (
         <div className="">
-          Logged in as <span className="font-bold">{session.username}</span>{" "}
+          <span className="font-bold">{session.username}</span>{" "}
           <button
-            className="bg-secondary font-bold text-white py-1 px-2 rounded border border-gray-50"
+            className="bg-error font-bold text-white py-1 px-2 rounded border border-gray-50"
             onClick={() => {
               keycloakSessionLogOut().then(() => signOut({ callbackUrl: "/" }));
             }}
           >
-            Log out
+            {t("logout")}
           </button>
         </div>
       );
     } else {
       return (
         <div className="my-3">
-          Not logged in.{" "}
           <button
             className="bg-blue-900 font-bold text-white py-1 px-2 rounded border border-gray-50"
             onClick={() => signIn("keycloak")}
           >
-            Log in
+            {t("login")}
           </button>
         </div>
       );

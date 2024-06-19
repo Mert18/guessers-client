@@ -19,7 +19,7 @@ const RoomRichests = ({ rankedRiches }) => {
             )}
             <p className="font-bold ml-2">{user.username}</p>
           </div>
-          <p className="font-bold text-tertiary-darker">
+          <p className="font-bold text-secondary-darker">
             {user.balance.toFixed(2)}₺
           </p>
         </li>

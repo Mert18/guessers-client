@@ -2,10 +2,12 @@
 import { createUser } from "@/api/authentication";
 import Loader from "@/components/common/Loader";
 import Logo from "@/components/common/Logo";
-import { Field, Form, Formik } from "formik";
+import CustomInputField from "@/components/form/CustomInputField";
+import { Form, Formik } from "formik";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Register = () => {
   const { data: session, status } = useSession();
@@ -14,6 +16,7 @@ const Register = () => {
     username: "",
     password: "",
   };
+  const { t } = useTranslation();
 
   const router = useRouter();
 
@@ -40,37 +43,31 @@ const Register = () => {
         }}
       >
         <Form className="flex flex-col justify-center items-center">
-          <Field
-            placeholder="Username"
-            name="username"
-            className="text-center text-sm px-2 py-1 text-primary outline-none focus:border-b-2 border-b bg-background-brighter my-1 h-8 border-primary input-field"
+          <CustomInputField
+            name={`username`}
             type="text"
-            autoComplete="off"
+            placeholder={t("username")}
+            withLabel={true}
           />
 
-          <Field
-            placeholder="Password"
-            name="password"
-            className="text-center text-sm px-2 py-1 text-primary outline-none focus:border-b-2 border-b bg-background-brighter my-1 h-8 border-primary input-field"
+          <CustomInputField
+            name={`password`}
             type="password"
-            autoComplete="off"
+            placeholder={t("password")}
+            withLabel={true}
           />
 
           <button
             className="flex justify-center items-center bg-primary-brighter text-background-accent hover:bg-primary rounded-sm m-2 transition-all"
             type="submit"
           >
-            {loading ? (
-              <Loader />
-            ) : (
-              <p className="p-2 text-sm">Register</p>
-            )}
+            {loading ? <Loader /> : <p className="p-2 text-sm">{t("register")}</p>}
           </button>
         </Form>
       </Formik>
       <div className="flex justify-center items-center bg-background-darker rounded-sm m-2 transition-all hover:bg-background-accent">
         <button className="text-sm p-2" onClick={() => signIn("keycloak")}>
-          Login Instead
+        {t("loginInstead")}
         </button>
       </div>
     </div>

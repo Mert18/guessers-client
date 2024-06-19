@@ -5,10 +5,12 @@ import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -31,13 +33,13 @@ export default function Home() {
       <div>
         <div className="flex justify-center items-center bg-primary-brighter text-background-accent hover:bg-primary rounded-sm m-2 transition-all">
           <Link href="/register" className="text-sm p-2">
-            Register
+            {t("register")}
           </Link>
         </div>
 
         <div className="flex justify-center items-center bg-background-darker rounded-sm m-2 transition-all hover:bg-background-accent">
           <button className="text-sm p-2" onClick={() => signIn("keycloak")}>
-            Login
+          {t("login")}
           </button>
         </div>
       </div>

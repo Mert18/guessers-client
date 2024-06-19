@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import RoomName from "./RoomName";
 import RoomDescription from "./RoomDescription";
@@ -5,19 +6,20 @@ import ComponentWithHeader from "../common/ComponentWithHeader";
 import RoomTopPredictors from "./RoomTopPredictors";
 import RoomRichests from "./RoomRichests";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 const RoomHeader = ({ room, rankedRiches, owner }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="my-10 flex justify-evenly">
       <div className="">
-        <ComponentWithHeader
-          name="Room Name"
-          children={<RoomName roomName={room.name} />}
-        />
-        <ComponentWithHeader
-          name="Room Description"
-          children={<RoomDescription roomDescription={room.description} />}
-        />
+        <ComponentWithHeader name={t("room")}>
+          <RoomName roomName={room.name} />
+        </ComponentWithHeader>
+        <ComponentWithHeader name={t("roomDescription")}>
+          <RoomDescription roomDescription={room.description} />
+        </ComponentWithHeader>
 
         {owner && (
           <div className="text-xs">
@@ -25,13 +27,13 @@ const RoomHeader = ({ room, rankedRiches, owner }) => {
               href={`/room/${room.id}/event/create`}
               className="p-2 mr-2 bg-primary text-background font-bold hover:bg-primary-brighter"
             >
-              Create Event
+              {t("eventCreate")}
             </Link>
             <Link
               href={`/room/${room.id}/invite`}
               className="p-2 bg-primary text-background font-bold hover:bg-primary-brighter"
             >
-              Invite People
+              {t("invite")}
             </Link>
           </div>
         )}
@@ -39,20 +41,17 @@ const RoomHeader = ({ room, rankedRiches, owner }) => {
 
       <div>
         {room.userCorrectPredictions && (
-          <ComponentWithHeader
-            name="TOP PREDICTORS"
-            children={
-              <RoomTopPredictors
-                userCorrectPredictions={room.userCorrectPredictions}
-              />
-            }
-          />
+          <ComponentWithHeader name={t("roomTopPredictors")}>
+            <RoomTopPredictors
+              userCorrectPredictions={room.userCorrectPredictions}
+            />
+          </ComponentWithHeader>
         )}
       </div>
 
       <div>
         <ComponentWithHeader
-          name="RICHESTS"
+          name={t("roomRichests")}
           children={<RoomRichests rankedRiches={rankedRiches} />}
         />
       </div>
