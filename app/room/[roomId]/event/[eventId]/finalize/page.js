@@ -24,25 +24,37 @@ const EventFinalize = ({ params }) => {
 
   const handleFinalize = () => {
     const winningOptionNumbers = winningOptions.map((option) => option.optionNumber);
-    finalizeEvent({ eventId: params.eventId, roomId: params.roomId, winnerOptionNumbers: winningOptionNumbers });
+    finalizeEvent({ eventId: params.eventId, roomId: params.roomId, winnerOptionNumbers: winningOptionNumbers }).finally(() => {
+      setTimeout(() => {
+        window.location.href = `/room/${params.roomId}`;
+      }, 3000)
+    })
   }
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center">
+      <div className="text-primary text-2xl font-bold text-center">
+        Finalize Event
+      </div>
+      <div className="w-1/3">
+      <h1 className="font-bold text-xl">{event?.name}</h1>
+      <p>Select the winning options.</p>
       {event?.options?.map((option) => (
         <div
           key={option.optionNumber}
           onClick={() => handleChangeWinningOptions(option)}
           style={
-            winningOptions.includes(option) ? { backgroundColor: "green" } : {}
+            winningOptions.includes(option) ? { backgroundColor: "#A1C398" } : {}
           }
+          className="p-2 cursor-pointer"
         >
           <p>
-            {option.name} ---- {option.optionNumber}
+            {option.name}
           </p>
         </div>
       ))}
+      </div>
 
-      <button onClick={() => handleFinalize()}>Finalize</button>
+      <button className="p-2 mr-2 bg-primary text-background font-bold hover:bg-primary-brighter" onClick={() => handleFinalize()}>Finalize</button>
     </div>
   );
 };

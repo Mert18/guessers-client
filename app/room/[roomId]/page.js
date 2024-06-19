@@ -4,7 +4,6 @@ import { getMetadataAndRanks, getRoom, isOwner, rankPredictions, rankRiches } fr
 import BetScreen from "@/components/BetScreen";
 import PlacedBets from "@/components/PlacedBets";
 import RoomHeader from "@/components/room/RoomHeader";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Room = ({ params }) => {
@@ -30,17 +29,7 @@ const Room = ({ params }) => {
 
   return (
     <div>
-      {owner && (
-        <div>
-          <Link href={`/room/${params.roomId}/event/create`} className="p-2 bg-tertiary-darker text-background font-bold hover:bg-tertiary">
-            Create Event
-          </Link>
-          <Link href={`/room/${params.roomId}/invite`} className="p-2 bg-secondary-darker text-background font-bold hover:bg-secondary">
-            Invite People
-          </Link>
-        </div>
-      )}
-      <RoomHeader room={room} rankedRiches={rankedRiches} />
+      <RoomHeader room={room} rankedRiches={rankedRiches} owner={owner} />
 
       <BetScreen events={activeEvents} roomId={params.roomId} owner={owner} />
 

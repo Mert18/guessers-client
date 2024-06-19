@@ -9,6 +9,7 @@ import RoomsSelector from "../navbar/RoomsSelector";
 import InvitesWrapper from "../navbar/InvitesWrapper";
 import AuthStatus from "../authStatus";
 import BalanceWrapper from "../navbar/BalanceWrapper";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [roomsMenuOpen, setRoomsMenuOpen] = useState(false);
@@ -60,16 +61,7 @@ const Navbar = () => {
 
   return (
     <div className="flex flex-col justify-between p-2 items-center text-background">
-      <Link href="/" className="bg-primary p-2 rounded-md">
-        <Image
-          src="/logo/logo.svg"
-          alt="logo"
-          width={60}
-          height={60}
-          className="w-auto h-auto"
-          priority={false}
-        />
-      </Link>
+      <Logo />
 
       {/* Self rooms */}
       <div className="flex justify-between items-center text-primary text-xs w-full">
