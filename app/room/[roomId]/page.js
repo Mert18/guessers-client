@@ -12,11 +12,13 @@ const Room = ({ params }) => {
   const [activeEvents, setActiveEvents] = useState([]);
   const [room, setRoom] = useState({});
   const [rankedRiches, setRankedRiches] = useState([]);
+  const [rankedPredictions, setRankedPredictions] = useState({});
 
   useEffect(() => {
     getMetadataAndRanks(params.roomId).then((response) => {
       setOwner(response.data.owner);
       setRankedRiches(response.data.riches);
+      setRankedPredictions(response.data.rankPredictions);
       setRoom(response.data.room);
     });
   }, [params.roomId]);
@@ -29,7 +31,7 @@ const Room = ({ params }) => {
 
   return (
     <div>
-      <RoomHeader room={room} rankedRiches={rankedRiches} owner={owner} />
+      <RoomHeader room={room} rankedRiches={rankedRiches} owner={owner} rankedPredictions={rankedPredictions} />
 
       <BetScreen events={activeEvents} roomId={params.roomId} owner={owner} />
 

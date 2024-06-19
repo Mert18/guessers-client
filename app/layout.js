@@ -13,8 +13,8 @@ export default function RootLayout({ children }) {
   return (
     <SessionProviderWrapper>
       <html lang="en">
-        <body className={inter.className} style={{position: "relative"}}>
-            <LanguageSelector />
+        <body className={inter.className} style={{ position: "relative" }}>
+          <LanguageSelector />
           <div>{children}</div>
           <ToastContainer />
         </body>

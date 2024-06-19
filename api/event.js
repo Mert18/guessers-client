@@ -3,12 +3,9 @@ import { axiosInstance } from "./base";
 const baseURL = process.env.NEXT_PUBLIC_BACKEND_URI + "/api/events";
 
 export const getEvents = async (roomId, paging) => {
-  console.log("halooo 1: ", roomId, paging);
   const localAxios = await axiosInstance();
-  console.log("halooo 2: ", roomId, paging);
   try {
     const url = baseURL + "/list/" + roomId;
-    console.log("URL: ", url);
     const response = await localAxios.get(url, {
       params: {
         page: paging.page,

@@ -8,7 +8,7 @@ import RoomRichests from "./RoomRichests";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
-const RoomHeader = ({ room, rankedRiches, owner }) => {
+const RoomHeader = ({ room, rankedRiches, owner, rankedPredictions }) => {
   const { t } = useTranslation();
 
   return (
@@ -40,20 +40,19 @@ const RoomHeader = ({ room, rankedRiches, owner }) => {
       </div>
 
       <div>
-        {room.userCorrectPredictions && (
+        {rankedPredictions && (
           <ComponentWithHeader name={t("roomTopPredictors")}>
-            <RoomTopPredictors
-              userCorrectPredictions={room.userCorrectPredictions}
-            />
+            <RoomTopPredictors rankedPredictions={rankedPredictions} />
           </ComponentWithHeader>
         )}
       </div>
 
       <div>
-        <ComponentWithHeader
-          name={t("roomRichests")}
-          children={<RoomRichests rankedRiches={rankedRiches} />}
-        />
+        {rankedRiches && (
+          <ComponentWithHeader name={t("roomRichests")}>
+            <RoomRichests rankedRiches={rankedRiches} />
+          </ComponentWithHeader>
+        )}
       </div>
     </div>
   );

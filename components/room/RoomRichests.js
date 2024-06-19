@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const RoomRichests = ({ rankedRiches }) => {
@@ -17,7 +18,9 @@ const RoomRichests = ({ rankedRiches }) => {
             ) : (
               <Image src="/money_black.svg" width={20} height={20} />
             )}
-            <p className="font-bold ml-2">{user.username}</p>
+            <p className="font-bold ml-2 underline">
+              <Link href={`/profile/${user.username}`}>{user.username}</Link>
+            </p>
           </div>
           <p className="font-bold text-secondary-darker">
             {user.balance.toFixed(2)}₺
