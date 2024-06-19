@@ -1,84 +1,93 @@
-'use client'
-import { createEvent } from '@/api/event';
-import { Field, FieldArray, Form, Formik } from 'formik';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react'
+"use client";
+import { createEvent } from "@/api/event";
+import CustomInputField from "@/components/form/CustomInputField";
+import { Field, FieldArray, Form, Formik } from "formik";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
-const CreateEvent = ({params}) => {
+const CreateEvent = ({ params }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const initialValues = {
     name: "",
     description: "",
-    options: [{ name: "", odds: "" }]
+    options: [{ name: "", odds: "" }],
   };
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center">
+      <div className="text-primary text-2xl font-bold text-center">
+        Create Event
+      </div>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
           createEvent(values, params.roomId).then(() => {
             setTimeout(() => {
               router.push(`/room/${params.roomId}`);
-            }, 2000)
-          })
+            }, 2000);
+          });
         }}
       >
         {({ values }) => (
-          <Form className="flex flex-col justify-center items-center">
-            <Field
-              name="name"
-              className="text-center text-sm px-2 py-1 text-red outline-none focus:border-b-2 border-b bg-white border-red input-field"
+          <Form className="flex flex-col items-center w-1/4 p-4">
+            <CustomInputField
+              name={`name`}
               type="text"
-              autoComplete="off"
+              placeholder="Name"
+              withLabel={true}
             />
 
-            <Field
-              name="description"
-              className="text-center text-sm px-2 py-1 text-red outline-none focus:border-b-2 border-b bg-white border-red input-field"
+            <CustomInputField
+              name={`description`}
               type="text"
-              autoComplete="off"
+              placeholder="Description"
+              withLabel={true}
             />
 
+            <div className="text-primary text-xs font-bold">Options</div>
             <FieldArray name="options">
               {({ push, remove }) => (
-                <div className="w-full">
+                <div className="flex flex-col items-center">
                   {values.options.map((field, index) => (
-                    <div key={index} className="flex justify-center items-center space-x-2">
-                      <Field
+                    <div
+                      key={index}
+                      className="relative flex justify-center items-center w-full space-x-2"
+                    >
+                      <CustomInputField
                         name={`options[${index}].name`}
-                        className="text-center text-sm px-2 py-1 text-red outline-none focus:border-b-2 border-b bg-white border-red input-field"
                         type="text"
                         placeholder="Name"
+                        withLabel={false}
                       />
-                      <Field
+                      <CustomInputField
                         name={`options[${index}].odds`}
-                        className="text-center text-sm px-2 py-1 text-red outline-none focus:border-b-2 border-b bg-white border-red input-field"
                         type="number"
                         placeholder="Odds"
+                        withLabel={false}
                       />
                       <button
                         type="button"
-                        className="text-red text-sm"
+                        className="text-red text-sm absolute -right-10"
                         onClick={() => remove(index)}
                       >
-                        Remove
+                    <Image src="/cross.svg" alt="cross" width={20} height={20} />
                       </button>
                     </div>
                   ))}
                   <button
                     type="button"
                     className="my-2 text-gray-400 px-3 py-2"
-                    onClick={() => push({ name: '', odds: '' })}
+                    onClick={() => push({ name: "", odds: "" })}
                   >
-                    Add Field
+                    <Image src="/plus.svg" alt="plus" width={25} height={25} />
                   </button>
                 </div>
               )}
             </FieldArray>
 
             <div className={"flex justify-center items-center"}>
-              <button className="my-2 text-gray-400 px-3 py-2" type="submit">
+              <button className="p-2 mr-2 bg-primary text-background font-bold hover:bg-primary-brighter" type="submit">
                 {loading ? (
                   <Loader />
                 ) : (
@@ -91,6 +100,6 @@ const CreateEvent = ({params}) => {
       </Formik>
     </div>
   );
-}
+};
 
-export default CreateEvent
+export default CreateEvent;
