@@ -5,6 +5,7 @@ import { Field, FieldArray, Form, Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const CreateEvent = ({ params }) => {
   const [loading, setLoading] = useState(false);
@@ -14,10 +15,13 @@ const CreateEvent = ({ params }) => {
     description: "",
     options: [{ name: "", odds: "" }],
   };
+
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="text-primary text-2xl font-bold text-center">
-        Create Event
+        {t("eventCreate")}
       </div>
       <Formik
         initialValues={initialValues}
@@ -34,14 +38,14 @@ const CreateEvent = ({ params }) => {
             <CustomInputField
               name={`name`}
               type="text"
-              placeholder="Name"
+              placeholder={t("eventName")}
               withLabel={true}
             />
 
             <CustomInputField
               name={`description`}
               type="text"
-              placeholder="Description"
+              placeholder={t("eventDescription")}
               withLabel={true}
             />
 
@@ -57,21 +61,26 @@ const CreateEvent = ({ params }) => {
                       <CustomInputField
                         name={`options[${index}].name`}
                         type="text"
-                        placeholder="Name"
+                        placeholder={t("optionName")}
                         withLabel={false}
                       />
                       <CustomInputField
                         name={`options[${index}].odds`}
                         type="number"
-                        placeholder="Odds"
+                        placeholder={t("optionOdds")}
                         withLabel={false}
                       />
                       <button
                         type="button"
-                        className="text-red text-sm absolute -right-10"
+                        className="text-sm absolute -right-10"
                         onClick={() => remove(index)}
                       >
-                    <Image src="/cross.svg" alt="cross" width={20} height={20} />
+                        <Image
+                          src="/cross.svg"
+                          alt="cross"
+                          width={20}
+                          height={20}
+                        />
                       </button>
                     </div>
                   ))}
@@ -87,11 +96,14 @@ const CreateEvent = ({ params }) => {
             </FieldArray>
 
             <div className={"flex justify-center items-center"}>
-              <button className="p-2 mr-2 bg-primary text-background font-bold hover:bg-primary-brighter" type="submit">
+              <button
+                className="flex justify-center items-center bg-primary-brighter text-background-accent hover:bg-primary rounded-sm m-2 transition-all"
+                type="submit"
+              >
                 {loading ? (
                   <Loader />
                 ) : (
-                  <p className="text-red text-sm">Create Event</p>
+                  <p className="text-sm"> {t("eventCreate")}</p>
                 )}
               </button>
             </div>

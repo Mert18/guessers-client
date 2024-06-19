@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { getInvites, getUserBalance } from "@/api/user";
-import Image from "next/image";
 import { getUserRooms } from "@/api/room";
 import { useParams } from "next/navigation";
 import RoomsSelector from "../navbar/RoomsSelector";
@@ -58,6 +56,8 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+
 
   return (
     <div className="flex flex-col justify-between p-2 items-center text-background">
