@@ -48,6 +48,7 @@ i18next
           loginInstead: "Hesabınız var mı? Giriş yapın",
           language: "Dil",
           betSlips: "Bahis Kuponları",
+          public: "Herkese açık",
         },
       },
       en: {
@@ -89,6 +90,7 @@ i18next
           loginInstead: "Already have an account? Login",
           language: "Language",
           betSlips: "Bet Slips",
+          public: "Public",
         },
       },
     },

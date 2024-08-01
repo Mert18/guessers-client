@@ -4,7 +4,7 @@ import React from "react";
 const PrimaryButton = ({ type, onClick, text, href }) => {
   if (href) {
     return (
-      <Link href={href}>
+      <Link href={href} onClick={onClick}>
         <div className="bg-background_lighter border border-primary text-text hover:bg-primary hover:text-background rounded-sm transition-all w-full p-2">
           {text}
         </div>
