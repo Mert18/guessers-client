@@ -1,12 +1,10 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { getInvites, getUserBalance } from "@/api/user";
-import { getUserRooms } from "@/api/room";
+import { getUserRooms, listSelfRooms } from "@/api/room";
 import { useParams } from "next/navigation";
 import RoomsSelector from "../navbar/RoomsSelector";
-import InvitesWrapper from "../navbar/InvitesWrapper";
 import AuthStatus from "../authStatus";
-import BalanceWrapper from "../navbar/BalanceWrapper";
 import Logo from "./Logo";
 
 const Navbar = () => {
@@ -21,17 +19,17 @@ const Navbar = () => {
   const invitesMenuRef = useRef(null);
 
   useEffect(() => {
-    getUserBalance().then((res) => {
-      setBalance(res.data.balance);
+    // getUserBalance().then((res) => {
+    //   setBalance(res.data.balance);
+    // });
+
+    listSelfRooms().then((response) => {
+      setRooms(response.data);
     });
 
-    getUserRooms().then((res) => {
-      setRooms(res.data.rooms);
-    });
-
-    getInvites().then((res) => {
-      setInvites(res.data.pendingInvites);
-    });
+    // getInvites().then((res) => {
+    //   setInvites(res.data.pendingInvites);
+    // });
   }, []);
 
   useEffect(() => {
@@ -70,13 +68,13 @@ const Navbar = () => {
           invites={invites}
         /> */}
 
-        {/* <RoomsSelector
+        <RoomsSelector
           roomsMenuRef={roomsMenuRef}
           setRoomsMenuOpen={setRoomsMenuOpen}
           roomsMenuOpen={roomsMenuOpen}
           rooms={rooms}
           roomId={params.roomId}
-        /> */}
+        />
 
         {/* <BalanceWrapper balance={balance} /> */}
 

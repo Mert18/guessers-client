@@ -4,7 +4,7 @@ import React from "react";
 
 const Logo = () => {
   return (
-    <Link href="/" className="rounded-md">
+    <Link href="/" className="rounded-md bg-background_lighter p-2">
       <Image
         src="/logo/logo-text.png"
         alt="logo"
