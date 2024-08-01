@@ -1,10 +1,12 @@
 "use client";
 import { createUser } from "@/api/authentication";
+import PrimaryButton from "@/components/common/button/PrimaryButton";
 import Loader from "@/components/common/Loader";
 import Logo from "@/components/common/Logo";
 import CustomInputField from "@/components/form/CustomInputField";
+import LoginInstead from "@/components/register/LoginInstead";
 import { Form, Formik } from "formik";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -42,7 +44,7 @@ const Register = () => {
           createUser(values);
         }}
       >
-        <Form className="flex flex-col justify-center items-center">
+        <Form className="flex flex-col justify-center items-center my-8">
           <CustomInputField
             name={`username`}
             type="text"
@@ -57,19 +59,11 @@ const Register = () => {
             withLabel={true}
           />
 
-          <button
-            className="flex justify-center items-center bg-primary-brighter text-background-accent hover:bg-primary rounded-sm m-2 transition-all"
-            type="submit"
-          >
-            {loading ? <Loader /> : <p className="p-2 text-sm">{t("register")}</p>}
-          </button>
+          <PrimaryButton type="submit" text={t("register")} />
         </Form>
       </Formik>
-      <div className="flex justify-center items-center bg-background-darker rounded-sm m-2 transition-all hover:bg-background-accent">
-        <button className="text-sm p-2" onClick={() => signIn("keycloak")}>
-        {t("loginInstead")}
-        </button>
-      </div>
+
+      <LoginInstead />
     </div>
   );
 };

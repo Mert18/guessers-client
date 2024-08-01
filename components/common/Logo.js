@@ -4,14 +4,12 @@ import React from "react";
 
 const Logo = () => {
   return (
-    <Link href="/" className="rounded-md m-2">
+    <Link href="/" className="rounded-md">
       <Image
-        src="/logo/logo.svg"
+        src="/logo/logo-text.png"
         alt="logo"
-        width={60}
+        width={90}
         height={60}
-        className="w-auto h-auto"
-        priority={false}
       />
     </Link>
   );
