@@ -57,30 +57,28 @@ const Navbar = () => {
     };
   }, []);
 
-
-
   return (
     <div className="flex flex-col justify-between p-2 items-center text-background">
       <Logo />
 
       {/* Self rooms */}
       <div className="flex justify-between items-center text-primary text-xs w-full">
-      <InvitesWrapper
+        {/* <InvitesWrapper
           invitesMenuRef={invitesMenuRef}
           setInvitesMenuOpen={setInvitesMenuOpen}
           invitesMenuOpen={invitesMenuOpen}
           invites={invites}
-        />
+        /> */}
 
-        <RoomsSelector
+        {/* <RoomsSelector
           roomsMenuRef={roomsMenuRef}
           setRoomsMenuOpen={setRoomsMenuOpen}
           roomsMenuOpen={roomsMenuOpen}
           rooms={rooms}
           roomId={params.roomId}
-        />
-        
-        <BalanceWrapper balance={balance} />
+        /> */}
+
+        {/* <BalanceWrapper balance={balance} /> */}
 
         <AuthStatus />
       </div>

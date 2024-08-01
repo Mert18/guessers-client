@@ -3,6 +3,8 @@ import { getEvents } from "@/api/event";
 import { getMetadataAndRanks, getRoom, isOwner, rankPredictions, rankRiches } from "@/api/room";
 import BetScreen from "@/components/BetScreen";
 import PlacedBets from "@/components/PlacedBets";
+import RoomActiveEvents from "@/components/room/RoomActiveEvents";
+import RoomCompletedEvents from "@/components/room/RoomCompletedEvents";
 import RoomHeader from "@/components/room/RoomHeader";
 import React, { useEffect, useState } from "react";
 
@@ -33,9 +35,9 @@ const Room = ({ params }) => {
     <div>
       <RoomHeader room={room} rankedRiches={rankedRiches} owner={owner} rankedPredictions={rankedPredictions} />
 
-      <BetScreen events={activeEvents} roomId={params.roomId} owner={owner} />
+      <RoomActiveEvents />
 
-      <hr />
+      <RoomCompletedEvents />
 
       <PlacedBets roomId={params.roomId} />
     </div>
