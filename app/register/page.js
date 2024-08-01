@@ -27,7 +27,7 @@ const Register = () => {
       </div>
     );
   } else if (session) {
-    router.push("/room");
+    router.push("/home");
   }
 
   return (
