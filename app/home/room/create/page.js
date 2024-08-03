@@ -1,7 +1,7 @@
 "use client";
 import { createRoom } from "@/api/room";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
-import PageTitle from "@/components/common/PageTitle";
+import ComponentTitle from "@/components/common/ComponentTitle";
 import CustomInputField from "@/components/form/CustomInputField";
 import {  Form, Formik } from "formik";
 import { useRouter } from "next/navigation";
@@ -24,7 +24,7 @@ const CreateRoom = () => {
 
   return (
     <div className="flex flex-col justify-center items-center w-1/3">
-      <PageTitle text={t("createRoom")} />
+      <ComponentTitle text={t("createRoom")} />
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {

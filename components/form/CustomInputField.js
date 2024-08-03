@@ -10,7 +10,7 @@ const CustomInputField = ({
   width = "full",
 }) => {
   const renderField = (type) => {
-    if (type === "text") {
+    if (type === "text" || type === "password" || type === "number") {
       return (
         <Field
           name={name}
