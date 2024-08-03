@@ -5,7 +5,7 @@ const PrimaryButton = ({ type, onClick, text, href }) => {
   if (href) {
     return (
       <Link href={href} onClick={onClick}>
-        <div className="bg-background_lighter border border-primary text-text hover:bg-primary hover:text-background rounded-sm transition-all w-full p-2">
+        <div className="bg-background_lighter border border-primary text-text hover:bg-primary hover:text-background rounded-sm transition-all w-full p-2 my-2">
           {text}
         </div>
       </Link>
@@ -13,7 +13,7 @@ const PrimaryButton = ({ type, onClick, text, href }) => {
   } else {
     return (
       <button
-        className="bg-background_lighter border border-primary text-text hover:bg-primary hover:text-background rounded-sm transition-all w-full p-2"
+        className="bg-background_lighter border border-primary text-text hover:bg-primary hover:text-background rounded-sm transition-all w-full p-2 my-2"
         type={type}
         onClick={onClick}
       >
