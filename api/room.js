@@ -108,3 +108,20 @@ export const joinPublicRoom = async (roomId) => {
     throw error;
   }
 };
+
+export const searchRoom = async (query, paging) => {
+  const localAxios = await axiosInstance();
+  try {
+    const response = await localAxios.get(baseURL + "/search", {
+      params: {
+        page: paging.page,
+        size: paging.size,
+        query: query,
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching from backend", error);
+    throw error;
+  }
+};

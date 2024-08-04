@@ -9,7 +9,7 @@ const PublicRoomCard = ({ room }) => {
     })
   };
   return (
-    <div className="w-full p-2 text-text flex justify-between items-center bg-background_lighter">
+    <div className="w-full p-2 text-text flex justify-between items-center bg-background_lighter rounded-md">
       <div className="p-2 my-2 rounded-md transition-all">
         <h2>{room.name}</h2>
         <p>{room.owner.username}</p>
