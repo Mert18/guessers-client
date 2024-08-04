@@ -52,6 +52,7 @@ i18next
           yes: "Evet",
           no: "Hayır",
           createRoom: "Oda Oluştur",
+          searchRoom : "Oda Ara"
         },
       },
       en: {
@@ -97,6 +98,7 @@ i18next
           yes: "Yes",
           no: "No",
           createRoom: "Create Room",
+          searchRoom : "Search Room"
         },
       },
     },

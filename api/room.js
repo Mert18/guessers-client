@@ -11,7 +11,7 @@ export const getRoom = async (roomId) => {
     console.error("Error fetching from backend", error);
     throw error;
   }
-}
+};
 
 export const listSelfRooms = async () => {
   const localAxios = await axiosInstance();
@@ -33,18 +33,21 @@ export const createRoom = async (room) => {
     console.error("Error fetching from backend", error);
     throw error;
   }
-}
+};
 
 export const invitePeople = async (request, roomId) => {
   const localAxios = await axiosInstance();
   try {
-    const response = await localAxios.post(baseURL + "/" + roomId + "/invite", request);
+    const response = await localAxios.post(
+      baseURL + "/" + roomId + "/invite",
+      request
+    );
     return response.data;
   } catch (error) {
     console.error("Error fetching from backend", error);
     throw error;
   }
-}
+};
 
 export const acceptRoomInvite = async (roomId) => {
   const localAxios = await axiosInstance();
@@ -55,7 +58,7 @@ export const acceptRoomInvite = async (roomId) => {
     console.error("Error fetching from backend", error);
     throw error;
   }
-}
+};
 
 export const rejectRoomInvite = async (roomId) => {
   const localAxios = await axiosInstance();
@@ -66,7 +69,7 @@ export const rejectRoomInvite = async (roomId) => {
     console.error("Error fetching from backend", error);
     throw error;
   }
-}
+};
 
 export const getMetadataAndRanks = async (roomId) => {
   const localAxios = await axiosInstance();
@@ -77,7 +80,7 @@ export const getMetadataAndRanks = async (roomId) => {
     console.error("Error fetching from backend", error);
     throw error;
   }
-}
+};
 
 export const listPublicRooms = async (paging) => {
   const localAxios = await axiosInstance();
@@ -86,6 +89,34 @@ export const listPublicRooms = async (paging) => {
       params: {
         page: paging.page,
         size: paging.size,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching from backend", error);
+    throw error;
+  }
+};
+
+export const joinPublicRoom = async (roomId) => {
+  const localAxios = await axiosInstance();
+  try {
+    const response = await localAxios.get(baseURL + "/" + roomId + "/join");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching from backend", error);
+    throw error;
+  }
+};
+
+export const searchRoom = async (query, paging) => {
+  const localAxios = await axiosInstance();
+  try {
+    const response = await localAxios.get(baseURL + "/search", {
+      params: {
+        page: paging.page,
+        size: paging.size,
+        query: query,
       }
     });
     return response.data;
@@ -93,4 +124,4 @@ export const listPublicRooms = async (paging) => {
     console.error("Error fetching from backend", error);
     throw error;
   }
-}
+};
