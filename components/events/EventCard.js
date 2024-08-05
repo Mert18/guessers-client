@@ -19,7 +19,7 @@ const EventCard = ({ event, handleOptionSelected, owner, roomId, betSlip }) => {
               <Image src="/stop.svg" alt="Stop Event" width={18} height={18} />
             </button>
             <Link
-              href={`/room/${roomId}/event/${event.id}/finalize`}
+              href={`/home/room/${roomId}/event/${event.id}/finalize`}
               className="p-1"
             >
               <Image

@@ -4,8 +4,9 @@ import React from "react";
 
 const Logo = () => {
   return (
-    <Link href="/" className="rounded-md p-2">
+    <Link href="/">
       <Image
+      className="p-2 bg-background_lighter rounded-md"
         src="/logo/logo-text.png"
         alt="logo"
         width={90}

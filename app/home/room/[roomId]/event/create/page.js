@@ -1,7 +1,9 @@
 "use client";
 import { createEvent } from "@/api/event";
+import PrimaryButton from "@/components/common/button/PrimaryButton";
+import SecondaryButton from "@/components/common/button/SecondaryButton";
 import CustomInputField from "@/components/form/CustomInputField";
-import { Field, FieldArray, Form, Formik } from "formik";
+import { FieldArray, Form, Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -13,13 +15,18 @@ const CreateEvent = ({ params }) => {
   const initialValues = {
     name: "",
     description: "",
-    options: [{ name: "", odds: "" }],
+    eventGuessOptions: [
+      {
+        name: "",
+        eventGuessOptionOptions: [{ name: "", odds: 0 }],
+      },
+    ],
   };
 
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center w-1/2">
       <div className="text-primary text-2xl font-bold text-center">
         {t("eventCreate")}
       </div>
@@ -28,13 +35,13 @@ const CreateEvent = ({ params }) => {
         onSubmit={(values) => {
           createEvent(values, params.roomId).then(() => {
             setTimeout(() => {
-              router.push(`/room/${params.roomId}`);
+              router.push(`/home/room/${params.roomId}`);
             }, 2000);
           });
         }}
       >
         {({ values }) => (
-          <Form className="flex flex-col items-center w-1/4 p-4">
+          <Form className="flex flex-col items-start p-4 w-full">
             <CustomInputField
               name={`name`}
               type="text"
@@ -49,63 +56,133 @@ const CreateEvent = ({ params }) => {
               withLabel={true}
             />
 
-            <div className="text-primary text-xs font-bold">Options</div>
-            <FieldArray name="options">
-              {({ push, remove }) => (
-                <div className="flex flex-col items-center">
-                  {values.options.map((field, index) => (
-                    <div
-                      key={index}
-                      className="relative flex justify-center items-center w-full space-x-2"
-                    >
-                      <CustomInputField
-                        name={`options[${index}].name`}
-                        type="text"
-                        placeholder={t("optionName")}
-                        withLabel={false}
-                      />
-                      <CustomInputField
-                        name={`options[${index}].odds`}
-                        type="number"
-                        placeholder={t("optionOdds")}
-                        withLabel={false}
-                      />
-                      <button
-                        type="button"
-                        className="text-sm absolute -right-10"
-                        onClick={() => remove(index)}
+            <span className="text-text text-xs lowercase">
+              {t("guessOptions")}
+            </span>
+
+            <FieldArray name="eventGuessOptions">
+              {({
+                push: pushEventGuessOption,
+                remove: removeEventGuessOption,
+              }) => (
+                <div className="flex flex-col items-center w-full">
+                  {values.eventGuessOptions.map(
+                    (eventGuessOption, eventGuessOptionIndex) => (
+                      <div
+                        key={eventGuessOptionIndex}
+                        className="relative flex flex-col items-center w-full space-y-2 my-2"
                       >
-                        <Image
-                          src="/cross.svg"
-                          alt="cross"
-                          width={20}
-                          height={20}
+                        <CustomInputField
+                          name={`eventGuessOptions[${eventGuessOptionIndex}].name`}
+                          type="text"
+                          placeholder={t("optionName")}
+                          withLabel={true}
                         />
-                      </button>
-                    </div>
-                  ))}
-                  <button
+                        <span className="text-text text-xs lowercase">
+                          {t("guessOptionCases")}
+                        </span>
+                        <FieldArray
+                          name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionOptions`}
+                        >
+                          {({
+                            push: pushEventGuessOptionOption,
+                            remove: removeEventGuessOptionOption,
+                          }) => (
+                            <div className="flex flex-col items-center w-1/2 space-y-2">
+                              {values.eventGuessOptions[
+                                eventGuessOptionIndex
+                              ].eventGuessOptionOptions.map(
+                                (
+                                  eventGuessOptionOption,
+                                  eventGuessOptionOptionIndex
+                                ) => (
+                                  <div
+                                    key={eventGuessOptionOptionIndex}
+                                    className="flex justify-center items-center w-full space-x-2"
+                                  >
+                                    <CustomInputField
+                                      name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionOptions[${eventGuessOptionOptionIndex}].name`}
+                                      type="text"
+                                      placeholder={t("caseName")}
+                                      withLabel={true}
+                                      placeholderInside={true}
+                                    />
+                                    <input
+                                      type="number"
+                                      name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionOptions[${eventGuessOptionOptionIndex}].odds`}
+                                      placeholder={t("optionOdds")}
+                                      className="w-1/4 text-sm px-2 py-1 text-text outline-none bg-background_lighter my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary"
+                                      step={"0.01"}
+                                      min={"1.00"}
+                                      defaultValue={1.01}
+                                    />
+
+                                    <button
+                                      type="button"
+                                      className="text-sm"
+                                      onClick={() =>
+                                        removeEventGuessOptionOption(
+                                          eventGuessOptionOptionIndex
+                                        )
+                                      }
+                                    >
+                                      <Image
+                                        src="/cross.svg"
+                                        alt="cross"
+                                        width={30}
+                                        height={30}
+                                        className=""
+                                      />
+                                    </button>
+                                  </div>
+                                )
+                              )}
+                              <SecondaryButton
+                                type="button"
+                                text={t("addGuessOptionCase")}
+                                onClick={() =>
+                                  pushEventGuessOptionOption({
+                                    name: "",
+                                    odds: 0,
+                                  })
+                                }
+                              />
+                            </div>
+                          )}
+                        </FieldArray>
+                        <button
+                          type="button"
+                          className="text-sm"
+                          onClick={() =>
+                            removeEventGuessOption(eventGuessOptionIndex)
+                          }
+                        >
+                          <Image
+                            src="/cross.svg"
+                            alt="cross"
+                            width={30}
+                            height={30}
+                          />
+                        </button>
+                      </div>
+                    )
+                  )}
+                  <SecondaryButton
                     type="button"
-                    className="my-2 text-gray-400 px-3 py-2"
-                    onClick={() => push({ name: "", odds: "" })}
-                  >
-                    <Image src="/plus.svg" alt="plus" width={25} height={25} />
-                  </button>
+                    text={t("addGuessOption")}
+                    onClick={() =>
+                      pushEventGuessOption({
+                        name: "",
+                        eventGuessOptionOptions: [{ name: "", odds: 0 }],
+                      })
+                    }
+                  />
                 </div>
               )}
             </FieldArray>
 
-            <div className={"flex justify-center items-center"}>
-              <button
-                className="flex justify-center items-center bg-primary-brighter text-background-accent hover:bg-primary rounded-sm m-2 transition-all"
-                type="submit"
-              >
-                {loading ? (
-                  <Loader />
-                ) : (
-                  <p className="text-sm"> {t("eventCreate")}</p>
-                )}
-              </button>
+            <div className={"flex justify-center items-center w-full"}>
+              <PrimaryButton type="submit" text={t("eventCreate")} />
             </div>
           </Form>
         )}

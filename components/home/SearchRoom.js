@@ -24,10 +24,8 @@ const SearchRoom = () => {
         onSubmit={(values) => {
           setLoading(true);
           searchRoom(values.query, paging).then((response) => {
-            console.log(response.data.content);
             setRoomsResult(response.data.content);
           });
-          console.log(values);
         }}
       >
         <Form className="flex flex-col justify-center items-center my-8 w-full">
