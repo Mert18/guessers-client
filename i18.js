@@ -7,7 +7,7 @@ i18next
   .use(I18nextBrowserLanguageDetector)
   .init({
     fallbackLng: "en",
-    debug: true,
+    debug: false,
     resources: {
       tr: {
         translation: {
@@ -52,7 +52,15 @@ i18next
           yes: "Evet",
           no: "Hayır",
           createRoom: "Oda Oluştur",
-          searchRoom : "Oda Ara"
+          searchRoom : "Oda Ara",
+          profile: "Profil",
+          eventCases: "Etkinlik Durumları",
+          addEventCase: "Etkinlik Durumu Ekle",
+          guessOptions: "Tahmin Seçenekleri",
+          addGuessOption: "Tahmin Seçeneği Ekle",
+          addGuessOptionCase: "Tahmin Seçeneği Durumu Ekle",
+          guessOptionCases: "Tahmin Seçeneği Durumları",
+          caseName: "Durum Adı",
         },
       },
       en: {
@@ -98,7 +106,15 @@ i18next
           yes: "Yes",
           no: "No",
           createRoom: "Create Room",
-          searchRoom : "Search Room"
+          searchRoom : "Search Room",
+          profile: "Profile",
+          eventCases: "Event Cases",
+          addEventCase: "Add Event Case",
+          guessOptions: "Guess Options",
+          addGuessOption: "Add Guess Option",
+          addGuessOptionCase: "Add Guess Option Case",
+          guessOptionCases: "Guess Option Cases",
+          caseName: "Case Name",
         },
       },
     },

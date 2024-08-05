@@ -1,21 +1,23 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { getInvites, getUserBalance } from "@/api/user";
-import { getUserRooms, listSelfRooms } from "@/api/room";
+import { listSelfRooms } from "@/api/room";
 import { useParams } from "next/navigation";
 import RoomsSelector from "../navbar/RoomsSelector";
 import AuthStatus from "../authStatus";
 import Logo from "./Logo";
+import HamburgerMenu from "../navbar/HamburgerMenu";
 
 const Navbar = () => {
   const [roomsMenuOpen, setRoomsMenuOpen] = useState(false);
   const [invitesMenuOpen, setInvitesMenuOpen] = useState(false);
+  const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
   const params = useParams();
 
   const [balance, setBalance] = useState();
-  const [rooms, setRooms] = useState([]);
+  const [roomUsers, setRoomUsers] = useState([]);
   const [invites, setInvites] = useState([]);
   const roomsMenuRef = useRef(null);
+  const hamburgerMenuRef = useRef(null);
   const invitesMenuRef = useRef(null);
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const Navbar = () => {
     // });
 
     listSelfRooms().then((response) => {
-      setRooms(response.data);
+      setRoomUsers(response.data);
     });
 
     // getInvites().then((res) => {
@@ -46,6 +48,12 @@ const Navbar = () => {
       ) {
         setInvitesMenuOpen(false);
       }
+      if (
+        hamburgerMenuRef.current &&
+        !hamburgerMenuRef.current.contains(event.target)
+      ) {
+        setHamburgerMenuOpen(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -56,11 +64,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-between p-2 items-center text-background">
+    <div className="flex justify-between items-center text-background p-2">
       <Logo />
 
       {/* Self rooms */}
-      <div className="flex justify-between items-center text-primary text-xs w-full">
+      <div className="flex justify-end items-center text-text text-xs w-full">
         {/* <InvitesWrapper
           invitesMenuRef={invitesMenuRef}
           setInvitesMenuOpen={setInvitesMenuOpen}
@@ -72,13 +80,17 @@ const Navbar = () => {
           roomsMenuRef={roomsMenuRef}
           setRoomsMenuOpen={setRoomsMenuOpen}
           roomsMenuOpen={roomsMenuOpen}
-          rooms={rooms}
+          roomUsers={roomUsers}
           roomId={params.roomId}
         />
 
         {/* <BalanceWrapper balance={balance} /> */}
 
-        <AuthStatus />
+        <HamburgerMenu
+          hamburgerMenuRef={hamburgerMenuRef}
+          setHamburgerMenuOpen={setHamburgerMenuOpen}
+          hamburgerMenuOpen={hamburgerMenuOpen}
+        />
       </div>
     </div>
   );

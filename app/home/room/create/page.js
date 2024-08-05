@@ -30,7 +30,7 @@ const CreateRoom = () => {
         onSubmit={(values) => {
           createRoom(values).then((response) => {
             setTimeout(() => {
-              window.location.href = "/room/" + response.data.id;
+              window.location.href = "/home/room/" + response.data.id;
             }, 2000);
           });
         }}

@@ -1,7 +1,6 @@
 "use client";
-import { getEvents } from "@/api/event";
-import { getMetadataAndRanks, getRoom, isOwner, rankPredictions, rankRiches } from "@/api/room";
-import BetScreen from "@/components/BetScreen";
+import { getActiveEvents, getCompletedEvents } from "@/api/event";
+import { getRanks, getRoom, getRoomUser } from "@/api/room";
 import PlacedBets from "@/components/PlacedBets";
 import RoomActiveEvents from "@/components/room/RoomActiveEvents";
 import RoomCompletedEvents from "@/components/room/RoomCompletedEvents";
@@ -10,36 +9,45 @@ import React, { useEffect, useState } from "react";
 
 const Room = ({ params }) => {
   const [paging, setPaging] = useState({ page: 0, size: 10 });
-  const [owner, setOwner] = useState(false);
   const [activeEvents, setActiveEvents] = useState([]);
+  const [completedEvents, setCompletedEvents] = useState([]);
   const [room, setRoom] = useState({});
+  const [roomUser, setRoomUser] = useState({});
   const [rankedRiches, setRankedRiches] = useState([]);
-  const [rankedPredictions, setRankedPredictions] = useState({});
+  const [rankedPredictions, setRankedPredictions] = useState([]);
 
   useEffect(() => {
-    getMetadataAndRanks(params.roomId).then((response) => {
-      setOwner(response.data.owner);
-      setRankedRiches(response.data.riches);
-      setRankedPredictions(response.data.rankPredictions);
-      setRoom(response.data.room);
+    getRoom(params.roomId).then((response) => {
+      setRoom(response.data);
     });
-  }, [params.roomId]);
 
-  useEffect(() => {
-    getEvents(params.roomId, paging).then((response) => {
+    getRoomUser(params.roomId).then((response) => {
+      setRoomUser(response.data);
+    });
+
+    getRanks(params.roomId).then((response) => {
+      setRankedPredictions(response.data.rankedByCorrectPredictions);
+      setRankedRiches(response.data.rankedByBalance);
+    });
+
+    getActiveEvents(params.roomId, paging).then((response) => {
       setActiveEvents(response.data.content);
     })
-  }, [params.roomId])
+
+    getCompletedEvents(params.roomId, paging).then((response) => {
+      setCompletedEvents(response.data.content);
+    })
+  }, [params.roomId]);
 
   return (
-    <div>
-      <RoomHeader room={room} rankedRiches={rankedRiches} owner={owner} rankedPredictions={rankedPredictions} />
+    <div className="w-full">
+      <RoomHeader room={room} roomUser={roomUser} rankedRiches={rankedRiches} rankedPredictions={rankedPredictions} />
 
-      <RoomActiveEvents />
+      <RoomActiveEvents activeEvents={activeEvents} />
 
-      <RoomCompletedEvents />
+      <RoomCompletedEvents completedEvents={completedEvents} />
 
-      <PlacedBets roomId={params.roomId} />
+      {/* <PlacedBets roomId={params.roomId} /> */}
     </div>
   );
 };

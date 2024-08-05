@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RoomCompletedEvents = () => {
+const RoomCompletedEvents = ({completedEvents}) => {
   return (
     <div>RoomCompletedEvents</div>
   )

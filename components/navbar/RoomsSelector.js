@@ -8,24 +8,24 @@ const RoomsSelector = ({
   roomsMenuRef,
   setRoomsMenuOpen,
   roomsMenuOpen,
-  rooms,
+  roomUsers,
   roomId,
 }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="relative w-32 text-text text-xs my-6" ref={roomsMenuRef}>
+    <div className="relative w-32 text-text text-xs mr-8 h-full" ref={roomsMenuRef}>
       <button
         onClick={() => setRoomsMenuOpen(!roomsMenuOpen)}
-        className="bg-background_lighter text-text p-1 flex justify-between w-full"
+        className="bg-background_lighter text-text p-3 flex justify-between w-full"
       >
         <p>
-          {rooms?.find((room) => room.id === roomId)?.name || t("roomSelect")}
+          {roomUsers?.find((roomUser) => roomUser.id === roomId)?.name || t("roomSelect")}
         </p>
       </button>
       {roomsMenuOpen && (
         <RoomsMenu
-          rooms={rooms}
+        roomUsers={roomUsers}
           setRoomsMenuOpen={setRoomsMenuOpen}
           roomId={roomId}
         />

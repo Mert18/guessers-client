@@ -9,7 +9,7 @@ const NoRoom = () => {
   useEffect(() => {
     getUserRooms().then((res) => {
       if(res.data.rooms.length > 0) {
-        router.push("/room/" + res.data.rooms[0].id);
+        router.push("/home/room/" + res.data.rooms[0].id);
       }
     });
   }, [router]);

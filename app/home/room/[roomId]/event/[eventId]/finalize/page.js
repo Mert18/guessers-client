@@ -26,7 +26,7 @@ const EventFinalize = ({ params }) => {
     const winningOptionNumbers = winningOptions.map((option) => option.optionNumber);
     finalizeEvent({ eventId: params.eventId, roomId: params.roomId, winnerOptionNumbers: winningOptionNumbers }).finally(() => {
       setTimeout(() => {
-        window.location.href = `/room/${params.roomId}`;
+        window.location.href = `/home/room/${params.roomId}`;
       }, 3000)
     })
   }
