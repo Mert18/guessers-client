@@ -18,7 +18,7 @@ const CreateEvent = ({ params }) => {
     eventGuessOptions: [
       {
         name: "",
-        eventGuessOptionOptions: [{ name: "", odds: 0 }],
+        eventGuessOptionCases: [{ name: "", odds: 0 }],
       },
     ],
   };
@@ -82,7 +82,7 @@ const CreateEvent = ({ params }) => {
                           {t("guessOptionCases")}
                         </span>
                         <FieldArray
-                          name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionOptions`}
+                          name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionCases`}
                         >
                           {({
                             push: pushEventGuessOptionOption,
@@ -91,7 +91,7 @@ const CreateEvent = ({ params }) => {
                             <div className="flex flex-col items-center w-1/2 space-y-2">
                               {values.eventGuessOptions[
                                 eventGuessOptionIndex
-                              ].eventGuessOptionOptions.map(
+                              ].eventGuessOptionCases.map(
                                 (
                                   eventGuessOptionOption,
                                   eventGuessOptionOptionIndex
@@ -101,7 +101,7 @@ const CreateEvent = ({ params }) => {
                                     className="flex justify-center items-center w-full space-x-2"
                                   >
                                     <CustomInputField
-                                      name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionOptions[${eventGuessOptionOptionIndex}].name`}
+                                      name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionCases[${eventGuessOptionOptionIndex}].name`}
                                       type="text"
                                       placeholder={t("caseName")}
                                       withLabel={true}
@@ -109,7 +109,7 @@ const CreateEvent = ({ params }) => {
                                     />
                                     <input
                                       type="number"
-                                      name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionOptions[${eventGuessOptionOptionIndex}].odds`}
+                                      name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionCases[${eventGuessOptionOptionIndex}].odds`}
                                       placeholder={t("optionOdds")}
                                       className="w-1/4 text-sm px-2 py-1 text-text outline-none bg-background_lighter my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary"
                                       step={"0.01"}
@@ -173,7 +173,7 @@ const CreateEvent = ({ params }) => {
                     onClick={() =>
                       pushEventGuessOption({
                         name: "",
-                        eventGuessOptionOptions: [{ name: "", odds: 0 }],
+                        eventGuessOptionCases: [{ name: "", odds: 0 }],
                       })
                     }
                   />

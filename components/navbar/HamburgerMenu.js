@@ -1,9 +1,16 @@
 import React from "react";
-import AuthStatus from "../authStatus";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
+
+async function keycloakSessionLogOut() {
+  try {
+    await fetch(`/api/auth/logout`, { method: "GET" });
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 const HamburgerMenu = ({
   hamburgerMenuRef,
