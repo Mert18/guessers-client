@@ -61,6 +61,10 @@ i18next
           addGuessOptionCase: "Tahmin Seçeneği Durumu Ekle",
           guessOptionCases: "Tahmin Seçeneği Durumları",
           caseName: "Durum Adı",
+          currentGuessPaper: "Mevcut Tahmin Kağıdı",
+          stakes: "Miktar",
+          createGuessPaper: "Tahmin Kağıdı Oluştur",
+          wins: "Kazanç"
         },
       },
       en: {
@@ -115,6 +119,10 @@ i18next
           addGuessOptionCase: "Add Guess Option Case",
           guessOptionCases: "Guess Option Cases",
           caseName: "Case Name",
+          currentGuessPaper: "Current Guess Paper",
+          stakes: "Stakes",
+          createGuessPaper: "Create Guess Paper",
+          wins: "Wins"
         },
       },
     },

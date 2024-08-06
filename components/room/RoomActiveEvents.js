@@ -1,54 +1,91 @@
-'use client'
-import React, { useState } from 'react'
-import EventCard from '../events/EventCard'
+"use client";
+import React, { useEffect, useState } from "react";
+import EventCard from "../events/EventCard";
+import GuessPaper from "../guesspaper/GuessPaper";
 
-const RoomActiveEvents = ({activeEvents, roomId}) => {
-  const [guessSlip, setGuessSlip] = useState({
-    guesses: [],
-    stake: 100,
-    totalOdds: 1,
-    wins: 100,
-  });
+const RoomActiveEvents = ({ activeEvents, roomId }) => {
+  const [guesses, setGuesses] = useState([]);
 
-  console.log("Active events: ", activeEvents)
+  const [totalOdds, setTotalOdds] = useState(1.0);
+  const [stake, setStake] = useState(100);
+  const [wins, setWins] = useState(100);
 
-  const handleOptionSelected = (event, eventGuessOption, eventGuessOptionCase) => {
-    console.log("Event: ", event)
-    console.log("Event guess option: ", eventGuessOption)
-    console.log("Event guess option case: ", eventGuessOptionCase)
-    const eventIndex = guessSlip?.guesses.findIndex((guess) => guess.event.id === event.id);
-    if(eventIndex) {
-      const eventGuessOptionIndex = guessSlip?.guesses[eventIndex].eventGuessOptions.findIndex((guessOption) => guessOption.id === eventGuessOption.id);
-      if(eventGuessOptionIndex) {
-        const eventGuessOptionCaseIndex = guessSlip?.guesses[eventIndex].eventGuessOptions[eventGuessOption].eventGuessOptionCases.findIndex((guessOptionCase) => guessOptionCase.id === eventGuessOptionCase.id);
-        if(eventGuessOptionCaseIndex) {
-          const newGuessSlip = [...guessSlip?.guesses];
-          newGuessSlip[eventIndex].eventGuessOptions[eventGuessOption].eventGuessOptionCases[eventGuessOptionCase] = eventGuessOptionCase;
-          setGuessSlip((prevState) => ({
-            ...prevState,
-            guesses: newGuessSlip,
-          }));
-        } else {
-          const newGuessSlip = [...guessSlip?.guesses];
-          newGuessSlip[eventIndex].eventGuessOptions[eventGuessOption].eventGuessOptionCases.push(eventGuessOptionCase);
-          setGuessSlip((prevState) => ({
-            ...prevState,
-            guesses: newGuessSlip,
-          }));
-        }
-      }
+  useEffect(() => {
+    console.log("Guesses: ", guesses)
+    setTotalOdds(guesses.reduce((acc, guess) => acc * guess.odd, 1).toFixed(2));
+    setWins(
+      (guesses.reduce((acc, guess) => acc * guess.odd, 1).toFixed(2) * stake).toFixed(2)
+    );
+  }, [guesses, stake]);
+
+
+  const handleOptionSelected = (
+    event,
+    eventGuessOption,
+    eventGuessOptionCase
+  ) => {
+    const guessSignature = `${event.id}-${eventGuessOption.id}`;
+    const guess = {
+      eventId: event.id,
+      eventGuessOptionId: eventGuessOption.id,
+      eventGuessOptionName: eventGuessOption.name,
+      eventGuessOptionCaseId: eventGuessOptionCase.id,
+      eventGuessOptionCaseName: eventGuessOptionCase.name,
+      odd: eventGuessOptionCase.odds,
+      signature: guessSignature,
+    };
+
+    if (
+      guesses.findIndex((guess) => guess.signature === guessSignature) === -1
+    ) {
+      setGuesses([...guesses, guess]);
+    } else if (
+      eventGuessOptionCase.id ===
+      guesses.find((guess) => guess.signature === guessSignature)
+        .eventGuessOptionCaseId
+    ) {
+      const newGuesses = [...guesses];
+      newGuesses.splice(
+        guesses.findIndex((guess) => guess.signature === guessSignature),
+        1
+      );
+      setGuesses(newGuesses);
+      return;
+    } else {
+      const newGuesses = [...guesses];
+      newGuesses[
+        guesses.findIndex((guess) => guess.signature === guessSignature)
+      ] = guess;
+      setGuesses(newGuesses);
     }
-  }
+  };
 
   const owner = false;
 
   return (
-    <div className='flex flex-col justify-center items-center'>
+    <div className="flex flex-col justify-center items-center">
       {activeEvents.map((event) => (
-        <EventCard key={event.id} event={event} handleOptionSelected={handleOptionSelected} owner={owner} roomId={roomId} betSlip={betSlip} />
+        <EventCard
+          key={event.id}
+          event={event}
+          handleOptionSelected={handleOptionSelected}
+          owner={owner}
+          roomId={roomId}
+          guesses={guesses}
+          setGuesses={setGuesses}
+        />
       ))}
-    </div>
-  )
-}
 
-export default RoomActiveEvents
+      <GuessPaper
+        guesses={guesses}
+        totalOdds={totalOdds}
+        stake={stake}
+        setStake={setStake}
+        wins={wins}
+        roomId={roomId}
+      />
+    </div>
+  );
+};
+
+export default RoomActiveEvents;

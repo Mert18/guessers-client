@@ -1,10 +1,7 @@
 "use client";
-import { startEvent } from "@/api/event";
-import Image from "next/image";
-import Link from "next/link";
 import React, { useState } from "react";
 
-const EventCard = ({ event, handleOptionSelected, owner, roomId, betSlip }) => {
+const EventCard = ({ event, handleOptionSelected, owner, roomId, guesses, setGuesses }) => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -37,7 +34,7 @@ const EventCard = ({ event, handleOptionSelected, owner, roomId, betSlip }) => {
                       return (
                         <div
                           key={eventGuessOptionCase.id}
-                          className="flex-1 flex flex-col justify-center items-center m-1"
+                          className="flex-1 flex flex-col justify-center items-center m-1 hover:cursor-pointer"
                           onClick={() => {
                             handleOptionSelected(
                               event,
@@ -49,7 +46,7 @@ const EventCard = ({ event, handleOptionSelected, owner, roomId, betSlip }) => {
                           <div className="bg-background2 text-text w-full p-2 flex justify-center items-center rounded-md m-1">
                             <p>{eventGuessOptionCase.name}</p>
                           </div>
-                          <div className="bg-background3 text-text w-full p-2 flex justify-center items-center rounded-md m-1">
+                          <div className={`${guesses.findIndex((guess) => guess.eventGuessOptionCaseId === eventGuessOptionCase.id) >=0 ? "bg-primary" : "bg-background3"} text-text w-full p-2 flex justify-center items-center rounded-md m-1`}>
                             <p>{eventGuessOptionCase.odds}</p>
                           </div>
                         </div>
