@@ -15,7 +15,7 @@ const CustomInputField = ({
       return (
         <Field
           name={name}
-          className={`w-${width} text-sm px-2 py-1 text-text outline-none bg-background_lighter my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
+          className={`w-${width} text-sm px-2 py-1 text-text outline-none bg-background2 my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
           type={type}
           step={type === "number" ? "1.00" : null}
           min={type === "number" ? "1.00" : null}
@@ -27,7 +27,7 @@ const CustomInputField = ({
       return (
         <Field
           as="select"
-          className={`w-${width} text-sm px-2 py-1 text-text outline-none bg-background_lighter my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
+          className={`w-${width} text-sm px-2 py-1 text-text outline-none bg-background2 my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
           name={name}
         >
           {options.map((option) => (

@@ -18,7 +18,7 @@ const CreateEvent = ({ params }) => {
     eventGuessOptions: [
       {
         name: "",
-        eventGuessOptionCases: [{ name: "", odds: 0 }],
+        eventGuessOptionCases: [{ name: "", odds: 1.01 }],
       },
     ],
   };
@@ -108,13 +108,19 @@ const CreateEvent = ({ params }) => {
                                       placeholderInside={true}
                                     />
                                     <input
+                                      onChange={(e) => {
+                                        values.eventGuessOptions[
+                                          eventGuessOptionIndex
+                                        ].eventGuessOptionCases[
+                                          eventGuessOptionOptionIndex
+                                        ].odds = parseFloat(e.target.value);
+                                      }}
                                       type="number"
                                       name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionCases[${eventGuessOptionOptionIndex}].odds`}
                                       placeholder={t("optionOdds")}
-                                      className="w-1/4 text-sm px-2 py-1 text-text outline-none bg-background_lighter my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary"
+                                      className="w-1/4 text-sm px-2 py-1 text-text outline-none bg-background2 my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary"
                                       step={"0.01"}
                                       min={"1.00"}
-                                      defaultValue={1.01}
                                     />
 
                                     <button
@@ -143,7 +149,7 @@ const CreateEvent = ({ params }) => {
                                 onClick={() =>
                                   pushEventGuessOptionOption({
                                     name: "",
-                                    odds: 0,
+                                    odds: 1.01,
                                   })
                                 }
                               />
@@ -173,7 +179,7 @@ const CreateEvent = ({ params }) => {
                     onClick={() =>
                       pushEventGuessOption({
                         name: "",
-                        eventGuessOptionCases: [{ name: "", odds: 0 }],
+                        eventGuessOptionCases: [{ name: "", odds: 1.01 }],
                       })
                     }
                   />

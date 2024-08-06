@@ -1,7 +1,6 @@
 "use client";
 import { getActiveEvents, getCompletedEvents } from "@/api/event";
 import { getRanks, getRoom, getRoomUser } from "@/api/room";
-import PlacedBets from "@/components/PlacedBets";
 import RoomActiveEvents from "@/components/room/RoomActiveEvents";
 import RoomCompletedEvents from "@/components/room/RoomCompletedEvents";
 import RoomHeader from "@/components/room/RoomHeader";
@@ -43,7 +42,7 @@ const Room = ({ params }) => {
     <div className="w-full">
       <RoomHeader room={room} roomUser={roomUser} rankedRiches={rankedRiches} rankedPredictions={rankedPredictions} />
 
-      <RoomActiveEvents activeEvents={activeEvents} />
+      <RoomActiveEvents activeEvents={activeEvents} roomId={params.roomId} />
 
       <RoomCompletedEvents completedEvents={completedEvents} />
 

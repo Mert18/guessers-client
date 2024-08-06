@@ -7,7 +7,7 @@ import PrimaryButton from "../common/button/PrimaryButton";
 const RoomsMenu = ({ roomUsers, setRoomsMenuOpen, roomId }) => {
   const { t } = useTranslation();
   return (
-    <div className="absolute top-full left-0 w-32 bg-background_lighter">
+    <div className="absolute top-full left-0 w-32 bg-background2">
       {roomUsers?.map((roomUser) => (
         <Link
           key={roomUser.room.id}

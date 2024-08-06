@@ -17,7 +17,7 @@ const RoomsSelector = ({
     <div className="relative w-32 text-text text-xs mr-8 h-full" ref={roomsMenuRef}>
       <button
         onClick={() => setRoomsMenuOpen(!roomsMenuOpen)}
-        className="bg-background_lighter text-text p-3 flex justify-between w-full"
+        className="bg-background2 text-text p-3 flex justify-between w-full"
       >
         <p>
           {roomUsers?.find((roomUser) => roomUser.id === roomId)?.name || t("roomSelect")}
