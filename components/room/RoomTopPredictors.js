@@ -5,7 +5,7 @@ import React from "react";
 const RoomTopPredictors = ({ rankedPredictions }) => {
   return (
     <ul className="max-w-48 w-48 text-xs">
-      {rankedPredictions.length > 1 && rankedPredictions.map((roomUser, index) => (
+      {rankedPredictions.length >= 1 && rankedPredictions.map((roomUser, index) => (
         <li
           key={roomUser.id}
           className="flex justify-between items-center my-2 w-full"
@@ -34,7 +34,7 @@ const RoomTopPredictors = ({ rankedPredictions }) => {
               />
             )}
             <p className="font-bold ml-2 underline">
-              <Link href={`/profile/${roomUser.id}`}>{roomUser.user.username}</Link>
+              <Link href={`/home/profile/${roomUser.user.username}`}>{roomUser.user.username}</Link>
             </p>
           </div>
           <p className="font-bold text-secondary-darker">{roomUser.score}</p>

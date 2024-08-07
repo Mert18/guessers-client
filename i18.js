@@ -64,7 +64,10 @@ i18next
           currentGuessPaper: "Mevcut Tahmin Kağıdı",
           stakes: "Miktar",
           createGuessPaper: "Tahmin Kağıdı Oluştur",
-          wins: "Kazanç"
+          wins: "Kazanç",
+          invitePeopleToRoom: "Odaya Birini Davet Et",
+          activeEvents: "Aktif Etkinlikler",
+          guessPapers: "Tahmin Kağıtları",
         },
       },
       en: {
@@ -122,7 +125,10 @@ i18next
           currentGuessPaper: "Current Guess Paper",
           stakes: "Stakes",
           createGuessPaper: "Create Guess Paper",
-          wins: "Wins"
+          wins: "Wins",
+          invitePeopleToRoom: "Invite Someone to Room",
+          activeEvents: "Active Events",
+          guessPapers: "Guess Papers",
         },
       },
     },

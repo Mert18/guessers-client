@@ -35,12 +35,11 @@ export const createRoom = async (room) => {
   }
 };
 
-export const invitePeople = async (request, roomId) => {
+export const invitePeople = async (invitedUsername, roomId) => {
   const localAxios = await axiosInstance();
   try {
-    const response = await localAxios.post(
-      baseURL + "/" + roomId + "/invite",
-      request
+    const response = await localAxios.get(
+      baseURL + "/" + roomId + "/invite/" + invitedUsername,
     );
     return response.data;
   } catch (error) {

@@ -1,9 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import EventCard from "../events/EventCard";
-import GuessPaper from "../guesspaper/GuessPaper";
+import GuessPaper from "../guesspaper/ActiveGuessPaper";
+import ComponentTitle from "../common/ComponentTitle";
+import { t } from "i18next";
 
-const RoomActiveEvents = ({ activeEvents, roomId }) => {
+const RoomActiveEvents = ({ activeEvents, roomUser }) => {
   const [guesses, setGuesses] = useState([]);
 
   const [totalOdds, setTotalOdds] = useState(1.0);
@@ -11,13 +13,13 @@ const RoomActiveEvents = ({ activeEvents, roomId }) => {
   const [wins, setWins] = useState(100);
 
   useEffect(() => {
-    console.log("Guesses: ", guesses)
     setTotalOdds(guesses.reduce((acc, guess) => acc * guess.odd, 1).toFixed(2));
     setWins(
-      (guesses.reduce((acc, guess) => acc * guess.odd, 1).toFixed(2) * stake).toFixed(2)
+      (
+        guesses.reduce((acc, guess) => acc * guess.odd, 1).toFixed(2) * stake
+      ).toFixed(2)
     );
   }, [guesses, stake]);
-
 
   const handleOptionSelected = (
     event,
@@ -60,30 +62,38 @@ const RoomActiveEvents = ({ activeEvents, roomId }) => {
     }
   };
 
-  const owner = false;
+  const resetGuessPaper = () => {
+    setStake(100);
+    setWins(100);
+    setTotalOdds(1.0);
+    setGuesses([]);
+  };
 
   return (
     <div className="flex flex-col justify-center items-center">
-      {activeEvents.map((event) => (
-        <EventCard
-          key={event.id}
-          event={event}
-          handleOptionSelected={handleOptionSelected}
-          owner={owner}
-          roomId={roomId}
-          guesses={guesses}
-          setGuesses={setGuesses}
-        />
-      ))}
+      <ComponentTitle text={t("activeEvents")} />
+      <div className="w-1/2">
+        {activeEvents.map((event) => (
+          <EventCard
+            key={event.id}
+            event={event}
+            handleOptionSelected={handleOptionSelected}
+            guesses={guesses}
+          />
+        ))}
+      </div>
 
-      <GuessPaper
-        guesses={guesses}
-        totalOdds={totalOdds}
-        stake={stake}
-        setStake={setStake}
-        wins={wins}
-        roomId={roomId}
-      />
+      {guesses.length > 0 && (
+        <GuessPaper
+          guesses={guesses}
+          totalOdds={totalOdds}
+          stake={stake}
+          setStake={setStake}
+          wins={wins}
+          roomUser={roomUser}
+          resetGuessPaper={resetGuessPaper}
+        />
+      )}
     </div>
   );
 };

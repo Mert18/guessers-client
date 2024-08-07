@@ -9,7 +9,7 @@ const Logo = () => {
       className="p-2 bg-background2 rounded-md"
         src="/logo/logo-text.png"
         alt="logo"
-        width={90}
+        width={120}
         height={60}
       />
     </Link>

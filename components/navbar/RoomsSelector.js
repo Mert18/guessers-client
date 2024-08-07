@@ -1,7 +1,6 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import RoomsMenu from "./RoomsMenu";
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
 
 const RoomsSelector = ({
@@ -9,23 +8,29 @@ const RoomsSelector = ({
   setRoomsMenuOpen,
   roomsMenuOpen,
   roomUsers,
+  setRoomUser,
   roomId,
 }) => {
   const { t } = useTranslation();
 
+  useEffect(() => {
+    setRoomUser(roomUsers.find((roomUser) => roomUser.room.id == roomId));
+  }, [roomUsers, roomId]);
+
   return (
-    <div className="relative w-32 text-text text-xs mr-8 h-full" ref={roomsMenuRef}>
+    <div className="relative w-32 text-text text-xs h-full" ref={roomsMenuRef}>
       <button
         onClick={() => setRoomsMenuOpen(!roomsMenuOpen)}
-        className="bg-background2 text-text p-3 flex justify-between w-full"
+        className="bg-background3 text-text p-3 flex justify-between w-full"
       >
         <p>
-          {roomUsers?.find((roomUser) => roomUser.id === roomId)?.name || t("roomSelect")}
+          {roomUsers?.find((roomUser) => roomUser.room.id == roomId)?.room
+            .name || t("roomSelect")}
         </p>
       </button>
       {roomsMenuOpen && (
         <RoomsMenu
-        roomUsers={roomUsers}
+          roomUsers={roomUsers}
           setRoomsMenuOpen={setRoomsMenuOpen}
           roomId={roomId}
         />

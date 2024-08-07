@@ -121,6 +121,7 @@ const CreateEvent = ({ params }) => {
                                       className="w-1/4 text-sm px-2 py-1 text-text outline-none bg-background2 my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary"
                                       step={"0.01"}
                                       min={"1.00"}
+                                      defaultValue={1.01}
                                     />
 
                                     <button

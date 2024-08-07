@@ -4,18 +4,18 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import PrimaryButton from "../common/button/PrimaryButton";
 
-const GuessPaper = ({ guesses, totalOdds, stake, setStake, wins, roomId }) => {
+const GuessPaper = ({ guesses, totalOdds, stake, setStake, wins, roomUser, resetGuessPaper }) => {
   const { t } = useTranslation();
 
   const sendGuessPaper = () => {
     const guessPaperToCreate = {
         guesses: guesses,
         stake: stake,
-        roomId: roomId
+        roomId: roomUser.room.id
     }
 
-    createGuessPaper(guessPaperToCreate).then(() => {
-
+    createGuessPaper(guessPaperToCreate).finally(() => {
+      resetGuessPaper();
     })
   };
 
@@ -32,6 +32,7 @@ const GuessPaper = ({ guesses, totalOdds, stake, setStake, wins, roomId }) => {
           <p className="text-xs">{t("stakes")}</p>
           <select
             className="p-2 text-background"
+            value={stake}
             onChange={(e) => {
               setStake(e.target.value);
             }}
@@ -66,7 +67,9 @@ const GuessPaper = ({ guesses, totalOdds, stake, setStake, wins, roomId }) => {
           <PrimaryButton
             type="button"
             text={t("createGuessPaper")}
-            onClick={sendGuessPaper}
+            onClick={() => {
+              sendGuessPaper();
+            }}
           />
         </div>
       </div>
