@@ -51,7 +51,7 @@ const Room = ({ params }) => {
 
       <RoomActiveEvents activeEvents={activeEvents} roomUser={roomUser} />
 
-      <RoomCompletedEvents completedEvents={completedEvents} />
+      <RoomCompletedEvents completedEvents={completedEvents} roomUser={roomUser} />
 
       <RoomGuessPapers roomId={params.roomId} />
       {/* <PlacedBets roomId={params.roomId} /> */}

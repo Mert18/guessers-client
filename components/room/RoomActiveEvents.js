@@ -80,6 +80,7 @@ const RoomActiveEvents = ({ activeEvents, roomUser }) => {
             handleOptionSelected={handleOptionSelected}
             guesses={guesses}
             roomUser={roomUser}
+            status="IN_PROGRESS"
           />
         ))}
       </div>

@@ -50,6 +50,10 @@ const GuessPaperCard = ({ guessPaper }) => {
             ))}
             <div className="w-full mt-10">
             <div className="flex justify-between w-full">
+                <p>Status</p>
+                <p>{guessPaper.status}</p>
+              </div>
+              <div className="flex justify-between w-full">
                 <p>Username</p>
                 <p>{guessPaper.user.username}</p>
               </div>
