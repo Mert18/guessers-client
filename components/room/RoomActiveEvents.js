@@ -79,6 +79,7 @@ const RoomActiveEvents = ({ activeEvents, roomUser }) => {
             event={event}
             handleOptionSelected={handleOptionSelected}
             guesses={guesses}
+            roomUser={roomUser}
           />
         ))}
       </div>

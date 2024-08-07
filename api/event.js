@@ -70,10 +70,10 @@ export const startEvent = async (eventId) => {
   }
 }
 
-export const finalizeEvent = async (request) => {
+export const finalizeEvent = async (request, eventId) => {
   const localAxios = await axiosInstance();
   try {
-    const response = await localAxios.post(baseURL + "/finalize", request);
+    const response = await localAxios.post(baseURL + "/" + eventId + "/finalize", request);
     return response.data;
   } catch (error) {
     console.error("Error fetching from backend", error);

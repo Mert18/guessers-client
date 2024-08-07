@@ -68,6 +68,7 @@ i18next
           invitePeopleToRoom: "Odaya Birini Davet Et",
           activeEvents: "Aktif Etkinlikler",
           guessPapers: "Tahmin Kağıtları",
+          guessPaperDetails: "Tahmin Kağıdı Detayları",
         },
       },
       en: {
@@ -129,6 +130,7 @@ i18next
           invitePeopleToRoom: "Invite Someone to Room",
           activeEvents: "Active Events",
           guessPapers: "Guess Papers",
+          guessPaperDetails: "Guess Paper Details",
         },
       },
     },

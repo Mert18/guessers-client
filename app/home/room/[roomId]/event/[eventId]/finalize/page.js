@@ -12,49 +12,80 @@ const EventFinalize = ({ params }) => {
     });
   }, []);
 
-  const handleChangeWinningOptions = (option) => {
-    if (winningOptions.includes(option)) {
+  const handleChangeWinningOptions = (eventGuessOptionCase) => {
+    if (winningOptions.includes(eventGuessOptionCase)) {
       setWinningOptions(
-        winningOptions.filter((winningOption) => winningOption !== option)
+        winningOptions.filter((winningOption) => winningOption !== eventGuessOptionCase)
       );
     } else {
-      setWinningOptions([...winningOptions, option]);
+      setWinningOptions([...winningOptions, eventGuessOptionCase]);
     }
   };
 
   const handleFinalize = () => {
-    const winningOptionNumbers = winningOptions.map((option) => option.optionNumber);
-    finalizeEvent({ eventId: params.eventId, roomId: params.roomId, winnerOptionNumbers: winningOptionNumbers }).finally(() => {
-      setTimeout(() => {
-        window.location.href = `/home/room/${params.roomId}`;
-      }, 3000)
+    console.log("Finalize Event: ", winningOptions);
+    const winningCaseIds = winningOptions.map((winningOption) => winningOption.id);
+    const finalizeRequest = {
+      winnerEventGuessOptionCases: winningCaseIds
+    }
+    finalizeEvent(finalizeRequest, event.id).then((response) => {
+      console.log("Finalize Event Response: ", response);
     })
-  }
+  };
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center w-1/2 text-text">
       <div className="text-primary text-2xl font-bold text-center">
         Finalize Event
       </div>
-      <div className="w-1/3">
-      <h1 className="font-bold text-xl">{event?.name}</h1>
-      <p>Select the winning options.</p>
-      {event?.options?.map((option) => (
-        <div
-          key={option.optionNumber}
-          onClick={() => handleChangeWinningOptions(option)}
-          style={
-            winningOptions.includes(option) ? { backgroundColor: "#A1C398" } : {}
-          }
-          className="p-2 cursor-pointer"
+      <div className="">
+        <h1 className="font-bold text-xl">{event?.name}</h1>
+        <p>Select the winning options.</p>
+
+        {event.eventGuessOptions?.map((eventGuessOption) => (
+          <div
+          key={eventGuessOption.id}
+          className="w-full flex flex-col justify-start items-start"
         >
-          <p>
-            {option.name}
-          </p>
-        </div>
-      ))}
+          <p className="text-text text-xs lowercase m-1">
+                {eventGuessOption.name}
+              </p>
+              <div className="flex w-full">
+              {eventGuessOption.eventGuessOptionCases?.map(
+                (eventGuessOptionCase) => {
+                  return (
+                    <div
+                    key={eventGuessOptionCase.id}
+                    className="flex-1 flex flex-col justify-center items-center m-1 hover:cursor-pointer"
+                    onClick={() => handleChangeWinningOptions(eventGuessOptionCase)}
+                    >
+                       <div className="bg-background2 text-text w-full p-2 flex justify-center items-center rounded-md m-1">
+                          <p>{eventGuessOptionCase.name}</p>
+                        </div>
+                        <div
+                          className={`${
+                            winningOptions.includes(eventGuessOptionCase)
+                              ? "bg-success"
+                              : "bg-background3"
+                          } w-full p-2 flex justify-center items-center rounded-md m-1 text-text`}
+                        >
+                          <p>{eventGuessOptionCase.odds}</p>
+                        </div>
+                      </div>
+                  )
+                }
+              )}
+                </div>
+
+          </div>
+          ))}
       </div>
 
-      <button className="p-2 mr-2 bg-primary text-background font-bold hover:bg-primary-brighter" onClick={() => handleFinalize()}>Finalize</button>
+      <button
+        className="p-2 mr-2 bg-primary text-background font-bold hover:bg-primary-brighter"
+        onClick={() => handleFinalize()}
+      >
+        Finalize
+      </button>
     </div>
   );
 };

@@ -1,22 +1,32 @@
 "use client";
 import React, { useState } from "react";
+import PrimaryButton from "../common/button/PrimaryButton";
 
-const EventCard = ({
-  event,
-  handleOptionSelected,
-  guesses,
-}) => {
+const EventCard = ({ event, handleOptionSelected, guesses, roomUser }) => {
+
+  const handleStopGuessing = (event) => {
+    console.log("Stop Guessing", event);
+  }
   return (
     <div
       key={event.id}
       className={`flex flex-col justify-center items-center w-full m-2 rounder-md text-primary border border-background3 rounded-md`}
     >
-      <div className="flex justify-between items-center w-full">
-        <p className="p-2">{event.name}</p>
-        <p className="p-2">{event.description}</p>
+      {roomUser.owner && (
         <div>
-          
+          <PrimaryButton
+            text="Finalize Event"
+            href={`/home/room/${roomUser.room.id}/event/${event.id}/finalize`}
+          />
+          <PrimaryButton
+            text="Stop Guessing"
+            onClick={() => handleStopGuessing(event)}
+          />
         </div>
+      )}
+      <div className="flex justify-between items-center w-full p-4">
+        <p>{event.name}</p>
+        <p>{event.description}</p>
       </div>
       <div className="w-full flex justify-center items-center text-xs p-2">
         <div className="flex flex-col items-center justify-between w-full">

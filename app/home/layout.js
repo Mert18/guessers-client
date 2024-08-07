@@ -21,7 +21,7 @@ const HomeLayout = ({ children }) => {
     return (
       <div className="flex flex-col relative">
         <Navbar />
-        <div className="p-3 w-screen flex justify-center items-center">{children}</div>
+        <div className="flex justify-center items-center">{children}</div>
         <AuthStatus />
       </div>
     );
