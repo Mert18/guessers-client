@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import RoomsMenu from "./RoomsMenu";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 
 const RoomsSelector = ({
   roomsMenuRef,
@@ -21,12 +22,21 @@ const RoomsSelector = ({
     <div className="relative w-32 text-text text-xs h-full" ref={roomsMenuRef}>
       <button
         onClick={() => setRoomsMenuOpen(!roomsMenuOpen)}
-        className="bg-background3 text-text p-3 flex justify-between w-full"
+        className="bg-background3 text-text p-3 flex justify-between w-full rounded-md"
       >
-        <p>
-          {roomUsers?.find((roomUser) => roomUser.room.id == roomId)?.room
-            .name || t("roomSelect")}
-        </p>
+        <div className="flex items-center">
+          <Image
+            src="/door.svg"
+            alt="door"
+            width={20}
+            height={20}
+            className="mr-2"
+          />
+          <p>
+            {roomUsers?.find((roomUser) => roomUser.room.id == roomId)?.room
+              .name || t("roomSelect")}
+          </p>
+        </div>
       </button>
       {roomsMenuOpen && (
         <RoomsMenu

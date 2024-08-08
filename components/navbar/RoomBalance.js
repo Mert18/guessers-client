@@ -1,16 +1,15 @@
-import React from 'react'
+import Image from "next/image";
+import React from "react";
 
-const RoomBalance = ({roomUser}) => {
+const RoomBalance = ({ roomUser }) => {
   return (
-    <div className='bg-failure text-text flex justify-evenly h-full p-3'>
-        <div>
-
-        </div>
-        <div>
-            <p>{roomUser?.balance}</p>
-        </div>
+    <div className="bg-failure text-text flex justify-evenly items-center h-full p-3 ml-2 rounded-md">
+      <Image src="/balloon.svg" width={15} height={15} className="mr-2" />
+      <div>
+        <p>{roomUser?.balance}</p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default RoomBalance
+export default RoomBalance;

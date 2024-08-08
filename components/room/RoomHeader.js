@@ -21,11 +21,13 @@ const RoomHeader = ({ roomUser, rankedRiches, rankedPredictions }) => {
           <PrimaryButton
             href={`/home/room/${roomUser?.room?.id}/event/create`}
             text={t("eventCreate")}
+            icon={"plus"}
           />
           <PrimaryButton
             href={`/home/room/${roomUser?.room?.id}/invite`}
             className="p-2 m-2 bg-primary text-background font-bold hover:bg-primary-brighter"
             text={t("invite")}
+            icon={"invite"}
           />
         </div>
       )}

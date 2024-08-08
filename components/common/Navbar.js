@@ -8,6 +8,8 @@ import HamburgerMenu from "../navbar/HamburgerMenu";
 import { getInvites } from "@/api/user";
 import InvitesWrapper from "../navbar/InvitesWrapper";
 import RoomBalance from "../navbar/RoomBalance";
+import PrimaryButton from "./button/PrimaryButton";
+import { t } from "i18next";
 
 const Navbar = () => {
   const [roomsMenuOpen, setRoomsMenuOpen] = useState(false);
@@ -68,6 +70,10 @@ const Navbar = () => {
       <Logo />
 
       <div className="flex justify-end items-center text-text text-xs w-full">
+        <div className="mr-8">
+          <PrimaryButton text={t("roomCreate")} href="/home/room/create" />
+        </div>
+
         <InvitesWrapper
           invitesMenuRef={invitesMenuRef}
           setInvitesMenuOpen={setInvitesMenuOpen}
@@ -86,8 +92,6 @@ const Navbar = () => {
           />
           {roomUser && <RoomBalance roomUser={roomUser} />}
         </div>
-
-        {/* <BalanceWrapper balance={balance} /> */}
 
         <HamburgerMenu
           hamburgerMenuRef={hamburgerMenuRef}

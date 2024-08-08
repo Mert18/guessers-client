@@ -1,11 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const PrimaryButton = ({ type, onClick, text, href }) => {
+const PrimaryButton = ({ type, onClick, text, href, icon }) => {
   if (href) {
     return (
       <Link href={href} onClick={onClick}>
-        <div className="bg-background2 border border-primary text-text hover:bg-primary hover:text-background rounded-sm transition-all w-full p-2 my-2">
+        <div className="bg-background2 border border-primary text-text hover:bg-primary hover:text-background rounded-sm transition-all w-full p-2 my-2 flex items-center">
+        {icon && 
+          <Image src={`/${icon}.svg`} width={15} height={15} alt={icon} className="mr-2" />
+        }
           {text}
         </div>
       </Link>
@@ -17,6 +21,9 @@ const PrimaryButton = ({ type, onClick, text, href }) => {
         type={type}
         onClick={onClick}
       >
+        {icon && 
+          <Image src={`/${icon}.svg`} width={15} height={15} alt={icon} className="mr-2" />
+        }
         <p className="p-2 text-xs">{text}</p>
       </button>
     );
