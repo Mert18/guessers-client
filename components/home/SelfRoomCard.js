@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import Link from "next/link";
 import React from "react";
 
@@ -7,10 +8,12 @@ const SelfRoomCard = ({ roomUser }) => {
       href={`/home/room/${roomUser.room.id}`}
       className="w-full text-text"
     >
-      <div className="p-2 my-2 bg-background2 rounded-md hover:bg-secondary transition-all">
-        <h2 className="">{roomUser.room.name}</h2>
-        <p>{roomUser.owner ? <span>owner</span> : ""}</p>
-        <p>{roomUser.room.public ? <span>public</span> : ""}</p>
+      <div className="bg-background flex justify-start items-center text-text border-b border-primary hover:underline hover:text-primary py-1">
+        <h2 className="flex-1">{roomUser.room.name}</h2>
+        <p className="flex-1">{roomUser.room.owner.username}</p>
+        <p className="flex-1">{roomUser.memberCount}</p>
+        <p className="flex-1">{roomUser.room.public ? <span>{t("yes")}</span> : <span>{t("no")}</span>}</p>
+        <p className="flex-1">{roomUser.balance}</p>
       </div>
     </Link>
   );

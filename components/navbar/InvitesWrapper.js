@@ -15,11 +15,11 @@ const InvitesWrapper = ({
 
   return (
     <div
-      className="relative w-32 text-text text-xs mr-8 h-full"
+      className="relative w-48 text-text text-xs mr-8 h-full"
       ref={invitesMenuRef}
     >
       <button
-        className="flex items-center bg-background3 text-text p-3 justify-between w-full"
+        className="flex items-center text-primary p-3 justify-between w-full"
         onClick={() => setInvitesMenuOpen(!invitesMenuOpen)}
       >
         {invites.length > 0 && (

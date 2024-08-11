@@ -12,17 +12,18 @@ const GuessPaperCard = ({ guessPaper }) => {
   };
 
   return (
-    <div className="text-text my-2 bg-background border border-background3 rounded-md p-2">
-      <div className="flex justify-evenly items-center">
+    <div className="w-full text-text">
+      <div className="bg-background flex justify-start items-center text-text border-b border-primary">
         <p className="flex-1">{guessPaper.user.username}</p>
         <p className="flex-1">{guessPaper.status}</p>
         <p className="flex-1">{guessPaper.stake}</p>
         <p className="flex-1">{guessPaper.totalOdd}</p>
         <p className="flex-1">{guessPaper.wins}</p>
         <div className="flex-1">
-          <SecondaryButton
+          <PrimaryButton
             text="Details"
             onClick={() => setGuessPaperDetailsOpen(true)}
+            noBg={true}
           />
         </div>
       </div>
@@ -31,25 +32,32 @@ const GuessPaperCard = ({ guessPaper }) => {
           title={t("guessPaperDetails")}
           handleCloseModal={handleCloseDetails}
         >
-          <div className="flex flex-col justify-center items-center w-full">
+          <div className="w-full my-4">
+            <div className="bg-background flex items-center text-primary border-b border-primary w-full">
+              <h2 className="flex-1">{t("event")}</h2>
+              <h2 className="flex-1">{t("caseOptionName")}</h2>
+              <h2 className="flex-1">{t("caseName")}</h2>
+              <h2 className="flex-1">{t("odds")}</h2>
+              <h2 className="flex-1">{t("status")}</h2>
+            </div>
             {guessPaper.guesses.map((guess) => (
               <div
-                className="flex justify-between w-full border-b border-text"
+                className="flex w-full border-b border-primary"
                 key={
                   guess.event.id +
                   guess.eventGuessOption.id +
                   guess.eventGuessOptionCase.id
                 }
               >
-                <p>{guess.event.name}</p>
-                <p>{guess.eventGuessOption.name}</p>
-                <p>{guess.eventGuessOptionCase.name}</p>
-                <p>{guess.eventGuessOptionCase.odds}</p>
-                <p>{guess.eventGuessOptionCase.status}</p>
+                <p className="flex-1">{guess.event.name}</p>
+                <p className="flex-1">{guess.eventGuessOption.name}</p>
+                <p className="flex-1">{guess.eventGuessOptionCase.name}</p>
+                <p className="flex-1">{guess.eventGuessOptionCase.odds}</p>
+                <p className="flex-1">{guess.eventGuessOptionCase.status}</p>
               </div>
             ))}
             <div className="w-full mt-10">
-            <div className="flex justify-between w-full">
+              <div className="flex justify-between w-full">
                 <p>Status</p>
                 <p>{guessPaper.status}</p>
               </div>

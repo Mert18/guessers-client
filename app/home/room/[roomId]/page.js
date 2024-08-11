@@ -32,7 +32,6 @@ const Room = ({ params }) => {
     if (params.roomId === undefined) return;
 
     getActiveEvents(params.roomId, paging).then((response) => {
-      console.log("Active Events: ", response.data.content);
       setActiveEvents(response.data.content);
     });
 
@@ -42,7 +41,7 @@ const Room = ({ params }) => {
   }, [params.roomId]);
 
   return (
-    <div className="w-full">
+    <div className="w-1/2">
       <RoomHeader
         roomUser={roomUser}
         rankedRiches={rankedRiches}
@@ -51,10 +50,9 @@ const Room = ({ params }) => {
 
       <RoomActiveEvents activeEvents={activeEvents} roomUser={roomUser} />
 
-      <RoomCompletedEvents completedEvents={completedEvents} roomUser={roomUser} />
+      {/* <RoomCompletedEvents completedEvents={completedEvents} roomUser={roomUser} /> */}
 
       <RoomGuessPapers roomId={params.roomId} />
-      {/* <PlacedBets roomId={params.roomId} /> */}
     </div>
   );
 };

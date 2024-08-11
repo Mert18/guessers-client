@@ -13,11 +13,16 @@ export const getRoom = async (roomId) => {
   }
 };
 
-export const listSelfRooms = async () => {
+export const listSelfRooms = async (paging) => {
   const localAxios = await axiosInstance();
   try {
-    const response = await localAxios.get(baseURL + "/list/self");
-    return response.data;
+    const response = await localAxios.get(baseURL + "/list/self", {
+      params: {
+        page: paging?.page,
+        size: paging?.size,
+      },
+    });
+    return response?.data;
   } catch (error) {
     console.error("Error fetching from backend", error);
     throw error;

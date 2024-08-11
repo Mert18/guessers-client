@@ -16,7 +16,7 @@ const HomeLayout = ({ children }) => {
       </div>
     );
   } else if(!session) {
-    router.push("/register");
+    router.push("/");
   } else if (session) {
     return (
       <div className="flex flex-col relative">

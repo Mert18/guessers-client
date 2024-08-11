@@ -1,5 +1,5 @@
 import React from 'react'
-import SecondaryButton from './common/button/SecondaryButton'
+import PrimaryButton from './common/button/PrimaryButton'
 
 const Modal = ({title, handleCloseModal, children}) => {
   return (
@@ -12,7 +12,7 @@ const Modal = ({title, handleCloseModal, children}) => {
           </div>
           <div className="flex justify-center mt-4">
 
-            <SecondaryButton
+            <PrimaryButton
               text="Close"
               onClick={() => handleCloseModal()}
             />

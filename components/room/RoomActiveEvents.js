@@ -70,9 +70,9 @@ const RoomActiveEvents = ({ activeEvents, roomUser }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col w-full">
       <ComponentTitle text={t("activeEvents")} />
-      <div className="w-1/2">
+      <div className="w-full">
         {activeEvents.map((event) => (
           <EventCard
             key={event.id}

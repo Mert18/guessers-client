@@ -1,9 +1,7 @@
 "use client";
 import { createEvent } from "@/api/event";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
-import SecondaryButton from "@/components/common/button/SecondaryButton";
-import CustomInputField from "@/components/form/CustomInputField";
-import { FieldArray, Form, Formik } from "formik";
+import { Field, FieldArray, Form, Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -41,46 +39,43 @@ const CreateEvent = ({ params }) => {
         }}
       >
         {({ values }) => (
-          <Form className="flex flex-col items-start p-4 w-full">
-            <CustomInputField
-              name={`name`}
+          <Form className="flex flex-col items-center justify-center p-4 w-full">
+            <Field
+              name="name"
               type="text"
+              className="w-full text-sm px-2 py-1 text-text outline-none bg-background border-b border-primary h-8 focus:ring-1 focus:ring-primary my-2"
+              autoComplete="off"
               placeholder={t("eventName")}
-              withLabel={true}
             />
 
-            <CustomInputField
-              name={`description`}
+            <Field
+              name="description"
               type="text"
+              className="w-full text-sm px-2 py-1 text-text outline-none bg-background border-b border-primary h-8 focus:ring-1 focus:ring-primary my-2"
+              autoComplete="off"
               placeholder={t("eventDescription")}
-              withLabel={true}
             />
-
-            <span className="text-text text-xs lowercase">
-              {t("guessOptions")}
-            </span>
 
             <FieldArray name="eventGuessOptions">
               {({
                 push: pushEventGuessOption,
                 remove: removeEventGuessOption,
               }) => (
-                <div className="flex flex-col items-center w-full">
+                <div className="flex flex-col items-center w-2/3">
                   {values.eventGuessOptions.map(
                     (eventGuessOption, eventGuessOptionIndex) => (
                       <div
                         key={eventGuessOptionIndex}
                         className="relative flex flex-col items-center w-full space-y-2 my-2"
                       >
-                        <CustomInputField
+                        <Field
                           name={`eventGuessOptions[${eventGuessOptionIndex}].name`}
                           type="text"
+                          className="w-full text-sm px-2 py-1 text-text outline-none bg-background border-b border-primary h-8 focus:ring-1 focus:ring-primary"
+                          autoComplete="off"
                           placeholder={t("optionName")}
-                          withLabel={true}
                         />
-                        <span className="text-text text-xs lowercase">
-                          {t("guessOptionCases")}
-                        </span>
+
                         <FieldArray
                           name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionCases`}
                         >
@@ -88,7 +83,7 @@ const CreateEvent = ({ params }) => {
                             push: pushEventGuessOptionOption,
                             remove: removeEventGuessOptionOption,
                           }) => (
-                            <div className="flex flex-col items-center w-1/2 space-y-2">
+                            <div className="flex flex-col items-center w-2/3 space-y-2">
                               {values.eventGuessOptions[
                                 eventGuessOptionIndex
                               ].eventGuessOptionCases.map(
@@ -100,13 +95,14 @@ const CreateEvent = ({ params }) => {
                                     key={eventGuessOptionOptionIndex}
                                     className="flex justify-center items-center w-full space-x-2"
                                   >
-                                    <CustomInputField
+                                    <Field
                                       name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionCases[${eventGuessOptionOptionIndex}].name`}
                                       type="text"
+                                      className="w-full text-sm px-2 py-1 text-text outline-none bg-background border-b border-primary h-8 focus:ring-1 focus:ring-primary my-1"
+                                      autoComplete="off"
                                       placeholder={t("caseName")}
-                                      withLabel={true}
-                                      placeholderInside={true}
                                     />
+
                                     <input
                                       onChange={(e) => {
                                         values.eventGuessOptions[
@@ -118,7 +114,7 @@ const CreateEvent = ({ params }) => {
                                       type="number"
                                       name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionCases[${eventGuessOptionOptionIndex}].odds`}
                                       placeholder={t("optionOdds")}
-                                      className="w-1/4 text-sm px-2 py-1 text-text outline-none bg-background2 my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary"
+                                      className="w-2/3 text-sm px-2 py-1 text-text outline-none bg-background border-b border-primary h-8 focus:ring-1 focus:ring-primary my-1"
                                       step={"0.01"}
                                       min={"1.00"}
                                       defaultValue={1.01}
@@ -144,7 +140,7 @@ const CreateEvent = ({ params }) => {
                                   </div>
                                 )
                               )}
-                              <SecondaryButton
+                              <PrimaryButton
                                 type="button"
                                 text={t("addGuessOptionCase")}
                                 onClick={() =>
@@ -153,6 +149,7 @@ const CreateEvent = ({ params }) => {
                                     odds: 1.01,
                                   })
                                 }
+                                noBg={true}
                               />
                             </div>
                           )}
@@ -174,7 +171,7 @@ const CreateEvent = ({ params }) => {
                       </div>
                     )
                   )}
-                  <SecondaryButton
+                  <PrimaryButton
                     type="button"
                     text={t("addGuessOption")}
                     onClick={() =>
@@ -183,6 +180,7 @@ const CreateEvent = ({ params }) => {
                         eventGuessOptionCases: [{ name: "", odds: 1.01 }],
                       })
                     }
+                    noBg={true}
                   />
                 </div>
               )}

@@ -24,7 +24,7 @@ const HamburgerMenu = ({
     <div className="relative text-text text-xs h-full" ref={hamburgerMenuRef}>
       <button
         onClick={() => setHamburgerMenuOpen(!hamburgerMenuOpen)}
-        className="bg-background3 p-3 text-text flex justify-between w-full"
+        className="bg-background p-3 text-text flex justify-between w-full"
       >
         <Image
           src="/hamburger.svg"
@@ -34,7 +34,7 @@ const HamburgerMenu = ({
         />
       </button>
       {hamburgerMenuOpen && (
-        <ul className="absolute right-0 top-full w-32 bg-background2">
+        <ul className="absolute right-0 top-full w-32 bg-background border border-primary">
           <li>
             <Link href={`/home/profile/${session.username}`}>
               <p className="w-full p-2 hover:bg-secondary transition-all">

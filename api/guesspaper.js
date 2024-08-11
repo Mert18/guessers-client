@@ -28,3 +28,20 @@ export const listRoomGuessPapersByStatus = async (filterParams, roomId, paging) 
     throw error;
   }
 };
+
+
+export const listSelfGuessPapers = async (listSelfGuessPaperRequest, paging) => {
+  const localAxios = await axiosInstance();
+  try {
+    const response = await localAxios.post(baseURL + "/list-by-status/self", listSelfGuessPaperRequest, {
+      params: {
+        page: paging.page,
+        size: paging.size,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching from backend", error);
+    throw error;
+  }
+};

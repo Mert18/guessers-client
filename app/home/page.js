@@ -1,5 +1,5 @@
 import PublicRoomsList from "@/components/home/PublicRoomsList";
-import SearchRoom from "@/components/home/SearchRoom";
+import SelfGuessPapersList from "@/components/home/SelfGuessPapersList";
 import SelfRoomsList from "@/components/home/SelfRoomsList";
 import React from "react";
 
@@ -11,7 +11,8 @@ const Home = () => {
 
         <PublicRoomsList />
 
-        <SearchRoom />
+        <SelfGuessPapersList />
+        {/* <SearchRoom /> */}
       </div>
     </div>
   );

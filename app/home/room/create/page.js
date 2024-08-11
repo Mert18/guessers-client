@@ -2,8 +2,8 @@
 import { createRoom } from "@/api/room";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
-import CustomInputField from "@/components/form/CustomInputField";
-import {  Form, Formik } from "formik";
+import Loader from "@/components/common/Loader";
+import { Field, Form, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -14,12 +14,12 @@ const CreateRoom = () => {
   const router = useRouter();
   const initialValues = {
     name: "",
-    publico: false
+    publico: false,
   };
 
   const publicOptions = [
-    { value: true, label: t("yes") },
-    { value: false, label: t("no") }
+    { value: true, label: t("public") },
+    { value: false, label: t("private") },
   ];
 
   return (
@@ -28,31 +28,42 @@ const CreateRoom = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          createRoom(values).then((response) => {
-            setTimeout(() => {
-              window.location.href = "/home/room/" + response.data.id;
-            }, 2000);
-          });
+          setLoading(true);
+          createRoom(values)
+            .then((response) => {
+              router.push("/home/room/" + response.data.id);
+            })
+            .finally(() => {
+              setLoading(false);
+            });
         }}
       >
-          <Form className="flex flex-col justify-center items-center w-full">
-            <CustomInputField
-              name="name"
-              type="text"
-              placeholder={t("roomName")}
-              withLabel={true}
-            />
+        <Form className="flex flex-col justify-center items-center w-full">
+          <Field
+            name="name"
+            type="text"
+            className="w-full text-sm px-2 py-1 text-text outline-none bg-background border-b border-primary h-8 focus:ring-1 focus:ring-primary"
+            autoComplete="off"
+            placeholder={t("roomName")}
+          />
 
-            <CustomInputField
-              name="publico"
-              type="select"
-              placeholder={t("public")}
-              withLabel={true}
-              options={publicOptions}
-            />
-
+          <Field
+            as="select"
+            className={`w-full text-sm px-2 py-1 text-text outline-none bg-background border-b border-primary my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
+            name={"publico"}
+          >
+            {publicOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Field>
+          {loading ? (
+            <Loader />
+          ) : (
             <PrimaryButton type="submit" text={t("createRoom")} />
-          </Form>
+          )}
+        </Form>
       </Formik>
     </div>
   );

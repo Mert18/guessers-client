@@ -3,11 +3,11 @@ import React from "react";
 
 const InvitesMenu = ({ invites, acceptRoomInvite, rejectRoomInvite }) => {
   return (
-    <div className="absolute top-full left-0 bg-background2 text-text w-32 p-2">
+    <div className="absolute top-full left-0 bg-background border border-primary text-text w-48 p-2">
       {invites.length === 0 && <p>No invites</p>}
       {invites.map((invite) => (
         <div key={invite.room.id} className="flex justify-between items-center">
-          <div className="w-32 whitespace-nowrap overflow-ellipsis overflow-hidden text-text">
+          <div className="w-48 whitespace-nowrap overflow-ellipsis overflow-hidden text-text">
             <p>{invite.room.name}</p>
           </div>
           <div className="flex">

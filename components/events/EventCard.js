@@ -9,6 +9,7 @@ const EventCard = ({
   roomUser,
   status,
 }) => {
+  console.log("EventCard", event);
   const handleStopGuessing = (event) => {
     console.log("Stop Guessing", event);
   };
@@ -17,20 +18,24 @@ const EventCard = ({
       key={event.id}
       className={`flex flex-col justify-center items-center w-full m-2 rounder-md text-primary border border-background3 rounded-md`}
     >
-      {roomUser.owner && status === "IN_PROGRESS" && (
-        <div>
-          <PrimaryButton
-            text="Finalize Event"
-            href={`/home/room/${roomUser.room.id}/event/${event.id}/finalize`}
-          />
-          <PrimaryButton
-            text="Stop Guessing"
-            onClick={() => handleStopGuessing(event)}
-          />
-        </div>
-      )}
       <div className="flex justify-between items-center w-full p-4">
-        <p>{event.name}</p>
+        <p className="font-bold">{event.name}</p>
+
+        {roomUser.owner && status === "IN_PROGRESS" && (
+          <div className="flex">
+            <PrimaryButton
+              text="Finalize Event"
+              href={`/home/room/${roomUser.room.id}/event/${event.id}/finalize`}
+              noBg={true}
+            />
+            <PrimaryButton
+              text="Stop Guessing"
+              onClick={() => handleStopGuessing(event)}
+              noBg={true}
+            />
+          </div>
+        )}
+
         <p>{event.description}</p>
       </div>
       {status === "IN_PROGRESS" && (
@@ -71,7 +76,7 @@ const EventCard = ({
                               ) >= 0
                                 ? "bg-primary text-background"
                                 : "bg-background3 text-text"
-                            } w-full p-2 flex justify-center items-center rounded-md m-1`}
+                            } w-full p-2 flex justify-center items-center`}
                           >
                             <p>{eventGuessOptionCase.odds}</p>
                           </div>

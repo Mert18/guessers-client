@@ -19,15 +19,22 @@ const RoomGuessPapers = ({ roomId }) => {
     if (!roomId) return;
     listRoomGuessPapersByStatus(filterParams, roomId, paging).then(
       (response) => {
-        console.log("Response: ", response.data.content);
         setGuessPapers(response.data.content);
       }
     );
   }, [roomId]);
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="w-full my-4">
       <ComponentTitle text={t("guessPapers")} />
-      <div className="w-1/2">
+      <div className="w-full">
+      <div className="bg-background flex justify-start items-center text-primary border-b border-primary">
+            <h2 className="flex-1">{t("username")}</h2>
+            <h2 className="flex-1">{t("status")}</h2>
+            <h2 className="flex-1">{t("stakes")}</h2>
+            <h2 className="flex-1">{t("odds")}</h2>
+            <h2 className="flex-1">{t("wins")}</h2>
+            <h2 className="flex-1">{t("details")}</h2>
+          </div>
         {guessPapers.map((guessPaper) => (
           <GuessPaperCard key={guessPaper.id} guessPaper={guessPaper} />
         ))}
