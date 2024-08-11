@@ -73,10 +73,8 @@ const RoomActiveEvents = ({ activeEvents, roomUser }) => {
   return (
     <div className="flex flex-col w-full">
       <ComponentTitle text={t("activeEvents")} />
-      {guesses?.length === 0 ? (
+      {activeEvents?.length === 0 ? (
         <p className="text-primary">No active events available.</p>
-      ) : loading ? (
-        <Loader />
       ) : (
         <>
           <div className="w-full">

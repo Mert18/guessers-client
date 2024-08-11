@@ -55,7 +55,7 @@ const SelfGuessPapersList = ({ statuses }) => {
             <h2 className="flex-1">{t("username")}</h2>
             <h2 className="flex-1">{t("status")}</h2>
             <h2 className="flex-1">{t("stakes")}</h2>
-            <h2 className="flex-1">{t("odds")}</h2>
+            <h2 className="flex-1">{t("optionOdds")}</h2>
             <h2 className="flex-1">{t("wins")}</h2>
             <h2 className="flex-1">{t("details")}</h2>
           </div>

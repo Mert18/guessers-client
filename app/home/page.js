@@ -12,7 +12,6 @@ const Home = () => {
         <PublicRoomsList />
 
         <SelfGuessPapersList />
-        {/* <SearchRoom /> */}
       </div>
     </div>
   );

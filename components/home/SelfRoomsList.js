@@ -42,7 +42,7 @@ const SelfRoomsList = () => {
             <h2 className="flex-1">{t("owner")}</h2>
             <h2 className="flex-1">{t("memberCount")}</h2>
             <h2 className="flex-1">{t("public")}</h2>
-            <h2 className="flex-1">{t("token")}</h2>
+            <h2 className="flex-1">{t("balance")}</h2>
           </div>
           {selfRooms.map((room) => (
             <SelfRoomCard key={room.id} roomUser={room} />

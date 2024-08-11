@@ -6,6 +6,9 @@ import { getInvites } from "@/api/user";
 import InvitesWrapper from "../navbar/InvitesWrapper";
 import PrimaryButton from "./button/PrimaryButton";
 import { t } from "i18next";
+import { useSession } from "next-auth/react";
+import { useParams } from "next/navigation";
+import { getRoomUser } from "@/api/room";
 
 const Navbar = () => {
   const [invitesMenuOpen, setInvitesMenuOpen] = useState(false);
@@ -13,12 +16,21 @@ const Navbar = () => {
   const [invites, setInvites] = useState([]);
   const hamburgerMenuRef = useRef(null);
   const invitesMenuRef = useRef(null);
+  const params = useParams();
+  const [roomUser, setRoomUser] = useState({});
 
   useEffect(() => {
     getInvites().then((response) => {
       setInvites(response.data);
     });
   }, []);
+
+  useEffect(() => {
+    if(params?.roomId === undefined) return;
+    getRoomUser(params?.roomId).then((response) => {
+      setRoomUser(response.data);
+    });
+  }, [params?.roomId]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -48,6 +60,12 @@ const Navbar = () => {
       <Logo />
 
       <div className="flex justify-end items-center text-text text-xs w-full">
+        <div>
+          <p className="font-bold text-primary">
+            <span className="text-text">Balance: </span>
+            {roomUser?.balance?.toFixed(2)}
+          </p>
+        </div>
         <InvitesWrapper
           invitesMenuRef={invitesMenuRef}
           setInvitesMenuOpen={setInvitesMenuOpen}

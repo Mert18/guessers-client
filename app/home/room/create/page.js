@@ -42,14 +42,14 @@ const CreateRoom = () => {
           <Field
             name="name"
             type="text"
-            className="w-full text-sm px-2 py-1 text-text outline-none bg-background border-b border-primary h-8 focus:ring-1 focus:ring-primary"
+            className="w-full text-sm px-2 py-1 my-2 text-text outline-none bg-background border-b border-primary h-8 focus:ring-1 focus:ring-primary"
             autoComplete="off"
             placeholder={t("roomName")}
           />
 
           <Field
             as="select"
-            className={`w-full text-sm px-2 py-1 text-text outline-none bg-background border-b border-primary my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
+            className={`w-full text-sm px-2 py-1 my-2 text-text outline-none bg-background border-b border-primary my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
             name={"publico"}
           >
             {publicOptions.map((option) => (

@@ -25,9 +25,21 @@ export default function Home() {
     );
   } else {
     return (
-      <div className="flex flex-col">
+      <div className="flex flex-col text-text">
         <NavbarNoAuth />
-        <p className="text-text">hello ohme</p>
+        <div className="flex justify-evenly items-center min-h-[50vh]">
+          <div className="flex flex-col justify-center items-center">
+            <h1 className="text-3xl font-bold">Guessers</h1>
+            <p>
+              Create a room, invite your friends and start guessing.
+            </p>
+          </div>
+          <div>
+            <p><span className="text-primary text-4xl">352</span> Users</p>
+            <p><span className="text-primary text-4xl">123</span> Rooms</p>
+            <p><span className="text-primary text-4xl">523</span> Events</p>
+          </div>
+        </div>
       </div>
     );
   }

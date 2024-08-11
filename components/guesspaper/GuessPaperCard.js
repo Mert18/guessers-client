@@ -16,8 +16,8 @@ const GuessPaperCard = ({ guessPaper }) => {
         <p className="flex-1">{guessPaper.user.username}</p>
         <p className="flex-1">{guessPaper.status}</p>
         <p className="flex-1">{guessPaper.stake}</p>
-        <p className="flex-1">{guessPaper.totalOdd}</p>
-        <p className="flex-1">{guessPaper.wins}</p>
+        <p className="flex-1">{guessPaper.totalOdd.toFixed(2)}</p>
+        <p className="flex-1">{guessPaper.wins.toFixed(2)}</p>
         <div className="flex-1">
           <PrimaryButton
             text="Details"

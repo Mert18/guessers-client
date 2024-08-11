@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import ComponentTitle from "../common/ComponentTitle";
 import { t } from "i18next";
 import GuessPaperCard from "../guesspaper/GuessPaperCard";
-import Pagination from "../common/Pagination";
 import Pager from "../common/Pager";
 
 const RoomGuessPapers = ({ roomId }) => {
