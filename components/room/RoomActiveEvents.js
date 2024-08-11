@@ -4,6 +4,7 @@ import EventCard from "../events/EventCard";
 import GuessPaper from "../guesspaper/ActiveGuessPaper";
 import ComponentTitle from "../common/ComponentTitle";
 import { t } from "i18next";
+import Loader from "../common/Loader";
 
 const RoomActiveEvents = ({ activeEvents, roomUser }) => {
   const [guesses, setGuesses] = useState([]);
@@ -72,29 +73,37 @@ const RoomActiveEvents = ({ activeEvents, roomUser }) => {
   return (
     <div className="flex flex-col w-full">
       <ComponentTitle text={t("activeEvents")} />
-      <div className="w-full">
-        {activeEvents.map((event) => (
-          <EventCard
-            key={event.id}
-            event={event}
-            handleOptionSelected={handleOptionSelected}
-            guesses={guesses}
-            roomUser={roomUser}
-            status="IN_PROGRESS"
-          />
-        ))}
-      </div>
+      {guesses?.length === 0 ? (
+        <p className="text-primary">No active events available.</p>
+      ) : loading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="w-full">
+            {activeEvents.map((event) => (
+              <EventCard
+                key={event.id}
+                event={event}
+                handleOptionSelected={handleOptionSelected}
+                guesses={guesses}
+                roomUser={roomUser}
+                status="IN_PROGRESS"
+              />
+            ))}
+          </div>
 
-      {guesses.length > 0 && (
-        <GuessPaper
-          guesses={guesses}
-          totalOdds={totalOdds}
-          stake={stake}
-          setStake={setStake}
-          wins={wins}
-          roomUser={roomUser}
-          resetGuessPaper={resetGuessPaper}
-        />
+          {guesses.length > 0 && (
+            <GuessPaper
+              guesses={guesses}
+              totalOdds={totalOdds}
+              stake={stake}
+              setStake={setStake}
+              wins={wins}
+              roomUser={roomUser}
+              resetGuessPaper={resetGuessPaper}
+            />
+          )}
+        </>
       )}
     </div>
   );

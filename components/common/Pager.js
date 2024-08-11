@@ -1,16 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
-const Pager = ({ paging, setPaging, totalElements, totalPages }) => {
+const Pager = ({ paging, setPaging }) => {
   const [pages, setPages] = useState([]);
 
   useEffect(() => {
     const generatedPages = [];
-    for (let i = 1; i < totalPages; i++) {
+    for (let i = 1; i < paging.totalPages; i++) {
       generatedPages.push({ page: i + 1 });
     }
     setPages(generatedPages);
-  }, [totalPages]);
+  }, [paging.totalPages]);
   
   return (
     <div>

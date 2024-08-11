@@ -2,7 +2,6 @@
 import Link from "next/link";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import PrimaryButton from "../common/button/PrimaryButton";
 
 const RoomsMenu = ({ roomUsers, setRoomsMenuOpen, roomId }) => {
   const { t } = useTranslation();
@@ -20,11 +19,6 @@ const RoomsMenu = ({ roomUsers, setRoomsMenuOpen, roomId }) => {
           <p className="p-2 text-text">{roomUser.room.name}</p>
         </Link>
       ))}
-      <PrimaryButton
-        text={t("roomCreate")}
-        href="/home/room/create"
-        onClick={() => setRoomsMenuOpen(false)}
-      />
     </div>
   );
 };

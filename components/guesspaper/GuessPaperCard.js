@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Modal from "../Modal";
-import PrimaryButton from "../common/button/PrimaryButton";
-import SecondaryButton from "../common/button/SecondaryButton";
 import { t } from "i18next";
+import PrimaryButton from "../common/button/PrimaryButton";
 
 const GuessPaperCard = ({ guessPaper }) => {
   const [guessPaperDetailsOpen, setGuessPaperDetailsOpen] = useState(false);
@@ -62,19 +61,19 @@ const GuessPaperCard = ({ guessPaper }) => {
                 <p>{guessPaper.status}</p>
               </div>
               <div className="flex justify-between w-full">
-                <p>Username</p>
+                <p>{t("username")}</p>
                 <p>{guessPaper.user.username}</p>
               </div>
               <div className="flex justify-between w-full">
-                <p>Total Odds</p>
+                <p>{t("totalOdds")}</p>
                 <p>{guessPaper.totalOdd}</p>
               </div>
               <div className="flex justify-between w-full">
-                <p>Stake</p>
+                <p>{t("stakes")}</p>
                 <p>{guessPaper.stake}</p>
               </div>
               <div className="flex justify-between w-full">
-                <p>Wins</p>
+                <p>{t("wins")}</p>
                 <p>{guessPaper.wins}</p>
               </div>
             </div>

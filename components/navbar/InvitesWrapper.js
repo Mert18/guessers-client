@@ -22,11 +22,12 @@ const InvitesWrapper = ({
         className="flex items-center text-primary p-3 justify-between w-full"
         onClick={() => setInvitesMenuOpen(!invitesMenuOpen)}
       >
-        {invites.length > 0 && (
+        {invites?.length > 0 && (
           <span className="w-3 h-3 bg-primary rounded-full"></span>
         )}
-        <p>{t("invites")}</p>
-        <Image src="/arrow.svg" alt="arrow" width={10} height={10} />
+        <div className="flex items-center">
+          <p>{t("invites")}</p>
+        </div>
       </button>
       {invitesMenuOpen && (
         <InvitesMenu

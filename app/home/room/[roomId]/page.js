@@ -39,6 +39,7 @@ const Room = ({ params }) => {
       setCompletedEvents(response.data.content);
     });
   }, [params.roomId]);
+  
 
   return (
     <div className="w-1/2">

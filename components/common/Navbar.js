@@ -1,13 +1,9 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { listSelfRooms } from "@/api/room";
-import { useParams } from "next/navigation";
-import RoomsSelector from "../navbar/RoomsSelector";
 import Logo from "./Logo";
 import HamburgerMenu from "../navbar/HamburgerMenu";
 import { getInvites } from "@/api/user";
 import InvitesWrapper from "../navbar/InvitesWrapper";
-import RoomBalance from "../navbar/RoomBalance";
 import PrimaryButton from "./button/PrimaryButton";
 import { t } from "i18next";
 
@@ -15,7 +11,6 @@ const Navbar = () => {
   const [invitesMenuOpen, setInvitesMenuOpen] = useState(false);
   const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
   const [invites, setInvites] = useState([]);
-  const roomsMenuRef = useRef(null);
   const hamburgerMenuRef = useRef(null);
   const invitesMenuRef = useRef(null);
 
