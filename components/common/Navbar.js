@@ -26,7 +26,7 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    if(params?.roomId === undefined) return;
+    if (params?.roomId === undefined) return;
     getRoomUser(params?.roomId).then((response) => {
       setRoomUser(response.data);
     });
@@ -60,12 +60,15 @@ const Navbar = () => {
       <Logo />
 
       <div className="flex justify-end items-center text-text text-xs w-full">
-        <div>
-          <p className="font-bold text-primary">
-            <span className="text-text">Balance: </span>
-            {roomUser?.balance?.toFixed(2)}
-          </p>
-        </div>
+        {roomUser.balance && (
+          <div>
+            <p className="font-bold text-primary">
+              <span className="text-text">Balance: </span>
+              {roomUser?.balance?.toFixed(2)}
+            </p>
+          </div>
+        )}
+
         <InvitesWrapper
           invitesMenuRef={invitesMenuRef}
           setInvitesMenuOpen={setInvitesMenuOpen}

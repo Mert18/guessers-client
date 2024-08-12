@@ -15,7 +15,7 @@ const GuessPaperCard = ({ guessPaper }) => {
       <div className="bg-background flex justify-start items-center text-text border-b border-primary">
         <p className="flex-1">{guessPaper.user.username}</p>
         <p className="flex-1">{guessPaper.status}</p>
-        <p className="flex-1">{guessPaper.stake}</p>
+        <p className="flex-1">{guessPaper.stake.toFixed(2)}</p>
         <p className="flex-1">{guessPaper.totalOdd.toFixed(2)}</p>
         <p className="flex-1">{guessPaper.wins.toFixed(2)}</p>
         <div className="flex-1">
