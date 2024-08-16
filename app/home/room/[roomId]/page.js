@@ -16,24 +16,22 @@ const Room = ({ params }) => {
   useEffect(() => {
     if (params.roomId === undefined) return;
 
+    console.log("gettingRoomUser");
     getRoomUser(params.roomId).then((response) => {
       setRoomUser(response.data);
     });
 
+    console.log("gettingRanks");
     getRanks(params.roomId).then((response) => {
       setRankedPredictions(response.data.rankedByCorrectPredictions);
       setRankedRiches(response.data.rankedByBalance);
     });
-  }, [params.roomId]);
 
-  useEffect(() => {
-    if (params.roomId === undefined) return;
-
+    console.log("gettingActiveEvents");
     getActiveEvents(params.roomId, paging).then((response) => {
       setActiveEvents(response.data.content);
     });
   }, [params.roomId]);
-  
 
   return (
     <div className="w-1/2">
