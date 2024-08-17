@@ -32,7 +32,7 @@ const EventFinalize = ({ params }) => {
     const finalizeRequest = {
       winnerEventGuessOptionCases: winningCaseIds,
     };
-    finalizeEvent(finalizeRequest, event.id);
+    finalizeEvent(finalizeRequest, params.eventId, params.roomId);
   };
   return (
     <div className="flex flex-col justify-center items-center w-1/2 text-text">

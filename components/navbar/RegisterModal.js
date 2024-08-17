@@ -29,7 +29,7 @@ const RegisterModal = ({ setRegisterModalOpen }) => {
         <Form className="flex flex-col justify-center items-center">
           <div className="flex justify-start items-center">
             <div className="bg-background p-2">
-              <Image src="/user.svg" width={15} height={15} />
+              <Image src="/user.svg" alt="user" width={15} height={15} />
             </div>
             <Field
               name="username"
@@ -42,7 +42,7 @@ const RegisterModal = ({ setRegisterModalOpen }) => {
 
           <div className="flex justify-start items-center">
             <div className="bg-background p-2">
-              <Image src="/key.svg" width={15} height={15} />
+              <Image src="/key.svg" alt="key" width={15} height={15} />
             </div>
             <Field
               name="password"

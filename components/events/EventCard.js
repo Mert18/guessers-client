@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import PrimaryButton from "../common/button/PrimaryButton";
+import { startEvent } from "@/api/event";
 
 const EventCard = ({
   event,
@@ -9,10 +10,10 @@ const EventCard = ({
   roomUser,
   status,
 }) => {
-  console.log("EventCard", event);
-  const handleStopGuessing = (event) => {
-    console.log("Stop Guessing", event);
+  const handleStartEvent = (event) => {
+    startEvent(event.id, roomUser.room.id);
   };
+
   return (
     <div
       key={event.id}
@@ -21,18 +22,23 @@ const EventCard = ({
       <div className="flex justify-between items-center w-full p-4">
         <p className="font-bold">{event.name}</p>
 
-        {roomUser.owner && status === "IN_PROGRESS" && (
+        {roomUser.owner && (
           <div className="flex">
-            <PrimaryButton
-              text="Finalize Event"
-              href={`/home/room/${roomUser.room.id}/event/${event.id}/finalize`}
-              noBg={true}
-            />
-            <PrimaryButton
-              text="Stop Guessing"
-              onClick={() => handleStopGuessing(event)}
-              noBg={true}
-            />
+            {event.status === "IN_PROGRESS" ? (
+              <PrimaryButton
+                text="Start Event"
+                onClick={() => handleStartEvent(event)}
+                noBg={true}
+              />
+            ) : (
+              event.status === "STARTED" && (
+                <PrimaryButton
+                  text="Finalize Event"
+                  href={`/home/room/${roomUser.room.id}/event/${event.id}/finalize`}
+                  noBg={true}
+                />
+              )
+            )}
           </div>
         )}
 
@@ -49,42 +55,44 @@ const EventCard = ({
                 <p className="text-text text-xs lowercase m-1">
                   {eventGuessOption.name}
                 </p>
-                <div className="flex w-full">
-                  {eventGuessOption.eventGuessOptionCases?.map(
-                    (eventGuessOptionCase) => {
-                      return (
-                        <div
-                          key={eventGuessOptionCase.id}
-                          className="flex-1 flex flex-col justify-center items-center m-1 hover:cursor-pointer"
-                          onClick={() => {
-                            handleOptionSelected(
-                              event,
-                              eventGuessOption,
-                              eventGuessOptionCase
-                            );
-                          }}
-                        >
-                          <div className="bg-background2 text-text w-full p-2 flex justify-center items-center rounded-md m-1">
-                            <p>{eventGuessOptionCase.name}</p>
-                          </div>
+                {event.status === "IN_PROGRESS" && (
+                  <div className="flex w-full">
+                    {eventGuessOption.eventGuessOptionCases?.map(
+                      (eventGuessOptionCase) => {
+                        return (
                           <div
-                            className={`${
-                              guesses.findIndex(
-                                (guess) =>
-                                  guess.eventGuessOptionCaseId ===
-                                  eventGuessOptionCase.id
-                              ) >= 0
-                                ? "bg-primary text-background"
-                                : "bg-background3 text-text"
-                            } w-full p-2 flex justify-center items-center`}
+                            key={eventGuessOptionCase.id}
+                            className="flex-1 flex flex-col justify-center items-center m-1 hover:cursor-pointer"
+                            onClick={() => {
+                              handleOptionSelected(
+                                event,
+                                eventGuessOption,
+                                eventGuessOptionCase
+                              );
+                            }}
                           >
-                            <p>{eventGuessOptionCase.odds}</p>
+                            <div className="bg-background2 text-text w-full p-2 flex justify-center items-center rounded-md m-1">
+                              <p>{eventGuessOptionCase.name}</p>
+                            </div>
+                            <div
+                              className={`${
+                                guesses.findIndex(
+                                  (guess) =>
+                                    guess.eventGuessOptionCaseId ===
+                                    eventGuessOptionCase.id
+                                ) >= 0
+                                  ? "bg-primary text-background"
+                                  : "bg-background3 text-text"
+                              } w-full p-2 flex justify-center items-center`}
+                            >
+                              <p>{eventGuessOptionCase.odds}</p>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    }
-                  )}
-                </div>
+                        );
+                      }
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>

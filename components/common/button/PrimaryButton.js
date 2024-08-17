@@ -16,7 +16,7 @@ const PrimaryButton = ({ type, onClick, text, href, noBg = false, external = fal
           <p className="text-sm">{text}</p>
         </div>
         {external && (
-          <Image src="/external.svg" width={10} height={10} className="absolute top-0 right-0" />
+          <Image src="/external.svg" alt="arrow showing upward" width={10} height={10} className="absolute top-0 right-0" />
         )}
       </Link>
     );
@@ -33,7 +33,7 @@ const PrimaryButton = ({ type, onClick, text, href, noBg = false, external = fal
       >
         <p className="text-sm">{text}</p>
         {external && (
-          <Image src="/external.svg" width={10} height={10} className="absolute top-0 right-0" />
+          <Image src="/external.svg" alt="arrow showing upward" width={10} height={10} className="absolute top-0 right-0" />
         )}
       </button>
     );

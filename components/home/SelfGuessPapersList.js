@@ -30,12 +30,14 @@ const SelfGuessPapersList = ({ statuses }) => {
     };
     listSelfGuessPapers(listSelfGuessPaperRequest, paging)
       .then((response) => {
+        console.log("Content: ", response.data.content)
         setSelfGuessPapers(response.data.content);
-        setPaging((prevState) => ({
-          ...prevState,
+        setPaging({
+          page: response.data.page.number,
+          size: response.data.page.size,
           totalPages: response.data.page.totalPages,
           totalElements: response.data.page.totalElements,
-        }));
+        });
       })
       .finally(() => {
         setLoading(false);
@@ -45,7 +47,7 @@ const SelfGuessPapersList = ({ statuses }) => {
   return (
     <div className="w-full my-4">
       <ComponentTitle text="Self Guess Papers" />
-      {selfGuessPapers === undefined ? (
+      {selfGuessPapers.length === 0 ? (
         <p className="text-primary">No guess papers available.</p>
       ) : loading ? (
         <Loader />

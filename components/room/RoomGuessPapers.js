@@ -18,7 +18,6 @@ const RoomGuessPapers = ({ roomId }) => {
   });
 
   useEffect(() => {
-    if (!roomId) return;
     listRoomGuessPapersByStatus(filterParams, roomId, paging).then(
       (response) => {
         setGuessPapers(response.data.content);

@@ -6,7 +6,6 @@ import { getInvites } from "@/api/user";
 import InvitesWrapper from "../navbar/InvitesWrapper";
 import PrimaryButton from "./button/PrimaryButton";
 import { t } from "i18next";
-import { useSession } from "next-auth/react";
 import { useParams } from "next/navigation";
 import { getRoomUser } from "@/api/room";
 
@@ -60,7 +59,7 @@ const Navbar = () => {
       <Logo />
 
       <div className="flex justify-end items-center text-text text-xs w-full">
-        {roomUser.balance && (
+        {roomUser?.balance >= 0 && (
           <div>
             <p className="font-bold text-primary">
               <span className="text-text">Balance: </span>

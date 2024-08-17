@@ -1,5 +1,5 @@
 "use client";
-import { getActiveEvents, getCompletedEvents } from "@/api/event";
+import { getActiveEvents } from "@/api/event";
 import { getRanks, getRoomUser } from "@/api/room";
 import RoomActiveEvents from "@/components/room/RoomActiveEvents";
 import RoomGuessPapers from "@/components/room/RoomGuessPapers";
@@ -26,12 +26,17 @@ const Room = ({ params }) => {
       setRankedPredictions(response.data.rankedByCorrectPredictions);
       setRankedRiches(response.data.rankedByBalance);
     });
+  }, [params.roomId]);
 
+  useEffect(() => {
+    if(params.roomId === undefined) return;
+    
     console.log("gettingActiveEvents");
     getActiveEvents(params.roomId, paging).then((response) => {
       setActiveEvents(response.data.content);
     });
-  }, [params.roomId]);
+    console.log("gotActiveEvents");
+  }, [params.roomId, paging])
 
   return (
     <div className="w-1/2">
@@ -42,8 +47,6 @@ const Room = ({ params }) => {
       />
 
       <RoomActiveEvents activeEvents={activeEvents} roomUser={roomUser} />
-
-      {/* <RoomCompletedEvents completedEvents={completedEvents} roomUser={roomUser} /> */}
 
       <RoomGuessPapers roomId={params.roomId} />
     </div>
