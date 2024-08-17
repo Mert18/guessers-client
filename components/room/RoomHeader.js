@@ -1,17 +1,34 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RoomName from "./RoomName";
 import ComponentWithHeader from "../common/ComponentWithHeader";
 import RoomTopPredictors from "./RoomTopPredictors";
 import RoomRichests from "./RoomRichests";
 import { useTranslation } from "react-i18next";
 import PrimaryButton from "../common/button/PrimaryButton";
+import { getRanks } from "@/api/room";
+import Loader from "../common/Loader";
 
-const RoomHeader = ({ roomUser, rankedRiches, rankedPredictions }) => {
+const RoomHeader = ({ roomId, roomUser }) => {
   const { t } = useTranslation();
+  const [rankedRiches, setRankedRiches] = useState([]);
+  const [rankedPredictions, setRankedPredictions] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    getRanks(roomId)
+      .then((response) => {
+        setRankedPredictions(response.data.rankedByCorrectPredictions);
+        setRankedRiches(response.data.rankedByBalance);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [roomId]);
 
   return (
-    <div className="my-10 flex flex-col items-center w-full">
+    <div className="flex flex-col items-center justify-center">
       <ComponentWithHeader name={t("room")}>
         <RoomName roomName={roomUser?.room?.name} />
       </ComponentWithHeader>
@@ -30,19 +47,23 @@ const RoomHeader = ({ roomUser, rankedRiches, rankedPredictions }) => {
           />
         </div>
       )}
-      <div className="flex justify-center items-center">
-      {rankedPredictions && (
-        <ComponentWithHeader name={t("roomTopPredictors")}>
-          <RoomTopPredictors rankedPredictions={rankedPredictions} />
-        </ComponentWithHeader>
-      )}
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="flex md:flex-row flex-col justify-center items-start">
+          {rankedPredictions && (
+            <ComponentWithHeader name={t("roomTopPredictors")}>
+              <RoomTopPredictors rankedPredictions={rankedPredictions} />
+            </ComponentWithHeader>
+          )}
 
-      {rankedRiches && (
-        <ComponentWithHeader name={t("roomRichests")}>
-          <RoomRichests rankedRiches={rankedRiches} />
-        </ComponentWithHeader>
+          {rankedRiches && (
+            <ComponentWithHeader name={t("roomRichests")}>
+              <RoomRichests rankedRiches={rankedRiches} />
+            </ComponentWithHeader>
+          )}
+        </div>
       )}
-      </div>
     </div>
   );
 };

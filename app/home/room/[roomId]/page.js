@@ -1,52 +1,26 @@
 "use client";
-import { getActiveEvents } from "@/api/event";
-import { getRanks, getRoomUser } from "@/api/room";
+import { getRoomUser } from "@/api/room";
 import RoomActiveEvents from "@/components/room/RoomActiveEvents";
 import RoomGuessPapers from "@/components/room/RoomGuessPapers";
 import RoomHeader from "@/components/room/RoomHeader";
 import React, { useEffect, useState } from "react";
 
 const Room = ({ params }) => {
-  const [paging, setPaging] = useState({ page: 0, size: 10 });
-  const [activeEvents, setActiveEvents] = useState([]);
   const [roomUser, setRoomUser] = useState({});
-  const [rankedRiches, setRankedRiches] = useState([]);
-  const [rankedPredictions, setRankedPredictions] = useState([]);
 
   useEffect(() => {
     if (params.roomId === undefined) return;
 
-    console.log("gettingRoomUser");
     getRoomUser(params.roomId).then((response) => {
       setRoomUser(response.data);
     });
-
-    console.log("gettingRanks");
-    getRanks(params.roomId).then((response) => {
-      setRankedPredictions(response.data.rankedByCorrectPredictions);
-      setRankedRiches(response.data.rankedByBalance);
-    });
   }, [params.roomId]);
 
-  useEffect(() => {
-    if(params.roomId === undefined) return;
-    
-    console.log("gettingActiveEvents");
-    getActiveEvents(params.roomId, paging).then((response) => {
-      setActiveEvents(response.data.content);
-    });
-    console.log("gotActiveEvents");
-  }, [params.roomId, paging])
-
   return (
-    <div className="w-1/2">
-      <RoomHeader
-        roomUser={roomUser}
-        rankedRiches={rankedRiches}
-        rankedPredictions={rankedPredictions}
-      />
+    <div className="w-full">
+      <RoomHeader roomId={params.roomId} roomUser={roomUser} />
 
-      <RoomActiveEvents activeEvents={activeEvents} roomUser={roomUser} />
+      <RoomActiveEvents roomId={params.roomId} roomUser={roomUser} />
 
       <RoomGuessPapers roomId={params.roomId} />
     </div>

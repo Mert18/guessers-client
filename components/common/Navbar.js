@@ -55,10 +55,17 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="flex justify-between items-center text-text bg-background p-2 border-b border-primary">
-      <Logo />
+    <div className="col-start-1 col-end-13 flex flex-col justify-between items-center text-text bg-background border-b border-primary">
+      <div className="w-full flex justify-between items-center">
+        <Logo />
 
-      <div className="flex justify-end items-center text-text text-xs w-full">
+        <HamburgerMenu
+          hamburgerMenuRef={hamburgerMenuRef}
+          setHamburgerMenuOpen={setHamburgerMenuOpen}
+          hamburgerMenuOpen={hamburgerMenuOpen}
+        />
+      </div>
+      <div className="w-full flex justify-center items-center text-xs">
         {roomUser?.balance >= 0 && (
           <div>
             <p className="font-bold text-primary">
@@ -75,18 +82,10 @@ const Navbar = () => {
           invites={invites}
         />
 
-        <div className="mr-8 flex justify-center items-center h-full">
-          <PrimaryButton
-            text={t("roomCreate")}
-            href="/home/room/create"
-            noBg={true}
-          />
-        </div>
-
-        <HamburgerMenu
-          hamburgerMenuRef={hamburgerMenuRef}
-          setHamburgerMenuOpen={setHamburgerMenuOpen}
-          hamburgerMenuOpen={hamburgerMenuOpen}
+        <PrimaryButton
+          text={t("roomCreate")}
+          href="/home/room/create"
+          noBg={true}
         />
       </div>
     </div>

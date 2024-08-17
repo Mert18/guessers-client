@@ -28,14 +28,13 @@ const SelfRoomsList = () => {
       });
   }, [paging.page]);
 
-  return (
-    <div className="w-full my-4">
-      <ComponentTitle text="Your rooms" />
-      {selfRooms === undefined ? (
-        <p className="text-primary">You have not attended any rooms.</p>
-      ) : loading ? (
-        <Loader />
-      ) : (
+  const selfRoomsListRenderer = () => {
+    if (loading) {
+      return <Loader />;
+    } else if (selfRooms.length === 0) {
+      return <p className="text-primary">You have not attended any rooms.</p>;
+    } else {
+      return (
         <div className="w-full">
           <div className="bg-background flex justify-start items-center text-primary border-b border-primary">
             <h2 className="flex-1">{t("roomName")}</h2>
@@ -54,7 +53,13 @@ const SelfRoomsList = () => {
             totalElements={paging.totalElements}
           />
         </div>
-      )}
+      );
+    }
+  };
+  return (
+    <div className="my-8">
+      <ComponentTitle text="Your rooms" />
+      {selfRoomsListRenderer()}
     </div>
   );
 };

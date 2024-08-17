@@ -5,6 +5,7 @@ import ComponentTitle from "../common/ComponentTitle";
 import { t } from "i18next";
 import GuessPaperCard from "../guesspaper/GuessPaperCard";
 import Pager from "../common/Pager";
+import Loader from "../common/Loader";
 
 const RoomGuessPapers = ({ roomId }) => {
   const [guessPapers, setGuessPapers] = useState([]);
@@ -18,8 +19,9 @@ const RoomGuessPapers = ({ roomId }) => {
   });
 
   useEffect(() => {
-    listRoomGuessPapersByStatus(filterParams, roomId, paging).then(
-      (response) => {
+    setLoading(true);
+    listRoomGuessPapersByStatus(filterParams, roomId, paging)
+      .then((response) => {
         setGuessPapers(response.data.content);
         setPaging({
           page: response.data.page.number,
@@ -27,20 +29,21 @@ const RoomGuessPapers = ({ roomId }) => {
           totalElements: response.data.page.totalElements,
           totalPages: response.data.page.totalPages,
         });
-      }
-    );
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [roomId, paging.page, filterParams]);
 
-  return (
-    <div className="w-full my-4">
-      <ComponentTitle text={t("guessPapers")} />
-      {guessPapers?.length === 0 ? (
-        <p className="text-primary">No Room guess papers available.</p>
-      ) : loading ? (
-        <Loader />
-      ) : (
+  const roomGuessPapersRenderer = () => {
+    if (loading) {
+      return <Loader />;
+    } else if (guessPapers.length === 0) {
+      return <p className="text-primary">No Room guess papers available.</p>;
+    } else {
+      return (
         <div className="w-full">
-          <div className="bg-background flex justify-start items-center text-primary border-b border-primary">
+          <div className="bg-background flex justify-start items-center text-primary border-b border-primary text-xs">
             <h2 className="flex-1">{t("username")}</h2>
             <h2 className="flex-1">{t("status")}</h2>
             <h2 className="flex-1">{t("stakes")}</h2>
@@ -53,7 +56,13 @@ const RoomGuessPapers = ({ roomId }) => {
           ))}
           <Pager paging={paging} setPaging={setPaging} />
         </div>
-      )}
+      );
+    }
+  };
+  return (
+    <div className="my-8">
+      <ComponentTitle text={t("guessPapers")} />
+      {roomGuessPapersRenderer()}
     </div>
   );
 };

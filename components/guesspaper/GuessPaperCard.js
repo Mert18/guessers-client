@@ -11,7 +11,7 @@ const GuessPaperCard = ({ guessPaper }) => {
   };
 
   return (
-    <div className="w-full text-text">
+    <div className="w-full text-text text-xs">
       <div className="bg-background flex justify-start items-center text-text border-b border-primary">
         <p className="flex-1">{guessPaper.user.username}</p>
         <p className="flex-1">{guessPaper.status}</p>

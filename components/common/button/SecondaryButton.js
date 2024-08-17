@@ -1,10 +1,16 @@
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-const SecondaryButton = ({ type, onClick, text, href, icon }) => {
+const SecondaryButton = ({ type, onClick, text, href, icon, noBg = false, external = false }) => {
   if (href) {
     return (
-      <Link href={href} onClick={onClick}>
-        <div className="bg-background2 border border-secondary text-text hover:bg-secondary hover:text-background rounded-md transition-all w-full p-2 my-2 flex items-center">
+      <Link href={href} onClick={onClick} className="relative">
+        <div  className={`${
+            noBg
+              ? "bg-transparent hover:underline"
+              : "bg-background2 border border-secondary rounded-sm hover:bg-background3"
+          } text-secondary transition-all w-max p-2 my-2`}>
           {icon && (
             <Image
               src={`/${icon}.svg`}
@@ -21,7 +27,11 @@ const SecondaryButton = ({ type, onClick, text, href, icon }) => {
   } else {
     return (
       <button
-        className="bg-background2 border border-secondary text-text hover:bg-secondary hover:text-background transition-all w-full p-2 my-2 rounded-md"
+      className={`${
+        noBg
+          ? "bg-transparent hover:underline"
+          : "bg-background2 border border-secondary rounded-sm hover:bg-background3"
+      } text-secondary transition-all w-max p-2 my-2 relative`}
         type={type}
         onClick={onClick}
       >
@@ -35,6 +45,9 @@ const SecondaryButton = ({ type, onClick, text, href, icon }) => {
           />
         )}
         <p className="p-2 text-xs">{text}</p>
+        {external && (
+          <Image src="/external.svg" alt="arrow showing upward" width={10} height={10} className="absolute top-0 right-0" />
+        )}
       </button>
     );
   }

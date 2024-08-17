@@ -30,7 +30,6 @@ const SelfGuessPapersList = ({ statuses }) => {
     };
     listSelfGuessPapers(listSelfGuessPaperRequest, paging)
       .then((response) => {
-        console.log("Content: ", response.data.content)
         setSelfGuessPapers(response.data.content);
         setPaging({
           page: response.data.page.number,
@@ -44,14 +43,13 @@ const SelfGuessPapersList = ({ statuses }) => {
       });
   }, [paging.page]);
 
-  return (
-    <div className="w-full my-4">
-      <ComponentTitle text="Self Guess Papers" />
-      {selfGuessPapers.length === 0 ? (
-        <p className="text-primary">No guess papers available.</p>
-      ) : loading ? (
-        <Loader />
-      ) : (
+  const selfGuessPapersRenderer = () => {
+    if (loading) {
+      return <Loader />;
+    } else if (selfGuessPapers.length === 0) {
+      return <p className="text-primary">No guess papers available.</p>;
+    } else {
+      return (
         <div className="w-full">
           <div className="bg-background flex justify-start items-center text-primary border-b border-primary">
             <h2 className="flex-1">{t("username")}</h2>
@@ -65,7 +63,13 @@ const SelfGuessPapersList = ({ statuses }) => {
             <GuessPaperCard key={guessPaper.id} guessPaper={guessPaper} />
           ))}
         </div>
-      )}
+      );
+    }
+  };
+  return (
+    <div className="my-8">
+      <ComponentTitle text="Self Guess Papers" />
+      {selfGuessPapersRenderer()}
     </div>
   );
 };

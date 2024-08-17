@@ -2,7 +2,6 @@
 import React from "react";
 import InvitesMenu from "./InvitesMenu";
 import { acceptRoomInvite, rejectRoomInvite } from "@/api/room";
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
 
 const InvitesWrapper = ({
@@ -15,7 +14,7 @@ const InvitesWrapper = ({
 
   return (
     <div
-      className="relative w-48 text-text text-xs mr-8 h-full"
+      className="relative text-text text-xs h-full flex justify-center items-center"
       ref={invitesMenuRef}
     >
       <button

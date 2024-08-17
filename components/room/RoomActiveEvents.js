@@ -5,10 +5,15 @@ import GuessPaper from "../guesspaper/ActiveGuessPaper";
 import ComponentTitle from "../common/ComponentTitle";
 import { t } from "i18next";
 import Loader from "../common/Loader";
+import { getActiveEvents } from "@/api/event";
+import Pager from "../common/Pager";
 
-const RoomActiveEvents = ({ activeEvents, roomUser }) => {
+const RoomActiveEvents = ({ roomId, roomUser }) => {
+  const [loading, setLoading] = useState(false);
+  const [paging, setPaging] = useState({ page: 0, size: 10 });
+  const [activeEvents, setActiveEvents] = useState([]);
+
   const [guesses, setGuesses] = useState([]);
-
   const [totalOdds, setTotalOdds] = useState(1.0);
   const [stake, setStake] = useState(100);
   const [wins, setWins] = useState(100);
@@ -70,26 +75,25 @@ const RoomActiveEvents = ({ activeEvents, roomUser }) => {
     setGuesses([]);
   };
 
-  return (
-    <div className="flex flex-col w-full">
-      <ComponentTitle text={t("activeEvents")} />
-      {activeEvents?.length === 0 ? (
-        <p className="text-primary">No active events available.</p>
-      ) : (
-        <>
-          <div className="w-full">
-            {activeEvents.map((event) => (
-              <EventCard
-                key={event.id}
-                event={event}
-                handleOptionSelected={handleOptionSelected}
-                guesses={guesses}
-                roomUser={roomUser}
-                status="IN_PROGRESS"
-              />
-            ))}
-          </div>
+  useEffect(() => {
+    setLoading(true);
+    getActiveEvents(roomId, paging)
+      .then((response) => {
+        setActiveEvents(response.data.content);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [roomId, paging.page]);
 
+  const eventsRenderer = () => {
+    if (loading) {
+      return <Loader />;
+    } else if (activeEvents.length === 0) {
+      return <p className="text-primary">No active events available.</p>;
+    } else {
+      return (
+        <div>
           {guesses.length > 0 && (
             <GuessPaper
               guesses={guesses}
@@ -101,8 +105,26 @@ const RoomActiveEvents = ({ activeEvents, roomUser }) => {
               resetGuessPaper={resetGuessPaper}
             />
           )}
-        </>
-      )}
+          <ComponentTitle text={t("activeEvents")} />
+
+          {activeEvents.map((event) => (
+            <EventCard
+              key={event.id}
+              event={event}
+              handleOptionSelected={handleOptionSelected}
+              guesses={guesses}
+              roomUser={roomUser}
+              status="IN_PROGRESS"
+            />
+          ))}
+          <Pager paging={paging} setPaging={setPaging} />
+        </div>
+      );
+    }
+  };
+  return (
+    <div className="my-8">
+      {eventsRenderer()}
     </div>
   );
 };

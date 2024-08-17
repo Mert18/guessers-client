@@ -16,21 +16,21 @@ const PublicRoomsList = () => {
     setLoading(true);
     listPublicRooms(paging)
       .then((response) => {
-        console.log("respooo: ", response.data);
+        if(response.data.rooms?.content === undefined) return;
         setPublicRooms(response.data.rooms?.content);
       })
       .finally(() => {
         setLoading(false);
       });
   }, [paging.page]);
-  return (
-    <div className="w-full my-4">
-      <ComponentTitle text="Public rooms" />
-      {publicRooms === undefined ? (
-        <p className="text-primary">No public rooms available.</p>
-      ) : loading ? (
-        <Loader />
-      ) : (
+
+  const publicRoomsListRenderer = () => {
+    if (loading) {
+      return <Loader />;
+    } else if (publicRooms.length === 0) {
+      return <p className="text-primary">No public rooms available.</p>;
+    } else {
+      return (
         <div className="w-full">
           <div className="bg-background flex justify-start items-center text-primary border-b border-primary">
             <h2 className="flex-1">{t("roomName")}</h2>
@@ -43,7 +43,13 @@ const PublicRoomsList = () => {
             <PublicRoomCard key={room.id} room={room} />
           ))}
         </div>
-      )}
+      );
+    }
+  };
+  return (
+    <div className="my-8">
+      <ComponentTitle text="Public rooms" />
+      {publicRoomsListRenderer()}
     </div>
   );
 };
