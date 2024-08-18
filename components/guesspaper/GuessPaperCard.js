@@ -11,7 +11,7 @@ const GuessPaperCard = ({ guessPaper }) => {
   };
 
   return (
-    <div className="w-full text-text text-xs">
+    <div className="w-full text-text">
       <div className="bg-background flex justify-start items-center text-text border-b border-primary">
         <p className="flex-1">{guessPaper.user.username}</p>
         <p className="flex-1">{guessPaper.status}</p>
@@ -31,7 +31,7 @@ const GuessPaperCard = ({ guessPaper }) => {
           title={t("guessPaperDetails")}
           handleCloseModal={handleCloseDetails}
         >
-          <div className="w-full my-4">
+          <div className="w-full">
             <div className="bg-background flex items-center text-primary border-b border-primary w-full">
               <h2 className="flex-1">{t("event")}</h2>
               <h2 className="flex-1">{t("caseOptionName")}</h2>
@@ -55,7 +55,7 @@ const GuessPaperCard = ({ guessPaper }) => {
                 <p className="flex-1">{guess.eventGuessOptionCase.status}</p>
               </div>
             ))}
-            <div className="w-full mt-10">
+            <div className="w-full">
               <div className="flex justify-between w-full">
                 <p>Status</p>
                 <p>{guessPaper.status}</p>

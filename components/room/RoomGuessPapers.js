@@ -60,7 +60,7 @@ const RoomGuessPapers = ({ roomId }) => {
     }
   };
   return (
-    <div className="my-8">
+    <div className="my-8 text-xs">
       <ComponentTitle text={t("guessPapers")} />
       {roomGuessPapersRenderer()}
     </div>

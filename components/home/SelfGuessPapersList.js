@@ -67,7 +67,7 @@ const SelfGuessPapersList = ({ statuses }) => {
     }
   };
   return (
-    <div className="my-8">
+    <div className="my-8 text-xs">
       <ComponentTitle text="Self Guess Papers" />
       {selfGuessPapersRenderer()}
     </div>

@@ -23,7 +23,7 @@ const CreateRoom = () => {
   ];
 
   return (
-    <div className="flex flex-col justify-center items-center w-1/3">
+    <div className="flex flex-col justify-center items-center text-xs">
       <ComponentTitle text={t("createRoom")} />
       <Formik
         initialValues={initialValues}

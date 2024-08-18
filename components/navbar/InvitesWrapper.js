@@ -14,7 +14,7 @@ const InvitesWrapper = ({
 
   return (
     <div
-      className="relative text-text text-xs h-full flex justify-center items-center"
+      className="relative text-text text-sm h-full flex justify-center items-center"
       ref={invitesMenuRef}
     >
       <button

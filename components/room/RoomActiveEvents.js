@@ -105,7 +105,6 @@ const RoomActiveEvents = ({ roomId, roomUser }) => {
               resetGuessPaper={resetGuessPaper}
             />
           )}
-          <ComponentTitle text={t("activeEvents")} />
 
           {activeEvents.map((event) => (
             <EventCard
@@ -123,7 +122,8 @@ const RoomActiveEvents = ({ roomId, roomUser }) => {
     }
   };
   return (
-    <div className="my-8">
+    <div className="my-8 text-xs">
+      <ComponentTitle text={t("activeEvents")} />
       {eventsRenderer()}
     </div>
   );

@@ -47,7 +47,7 @@ const PublicRoomsList = () => {
     }
   };
   return (
-    <div className="my-8">
+    <div className="my-8 text-xs">
       <ComponentTitle text="Public rooms" />
       {publicRoomsListRenderer()}
     </div>

@@ -24,7 +24,6 @@ i18next
           minutes: "minutes",
           before: "before",
           roomName: "Room Name",
-          roomSelect: "Select Room",
           roomCreate: "Create Room",
           roomDescription: "Room Description",
           roomTopPredictors: "Top Predictors",
@@ -75,6 +74,7 @@ i18next
           details: "Details",
           odds: "Odds",
           caseOptionName: "Case Option Name",
+          finalize: "Finalize"
         },
       },
       en: {
@@ -92,7 +92,6 @@ i18next
           minutes: "minutes",
           before: "before",
           roomName: "Room Name",
-          roomSelect: "Select Room",
           roomCreate: "Create Room",
           roomDescription: "Room Description",
           roomTopPredictors: "Top Predictors",
@@ -143,6 +142,7 @@ i18next
           details: "Details",
           odds: "Odds",
           caseOptionName: "Case Option Name",
+          finalize: "Finalize"
         },
       },
     },

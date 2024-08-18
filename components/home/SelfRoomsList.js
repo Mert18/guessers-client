@@ -57,7 +57,7 @@ const SelfRoomsList = () => {
     }
   };
   return (
-    <div className="my-8">
+    <div className="my-8 text-xs">
       <ComponentTitle text="Your rooms" />
       {selfRoomsListRenderer()}
     </div>

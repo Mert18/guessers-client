@@ -1,22 +1,31 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Logo from "./Logo";
-import HamburgerMenu from "../navbar/HamburgerMenu";
 import { getInvites } from "@/api/user";
 import InvitesWrapper from "../navbar/InvitesWrapper";
 import PrimaryButton from "./button/PrimaryButton";
 import { t } from "i18next";
 import { useParams } from "next/navigation";
 import { getRoomUser } from "@/api/room";
+import Image from "next/image";
+import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+
+async function keycloakSessionLogOut() {
+  try {
+    await fetch(`/api/auth/logout`, { method: "GET" });
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 const Navbar = () => {
   const [invitesMenuOpen, setInvitesMenuOpen] = useState(false);
-  const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
   const [invites, setInvites] = useState([]);
-  const hamburgerMenuRef = useRef(null);
   const invitesMenuRef = useRef(null);
   const params = useParams();
   const [roomUser, setRoomUser] = useState({});
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     getInvites().then((response) => {
@@ -39,12 +48,6 @@ const Navbar = () => {
       ) {
         setInvitesMenuOpen(false);
       }
-      if (
-        hamburgerMenuRef.current &&
-        !hamburgerMenuRef.current.contains(event.target)
-      ) {
-        setHamburgerMenuOpen(false);
-      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -56,14 +59,8 @@ const Navbar = () => {
 
   return (
     <div className="col-start-1 col-end-13 flex flex-col justify-between items-center text-text bg-background border-b border-primary">
-      <div className="w-full flex justify-between items-center">
+      <div className="w-full flex justify-center items-center">
         <Logo />
-
-        <HamburgerMenu
-          hamburgerMenuRef={hamburgerMenuRef}
-          setHamburgerMenuOpen={setHamburgerMenuOpen}
-          hamburgerMenuOpen={hamburgerMenuOpen}
-        />
       </div>
       <div className="w-full flex justify-center items-center text-xs">
         {roomUser?.balance >= 0 && (
@@ -86,6 +83,20 @@ const Navbar = () => {
           text={t("roomCreate")}
           href="/home/room/create"
           noBg={true}
+        />
+
+        <PrimaryButton
+          text={t("profile")}
+          href={`/home/profile/${session.username}`}
+          noBg={true}
+        />
+
+        <PrimaryButton
+          text={t("logout")}
+          noBg={true}
+          onClick={() => {
+            keycloakSessionLogOut().then(() => signOut({ callbackUrl: "/" }));
+          }}
         />
       </div>
     </div>
