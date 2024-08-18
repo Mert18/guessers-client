@@ -4,36 +4,28 @@ import React, { useEffect, useState } from "react";
 import ComponentTitle from "../common/ComponentTitle";
 import { t } from "i18next";
 import GuessPaperCard from "../guesspaper/GuessPaperCard";
-import Pager from "../common/Pager";
 import Loader from "../common/Loader";
 
 const RoomGuessPapers = ({ roomId }) => {
   const [guessPapers, setGuessPapers] = useState([]);
-  const [filterParams, setFilterParams] = useState({});
   const [loading, setLoading] = useState(false);
-  const [paging, setPaging] = useState({
-    page: 0,
-    size: 2,
-    totalElements: 0,
-    totalPages: 0,
-  });
+
+  const fetchRoomGuessPapers = async (roomId) => {
+    try {
+      setLoading(true);
+      const response = await listRoomGuessPapersByStatus(roomId);
+      setGuessPapers(response.data.content);
+    } catch (error) {
+      console.error("Error fetching room guess papers", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    setLoading(true);
-    listRoomGuessPapersByStatus(filterParams, roomId, paging)
-      .then((response) => {
-        setGuessPapers(response.data.content);
-        setPaging({
-          page: response.data.page.number,
-          size: response.data.page.size,
-          totalElements: response.data.page.totalElements,
-          totalPages: response.data.page.totalPages,
-        });
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [roomId, paging.page, filterParams]);
+    if (!roomId) return;
+    fetchRoomGuessPapers(roomId);
+  }, [roomId]);
 
   const roomGuessPapersRenderer = () => {
     if (loading) {
@@ -54,7 +46,6 @@ const RoomGuessPapers = ({ roomId }) => {
           {guessPapers.map((guessPaper) => (
             <GuessPaperCard key={guessPaper.id} guessPaper={guessPaper} />
           ))}
-          <Pager paging={paging} setPaging={setPaging} />
         </div>
       );
     }

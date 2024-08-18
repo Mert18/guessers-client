@@ -8,12 +8,15 @@ import React, { useEffect, useState } from "react";
 const Room = ({ params }) => {
   const [roomUser, setRoomUser] = useState({});
 
-  useEffect(() => {
-    if (params.roomId === undefined) return;
+  const fetchRoomUser = async (roomId) => {
+    if (roomId === undefined) return;
+    const response = await getRoomUser(roomId);
+    console.log("room user: ", response.data);
+    setRoomUser(response.data);
+  }
 
-    getRoomUser(params.roomId).then((response) => {
-      setRoomUser(response.data);
-    });
+  useEffect(() => {
+    fetchRoomUser(params.roomId);
   }, [params.roomId]);
 
   return (

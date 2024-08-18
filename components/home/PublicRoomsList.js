@@ -8,20 +8,31 @@ import { t } from "i18next";
 
 const PublicRoomsList = () => {
   const [publicRooms, setPublicRooms] = useState([]);
-  const [paging, setPaging] = useState({ page: 0, size: 5 });
+  const [paging, setPaging] = useState({ page: 0, size: 5, totalPages: 0, totalElements: 0 });
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    listPublicRooms(paging)
-      .then((response) => {
+    const fetchPublicRooms = async () => {
+      setLoading(true);
+      try {
+        const response = await listPublicRooms(paging);
         if(response.data.rooms?.content === undefined) return;
         setPublicRooms(response.data.rooms?.content);
-      })
-      .finally(() => {
+        setPaging({
+          page: response.data.page.number,
+          size: response.data.page.size,
+          totalPages: response.data.page.totalPages,
+          totalElements: response.data.page.totalElements,
+        });
+      } catch (error) {
+        console.error("Error fetching public rooms", error);
+      } finally {
         setLoading(false);
-      });
+      }
+    }
+
+    fetchPublicRooms();
   }, [paging.page]);
 
   const publicRoomsListRenderer = () => {

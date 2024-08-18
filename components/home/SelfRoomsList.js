@@ -13,19 +13,24 @@ const SelfRoomsList = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    listSelfRooms(paging)
-      .then((response) => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await listSelfRooms(paging);
         setSelfRooms(response.data.content);
         setPaging((prevState) => ({
           ...prevState,
           totalPages: response.data.page.totalPages,
           totalElements: response.data.page.totalElements,
         }));
-      })
-      .finally(() => {
+      } catch (error) {
+        console.error("Error fetching rooms", error);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+  
+    fetchData();
   }, [paging.page]);
 
   const selfRoomsListRenderer = () => {
@@ -49,8 +54,6 @@ const SelfRoomsList = () => {
           <Pager
             paging={paging}
             setPaging={setPaging}
-            totalPages={paging.totalPages}
-            totalElements={paging.totalElements}
           />
         </div>
       );

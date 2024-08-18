@@ -13,15 +13,18 @@ export const createGuessPaper = async (guessPaper) => {
   }
 };
 
-export const listRoomGuessPapersByStatus = async (filterParams, roomId, paging) => {
+export const listRoomGuessPapersByStatus = async (roomId) => {
   const localAxios = await axiosInstance();
   try {
-    const response = await localAxios.post(baseURL + "/list-by-status/room/" + roomId, filterParams, {
-      params: {
-        page: paging.page,
-        size: paging.size,
-      },
-    });
+    const response = await localAxios.get(
+      baseURL + "/list-by-status/room/" + roomId,
+      {
+        params: {
+          page: 0,
+          size: 5,
+        },
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Error fetching from backend", error);
@@ -29,14 +32,17 @@ export const listRoomGuessPapersByStatus = async (filterParams, roomId, paging) 
   }
 };
 
-
-export const listSelfGuessPapers = async (listSelfGuessPaperRequest, paging) => {
+export const listSelfGuessPapers = async () => {
   const localAxios = await axiosInstance();
+  if (!localAxios) {
+    console.error("Failed to create Axios instance. No request will be sent.");
+    return; // prevent further execution
+  }
   try {
-    const response = await localAxios.post(baseURL + "/list-by-status/self", listSelfGuessPaperRequest, {
+    const response = await localAxios.get(baseURL + "/list-by-status/self", {
       params: {
-        page: paging.page,
-        size: paging.size,
+        page: 0,
+        size: 5,
       },
     });
     return response.data;

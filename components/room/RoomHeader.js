@@ -15,16 +15,23 @@ const RoomHeader = ({ roomId, roomUser }) => {
   const [rankedPredictions, setRankedPredictions] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  const fetchRoomRanks = async (roomId) => {
     setLoading(true);
-    getRanks(roomId)
-      .then((response) => {
-        setRankedPredictions(response.data.rankedByCorrectPredictions);
-        setRankedRiches(response.data.rankedByBalance);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    try {
+      setLoading(true);
+      const response = await getRanks(roomId);
+      setRankedPredictions(response.data.rankedByCorrectPredictions);
+      setRankedRiches(response.data.rankedByBalance);
+    } catch (error) {
+      console.error("Error fetching room ranks", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!roomId) return;
+    fetchRoomRanks(roomId);
   }, [roomId]);
 
   return (
@@ -33,7 +40,7 @@ const RoomHeader = ({ roomId, roomUser }) => {
         <RoomName roomName={roomUser?.room?.name} />
       </ComponentWithHeader>
 
-      {roomUser.owner && (
+      {roomUser?.owner && (
         <div className="text-xs flex justify-center items-center">
           <PrimaryButton
             href={`/home/room/${roomUser?.room?.id}/event/create`}

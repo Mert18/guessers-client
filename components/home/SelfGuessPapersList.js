@@ -6,42 +6,27 @@ import GuessPaperCard from "../guesspaper/GuessPaperCard";
 import { t } from "i18next";
 import Loader from "../common/Loader";
 
-const GuessPaperStatusEnum = {
-  IN_PROGRESS: "IN_PROGRESS",
-  WON: "WON",
-  LOST: "LOST",
-  CANCELLED: "CANCELLED",
-};
-
-const SelfGuessPapersList = ({ statuses }) => {
+const SelfGuessPapersList = () => {
   const [selfGuessPapers, setSelfGuessPapers] = useState([]);
-  const [paging, setPaging] = useState({ page: 0, size: 5 });
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    const listSelfGuessPaperRequest = {
-      statuses: [
-        GuessPaperStatusEnum.IN_PROGRESS,
-        GuessPaperStatusEnum.WON,
-        GuessPaperStatusEnum.LOST,
-        GuessPaperStatusEnum.CANCELLED,
-      ],
-    };
-    listSelfGuessPapers(listSelfGuessPaperRequest, paging)
-      .then((response) => {
+    const fetchSelfGuessPapers = async () => {
+      setLoading(true);
+      try {
+        const response = await listSelfGuessPapers();
+        if (response.data.content === undefined) return;
         setSelfGuessPapers(response.data.content);
-        setPaging({
-          page: response.data.page.number,
-          size: response.data.page.size,
-          totalPages: response.data.page.totalPages,
-          totalElements: response.data.page.totalElements,
-        });
-      })
-      .finally(() => {
+
+      } catch (error) {
+        console.error("Error fetching self guess papers", error);
+      } finally {
         setLoading(false);
-      });
-  }, [paging.page]);
+      }
+    };
+
+    fetchSelfGuessPapers();
+  }, []);
 
   const selfGuessPapersRenderer = () => {
     if (loading) {

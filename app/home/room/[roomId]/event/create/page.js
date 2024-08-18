@@ -24,7 +24,7 @@ const CreateEvent = ({ params }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col justify-center items-center w-1/2">
+    <div className="flex flex-col justify-center items-center">
       <div className="text-primary text-2xl font-bold text-center">
         {t("eventCreate")}
       </div>

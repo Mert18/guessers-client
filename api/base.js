@@ -4,10 +4,6 @@ import { toast } from "react-toastify";
 
 export const axiosInstance = async () => {
   const accessToken = await getAccessToken();
-  if (!accessToken) {
-    console.error("No access token found");
-    return null;
-  }
 
   const instance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_BACKEND_URI, // Your backend base URL
@@ -23,7 +19,7 @@ export const axiosInstance = async () => {
       }
       return response;
     },
-    () => {
+    (err) => {
       toast.error('An error occurred.');
     }
   );
