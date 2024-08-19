@@ -14,7 +14,9 @@ export const createGuessPaper = async (guessPaper) => {
 };
 
 export const listRoomGuessPapersByStatus = async (roomId, paging) => {
+  console.log("starting")
   const localAxios = await axiosInstance();
+  console.log("axios instance created")
   try {
     const response = await localAxios.get(
       baseURL + "/list-by-status/room/" + roomId,
