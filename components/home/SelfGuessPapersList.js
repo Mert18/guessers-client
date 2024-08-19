@@ -1,33 +1,15 @@
-"use client";
-import { listSelfGuessPapers } from "@/api/guesspaper";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ComponentTitle from "../common/ComponentTitle";
 import GuessPaperCard from "../guesspaper/GuessPaperCard";
 import { t } from "i18next";
 import Loader from "../common/Loader";
 
-const SelfGuessPapersList = () => {
-  const [selfGuessPapers, setSelfGuessPapers] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchSelfGuessPapers = async () => {
-      setLoading(true);
-      try {
-        const response = await listSelfGuessPapers();
-        if (response.data.content === undefined) return;
-        setSelfGuessPapers(response.data.content);
-
-      } catch (error) {
-        console.error("Error fetching self guess papers", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSelfGuessPapers();
-  }, []);
-
+const SelfGuessPapersList = ({
+  selfGuessPapers,
+  paging,
+  setPaging,
+  loading,
+}) => {
   const selfGuessPapersRenderer = () => {
     if (loading) {
       return <Loader />;

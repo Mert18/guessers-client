@@ -13,15 +13,15 @@ export const createGuessPaper = async (guessPaper) => {
   }
 };
 
-export const listRoomGuessPapersByStatus = async (roomId) => {
+export const listRoomGuessPapersByStatus = async (roomId, paging) => {
   const localAxios = await axiosInstance();
   try {
     const response = await localAxios.get(
       baseURL + "/list-by-status/room/" + roomId,
       {
         params: {
-          page: 0,
-          size: 5,
+          page: paging.page,
+          size: paging.size,
         },
       }
     );
@@ -32,7 +32,7 @@ export const listRoomGuessPapersByStatus = async (roomId) => {
   }
 };
 
-export const listSelfGuessPapers = async () => {
+export const listSelfGuessPapers = async (paging) => {
   const localAxios = await axiosInstance();
   if (!localAxios) {
     console.error("Failed to create Axios instance. No request will be sent.");
@@ -41,8 +41,8 @@ export const listSelfGuessPapers = async () => {
   try {
     const response = await localAxios.get(baseURL + "/list-by-status/self", {
       params: {
-        page: 0,
-        size: 5,
+        page: paging.page,
+        size: paging.size,
       },
     });
     return response.data;

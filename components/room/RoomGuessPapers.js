@@ -1,31 +1,10 @@
-"use client";
-import { listRoomGuessPapersByStatus } from "@/api/guesspaper";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ComponentTitle from "../common/ComponentTitle";
 import { t } from "i18next";
 import GuessPaperCard from "../guesspaper/GuessPaperCard";
 import Loader from "../common/Loader";
 
-const RoomGuessPapers = ({ roomId }) => {
-  const [guessPapers, setGuessPapers] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const fetchRoomGuessPapers = async (roomId) => {
-    try {
-      setLoading(true);
-      const response = await listRoomGuessPapersByStatus(roomId);
-      setGuessPapers(response.data.content);
-    } catch (error) {
-      console.error("Error fetching room guess papers", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (!roomId) return;
-    fetchRoomGuessPapers(roomId);
-  }, [roomId]);
+const RoomGuessPapers = ({ guessPapers, paging, setPaging, loading }) => {
 
   const roomGuessPapersRenderer = () => {
     if (loading) {

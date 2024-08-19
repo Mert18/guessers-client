@@ -1,38 +1,11 @@
-"use client";
-import { listSelfRooms } from "@/api/room";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ComponentTitle from "../common/ComponentTitle";
 import SelfRoomCard from "./SelfRoomCard";
 import { t } from "i18next";
 import Pager from "../common/Pager";
 import Loader from "../common/Loader";
 
-const SelfRoomsList = () => {
-  const [selfRooms, setSelfRooms] = useState([]);
-  const [paging, setPaging] = useState({ page: 0, size: 5 });
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const response = await listSelfRooms(paging);
-        setSelfRooms(response.data.content);
-        setPaging((prevState) => ({
-          ...prevState,
-          totalPages: response.data.page.totalPages,
-          totalElements: response.data.page.totalElements,
-        }));
-      } catch (error) {
-        console.error("Error fetching rooms", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-  
-    fetchData();
-  }, [paging.page]);
-
+const SelfRoomsList = ({ selfRooms, paging, setPaging, loading }) => {
   const selfRoomsListRenderer = () => {
     if (loading) {
       return <Loader />;
@@ -51,10 +24,7 @@ const SelfRoomsList = () => {
           {selfRooms.map((room) => (
             <SelfRoomCard key={room.id} roomUser={room} />
           ))}
-          <Pager
-            paging={paging}
-            setPaging={setPaging}
-          />
+          <Pager paging={paging} setPaging={setPaging} />
         </div>
       );
     }

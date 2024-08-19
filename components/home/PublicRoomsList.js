@@ -1,40 +1,10 @@
-"use client";
-import { listPublicRooms } from "@/api/room";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PublicRoomCard from "./PublicRoomCard";
 import ComponentTitle from "../common/ComponentTitle";
 import Loader from "../common/Loader";
 import { t } from "i18next";
 
-const PublicRoomsList = () => {
-  const [publicRooms, setPublicRooms] = useState([]);
-  const [paging, setPaging] = useState({ page: 0, size: 5, totalPages: 0, totalElements: 0 });
-
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchPublicRooms = async () => {
-      setLoading(true);
-      try {
-        const response = await listPublicRooms(paging);
-        if(response.data.rooms?.content === undefined) return;
-        setPublicRooms(response.data.rooms?.content);
-        setPaging({
-          page: response.data.page.number,
-          size: response.data.page.size,
-          totalPages: response.data.page.totalPages,
-          totalElements: response.data.page.totalElements,
-        });
-      } catch (error) {
-        console.error("Error fetching public rooms", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchPublicRooms();
-  }, [paging.page]);
-
+const PublicRoomsList = ({ publicRooms, paging, setPaging, loading }) => {
   const publicRoomsListRenderer = () => {
     if (loading) {
       return <Loader />;
