@@ -1,19 +1,23 @@
 "use client";
+import { getStats } from "@/api/authentication";
 import Loader from "@/components/common/Loader";
 import NavbarNoAuth from "@/components/common/NavbarNoAuth";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const { data: session, status } = useSession();
+  const [stats, setStats] = useState({ userCount: 0, roomCount: 0, eventCount: 0 });
   const router = useRouter();
 
   useEffect(() => {
     if (status === "authenticated") {
       router.push("/home");
     } else {
-      router.push("/");
+      getStats().then((response) => {
+        setStats(response.data.data);
+      })
     }
   }, [status, router]);
 
@@ -35,9 +39,9 @@ export default function Home() {
             </p>
           </div>
           <div>
-            <p><span className="text-primary text-4xl">352</span> Users</p>
-            <p><span className="text-primary text-4xl">123</span> Rooms</p>
-            <p><span className="text-primary text-4xl">523</span> Events</p>
+            <p><span className="text-primary text-4xl">{stats.userCount}</span> Users</p>
+            <p><span className="text-primary text-4xl">{stats.roomCount}</span> Rooms</p>
+            <p><span className="text-primary text-4xl">{stats.eventCount}</span> Events</p>
           </div>
         </div>
       </div>
