@@ -10,11 +10,15 @@ export const createUser = async (user) => {
     .then((response) => {
       if (!response.data.success) {
         toast.error(response.data.message);
-      }else {
-         toast.success("User created successfully.");
+      } else {
+        toast.success("User created successfully.");
       }
     })
     .catch(() => {
       toast.error("An error occurred.");
     });
+};
+
+export const getStats = async () => {
+  return await axios.get(baseURLAuthentication + "/stats");
 };
