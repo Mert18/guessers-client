@@ -29,7 +29,7 @@ const PublicRoomsList = ({ publicRooms, paging, setPaging, loading }) => {
   };
   return (
     <div className="my-8 text-xs">
-      <ComponentTitle text="Public rooms" />
+      <ComponentTitle text="Public rooms" icon="door-open.svg" />
       {publicRoomsListRenderer()}
     </div>
   );

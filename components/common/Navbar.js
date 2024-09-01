@@ -7,9 +7,7 @@ import PrimaryButton from "./button/PrimaryButton";
 import { t } from "i18next";
 import { useParams } from "next/navigation";
 import { getRoomUser } from "@/api/room";
-import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
-import Link from "next/link";
 
 async function keycloakSessionLogOut() {
   try {

@@ -31,7 +31,7 @@ const RoomGuessPapers = ({ guessPapers, paging, setPaging, loading }) => {
   };
   return (
     <div className="my-8 text-xs">
-      <ComponentTitle text={t("guessPapers")} />
+      <ComponentTitle text={t("guessPapers")} icon="/ticket.svg" />
       {roomGuessPapersRenderer()}
     </div>
   );

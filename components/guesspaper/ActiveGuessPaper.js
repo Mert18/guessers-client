@@ -74,7 +74,7 @@ const GuessPaper = ({
         <PrimaryButton
           type="button"
           text={t("createGuessPaper")}
-          noBg={true}
+          noBg={false}
           onClick={() => {
             sendGuessPaper();
           }}

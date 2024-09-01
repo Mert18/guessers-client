@@ -10,7 +10,7 @@ const EventCardHeader = ({
   roomUser,
 }) => {
   return (
-    <div className={`flex flex-col justify-between items-center w-full font-bold border-b ${event.status === "IN_PROGRESS" ? "border-primary" : "border-secondary"} py-2`}>
+    <div className={`flex flex-col justify-between items-center w-full font-bold`}>
       <div className="flex justify-between items-center w-full">
         <p>{event.name}</p>
 

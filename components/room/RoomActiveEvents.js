@@ -94,18 +94,17 @@ const RoomActiveEvents = ({ roomId, roomUser }) => {
     } else {
       return (
         <div>
-          {guesses.length > 0 && (
-            <GuessPaper
-              guesses={guesses}
-              totalOdds={totalOdds}
-              stake={stake}
-              setStake={setStake}
-              wins={wins}
-              roomUser={roomUser}
-              resetGuessPaper={resetGuessPaper}
-            />
-          )}
+          <GuessPaper
+            guesses={guesses}
+            totalOdds={totalOdds}
+            stake={stake}
+            setStake={setStake}
+            wins={wins}
+            roomUser={roomUser}
+            resetGuessPaper={resetGuessPaper}
+          />
 
+          <ComponentTitle text={t("activeEvents")} icon="/calendar.svg" />
           {activeEvents.map((event) => (
             <EventCard
               key={event.id}
@@ -123,7 +122,6 @@ const RoomActiveEvents = ({ roomId, roomUser }) => {
   };
   return (
     <div className="my-8 text-xs">
-      <ComponentTitle text={t("activeEvents")} />
       {eventsRenderer()}
     </div>
   );

@@ -31,7 +31,7 @@ const SelfRoomsList = ({ selfRooms, paging, setPaging, loading }) => {
   };
   return (
     <div className="my-8 text-xs">
-      <ComponentTitle text="Your rooms" />
+      <ComponentTitle text="Your rooms" icon="/door.svg" />
       {selfRoomsListRenderer()}
     </div>
   );

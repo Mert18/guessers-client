@@ -27,7 +27,7 @@ const PrimaryButton = ({ type, onClick, text, href, noBg = false, external = fal
           noBg
             ? "bg-transparent hover:underline"
             : "bg-background2 border border-primary rounded-sm hover:bg-background3"
-        } text-primary transition-all w-max p-2 my-2 relative`}
+        } text-primary transition-all w-max p-2 my-2`}
         type={type}
         onClick={onClick}
       >

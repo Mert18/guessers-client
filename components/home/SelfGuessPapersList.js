@@ -35,7 +35,7 @@ const SelfGuessPapersList = ({
   };
   return (
     <div className="my-8 text-xs">
-      <ComponentTitle text="Self Guess Papers" />
+      <ComponentTitle text="Self Guess Papers" icon="/ticket.svg" />
       {selfGuessPapersRenderer()}
     </div>
   );
