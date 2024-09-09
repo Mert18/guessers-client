@@ -3,6 +3,7 @@ import { createGuessPaper } from "@/api/guesspaper";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import PrimaryButton from "../common/button/PrimaryButton";
+import ComponentTitle from "../common/ComponentTitle";
 
 const GuessPaper = ({
   guesses,
@@ -29,13 +30,13 @@ const GuessPaper = ({
 
   return (
     <div className="col-start-1 md:col-start-4 xl:col-start-5 col-end-13 md:col-end-10 xl:col-end-9 text-text flex justify-start items-start flex-col my-4">
-      <p className="text-xs mb-5">{t("currentGuessPaper")}</p>
+      <ComponentTitle text={t("currentGuessPaper")} icon="/ticket.svg" />
 
-      <div className="flex justify-between items-center w-full">
+      <div className="flex justify-between items-center w-full py-2">
         <p className="text-xs">{t("totalOdds")}</p>
-        <p className="text-sm text-secondary">{totalOdds}</p>
+        <p className="text-sm text-primary font-bold">{totalOdds}</p>
       </div>
-      <div className="flex justify-between items-center w-full">
+      <div className="flex justify-between items-center w-full py-2">
         <p className="text-xs">{t("stakes")}</p>
         <select
           className="p-2 text-background"

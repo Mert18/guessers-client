@@ -15,8 +15,8 @@ const EventGuessOptionCase = ({
         handleOptionSelected(event, eventGuessOption, eventGuessOptionCase);
       }}
     >
-      <div className="text-text w-full p-2 flex justify-center items-center border-b border-secondary">
-        <p>{eventGuessOptionCase.name}</p>
+      <div className="text-text w-full flex justify-center items-center border-b border-primary_accent py-2">
+        <p className="truncate">{eventGuessOptionCase.name}</p>
       </div>
       <div
         className={`${

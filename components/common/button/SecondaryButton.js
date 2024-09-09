@@ -10,7 +10,7 @@ const SecondaryButton = ({ type, onClick, text, href, icon, noBg = false, extern
             noBg
               ? "bg-transparent hover:underline"
               : "bg-background2 border border-secondary rounded-sm hover:bg-background3"
-          } text-secondary transition-all w-max p-2 my-2`}>
+          } text-secondary transition-all w-max`}>
           {icon && (
             <Image
               src={`/${icon}.svg`}
@@ -31,7 +31,7 @@ const SecondaryButton = ({ type, onClick, text, href, icon, noBg = false, extern
         noBg
           ? "bg-transparent hover:underline"
           : "bg-background2 border border-secondary rounded-sm hover:bg-background3"
-      } text-secondary transition-all w-max p-2 my-2 relative`}
+      } text-secondary transition-all w-max relative`}
         type={type}
         onClick={onClick}
       >
