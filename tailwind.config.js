@@ -29,5 +29,8 @@ module.exports = {
       }
     },
   },
+  variants: {
+    scrollbar: ['rounded'],
+  },
   plugins: [],
 }

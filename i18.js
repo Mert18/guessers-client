@@ -74,7 +74,8 @@ i18next
           details: "Details",
           odds: "Odds",
           caseOptionName: "Case Option Name",
-          finalize: "Finalize"
+          finalize: "Finalize",
+          readyEvents: "Ready Events",
         },
       },
       en: {
@@ -142,7 +143,8 @@ i18next
           details: "Details",
           odds: "Odds",
           caseOptionName: "Case Option Name",
-          finalize: "Finalize"
+          finalize: "Finalize",
+          readyEvents: "Ready Events"
         },
       },
     },

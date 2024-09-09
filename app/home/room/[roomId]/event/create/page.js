@@ -1,6 +1,8 @@
 "use client";
 import { createEvent } from "@/api/event";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
+import ListReadyEvents from "@/components/events/ListReadyEvents";
+import Modal from "@/components/Modal";
 import { Field, FieldArray, Form, Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -9,6 +11,7 @@ import { useTranslation } from "react-i18next";
 
 const CreateEvent = ({ params }) => {
   const [loading, setLoading] = useState(false);
+  const [createReadyEventModalOpen, setCreateReadyEventModalOpen] = useState();
   const router = useRouter();
   const initialValues = {
     name: "",
@@ -23,11 +26,30 @@ const CreateEvent = ({ params }) => {
 
   const { t } = useTranslation();
 
+  const handleCloseReadyEventModal = () => {
+    setCreateReadyEventModalOpen(false);
+  };
+
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="text-primary text-2xl font-bold text-center">
+      <div className="text-primary text-2xl font-bold text-center py-4">
         {t("eventCreate")}
       </div>
+
+      <PrimaryButton
+        text="Create From Ready Event"
+        onClick={() => setCreateReadyEventModalOpen(true)}
+        noBg={true}
+      />
+
+      {createReadyEventModalOpen && (
+        <Modal
+          title={t("readyEvents")}
+          handleCloseModal={handleCloseReadyEventModal}
+        >
+          <ListReadyEvents handleCloseReadyEventModal={handleCloseReadyEventModal} roomId={params.roomId} />
+        </Modal>
+      )}
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
