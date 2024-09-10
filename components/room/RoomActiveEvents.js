@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import EventCard from "../events/EventCard";
-import GuessPaper from "../guesspaper/ActiveGuessPaper";
 import ComponentTitle from "../common/ComponentTitle";
 import { t } from "i18next";
 import Loader from "../common/Loader";
 import { getActiveEvents } from "@/api/event";
 import Pager from "../common/Pager";
+import ActiveGuessPaper from "../guesspaper/ActiveGuessPaper";
 
 const RoomActiveEvents = ({ roomId, roomUser }) => {
   const [loading, setLoading] = useState(false);
@@ -94,7 +94,7 @@ const RoomActiveEvents = ({ roomId, roomUser }) => {
     } else {
       return (
         <div>
-          <GuessPaper
+          <ActiveGuessPaper
             guesses={guesses}
             totalOdds={totalOdds}
             stake={stake}

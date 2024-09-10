@@ -44,7 +44,7 @@ export const invitePeople = async (invitedUsername, roomId) => {
   const localAxios = await axiosInstance();
   try {
     const response = await localAxios.get(
-      baseURL + "/" + roomId + "/invite/" + invitedUsername,
+      baseURL + "/" + roomId + "/invite/" + invitedUsername
     );
     return response.data;
   } catch (error) {
@@ -121,7 +121,7 @@ export const searchRoom = async (query, paging) => {
         page: paging.page,
         size: paging.size,
         query: query,
-      }
+      },
     });
     return response.data;
   } catch (error) {
@@ -139,4 +139,25 @@ export const getRoomUser = async (roomId) => {
     console.error("Error fetching from backend", error);
     throw error;
   }
-}
+};
+
+export const fetchRoomUsers = async (roomId) => {
+  const localAxios = await axiosInstance();
+  try {
+    const response = await localAxios.get(baseURL + "/" + roomId + "/users");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching from backend", error);
+    throw error;
+  }
+};
+
+export const giveTokenToUsers = async (roomId, roomUserIds, amount) => {
+  const localAxios = await axiosInstance();
+  try {
+    await localAxios.get(baseURL + "/" + roomId + "/give-token?roomUserIds=" + roomUserIds.join(",") + "&amount=" + amount);
+  } catch (error) {
+    console.error("Error fetching from backend", error);
+    throw error;
+  }
+};

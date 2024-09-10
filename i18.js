@@ -76,6 +76,7 @@ i18next
           caseOptionName: "Case Option Name",
           finalize: "Finalize",
           readyEvents: "Ready Events",
+          lendToken: "Lend Token",
         },
       },
       en: {
@@ -144,7 +145,8 @@ i18next
           odds: "Odds",
           caseOptionName: "Case Option Name",
           finalize: "Finalize",
-          readyEvents: "Ready Events"
+          readyEvents: "Ready Events",
+          lendToken: "Lend Token"
         },
       },
     },
