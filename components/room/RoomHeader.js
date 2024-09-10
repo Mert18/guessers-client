@@ -36,6 +36,7 @@ const RoomHeader = ({ roomId, roomUser }) => {
 
   return (
     <div className="flex flex-col items-center justify-center">
+      <div className="flex justify-between items-center w-full">
       <ComponentWithHeader name={t("room")}>
         <RoomName roomName={roomUser?.room?.name} />
       </ComponentWithHeader>
@@ -52,12 +53,18 @@ const RoomHeader = ({ roomId, roomUser }) => {
             text={t("invite")}
             noBg={true}
           />
+          <PrimaryButton
+            href={`/home/room/${roomUser?.room?.id}/lendtoken`}
+            text={t("lendToken")}
+            noBg={true}
+          />
         </div>
       )}
+      </div>
       {loading ? (
         <Loader />
       ) : (
-        <div className="flex md:flex-row flex-col justify-center items-start">
+        <div className="flex md:flex-row flex-col justify-between items-start w-full">
           {rankedPredictions && (
             <ComponentWithHeader name={t("roomTopPredictors")}>
               <RoomTopPredictors rankedPredictions={rankedPredictions} />
