@@ -16,7 +16,7 @@ const EventCard = ({ event, handleOptionSelected, guesses, roomUser }) => {
   return (
     <div
       key={event.id}
-      className={`flex flex-col justify-center items-center w-full rounder-md text-primary text-xs border border-primary p-2 my-2`}
+      className={`flex flex-col justify-center items-center w-full rounder-md text-primary text-xs my-2`}
     >
       <EventCardHeader
         event={event}

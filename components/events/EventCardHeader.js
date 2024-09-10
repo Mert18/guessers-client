@@ -10,8 +10,12 @@ const EventCardHeader = ({
   roomUser,
 }) => {
   return (
-    <div className={`flex flex-col justify-between items-center w-full font-bold`}>
-      <div className="flex justify-between items-center w-full">
+    <div className={`flex flex-col justify-between items-center w-full font-bold border-b border-primary`}>
+      <div className="flex justify-between items-center w-full cursor-pointer" onClick={() => {
+        if(event.status === "IN_PROGRESS") {
+          setOptionsOpen(!optionsOpen);
+        }
+      }}>
         <p>{event.name}</p>
 
         {roomUser.owner && (
@@ -36,22 +40,6 @@ const EventCardHeader = ({
 
         <p>{new Date(event.createdOn).toLocaleDateString()}</p>
       </div>
-
-      {event.status === "IN_PROGRESS" && (
-        <button
-          onClick={() => {
-            setOptionsOpen(!optionsOpen);
-          }}
-        >
-          <Image
-            className={`${optionsOpen ? "rotate-180" : ""} transition-all p-1`}
-            src="/arrow.svg"
-            width={20}
-            height={20}
-            alt="arrow"
-          />
-        </button>
-      )}
     </div>
   );
 };
