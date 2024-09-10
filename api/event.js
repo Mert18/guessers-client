@@ -58,10 +58,10 @@ export const createEvent = async (event, roomId) => {
   }
 }
 
-export const createEventFromReadyEvent = async (roomId, readyEventId) => {
+export const createEventFromReadyEvent = async (roomId, readyEventIds) => {
   const localAxios = await axiosInstance();
   try {
-    const response = await localAxios.get(baseURL + "/create/" + roomId + "/" + readyEventId);
+    const response = await localAxios.get(baseURL + "/create/" + roomId + "?readyEventIds=" + readyEventIds.join(","));
     return response.data;
   } catch (error) {
     console.error("Error fetching from backend", error);

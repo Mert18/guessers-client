@@ -4,6 +4,7 @@ import { getReadyEvents } from "@/api/readyevent";
 import React, { useEffect, useState } from "react";
 import Loader from "../common/Loader";
 import { useRouter } from "next/navigation";
+import PrimaryButton from "../common/button/PrimaryButton";
 
 const leagues = [
   {
@@ -19,6 +20,7 @@ const leagues = [
 const ListReadyEvents = ({ handleCloseReadyEventModal, roomId }) => {
   const [selectedLeague, setSelectedLeague] = useState("soccer_epl");
   const [readyEvents, setReadyEvents] = useState([]);
+  const [readyEventIdsToCreate, setReadyEventIdsToCreate] = useState([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -37,9 +39,9 @@ const ListReadyEvents = ({ handleCloseReadyEventModal, roomId }) => {
     fetchReadyEvents(selectedLeague);
   }, [selectedLeague]);
 
-  const handleCreateEventFromReadyEvent = (readyEvent) => {
+  const handleCreateEventFromReadyEvent = () => {
     setLoading(true);
-    createEventFromReadyEvent(roomId, readyEvent.id).finally(() => {
+    createEventFromReadyEvent(roomId, readyEventIdsToCreate).finally(() => {
       setLoading(false);
       handleCloseReadyEventModal();
       setTimeout(() => {
@@ -66,21 +68,37 @@ const ListReadyEvents = ({ handleCloseReadyEventModal, roomId }) => {
         ))}
       </div>
 
-      <div className="flex flex-col justify-center items-center w-full py-4 max-h-[300px] overflow-y-auto my-4 border border-primary scrollbar-thin">
+      <div className="flex flex-col justify-center items-center w-full py-4 max-h-[300px] overflow-y-auto my-4 scrollbar-thin">
         {loading ? (
           <Loader />
         ) : (
           readyEvents.map((readyEvent) => (
             <button
               key={readyEvent.id}
-              className="flex flex-col justify-center items-center w-full text-text py-2 cursor-pointer hover:text-primary my-1"
-              onClick={() => handleCreateEventFromReadyEvent(readyEvent)}
+              className={`${readyEventIdsToCreate.includes(readyEvent.id) ? "text-primary" : "text-text"} flex flex-col justify-center items-center w-full py-2 cursor-pointer hover:text-primary my-1`}
+              onClick={() => {
+                if (readyEventIdsToCreate.includes(readyEvent.id)) {
+                  setReadyEventIdsToCreate(
+                    readyEventIdsToCreate.filter((id) => id !== readyEvent.id)
+                  );
+                } else {
+                  setReadyEventIdsToCreate([
+                    ...readyEventIdsToCreate,
+                    readyEvent.id,
+                  ]);
+                }
+              }}
             >
               <p>{readyEvent.name}</p>
             </button>
           ))
         )}
       </div>
+      <PrimaryButton
+        text="Create Selected Events"
+        onClick={() => handleCreateEventFromReadyEvent()}
+        noBg={true}
+      />
     </div>
   );
 };
