@@ -15,12 +15,18 @@ const CreateRoom = () => {
   const initialValues = {
     name: "",
     publico: false,
+    borderless: false
   };
 
   const publicOptions = [
     { value: true, label: t("public") },
     { value: false, label: t("private") },
   ];
+
+  const borderlessOptions = [
+    { value: false, label: t("normal") },
+    { value: true, label: t("borderless") }
+  ]
 
   return (
     <div className="flex flex-col justify-center items-center text-xs">
@@ -49,10 +55,22 @@ const CreateRoom = () => {
 
           <Field
             as="select"
-            className={`w-full text-sm px-2 py-1 my-2 text-text outline-none bg-background border-b border-primary my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
+            className={`w-full text-sm px-2 py-1 my-2 text-text outline-none bg-background border-b border-primary h-8 rounded-sm focus:ring-2 focus:ring-primary`}
             name={"publico"}
           >
             {publicOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Field>
+
+          <Field
+            as="select"
+            className={`w-full text-sm px-2 py-1 my-2 text-text outline-none bg-background border-b border-primary h-8 rounded-sm focus:ring-2 focus:ring-primary`}
+            name={"borderless"}
+          >
+            {borderlessOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>

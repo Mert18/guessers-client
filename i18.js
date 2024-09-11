@@ -77,6 +77,8 @@ i18next
           finalize: "Finalize",
           readyEvents: "Ready Events",
           lendToken: "Lend Token",
+          normal: "Normal",
+          borderless: "Borderless"
         },
       },
       en: {
@@ -146,7 +148,9 @@ i18next
           caseOptionName: "Case Option Name",
           finalize: "Finalize",
           readyEvents: "Ready Events",
-          lendToken: "Lend Token"
+          lendToken: "Lend Token",
+          normal: "Normal",
+          borderless: "Borderless"
         },
       },
     },
