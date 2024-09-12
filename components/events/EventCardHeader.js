@@ -9,13 +9,26 @@ const EventCardHeader = ({
   handleStartEvent,
   roomUser,
 }) => {
+  
+  function convertToUserTimeZone(utcDateTimeString) {
+    const utcDate = new Date(utcDateTimeString); // Parse the UTC string
+    return utcDate.toLocaleString("en-US", {
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    });
+  }
+
   return (
-    <div className={`flex flex-col justify-between items-center w-full font-bold border-b border-primary`}>
-      <div className="flex justify-between items-center w-full cursor-pointer" onClick={() => {
-        if(event.status === "IN_PROGRESS") {
-          setOptionsOpen(!optionsOpen);
-        }
-      }}>
+    <div
+      className={`flex flex-col justify-between items-center w-full font-bold border-b border-primary`}
+    >
+      <div
+        className="flex justify-between items-center w-full cursor-pointer"
+        onClick={() => {
+          if (event.status === "IN_PROGRESS") {
+            setOptionsOpen(!optionsOpen);
+          }
+        }}
+      >
         <p>{event.name}</p>
 
         {roomUser.owner && (
@@ -38,7 +51,7 @@ const EventCardHeader = ({
           </div>
         )}
 
-        <p>{new Date(event.createdOn).toLocaleDateString()}</p>
+        <p>{convertToUserTimeZone(event.eventTime)}</p>
       </div>
     </div>
   );

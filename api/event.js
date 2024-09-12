@@ -14,7 +14,7 @@ export const getActiveEvents = async (roomId, paging) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 }
@@ -31,7 +31,7 @@ export const getCompletedEvents = async (roomId, paging) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 }
@@ -42,7 +42,7 @@ export const getEvent = async (eventId) => {
     const response = await localAxios.get(baseURL + "/" + eventId);
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -53,7 +53,7 @@ export const createEvent = async (event, roomId) => {
     const response = await localAxios.post(baseURL + "/create" + "/" + roomId, event);
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 }
@@ -64,7 +64,7 @@ export const createEventFromReadyEvent = async (roomId, readyEventIds) => {
     const response = await localAxios.get(baseURL + "/create/" + roomId + "?readyEventIds=" + readyEventIds.join(","));
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 }
@@ -76,7 +76,7 @@ export const startEvent = async (eventId, roomId) => {
     const response = await localAxios.get(baseURL + "/" + eventId + "/start/" + roomId);
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 }
@@ -87,7 +87,7 @@ export const finalizeEvent = async (request, eventId, roomId) => {
     const response = await localAxios.post(baseURL + "/" + eventId + "/finalize/" + roomId, request);
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 }

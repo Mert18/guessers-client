@@ -8,7 +8,7 @@ export const placeBet = async (betslip) => {
     const response = await localAxios.post(baseURL + "/create", betslip);
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -24,7 +24,7 @@ export const getRoomBetSlips = async (roomId, paging) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 }
@@ -40,7 +40,7 @@ export const getSelfBetSlips = async (paging) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 }

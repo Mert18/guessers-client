@@ -8,7 +8,7 @@ export const createGuessPaper = async (guessPaper) => {
     const response = await localAxios.post(baseURL + "/create", guessPaper);
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -27,7 +27,7 @@ export const listRoomGuessPapersByStatus = async (roomId, paging) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -35,7 +35,6 @@ export const listRoomGuessPapersByStatus = async (roomId, paging) => {
 export const listSelfGuessPapers = async (paging) => {
   const localAxios = await axiosInstance();
   if (!localAxios) {
-    console.error("Failed to create Axios instance. No request will be sent.");
     return; // prevent further execution
   }
   try {
@@ -47,7 +46,7 @@ export const listSelfGuessPapers = async (paging) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };

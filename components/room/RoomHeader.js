@@ -23,7 +23,6 @@ const RoomHeader = ({ roomId, roomUser }) => {
       setRankedPredictions(response.data.rankedByCorrectPredictions);
       setRankedRiches(response.data.rankedByBalance);
     } catch (error) {
-      console.error("Error fetching room ranks", error);
     } finally {
       setLoading(false);
     }

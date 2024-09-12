@@ -18,7 +18,6 @@ const LendToken = ({ params }) => {
     const roomId = params.roomId;
     fetchRoomUsers(roomId)
       .then((response) => {
-        console.log(response.data);
         setRoomUsers(response.data);
       })
       .finally(() => {

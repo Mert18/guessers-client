@@ -8,7 +8,7 @@ export const getRoom = async (roomId) => {
     const response = await localAxios.get(baseURL + "/" + roomId);
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -24,7 +24,7 @@ export const listSelfRooms = async (paging) => {
     });
     return response?.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -35,7 +35,7 @@ export const createRoom = async (room) => {
     const response = await localAxios.post(baseURL + "/create", room);
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -48,7 +48,7 @@ export const invitePeople = async (invitedUsername, roomId) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -59,7 +59,7 @@ export const acceptRoomInvite = async (roomId) => {
     const response = await localAxios.get(baseURL + "/" + roomId + "/accept");
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -70,7 +70,7 @@ export const rejectRoomInvite = async (roomId) => {
     const response = await localAxios.get(baseURL + "/" + roomId + "/reject");
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -81,7 +81,7 @@ export const getRanks = async (roomId) => {
     const response = await localAxios.get(baseURL + "/" + roomId + "/ranks");
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -97,7 +97,7 @@ export const listPublicRooms = async (paging) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -108,7 +108,7 @@ export const joinPublicRoom = async (roomId) => {
     const response = await localAxios.get(baseURL + "/" + roomId + "/join");
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -125,7 +125,7 @@ export const searchRoom = async (query, paging) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -136,7 +136,7 @@ export const getRoomUser = async (roomId) => {
     const response = await localAxios.get(baseURL + "/" + roomId + "/self");
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -147,7 +147,7 @@ export const fetchRoomUsers = async (roomId) => {
     const response = await localAxios.get(baseURL + "/" + roomId + "/users");
     return response.data;
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };
@@ -157,7 +157,7 @@ export const giveTokenToUsers = async (roomId, roomUserIds, amount) => {
   try {
     await localAxios.get(baseURL + "/" + roomId + "/give-token?roomUserIds=" + roomUserIds.join(",") + "&amount=" + amount);
   } catch (error) {
-    console.error("Error fetching from backend", error);
+    
     throw error;
   }
 };

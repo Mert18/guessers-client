@@ -30,7 +30,6 @@ const Home = () => {
         totalElements: response.data.page.totalElements,
       }));
     } catch (error) {
-      console.error("Error fetching rooms", error);
     } finally {
       setSelfRoomsLoading(false);
     }
@@ -49,7 +48,6 @@ const Home = () => {
         totalElements: response.data.page.totalElements,
       });
     } catch (error) {
-      console.error("Error fetching public rooms", error);
     } finally {
       setPublicRoomsLoading(false);
     }
@@ -63,7 +61,6 @@ const Home = () => {
       setSelfGuessPapers(response.data.content);
 
     } catch (error) {
-      console.error("Error fetching self guess papers", error);
     } finally {
       setSelfGuessPapersLoading(false);
     }

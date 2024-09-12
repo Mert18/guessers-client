@@ -15,7 +15,6 @@ export async function GET() {
     try {
       await fetch(url, { method: "GET" });
     } catch (err) {
-      console.error(err);
       return new Response({ status: 500 });
     }
   }

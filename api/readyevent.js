@@ -9,7 +9,7 @@ export const getReadyEvents = async (league) => {
       const response = await localAxios.get(url);
       return response.data;
     } catch (error) {
-      console.error("Error fetching from backend", error);
+      
       throw error;
     }
   }

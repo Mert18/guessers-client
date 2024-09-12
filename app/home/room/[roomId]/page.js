@@ -28,7 +28,6 @@ const Room = ({ params }) => {
       const response = await listRoomGuessPapersByStatus(roomId, roomGuessPapersPaging);
       setRoomGuessPapers(response.data.content);
     } catch (error) {
-      console.error("Error fetching room guess papers", error);
     } finally {
       setRoomGuessPapersLoading(false);
     }
