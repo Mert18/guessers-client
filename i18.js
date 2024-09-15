@@ -78,7 +78,13 @@ i18next
           readyEvents: "Ready Events",
           lendToken: "Lend Token",
           normal: "Normal",
-          borderless: "Borderless"
+          borderless: "Borderless",
+          prizes: "Prizes",
+          createPrize: "Create Prize",
+          name: "Name",
+          description: "Description",
+          cost: "Cost",
+          buy: "Buy"
         },
       },
       en: {
@@ -150,7 +156,13 @@ i18next
           readyEvents: "Ready Events",
           lendToken: "Lend Token",
           normal: "Normal",
-          borderless: "Borderless"
+          borderless: "Borderless",
+          prizes: "Prizes",
+          createPrize: "Create Prize",
+          name: "Name",
+          description: "Description",
+          cost: "Cost",
+          buy: "Buy"
         },
       },
     },

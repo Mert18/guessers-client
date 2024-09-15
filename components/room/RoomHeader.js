@@ -48,6 +48,11 @@ const RoomHeader = ({ roomId, roomUser }) => {
             noBg={true}
           />
           <PrimaryButton
+            href={`/home/room/${roomUser?.room?.id}/create-prize`}
+            text={t("createPrize")}
+            noBg={true}
+          />
+          <PrimaryButton
             href={`/home/room/${roomUser?.room?.id}/invite`}
             text={t("invite")}
             noBg={true}

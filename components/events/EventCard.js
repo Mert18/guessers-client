@@ -5,7 +5,7 @@ import EventGuessOptions from "./EventGuessOptions";
 import EventCardHeader from "./EventCardHeader";
 
 const EventCard = ({ event, handleOptionSelected, guesses, roomUser }) => {
-  const [optionsOpen, setOptionsOpen] = useState(true);
+  const [optionsOpen, setOptionsOpen] = useState(false);
 
   const handleStartEvent = (event) => {
     startEvent(event.id, roomUser.room.id).finally(() => {

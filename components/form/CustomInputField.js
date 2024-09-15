@@ -37,6 +37,17 @@ const CustomInputField = ({
           ))}
         </Field>
       );
+    } else if (type === "number") {
+      return (
+        <Field
+          name={name}
+          type={type}
+          className={`w-${width} text-sm px-2 py-1 text-text outline-none bg-background2 my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
+          min={"1.00"}
+          autoComplete="off"
+          placeholder={placeholderInside ? placeholder : ""}
+        />
+      );
     }
   };
   return (
