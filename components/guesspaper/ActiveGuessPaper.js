@@ -4,6 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import PrimaryButton from "../common/button/PrimaryButton";
 import ComponentTitle from "../common/ComponentTitle";
+import CustomSelect from "../form/CustomSelect";
 
 const ActiveGuessPaper = ({
   guesses,
@@ -28,8 +29,17 @@ const ActiveGuessPaper = ({
     });
   };
 
+  const stakeOptions = [
+    { value: 100, label: '100₺' },
+    { value: 200, label: '200₺' },
+    { value: 500, label: '500₺' },
+    { value: 1000, label: '1000₺' },
+    { value: 5000, label: '5000₺' },
+    { value: 10000, label: '10000₺' },
+  ];
+
   return (
-    <div className="flex justify-start items-start text-text flex-col my-4">
+    <div className="flex justify-start items-start text-text flex-col my-8">
       <ComponentTitle text={t("currentGuessPaper")} icon="/ticket.svg" />
 
       <div className="flex justify-between w-full">
@@ -39,32 +49,12 @@ const ActiveGuessPaper = ({
         </div>
         <div className="flex flex-col justify-center items-start w-full">
           <p className="text-xs">{t("stakes")}</p>
-          <select
-            className="p-2 text-background"
-            value={stake}
-            onChange={(e) => {
-              setStake(e.target.value);
-            }}
-          >
-            <option key="100" value={100}>
-              100₺
-            </option>
-            <option key="200" value={200}>
-              200₺
-            </option>
-            <option key="500" value={500}>
-              500₺
-            </option>
-            <option key="1000" value={1000}>
-              1000₺
-            </option>
-            <option key="5000" value={5000}>
-              5000₺
-            </option>
-            <option key="10000" value={10000}>
-              10000₺
-            </option>
-          </select>
+          <CustomSelect
+            options={stakeOptions}
+            value={stakeOptions.find(option => option.value === stake)}
+            onChange={(selectedOption) => setStake(selectedOption.value)}
+            placeholder={t("selectStake")}
+          />
         </div>
 
         <div className="flex flex-col justify-center items-start w-full">

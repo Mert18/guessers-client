@@ -9,7 +9,6 @@ const EventCardHeader = ({
   handleStartEvent,
   roomUser,
 }) => {
-  
   function convertToUserTimeZone(utcDateTimeString) {
     const utcDate = new Date(utcDateTimeString); // Parse the UTC string
     return utcDate.toLocaleString("en-US", {
@@ -22,17 +21,17 @@ const EventCardHeader = ({
       className={`flex flex-col justify-between items-center w-full font-bold border-b border-primary`}
     >
       <div
-        className="flex justify-between items-center w-full cursor-pointer"
+        className={`flex justify-between items-center w-full ${event.status === "IN_PROGRESS" ? "cursor-pointer" : "text-text"}`}
         onClick={() => {
           if (event.status === "IN_PROGRESS") {
             setOptionsOpen(!optionsOpen);
           }
         }}
       >
-        <p>{event.name}</p>
+        <p className={`flex-1`}>{event.name}</p>
 
         {roomUser.owner && (
-          <div className="flex">
+          <div className="flex flex-1">
             {event.status === "IN_PROGRESS" ? (
               <SecondaryButton
                 text="Start Event"
@@ -51,7 +50,12 @@ const EventCardHeader = ({
           </div>
         )}
 
-        <p>{convertToUserTimeZone(event.eventTime)}</p>
+        <p className="flex-1">{convertToUserTimeZone(event.eventTime)}</p>
+        {event.status === "IN_PROGRESS" && (
+          <div className={`mr-2 ${optionsOpen ? "rotate-180" : ""}`}>
+            <Image src="/arrow.svg" alt="arrow" width={10} height={10} />
+          </div>
+        )}
       </div>
     </div>
   );
