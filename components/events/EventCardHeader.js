@@ -36,14 +36,14 @@ const EventCardHeader = ({
               <SecondaryButton
                 text="Start Event"
                 onClick={() => handleStartEvent(event)}
-                noBg={true}
+                
               />
             ) : (
               event.status === "STARTED" && (
                 <SecondaryButton
                   text="Finalize Event"
                   href={`/home/room/${roomUser.room.id}/event/${event.id}/finalize`}
-                  noBg={true}
+                  
                 />
               )
             )}

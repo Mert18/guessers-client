@@ -15,7 +15,7 @@ const PrizeCard = ({ prize }) => {
         <div className="flex-1">
           <PrimaryButton
             text="Buy"
-            noBg={true}
+            
             onClick={() => handleBuyPrize(prize.id)}
           />
         </div>

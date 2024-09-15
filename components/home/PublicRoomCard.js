@@ -15,7 +15,7 @@ const PublicRoomCard = ({ room }) => {
         <p className="flex-1">{room.owner.username}</p>
         <p className="flex-1">{room.memberCount}</p>
         <div className="flex-1">
-          <PrimaryButton type="button" onClick={handleJoinRoom} text="Join" noBg={true} />
+          <PrimaryButton type="button" onClick={handleJoinRoom} text="Join"  />
         </div>
       </div>
     </div>

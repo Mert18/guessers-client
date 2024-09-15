@@ -2,15 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const SecondaryButton = ({ type, onClick, text, href, icon, noBg = false, external = false }) => {
+const SecondaryButton = ({ type, onClick, text, href, icon, external = false }) => {
   if (href) {
     return (
       <Link href={href} onClick={onClick} className="relative">
-        <div  className={`${
-            noBg
-              ? "bg-transparent hover:underline"
-              : "bg-background2 border border-secondary rounded-sm hover:bg-background3"
-          } text-secondary transition-all w-max`}>
+        <div  className={`bg-transparent hover:underline text-secondary transition-all w-max`}>
           {icon && (
             <Image
               src={`/${icon}.svg`}
@@ -27,11 +23,7 @@ const SecondaryButton = ({ type, onClick, text, href, icon, noBg = false, extern
   } else {
     return (
       <button
-      className={`${
-        noBg
-          ? "bg-transparent hover:underline"
-          : "bg-background2 border border-secondary rounded-sm hover:bg-background3"
-      } text-secondary transition-all w-max relative`}
+      className={`bg-transparent hover:underline" text-secondary transition-all w-max relative`}
         type={type}
         onClick={onClick}
       >

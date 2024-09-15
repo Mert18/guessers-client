@@ -30,12 +30,12 @@ const ActiveGuessPaper = ({
   };
 
   const stakeOptions = [
-    { value: 100, label: '100₺' },
-    { value: 200, label: '200₺' },
-    { value: 500, label: '500₺' },
-    { value: 1000, label: '1000₺' },
-    { value: 5000, label: '5000₺' },
-    { value: 10000, label: '10000₺' },
+    { value: 100, label: '100' },
+    { value: 200, label: '200' },
+    { value: 500, label: '500' },
+    { value: 1000, label: '1000' },
+    { value: 5000, label: '5000' },
+    { value: 10000, label: '10000' },
   ];
 
   return (
@@ -54,6 +54,7 @@ const ActiveGuessPaper = ({
             value={stakeOptions.find(option => option.value === stake)}
             onChange={(selectedOption) => setStake(selectedOption.value)}
             placeholder={t("selectStake")}
+            width="2/3"
           />
         </div>
 
@@ -66,7 +67,7 @@ const ActiveGuessPaper = ({
           <PrimaryButton
             type="button"
             text={t("createGuessPaper")}
-            noBg={true}
+            
             onClick={() => {
               sendGuessPaper();
             }}

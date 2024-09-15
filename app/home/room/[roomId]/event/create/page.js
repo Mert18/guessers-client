@@ -39,7 +39,7 @@ const CreateEvent = ({ params }) => {
       <PrimaryButton
         text="Create From Ready Event"
         onClick={() => setCreateReadyEventModalOpen(true)}
-        noBg={true}
+        
       />
 
       {createReadyEventModalOpen && (
@@ -171,7 +171,7 @@ const CreateEvent = ({ params }) => {
                                     odds: 1.01,
                                   })
                                 }
-                                noBg={true}
+                                
                               />
                             </div>
                           )}
@@ -202,7 +202,7 @@ const CreateEvent = ({ params }) => {
                         eventGuessOptionCases: [{ name: "", odds: 1.01 }],
                       })
                     }
-                    noBg={true}
+                    
                   />
                 </div>
               )}

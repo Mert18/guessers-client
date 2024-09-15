@@ -84,7 +84,8 @@ i18next
           name: "Name",
           description: "Description",
           cost: "Cost",
-          buy: "Buy"
+          buy: "Buy",
+          selectAmount: "Select Amount",
         },
       },
       en: {
@@ -162,7 +163,8 @@ i18next
           name: "Name",
           description: "Description",
           cost: "Cost",
-          buy: "Buy"
+          buy: "Buy",
+          selectAmount: "Select Amount",
         },
       },
     },

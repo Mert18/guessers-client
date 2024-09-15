@@ -45,22 +45,25 @@ const RoomHeader = ({ roomId, roomUser }) => {
           <PrimaryButton
             href={`/home/room/${roomUser?.room?.id}/event/create`}
             text={t("eventCreate")}
-            noBg={true}
+            
+            mr={true}
           />
           <PrimaryButton
             href={`/home/room/${roomUser?.room?.id}/create-prize`}
             text={t("createPrize")}
-            noBg={true}
+            
+            mr={true}
           />
           <PrimaryButton
             href={`/home/room/${roomUser?.room?.id}/invite`}
             text={t("invite")}
-            noBg={true}
+            
+            mr={true}
           />
           <PrimaryButton
             href={`/home/room/${roomUser?.room?.id}/lendtoken`}
             text={t("lendToken")}
-            noBg={true}
+            
           />
         </div>
       )}

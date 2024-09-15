@@ -95,7 +95,7 @@ const EventFinalize = ({ params }) => {
         </div>
       </div>
 
-      <PrimaryButton noBg={true} text={t("finalize")} onClick={() => handleFinalize()} />
+      <PrimaryButton  text={t("finalize")} onClick={() => handleFinalize()} />
     </div>
   );
 };

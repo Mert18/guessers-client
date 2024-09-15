@@ -2,38 +2,51 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const PrimaryButton = ({ type, onClick, text, href, noBg = false, external = false }) => {
+const PrimaryButton = ({
+  type,
+  onClick,
+  text,
+  href,
+  external = false,
+  mr = false,
+}) => {
   if (href) {
     return (
-      <Link href={href} onClick={onClick} className="relative">
+      <Link href={href} onClick={onClick} className="relative p-2">
         <div
-          className={`${
-            noBg
-              ? "bg-transparent hover:underline"
-              : "bg-background2 border border-primary rounded-sm hover:bg-background3"
-          } text-primary transition-all w-max p-2 my-2`}
+          className={`"bg-transparent hover:underline" ${
+            mr && "mr-2"
+          } text-primary transition-all w-max text-xs`}
         >
-          <p className="text-sm">{text}</p>
+          <p>{text}</p>
         </div>
         {external && (
-          <Image src="/external.svg" alt="arrow showing upward" width={10} height={10} className="absolute top-0 right-0" />
+          <Image
+            src="/external.svg"
+            alt="arrow showing upward"
+            width={10}
+            height={10}
+            className="absolute right-4 top-4"
+          />
         )}
       </Link>
     );
   } else {
     return (
       <button
-        className={`${
-          noBg
-            ? "bg-transparent hover:underline"
-            : "bg-background2 border border-primary rounded-sm hover:bg-background3"
-        } text-primary transition-all w-max p-2 my-2`}
+        className={`bg-transparent hover:underline text-primary transition-all w-max text-xs p-2`}
         type={type}
         onClick={onClick}
       >
-        <p className="text-sm">{text}</p>
+        <p>{text}</p>
         {external && (
-          <Image src="/external.svg" alt="arrow showing upward" width={10} height={10} className="absolute top-0 right-0" />
+          <Image
+            src="/external.svg"
+            alt="arrow showing upward"
+            width={10}
+            height={10}
+            className="absolute right-4 top-4"
+          />
         )}
       </button>
     );

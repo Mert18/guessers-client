@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const CustomSelect = ({ options, value, onChange, placeholder = 'Select an option' }) => {
+const CustomSelect = ({ options, value, onChange, placeholder = 'Select an option', width = "full"}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(value);
   const dropdownRef = useRef(null);
@@ -25,7 +25,7 @@ const CustomSelect = ({ options, value, onChange, placeholder = 'Select an optio
   };
 
   return (
-    <div className="relative w-2/3" ref={dropdownRef}>
+    <div className={`relative w-${width}`} ref={dropdownRef}>
       <div
         className="bg-background border-b border-primary flex justify-between items-center cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}

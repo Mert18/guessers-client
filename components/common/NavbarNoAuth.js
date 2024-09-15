@@ -14,8 +14,12 @@ const NavbarNoAuth = () => {
 
       <div className="flex items-center justify-center mr-4">
         <div className="relative">
-          <PrimaryButton text={t("register")} onClick={() => setRegisterModalOpen(!registerModalOpen)} noBg={true} />
-        {registerModalOpen && (
+          <PrimaryButton
+            text={t("register")}
+            onClick={() => setRegisterModalOpen(!registerModalOpen)}
+            mr={true}
+          />
+          {registerModalOpen && (
             <RegisterModal setRegisterModalOpen={setRegisterModalOpen} />
           )}
         </div>
@@ -23,7 +27,6 @@ const NavbarNoAuth = () => {
         <PrimaryButton
           text={t("login")}
           onClick={() => signIn("keycloak")}
-          noBg={true}
           external={true}
         />
       </div>

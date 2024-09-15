@@ -3,6 +3,8 @@ import { fetchRoomUsers, giveTokenToUsers } from "@/api/room";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import ComponentWithHeader from "@/components/common/ComponentWithHeader";
+import CustomSelect from "@/components/form/CustomSelect";
+import { t } from "i18next";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -31,10 +33,20 @@ const LendToken = ({ params }) => {
   const handleLendToken = () => {
     setLoading(true);
     giveTokenToUsers(params.roomId, roomUserIdsToLend, amount).finally(() => {
-        setLoading(false);
-        router.push(`/home/room/${params.roomId}`);
-    })
-  }
+      setLoading(false);
+      router.push(`/home/room/${params.roomId}`);
+    });
+  };
+
+  const amountOptions = [
+    { value: 100, label: "100" },
+    { value: 200, label: "200" },
+    { value: 500, label: "500" },
+    { value: 1000, label: "1000" },
+    { value: 5000, label: "5000" },
+    { value: 10000, label: "10000" },
+  ];
+
   return (
     <div className="flex flex-col justify-center items-center text-text">
       <div>
@@ -71,35 +83,15 @@ const LendToken = ({ params }) => {
       </div>
 
       <ComponentWithHeader name="Amount">
-        <select
-          className="p-2 text-background"
+        <CustomSelect
+          options={amountOptions}
           value={amount}
-          onChange={(e) => {
-            setAmount(e.target.value);
-          }}
-        >
-          <option key="100" value={100}>
-            100₺
-          </option>
-          <option key="200" value={200}>
-            200₺
-          </option>
-          <option key="500" value={500}>
-            500₺
-          </option>
-          <option key="1000" value={1000}>
-            1000₺
-          </option>
-          <option key="5000" value={5000}>
-            5000₺
-          </option>
-          <option key="10000" value={10000}>
-            10000₺
-          </option>
-        </select>
+          onChange={(selectedOption) => setAmount(selectedOption.value)}
+          placeholder={t("selectAmount")}
+        />
       </ComponentWithHeader>
 
-      <PrimaryButton text="Lend Token" onClick={() => handleLendToken()} />
+      <PrimaryButton text="Lend Token" onClick={() => handleLendToken()}  />
     </div>
   );
 };

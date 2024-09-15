@@ -23,7 +23,7 @@ const GuessPaperCard = ({ guessPaper }) => {
           <PrimaryButton
             text="Details"
             onClick={() => setGuessPaperDetailsOpen(true)}
-            noBg={true}
+            
           />
         </div>
       </div>

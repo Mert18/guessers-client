@@ -97,7 +97,7 @@ const ListReadyEvents = ({ handleCloseReadyEventModal, roomId }) => {
       <PrimaryButton
         text="Create Selected Events"
         onClick={() => handleCreateEventFromReadyEvent()}
-        noBg={true}
+        
       />
     </div>
   );

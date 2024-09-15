@@ -20,8 +20,8 @@ const Navbar = () => {
   const [invitesMenuOpen, setInvitesMenuOpen] = useState(false);
   const [invites, setInvites] = useState([]);
   const invitesMenuRef = useRef(null);
-  const params = useParams();
-  const [roomUser, setRoomUser] = useState({});
+  
+  
   const { data: session, status } = useSession();
 
   useEffect(() => {
@@ -29,13 +29,7 @@ const Navbar = () => {
       setInvites(response.data);
     });
   }, []);
-
-  useEffect(() => {
-    if (params?.roomId === undefined) return;
-    getRoomUser(params?.roomId).then((response) => {
-      setRoomUser(response.data);
-    });
-  }, [params?.roomId]);
+  
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -60,15 +54,6 @@ const Navbar = () => {
         <Logo />
       </div>
       <div className="w-full flex justify-center items-center text-xs">
-        {roomUser?.balance >= 0 && (
-          <div>
-            <p className="font-bold text-primary">
-              <span className="text-text">Balance: </span>
-              {roomUser?.balance?.toFixed(2)}
-            </p>
-          </div>
-        )}
-
         <InvitesWrapper
           invitesMenuRef={invitesMenuRef}
           setInvitesMenuOpen={setInvitesMenuOpen}
@@ -79,18 +64,20 @@ const Navbar = () => {
         <PrimaryButton
           text={t("roomCreate")}
           href="/home/room/create"
-          noBg={true}
+          
+          mr={true}
         />
 
         <PrimaryButton
           text={t("profile")}
           href={`/home/profile/${session.username}`}
-          noBg={true}
+          
+          mr={true}
         />
 
         <PrimaryButton
           text={t("logout")}
-          noBg={true}
+          
           onClick={() => {
             keycloakSessionLogOut().then(() => signOut({ callbackUrl: "/" }));
           }}
