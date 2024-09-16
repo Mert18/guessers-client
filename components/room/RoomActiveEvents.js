@@ -23,16 +23,18 @@ const RoomActiveEvents = ({
     } else {
       return (
         <div>
-          {activeEvents?.map((event) => (
-            <EventCard
-              key={event.id}
-              event={event}
-              handleOptionSelected={handleOptionSelected}
-              guesses={guesses}
-              roomUser={roomUser}
-              status="IN_PROGRESS"
-            />
-          ))}
+          {activeEvents
+            ?.sort((a, b) => b.eventTime - a.eventTime)
+            .map((event) => (
+              <EventCard
+                key={event.id}
+                event={event}
+                handleOptionSelected={handleOptionSelected}
+                guesses={guesses}
+                roomUser={roomUser}
+                status="IN_PROGRESS"
+              />
+            ))}
           <Pager paging={paging} setPaging={setPaging} />
         </div>
       );
