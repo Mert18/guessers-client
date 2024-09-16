@@ -89,6 +89,7 @@ i18next
           guess: "Guess",
           papers: "Papers",
           ranks: "Ranks",
+          home: "Home",
         },
       },
       en: {
@@ -171,6 +172,7 @@ i18next
           guess: "Guess",
           papers: "Papers",
           ranks: "Ranks",
+          home: "Home",
         },
       },
     },

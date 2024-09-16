@@ -34,32 +34,32 @@ const RoomLayout = ({ params, children }) => {
       <RoomHeader roomUser={roomUser} />
       <div className="flex w-full text-xs my-8">
         <Link
-          className={`text-primary p-2 flex-1 flex justify-center items-center ${
-            pathname.endsWith("guess") ? "border-b border-primary" : ""
+          className={`border-b p-2 flex-1 flex justify-center items-center hover:border-b-primary transition-all ${
+            pathname.endsWith("guess") ? "border-b border-primary bg-primary text-background" : "border-transparent text-primary"
           }`}
           href={`/home/room/${params.roomId}/guess`}
         >
           {t("guess")}
         </Link>
         <Link
-          className={`text-primary p-2 flex-1 flex justify-center items-center ${
-            pathname.endsWith("ranks") ? "border-b border-primary" : ""
+          className={`border-b p-2 flex-1 flex justify-center items-center hover:border-b-primary transition-all ${
+            pathname.endsWith("ranks") ? "border-b border-primary bg-primary text-background" : "border-transparent text-primary"
           }`}
           href={`/home/room/${params.roomId}/ranks`}
         >
           {t("ranks")}
         </Link>
         <Link
-          className={`text-primary p-2 flex-1 flex justify-center items-center ${
-            pathname.endsWith("papers") ? "border-b border-primary" : ""
+          className={`border-b p-2 flex-1 flex justify-center items-center hover:border-b-primary transition-all ${
+            pathname.endsWith("papers") ? "border-b border-primary bg-primary text-background" : "border-transparent text-primary"
           }`}
           href={`/home/room/${params.roomId}/papers`}
         >
           {t("guessPapers")}
         </Link>
         <Link
-          className={`text-primary p-2 flex-1 flex justify-center items-center ${
-            pathname.endsWith("prizes") ? "border-b border-primary" : ""
+          className={`border-b p-2 flex-1 flex justify-center items-center hover:border-b-primary transition-all ${
+            pathname.endsWith("prizes") ? "border-b border-primary bg-primary text-background" : "border-transparent text-primary"
           }`}
           href={`/home/room/${params.roomId}/prizes`}
         >

@@ -14,9 +14,9 @@ const PrimaryButton = ({
     return (
       <Link href={href} onClick={onClick} className="relative p-2">
         <div
-          className={`"bg-transparent hover:underline" ${
+          className={`p-2" ${
             mr && "mr-2"
-          } text-primary transition-all w-max text-xs`}
+          } text-primary hover:underline transition-all w-max text-xs`}
         >
           <p>{text}</p>
         </div>
