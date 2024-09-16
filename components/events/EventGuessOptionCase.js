@@ -24,8 +24,8 @@ const EventGuessOptionCase = ({
             (guess) => guess.eventGuessOptionCaseId === eventGuessOptionCase.id
           ) >= 0
             ? "bg-primary text-background"
-            : "text-text bg-background2"
-        } w-full py-2 m-1 flex justify-evenly items-center`}
+            : "text-primary bg-background"
+        } w-full py-2 m-1 flex justify-evenly items-center font-bold`}
       >
         <p>{eventGuessOptionCase.odds}</p>
       </div>
