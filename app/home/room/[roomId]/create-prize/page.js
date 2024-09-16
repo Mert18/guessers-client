@@ -41,7 +41,6 @@ const CreatePrize = ({ params }) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          console.log(values);
           createPrize(values, params.roomId).then(() => {
             setTimeout(() => {
               router.push(`/home/room/${params.roomId}`);

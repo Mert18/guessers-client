@@ -1,37 +1,29 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import EventCard from "../events/EventCard";
 import ComponentTitle from "../common/ComponentTitle";
 import { t } from "i18next";
 import Loader from "../common/Loader";
-import { getActiveEvents } from "@/api/event";
 import Pager from "../common/Pager";
+import { useActiveEvents } from "@/hooks/useActiveEvents";
 
-const RoomActiveEvents = ({ roomId, roomUser, handleOptionSelected, guesses}) => {
-  const [loading, setLoading] = useState(false);
-  const [paging, setPaging] = useState({ page: 0, size: 10 });
-  const [activeEvents, setActiveEvents] = useState([]);
-
-  useEffect(() => {
-    setLoading(true);
-    getActiveEvents(roomId, paging)
-      .then((response) => {
-        setActiveEvents(response.data.content);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [roomId, paging.page]);
+const RoomActiveEvents = ({
+  roomId,
+  roomUser,
+  handleOptionSelected,
+  guesses,
+}) => {
+  const { activeEvents, loading, paging, setPaging } = useActiveEvents(roomId);
 
   const eventsRenderer = () => {
     if (loading) {
       return <Loader />;
-    } else if (activeEvents.length === 0) {
+    } else if (activeEvents?.length === 0) {
       return <p className="text-primary">No active events available.</p>;
     } else {
       return (
         <div>
-          {activeEvents.map((event) => (
+          {activeEvents?.map((event) => (
             <EventCard
               key={event.id}
               event={event}

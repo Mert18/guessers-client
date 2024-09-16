@@ -4,7 +4,7 @@ import React from "react";
 
 const RoomTopPredictors = ({ rankedPredictions }) => {
   return (
-    <ul className="max-w-48 w-48 text-xs mr-4">
+    <ul className="w-full text-xs mr-4">
       {rankedPredictions.length >= 1 && rankedPredictions.map((roomUser, index) => (
         <li
           key={roomUser.id}

@@ -3,10 +3,9 @@ import { axiosInstance } from "./base";
 const baseURL = process.env.NEXT_PUBLIC_BACKEND_URI + "/api/events";
 
 export const getActiveEvents = async (roomId, paging) => {
-  const localAxios = await axiosInstance();
   try {
     const url = baseURL + "/list/" + roomId + "/active";
-    const response = await localAxios.get(url, {
+    const response = await axiosInstance.get(url, {
       params: {
         page: paging.page,
         size: paging.size,
@@ -19,11 +18,10 @@ export const getActiveEvents = async (roomId, paging) => {
   }
 }
 
-export const getCompletedEvents = async (roomId, paging) => {
-  const localAxios = await axiosInstance();
+export const getCompletedEvents = async (roomId, paging) => {Z
   try {
     const url = baseURL + "/list/" + roomId + "/completed";
-    const response = await localAxios.get(url, {
+    const response = await axiosInstance.get(url, {
       params: {
         page: paging.page,
         size: paging.size,
@@ -37,9 +35,8 @@ export const getCompletedEvents = async (roomId, paging) => {
 }
 
 export const getEvent = async (eventId) => {
-  const localAxios = await axiosInstance();
   try {
-    const response = await localAxios.get(baseURL + "/" + eventId);
+    const response = await axiosInstance.get(baseURL + "/" + eventId);
     return response.data;
   } catch (error) {
     
@@ -48,9 +45,8 @@ export const getEvent = async (eventId) => {
 };
 
 export const createEvent = async (event, roomId) => {
-  const localAxios = await axiosInstance();
   try {
-    const response = await localAxios.post(baseURL + "/create" + "/" + roomId, event);
+    const response = await axiosInstance.post(baseURL + "/create" + "/" + roomId, event);
     return response.data;
   } catch (error) {
     
@@ -59,9 +55,8 @@ export const createEvent = async (event, roomId) => {
 }
 
 export const createEventFromReadyEvent = async (roomId, readyEventIds) => {
-  const localAxios = await axiosInstance();
   try {
-    const response = await localAxios.get(baseURL + "/create/" + roomId + "?readyEventIds=" + readyEventIds.join(","));
+    const response = await axiosInstance.get(baseURL + "/create/" + roomId + "?readyEventIds=" + readyEventIds.join(","));
     return response.data;
   } catch (error) {
     
@@ -71,9 +66,8 @@ export const createEventFromReadyEvent = async (roomId, readyEventIds) => {
 
 
 export const startEvent = async (eventId, roomId) => {
-  const localAxios = await axiosInstance();
   try {
-    const response = await localAxios.get(baseURL + "/" + eventId + "/start/" + roomId);
+    const response = await axiosInstance.get(baseURL + "/" + eventId + "/start/" + roomId);
     return response.data;
   } catch (error) {
     
@@ -82,9 +76,8 @@ export const startEvent = async (eventId, roomId) => {
 }
 
 export const finalizeEvent = async (request, eventId, roomId) => {
-  const localAxios = await axiosInstance();
   try {
-    const response = await localAxios.post(baseURL + "/" + eventId + "/finalize/" + roomId, request);
+    const response = await axiosInstance.post(baseURL + "/" + eventId + "/finalize/" + roomId, request);
     return response.data;
   } catch (error) {
     
