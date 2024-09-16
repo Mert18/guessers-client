@@ -4,7 +4,7 @@ import { t } from "i18next";
 import GuessPaperCard from "../guesspaper/GuessPaperCard";
 import Loader from "../common/Loader";
 
-const RoomGuessPapers = ({ guessPapers, paging, setPaging, loading }) => {
+const RoomGuessPapers = ({ guessPapers, setPaging, loading }) => {
 
   const roomGuessPapersRenderer = () => {
     if (loading) {

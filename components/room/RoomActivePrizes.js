@@ -5,7 +5,7 @@ import Loader from "../common/Loader";
 import { t } from "i18next";
 import PrizeCard from "../prize/PrizeCard";
 
-const RoomPrizes = ({ prizes, roomId }) => {
+const RoomActivePrizes = ({ prizes, roomId }) => {
   const [loading, setLoading] = useState(false);
   const [paging, setPaging] = useState({
     page: 0,
@@ -40,4 +40,4 @@ const RoomPrizes = ({ prizes, roomId }) => {
   );
 };
 
-export default RoomPrizes;
+export default RoomActivePrizes;

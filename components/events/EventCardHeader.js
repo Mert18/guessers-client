@@ -30,7 +30,7 @@ const EventCardHeader = ({
       >
         <p className={`flex-1`}>{event.name}</p>
 
-        {roomUser.owner && (
+        {roomUser?.owner && (
           <div className="flex flex-1">
             {event.status === "IN_PROGRESS" ? (
               <SecondaryButton

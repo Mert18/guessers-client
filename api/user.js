@@ -3,9 +3,9 @@ import { axiosInstance } from "./base";
 const baseURL = process.env.NEXT_PUBLIC_BACKEND_URI + "/api/users";
 
 export const getProfile = async (username) => {
-  const localAxios = await axiosInstance();
+  
   try {
-    const response = await localAxios.get(baseURL + "/" + username);
+    const response = await axiosInstance.get(baseURL + "/" + username);
     return response.data;
   } catch (error) {
     
@@ -15,9 +15,9 @@ export const getProfile = async (username) => {
 
 
 export const getInvites = async () => {
-  const localAxios = await axiosInstance();
+  
   try {
-    const response = await localAxios.get(baseURL + "/invites");
+    const response = await axiosInstance.get(baseURL + "/invites");
     return response.data;
   } catch (error) {
     

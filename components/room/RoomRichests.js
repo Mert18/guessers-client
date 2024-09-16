@@ -4,7 +4,7 @@ import React from "react";
 
 const RoomRichests = ({ rankedRiches }) => {
   return (
-    <ul className="max-w-48 w-48 text-xs">
+    <ul className="w-full text-xs">
       {rankedRiches?.map((roomUser, index) => (
         <li
           key={index}

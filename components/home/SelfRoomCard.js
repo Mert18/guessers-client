@@ -5,7 +5,7 @@ import React from "react";
 const SelfRoomCard = ({ roomUser }) => {
   return (
     <Link
-      href={`/home/room/${roomUser.room.id}`}
+      href={`/home/room/${roomUser.room.id}/guess`}
       className="w-full text-text"
     >
       <div className="bg-background flex justify-start items-center text-text border-b border-primary hover:underline hover:text-primary py-1">
