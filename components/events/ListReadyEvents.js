@@ -15,6 +15,26 @@ const leagues = [
     name: "Turkish Super League",
     key: "soccer_turkey_super_league",
   },
+  {
+    name: "UEFA Champions League",
+    key: "soccer_uefa_champs_league",
+  },
+  {
+    name: "UEFA Europe League",
+    key: "soccer_uefa_europa_league",
+  },
+  {
+    name: "Italy Serie A",
+    key: "soccer_italy_serie_a",
+  },
+  {
+    name: "Bundesliga",
+    key: "soccer_germany_bundesliga",
+  },
+  {
+    name: "Ligue 1",
+    key: "soccer_france_ligue_one",
+  }
 ];
 
 const ListReadyEvents = ({ handleCloseReadyEventModal, roomId }) => {
