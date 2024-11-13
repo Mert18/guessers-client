@@ -34,24 +34,23 @@ export default function Home() {
     );
   } else {
     return (
-      <div className="flex flex-col text-text">
-        <NavbarNoAuth />
-        <div className="flex justify-evenly items-center min-h-[50vh]">
-          <div className="flex flex-col justify-center items-center">
-            <Logo />
+      <div className="flex flex-col text-text justify-center items-center">
+        <div className="flex flex-col items-center justify-center py-8 w-1/3">
+          <div className="flex flex-col justify-start items-start w-full">
+            <h1 className="text-6xl py-4">guessers.io</h1>
             <p>Create a room, invite your friends and start guessing.</p>
           </div>
-          <div>
+          <div className="flex justify-start items-center py-4 w-full">
             <p>
-              <span className="text-primary text-4xl">{stats.userCount}</span>{" "}
-              Users
+              <span className="text-primary font-bold">{stats.userCount}</span>{" "}
+              Users, {" "}
             </p>
             <p>
-              <span className="text-primary text-4xl">{stats.roomCount}</span>{" "}
-              Rooms
+              <span className="text-primary font-bold">{stats.roomCount}</span>{" "}
+              Rooms, {" "}
             </p>
             <p>
-              <span className="text-primary text-4xl">{stats.eventCount}</span>{" "}
+              <span className="text-primary font-bold">{stats.eventCount}</span>{" "}
               Events
             </p>
           </div>

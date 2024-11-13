@@ -17,15 +17,19 @@ module.exports = {
       },
       colors: {
         background: "#1F1A24",
-        background2: "#3A3A3A",
-        background3: "#515151",
-        text: "#F8F7EF",
-        primary: "#E8C547",
-        primary_accent: "#A28A32",
-        secondary: "#4777E8",
-        secondary_accent: "#3252A2",
-        failure: "#BB1A24",
-        success: "#6EB64B"
+        background90: "#1F1A2490",
+        text: "#E8F1F2",
+        text90: "#E8F1F290",
+        primary: "#ECEC3C",
+        primary90: "#ECEC3C90",
+        secondary: "#BB6D1E",
+        secondary90: "#BB6D1E90",
+        tertiary: "#9649CB",
+        tertiary90: "#9649CB90",
+        failure: "#CF1919",
+        failure90: "#CF191990",
+        success: "#4EE521",
+        success90: "#4EE52190"
       }
     },
   },
