@@ -33,7 +33,7 @@ const RoomHeader = ({ roomUser }) => {
           />
         </div>
       )}
-      <div>
+      <div className="w-full">
         <ComponentWithHeader name={t("room")}>
           <RoomName roomName={roomUser?.room?.name} />
         </ComponentWithHeader>

@@ -15,11 +15,12 @@ const CustomInputField = ({
       return (
         <Field
           name={name}
-          className={`w-${width} text-sm px-2 py-1 text-text outline-none bg-background2 my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
+          className={`w-${width} text-sm px-2 text-text font-bold outline-none border border-primary bg-background my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
           type={type}
           step={type === "number" ? "1.00" : null}
           min={type === "number" ? "1.00" : null}
           autoComplete="off"
+          autoSuggestions="off"
           placeholder={placeholderInside ? placeholder : ""}
         />
       );
@@ -27,7 +28,7 @@ const CustomInputField = ({
       return (
         <Field
           as="select"
-          className={`w-${width} text-sm px-2 py-1 text-text outline-none bg-background2 my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
+          className={`w-${width} text-sm px-2 text-text font-bold outline-none border border-primary bg-background my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
           name={name}
         >
           {options.map((option) => (
@@ -42,7 +43,7 @@ const CustomInputField = ({
         <Field
           name={name}
           type={type}
-          className={`w-${width} text-sm px-2 py-1 text-text outline-none bg-background2 my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
+          className={`w-${width} text-sm px-2 py-1 text-text font-bold outline-none border border-primary bg-background my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
           min={"1.00"}
           autoComplete="off"
           placeholder={placeholderInside ? placeholder : ""}
@@ -51,9 +52,9 @@ const CustomInputField = ({
     }
   };
   return (
-    <div className={`flex flex-col justify-start items-start w-${width}`}>
+    <div className={`flex flex-col justify-start items-start my-1 w-${width}`}>
       {withLabel && !placeholderInside && (
-        <span className="text-text text-xs lowercase">{placeholder}</span>
+        <span className="text-primary text-sm font-bold lowercase">{placeholder}</span>
       )}
       {renderField(type)}
     </div>

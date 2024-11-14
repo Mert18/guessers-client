@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import PrimaryButton from "../common/button/PrimaryButton";
 import ComponentTitle from "../common/ComponentTitle";
 import CustomSelect from "../form/CustomSelect";
+import { toast } from "react-toastify";
 
 const ActiveGuessPaper = ({
   guesses,
@@ -18,6 +19,10 @@ const ActiveGuessPaper = ({
   const { t } = useTranslation();
 
   const sendGuessPaper = () => {
+    if(guesses.length === 0) {
+      toast.error(t("didntmakeguesses"));
+      return;
+    }
     const guessPaperToCreate = {
       guesses: guesses,
       stake: stake,
@@ -67,7 +72,6 @@ const ActiveGuessPaper = ({
           <PrimaryButton
             type="button"
             text={t("createGuessPaper")}
-            
             onClick={() => {
               sendGuessPaper();
             }}

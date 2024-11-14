@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <div className="col-start-1 col-end-13 flex flex-col justify-between items-center text-text bg-background border-b border-primary">
-      <div className="w-full flex justify-center items-center">
+      <div className="w-full flex justify-center items-center my-4">
         <Logo />
       </div>
       <div className="w-full flex justify-center items-center text-xs">
@@ -38,6 +38,7 @@ const Navbar = () => {
 
         <PrimaryButton
           text={t("logout")}
+          href={`/`}
           onClick={() => {
             keycloakSessionLogOut().then(() => signOut({ callbackUrl: "/" }));
           }}

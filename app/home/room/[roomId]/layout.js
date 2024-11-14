@@ -16,7 +16,6 @@ const RoomLayout = ({ params, children }) => {
       setLoading(true);
       try {
         const userResponse = await getRoomUser(params.roomId);
-        console.log("user response: ", userResponse);
         setRoomUser(userResponse.data);
       } catch (error) {
         console.error("Failed to fetch room user", error);

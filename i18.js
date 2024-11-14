@@ -90,6 +90,7 @@ i18next
           papers: "Papers",
           ranks: "Ranks",
           home: "Home",
+          didntmakeguesses: "You didn't make any guesses",
         },
       },
       en: {
@@ -173,6 +174,7 @@ i18next
           papers: "Papers",
           ranks: "Ranks",
           home: "Home",
+          didntmakeguesses: "You didn't make any guesses!",
         },
       },
     },

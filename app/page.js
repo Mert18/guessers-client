@@ -1,8 +1,8 @@
 "use client";
 import { getStats } from "@/api/authentication";
 import Loader from "@/components/common/Loader";
-import Logo from "@/components/common/Logo";
-import NavbarNoAuth from "@/components/common/NavbarNoAuth";
+import LoginOrRegister from "@/components/LoginOrRegister";
+import Welcomer from "@/components/Welcomer";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -36,24 +36,9 @@ export default function Home() {
     return (
       <div className="flex flex-col text-text justify-center items-center">
         <div className="flex flex-col items-center justify-center py-8 w-1/3">
-          <div className="flex flex-col justify-start items-start w-full">
-            <h1 className="text-6xl py-4">guessers.io</h1>
-            <p>Create a room, invite your friends and start guessing.</p>
-          </div>
-          <div className="flex justify-start items-center py-4 w-full">
-            <p>
-              <span className="text-primary font-bold">{stats.userCount}</span>{" "}
-              Users, {" "}
-            </p>
-            <p>
-              <span className="text-primary font-bold">{stats.roomCount}</span>{" "}
-              Rooms, {" "}
-            </p>
-            <p>
-              <span className="text-primary font-bold">{stats.eventCount}</span>{" "}
-              Events
-            </p>
-          </div>
+          <Welcomer stats={stats} />
+
+          <LoginOrRegister />
         </div>
       </div>
     );

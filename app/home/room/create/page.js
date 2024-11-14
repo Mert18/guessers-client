@@ -3,6 +3,7 @@ import { createRoom } from "@/api/room";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import Loader from "@/components/common/Loader";
+import CustomInputField from "@/components/form/CustomInputField";
 import { Field, Form, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -15,7 +16,7 @@ const CreateRoom = () => {
   const initialValues = {
     name: "",
     publico: false,
-    borderless: false
+    borderless: false,
   };
 
   const publicOptions = [
@@ -25,8 +26,8 @@ const CreateRoom = () => {
 
   const borderlessOptions = [
     { value: false, label: t("normal") },
-    { value: true, label: t("borderless") }
-  ]
+    { value: true, label: t("borderless") },
+  ];
 
   return (
     <div className="flex flex-col justify-center items-center text-xs">
@@ -45,37 +46,31 @@ const CreateRoom = () => {
         }}
       >
         <Form className="flex flex-col justify-center items-center w-full">
-          <Field
+          <CustomInputField
+            withLabel={true}
             name="name"
             type="text"
             className="w-full text-sm px-2 py-1 my-2 text-text outline-none bg-background border-b border-primary h-8 focus:ring-1 focus:ring-primary"
-            autoComplete="off"
             placeholder={t("roomName")}
           />
 
-          <Field
-            as="select"
+          <CustomInputField
+            withLabel={true}
+            options={publicOptions}
+            type={"select"}
             className={`w-full text-sm px-2 py-1 my-2 text-text outline-none bg-background border-b border-primary h-8 rounded-sm focus:ring-2 focus:ring-primary`}
             name={"publico"}
-          >
-            {publicOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </Field>
+            placeholder={t("publico")}
+          />
 
-          <Field
-            as="select"
+          <CustomInputField
+            withLabel={true}
+            type={"select"}
             className={`w-full text-sm px-2 py-1 my-2 text-text outline-none bg-background border-b border-primary h-8 rounded-sm focus:ring-2 focus:ring-primary`}
             name={"borderless"}
-          >
-            {borderlessOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </Field>
+            placeholder={t("borderless")}
+            options={borderlessOptions}
+          />
           {loading ? (
             <Loader />
           ) : (
