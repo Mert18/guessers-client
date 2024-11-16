@@ -1,4 +1,4 @@
-import { Field } from "formik";
+import { Field, useField } from "formik";
 
 interface ICustomInputField {
   name: string;
@@ -19,16 +19,26 @@ const CustomInputField = ({
   width = "full",
   placeholderInside = false
 }: ICustomInputField) => {
+  const [field, meta] = useField(name);
   const renderField = (type: string) => {
     if (type === "text" || type === "password") {
       return (
-        <Field
-          name={name}
-          className={`w-${width} text-sm px-2 text-text font-bold outline-none border-b border-primary bg-transparent my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
-          type={type}
-          autoComplete="off"
-          placeholder={placeholderInside ? placeholder : ""}
-        />
+        <div className="relative w-full">
+          <Field
+            {...field}
+            className={`w-${width} text-sm px-2 text-text font-bold outline-none border-b border-primary bg-transparent my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
+            type={type}
+            autoComplete="off"
+            placeholder={placeholderInside ? "" : placeholder}
+          />
+          <label
+            className={`absolute left-2 top-1/2 transform -translate-y-1/2 transition-all duration-200 ease-in-out ${
+              meta.touched && meta.error ? "text-red-500" : "text-gray-500"
+            } ${field.value ? "text-xs -top-2" : ""}`}
+          >
+            {placeholder}
+          </label>
+        </div>
       );
     } else if (type === "select") {
       return (
