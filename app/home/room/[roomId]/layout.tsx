@@ -29,7 +29,7 @@ const RoomLayout = ({ params, children }: IRoomLayoutProps) => {
   return (
     <div>
       <RoomHeader roomUser={roomUser} />
-      <div className="flex w-full text-xs my-8">
+      <div className="flex w-full text-sm my-8">
         <Link
           className={`border-b p-2 flex-1 flex justify-center items-center hover:border-b-primary transition-all ${
             pathname.endsWith("guess")
@@ -38,7 +38,7 @@ const RoomLayout = ({ params, children }: IRoomLayoutProps) => {
           }`}
           href={`/home/room/${params.roomId}/guess`}
         >
-          {"guess"}
+          {"Guess"}
         </Link>
         <Link
           className={`border-b p-2 flex-1 flex justify-center items-center hover:border-b-primary transition-all ${
@@ -48,7 +48,7 @@ const RoomLayout = ({ params, children }: IRoomLayoutProps) => {
           }`}
           href={`/home/room/${params.roomId}/ranks`}
         >
-          {"ranks"}
+          {"Ranks"}
         </Link>
         <Link
           className={`border-b p-2 flex-1 flex justify-center items-center hover:border-b-primary transition-all ${
@@ -58,7 +58,7 @@ const RoomLayout = ({ params, children }: IRoomLayoutProps) => {
           }`}
           href={`/home/room/${params.roomId}/papers`}
         >
-          {"guessPapers"}
+          {"Guess Papers"}
         </Link>
         <Link
           className={`border-b p-2 flex-1 flex justify-center items-center hover:border-b-primary transition-all ${
@@ -68,7 +68,7 @@ const RoomLayout = ({ params, children }: IRoomLayoutProps) => {
           }`}
           href={`/home/room/${params.roomId}/prizes`}
         >
-          {"prizes"}
+          {"Prizes"}
         </Link>
       </div>
       {children}

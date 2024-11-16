@@ -14,7 +14,7 @@ const PublicRoomCard = ({ room }: IPublicRoomCardProps) => {
   };
   return (
     <div className="w-full text-text">
-      <div className="bg-background flex justify-start items-center text-text border-b border-primary">
+      <div className="bg-background flex justify-start items-center text-text border-b border-primary hover:bg-backgroundhover transition-all py-2">
         <h2 className="flex-1">{room.name}</h2>
         <p className="flex-1">{room.owner.username}</p>
         <p className="flex-1">{room.memberCount}</p>

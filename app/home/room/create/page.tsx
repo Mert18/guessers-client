@@ -29,12 +29,13 @@ const CreateRoom = () => {
   ];
 
   return (
-    <div className="flex flex-col justify-center items-center text-xs">
-      <ComponentTitle text={"createRoom"} />
+    <div className="flex flex-col justify-center items-center my-6">
+      <ComponentTitle text={"Create Room"} />
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
           setLoading(true);
+          console.log("sent values: ", values)
           createRoom(values)
             .then((response) => {
               router.push("/home/room/" + response.data.id);
@@ -44,12 +45,12 @@ const CreateRoom = () => {
             });
         }}
       >
-        <Form className="flex flex-col justify-center items-center w-full">
+        <Form className="flex flex-col justify-center items-center lg:w-2/3 w-full">
           <CustomInputField
             withLabel={true}
             name="name"
             type="text"
-            placeholder={"roomName"}
+            placeholder={"Room Name"}
           />
 
           <CustomInputField
@@ -57,20 +58,20 @@ const CreateRoom = () => {
             options={publicOptions}
             type={"select"}
             name={"publico"}
-            placeholder={"publico"}
+            placeholder={"Public / Private"}
           />
 
           <CustomInputField
             withLabel={true}
             type={"select"}
             name={"borderless"}
-            placeholder={"borderless"}
+            placeholder={"Room Type"}
             options={borderlessOptions}
           />
           {loading ? (
             <Loader />
           ) : (
-            <PrimaryButton type="submit" text={"createRoom"} />
+            <PrimaryButton type="submit" text={"Create Room"} bg={true} />
           )}
         </Form>
       </Formik>

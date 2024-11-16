@@ -26,8 +26,8 @@ export interface IGiveTokenToUser {
 export interface IRoomBasic {
     id: string;
     name: string;
-    isPublic: boolean;
-    isBorderless: boolean;
+    public: boolean;
+    borderless: boolean;
     owner: IUser;
     memberCount?: number;
 }

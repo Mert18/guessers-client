@@ -21,12 +21,12 @@ const SelfRoomsList = ({ selfRooms, paging, setPaging, loading }: ISelfRoomsList
     } else {
       return (
         <div className="w-full">
-          <div className="bg-background flex justify-start items-center text-primary border-b border-primary">
-            <h2 className="flex-1">{"roomName"}</h2>
-            <h2 className="flex-1">{"owner"}</h2>
-            <h2 className="flex-1">{"memberCount"}</h2>
-            <h2 className="flex-1">{"public"}</h2>
-            <h2 className="flex-1">{"balance"}</h2>
+          <div className="bg-background flex justify-start items-center text-primary border-b border-primary font-bold">
+            <h2 className="flex-1">{"Room Name"}</h2>
+            <h2 className="flex-1">{"Owner"}</h2>
+            <h2 className="flex-1">{"Members"}</h2>
+            <h2 className="flex-1">{"Public"}</h2>
+            <h2 className="flex-1">{"Balance"}</h2>
           </div>
           {selfRooms.map((room) => (
             <SelfRoomCard key={room.id} roomUser={room} />

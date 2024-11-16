@@ -13,46 +13,40 @@ const Navbar = () => {
   const { data: session, status } = useSession<any>(); // TODO: fix any
 
   return (
-    <div className="col-start-1 col-end-13 flex flex-col justify-between items-center text-text bg-background border-b border-primary">
+    <div className="col-start-1 md:col-start-4 xl:col-start-5 col-end-13 md:col-end-10 xl:col-end-9 flex flex-col justify-between items-center text-text bg-background">
       <div className="w-full flex justify-center items-center my-4">
         <Logo />
       </div>
-      <div className="w-full flex justify-center items-center text-xs">
-        <PrimaryButton type="button" text={"home"} href="/home" mr={true} />
+      <div className="flex text-xs w-full border-b border-primary">
+        <PrimaryButton type="button" text={"Home"} href="/home" />
+
+        <PrimaryButton type="button" text={"Invites"} href="/home/invites" />
 
         <PrimaryButton
           type="button"
-          text={"invites"}
-          href="/home/invites"
-          mr={true}
-        />
-
-        <PrimaryButton
-          type="button"
-          text={"roomCreate"}
+          text={"Create Room"}
           href="/home/room/create"
-          mr={true}
         />
         {session && (
           <>
-          <PrimaryButton
-          type="button"
-          text={"profile"}
-          href={`/home/profile/${session.username}`}
-          mr={true}
-        />
+            <PrimaryButton
+              type="button"
+              text={"Profile"}
+              href={`/home/profile/${session.username}`}
+            />
 
-        <PrimaryButton
-          type="button"
-          text={"logout"}
-          href={`/`}
-          onClick={() => {
-            keycloakSessionLogOut().then(() => signOut({ callbackUrl: "/" }));
-          }}
-        />
-        </>
+            <PrimaryButton
+              type="button"
+              text={"Logout"}
+              href={`/`}
+              onClick={() => {
+                keycloakSessionLogOut().then(() =>
+                  signOut({ callbackUrl: "/" })
+                );
+              }}
+            />
+          </>
         )}
-        
       </div>
     </div>
   );

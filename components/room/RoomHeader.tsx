@@ -13,34 +13,31 @@ const RoomHeader = ({ roomUser }: IRoomHeaderProps) => {
   return (
     <div className="flex flex-col items-center justify-center">
       {roomUser.owner && (
-        <div className="text-xs flex justify-center items-center">
+        <div className="text-xs flex justify-center items-center w-full my-4">
           <PrimaryButton
             type="button"
             href={`/home/room/${roomUser?.room?.id}/event/create`}
-            text={"eventCreate"}
-            mr={true}
+            text={"Create Event"}
           />
           <PrimaryButton
             type="button"
             href={`/home/room/${roomUser?.room?.id}/create-prize`}
-            text={"createPrize"}
-            mr={true}
+            text={"Create Prize"}
           />
           <PrimaryButton
             type="button"
             href={`/home/room/${roomUser?.room?.id}/invite`}
-            text={"invite"}
-            mr={true}
+            text={"Invite People"}
           />
           <PrimaryButton
             type="button"
             href={`/home/room/${roomUser?.room?.id}/lendtoken`}
-            text={"lendToken"}
+            text={"Lend Token"}
           />
         </div>
       )}
       <div className="w-full">
-        <ComponentWithHeader name={"room"}>
+        <ComponentWithHeader name={"Room"}>
           <RoomName roomName={roomUser?.room?.name} />
         </ComponentWithHeader>
       </div>

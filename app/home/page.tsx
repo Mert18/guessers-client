@@ -4,20 +4,22 @@ import { listPublicRooms, listSelfRooms } from "@/api/room";
 import PublicRoomsList from "@/components/home/PublicRoomsList";
 import SelfGuessPapersList from "@/components/home/SelfGuessPapersList";
 import SelfRoomsList from "@/components/home/SelfRoomsList";
+import { IPaging } from "@/types/IRequest.model";
+import { IRoomUser } from "@/types/IRoom.model";
 import { useEffect, useState } from "react";
 
 const Home = () => {
-  const [selfRooms, setSelfRooms] = useState([]);
-  const [selfRoomsPaging, setSelfRoomsPaging] = useState({ page: 0, size: 5 });
-  const [selfRoomsLoading, setSelfRoomsLoading] = useState(false);
+  const [selfRooms, setSelfRooms] = useState<IRoomUser[]>([]);
+  const [selfRoomsPaging, setSelfRoomsPaging] = useState<IPaging>({ page: 0, size: 5, totalPages: 0, totalElements: 0 });
+  const [selfRoomsLoading, setSelfRoomsLoading] = useState<boolean>(false);
 
-  const [publicRooms, setPublicRooms] = useState([]);
-  const [publicRoomsPaging, setPublicRoomsPaging] = useState({ page: 0, size: 5, totalPages: 0, totalElements: 0 });
-  const [publicRoomsLoading, setPublicRoomsLoading] = useState(false);
+  const [publicRooms, setPublicRooms] = useState<IRoomUser[]>([]);
+  const [publicRoomsPaging, setPublicRoomsPaging] = useState<IPaging>({ page: 0, size: 5, totalPages: 0, totalElements: 0 });
+  const [publicRoomsLoading, setPublicRoomsLoading] = useState<boolean>(false);
 
-  const [selfGuessPapers, setSelfGuessPapers] = useState([]);
-  const [selfGuessPapersLoading, setSelfGuessPapersLoading] = useState(false);
-  const [selfGuessPapersPaging, setSelfGuessPapersPaging] = useState({ page: 0, size: 5 });
+  const [selfGuessPapers, setSelfGuessPapers] = useState<IRoomUser[]>([]);
+  const [selfGuessPapersLoading, setSelfGuessPapersLoading] = useState<boolean>(false);
+  const [selfGuessPapersPaging, setSelfGuessPapersPaging] = useState<IPaging>({ page: 0, size: 5, totalPages: 0, totalElements: 0 });
 
   const fetchSelfRooms = async () => {
     setSelfRoomsLoading(true);
@@ -29,7 +31,6 @@ const Home = () => {
         totalPages: response.data.page.totalPages,
         totalElements: response.data.page.totalElements,
       }));
-    } catch (error) {
     } finally {
       setSelfRoomsLoading(false);
     }
@@ -47,7 +48,6 @@ const Home = () => {
         totalPages: response.data.page.totalPages,
         totalElements: response.data.page.totalElements,
       });
-    } catch (error) {
     } finally {
       setPublicRoomsLoading(false);
     }
@@ -60,7 +60,6 @@ const Home = () => {
       if (response.data.content === undefined) return;
       setSelfGuessPapers(response.data.content);
 
-    } catch (error) {
     } finally {
       setSelfGuessPapersLoading(false);
     }

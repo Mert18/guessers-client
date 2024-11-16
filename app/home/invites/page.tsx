@@ -2,7 +2,7 @@
 import { acceptRoomInvite, rejectRoomInvite } from "@/api/room";
 import { getInvites } from "@/api/user";
 import ComponentTitle from "@/components/common/ComponentTitle";
-import { IPendingInvite} from "@/types/IUser.model";
+import { IPendingInvite } from "@/types/IUser.model";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -22,18 +22,22 @@ const Invites = () => {
   }, []);
   return (
     <div className="w-full text-xs my-8">
-      <ComponentTitle text={"invites" + " (" + pendingInvites.length + ")"} icon="/invite.svg" />
-      <div className="bg-background flex justify-start items-center text-primary border-b border-primary">
-        <h2 className="flex-1">{"roomName"}</h2>
-        <h2 className="flex-1">{"options"}</h2>
-      </div>
+      <ComponentTitle
+        text={"invites" + " (" + pendingInvites.length + ")"}
+        icon="/invite.svg"
+      />
 
-      {pendingInvites.length === 0 && <p>No invites</p>}
+      {pendingInvites.length === 0 ? (
+        <p className="text-primary">You do not have any room invites.</p>
+      ) : (
+        <div className="bg-background flex justify-start items-center text-primary border-b border-primary font-bold">
+          <h2 className="flex-1">{"Room Name"}</h2>
+          <h2 className="flex-1">{"Options"}</h2>
+        </div>
+      )}
+
       {pendingInvites.map((invite) => (
-        <div
-          key={invite.room.id}
-          className="w-full flex"
-        >
+        <div key={invite.room.id} className="w-full flex">
           <div className="whitespace-nowrap overflow-ellipsis overflow-hidden text-text flex-1">
             <p>{invite.room.name}</p>
           </div>

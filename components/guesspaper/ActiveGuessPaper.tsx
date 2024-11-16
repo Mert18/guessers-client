@@ -4,12 +4,12 @@ import PrimaryButton from "../common/button/PrimaryButton";
 import ComponentTitle from "../common/ComponentTitle";
 import CustomSelect from "../form/CustomSelect";
 import { toast } from "react-toastify";
-import { ISingleGuess } from "@/types/IGuessPaper.model";
 import { IRoomUser } from "@/types/IRoom.model";
 import { ISelectOption } from "@/types/IGlobal.model";
+import { ICreateGuessPaperGuess } from "@/types/IGuessPaper.model";
 
 interface IActiveGuessPaperProps {
-  guesses: ISingleGuess[];
+  guesses: ICreateGuessPaperGuess[];
   totalOdds: number;
   stake: number;
   setStake: (stake: number) => void;
@@ -30,7 +30,7 @@ const ActiveGuessPaper = ({
 
   const sendGuessPaper = () => {
     if(guesses.length === 0) {
-      toast.error("didntmakeguesses");
+      toast.error("Your guess paper is empty.");
       return;
     }
     const guessPaperToCreate = {

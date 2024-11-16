@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import KeycloakProvider from "next-auth/providers/keycloak";
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 import { encrypt } from "../../../../util/encryption";
 
 // this will refresh an expired access token, when needed
@@ -24,7 +24,7 @@ async function refreshAccessToken(token: any) { // TODO fix any
   return {
     ...token,
     access_token: refreshToken.access_token,
-    decoded: jwt_decode(refreshToken.access_token),
+    decoded: jwtDecode(refreshToken.access_token),
     id_token: refreshToken.id_token,
     expires_at: Math.floor(Date.now() / 1000) + refreshToken.expires_in,
     refresh_token: refreshToken.refresh_token,
@@ -45,7 +45,7 @@ export const authOptions = {
       const nowTimeStamp = Math.floor(Date.now() / 1000);
       if (account) {
         // account is only available the first time this callback is called on a new session (after the user signs in)
-        token.decoded = jwt_decode(account.access_token);
+        token.decoded = jwtDecode(account.access_token);
         token.access_token = account.access_token;
         token.id_token = account.id_token;
         token.expires_at = account.expires_at;

@@ -5,8 +5,7 @@ interface IPrimaryButton {
   onClick?: () => void;
   text: string;
   href?: string;
-  external?: boolean;
-  mr?: boolean;
+  bg?: boolean;
 }
 
 const PrimaryButton = ({
@@ -14,16 +13,13 @@ const PrimaryButton = ({
   onClick,
   text,
   href,
-  external = false,
-  mr = false,
+  bg = false
 }: IPrimaryButton) => {
   if (href) {
     return (
-      <Link href={href} onClick={onClick} className="relative p-2">
+      <Link href={href} onClick={onClick} className="flex-1 hover:text-primary90 hover:bg-backgroundhover transition-all text-center">
         <div
-          className={`p-2" ${
-            mr && "mr-2"
-          } text-primary hover:underline hover:text-primary90 transition-all w-max text-xs`}
+          className={`py-2 text-primary font-bold`}
         >
           <p>{text}</p>
         </div>
@@ -32,7 +28,7 @@ const PrimaryButton = ({
   } else {
     return (
       <button
-        className={`bg-primary rounded-sm hover:underline text-background hover:bg-primary90 transition-all w-max text-xs p-2 relative`}
+        className={`${bg ? "bg-primary text-background hover:bg-primary90 p-2" : "bg-transparent text-primary hover:text-primary90"} rounded-sm transition-all text-xs flex-1 font-bold`}
         type={type}
         onClick={onClick}
       >

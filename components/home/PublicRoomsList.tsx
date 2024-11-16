@@ -3,6 +3,7 @@ import ComponentTitle from "../common/ComponentTitle";
 import Loader from "../common/Loader";
 import { IRoomBasic } from "@/types/IRoom.model";
 import { IPaging } from "@/types/IRequest.model";
+import Pager from "../common/Pager";
 
 interface IPublicRoomsListProps {
   publicRooms: IRoomBasic[];
@@ -20,16 +21,17 @@ const PublicRoomsList = ({ publicRooms, paging, setPaging, loading }: IPublicRoo
     } else {
       return (
         <div className="w-full">
-          <div className="bg-background flex justify-start items-center text-primary border-b border-primary">
-            <h2 className="flex-1">{"roomName"}</h2>
-            <h2 className="flex-1">{"owner"}</h2>
-            <h2 className="flex-1">{"memberCount"}</h2>
-            <h2 className="flex-1">{"join"}</h2>
+          <div className="bg-background flex justify-start items-center text-primary border-b border-primary font-bold">
+            <h2 className="flex-1">{"Room Name"}</h2>
+            <h2 className="flex-1">{"Owner"}</h2>
+            <h2 className="flex-1">{"Members"}</h2>
+            <h2 className="flex-1">{"Join"}</h2>
           </div>
 
-          {publicRooms?.map((room) => (
+          {publicRooms.map((room) => (
             <PublicRoomCard key={room.id} room={room} />
           ))}
+          <Pager paging={paging} setPaging={setPaging} />
         </div>
       );
     }

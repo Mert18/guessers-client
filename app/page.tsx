@@ -34,12 +34,10 @@ function Home() {
     );
   } else {
     return (
-      <div className="flex flex-col text-text justify-center items-center">
-        <div className="flex flex-col items-center justify-center py-8 w-1/3">
-          <Welcomer stats={stats} />
+      <div className="flex flex-col items-center justify-center lg:p-8 p-2 text-text lg:text-sm text-xs">
+        <Welcomer stats={stats} />
 
-          <LoginOrRegister />
-        </div>
+        <LoginOrRegister />
       </div>
     );
   }

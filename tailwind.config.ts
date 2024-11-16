@@ -13,7 +13,7 @@ export default {
       },
       colors: {
         background: "#1F1A24",
-        background90: "#1F1A2490",
+        backgroundhover: "#322F36",
         text: "#E8F1F2",
         text90: "#E8F1F290",
         primary: "#ECEC3C",
