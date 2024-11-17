@@ -4,21 +4,24 @@ import { IUser } from "@/types/IUser.model";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
-type tUser = Promise<{ username: string }>;
+interface IUserProps {
+  params: {
+    username: string;
+  };
+}
 
-const User = async (props: { params: tUser }) => {
+const User = ({ params }: IUserProps) => {
   const { data: session } = useSession();
   const [userMetadata, setUserMetadata] = useState<IUser>();
-  const { username } = await props.params;
 
   useEffect(() => {
     
   })
   useEffect(() => {
-    getProfile(username).then((response) => {
+    getProfile(params.username).then((response) => {
       setUserMetadata(response.data);
     });
-  }, [session, username]);
+  }, [session, params.username]);
 
   return (
     userMetadata && (

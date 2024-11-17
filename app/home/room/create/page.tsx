@@ -37,8 +37,8 @@ const CreateRoom = () => {
           setLoading(true);
           console.log("sent values: ", values)
           createRoom(values)
-            .then((response) => {
-              router.push("/home/room/" + response.data.id);
+            .then(() => {
+              router.push("/home/");
             })
             .finally(() => {
               setLoading(false);
