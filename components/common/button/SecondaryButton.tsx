@@ -15,7 +15,7 @@ const SecondaryButton = ({ type, onClick, text, href, icon, external = false }: 
   if (href) {
     return (
       <Link href={href} onClick={onClick} className="relative">
-        <div  className={`bg-transparent hover:underline text-secondary transition-all w-max`}>
+        <div  className={`bg-transparent hover:underline text-secondary hover:text-secondary90 transition-all w-max`}>
           {icon && (
             <Image
               src={`/${icon}.svg`}
@@ -32,7 +32,7 @@ const SecondaryButton = ({ type, onClick, text, href, icon, external = false }: 
   } else {
     return (
       <button
-      className={`bg-transparent hover:underline" text-secondary transition-all w-max relative`}
+      className={`bg-transparent hover:underline" text-secondary hover:text-secondary90 transition-all w-max relative`}
         type={type}
         onClick={onClick}
       >
@@ -45,7 +45,7 @@ const SecondaryButton = ({ type, onClick, text, href, icon, external = false }: 
             className="mr-2"
           />
         )}
-        <p className="p-2 text-xs">{text}</p>
+        <p className="text-xs">{text}</p>
         {external && (
           <Image src="/external.svg" alt="arrow showing upward" width={10} height={10} className="absolute top-0 right-0" />
         )}

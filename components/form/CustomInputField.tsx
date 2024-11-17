@@ -34,11 +34,11 @@ const CustomInputField = ({
       return (
         <Field
           as="select"
-          className={`w-${width} text-sm px-2 text-text font-bold outline-none border-b border-primary bg-transparent my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
+          className={`w-${width} text-sm px-2 text-text font-bold outline-none border-b border-primary my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary bg-background`}
           name={name}
         >
           {options?.map((option) => (
-            <option key={option.value} value={option.value}>
+            <option className="bg-background" key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}

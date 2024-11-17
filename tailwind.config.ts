@@ -13,11 +13,11 @@ export default {
       },
       colors: {
         background: "#1F1A24",
-        backgroundhover: "#322F36",
+        backgroundhover: "#160F20",
         text: "#E8F1F2",
         text90: "#E8F1F290",
         primary: "#ECEC3C",
-        primary90: "#ECEC3C90",
+        primary90: "#39390A",
         secondary: "#BB6D1E",
         secondary90: "#BB6D1E90",
         tertiary: "#9649CB",

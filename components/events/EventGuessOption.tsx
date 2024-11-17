@@ -1,11 +1,11 @@
 import { IEvent, IEventGuessOption } from "@/types/IEvent.model";
 import EventGuessOptionCase from "./EventGuessOptionCase";
-import { ICreateGuessPaperGuess } from "@/types/IGuessPaper.model";
+import { ICreateGuessPaperGuess, IHandleOptionSelected } from "@/types/IGuessPaper.model";
 
 interface IEventGuessOptionProps {
   event: IEvent;
   eventGuessOption: IEventGuessOption;
-  handleOptionSelected: (eventGuessOptionCaseId: number) => void;
+  handleOptionSelected: ({ event, eventGuessOption, eventGuessOptionCase}: IHandleOptionSelected) => void;
   guesses: ICreateGuessPaperGuess[];
 }
 
@@ -18,9 +18,9 @@ const EventGuessOption = ({
   return (
     <div
       key={eventGuessOption.id}
-      className="w-full flex flex-col justify-start items-start"
+      className="flex flex-col justify-start items-start"
     >
-      <p className="text-text text-xs lowercase my-1">{eventGuessOption.name}</p>
+      <p className="text-text text-xs lowercase my-1 font-bold">{eventGuessOption.name}</p>
       {event.status === "IN_PROGRESS" && (
         <div className="w-full grid auto-cols-fr grid-flow-col">
           {eventGuessOption.eventGuessOptionCases?.map(

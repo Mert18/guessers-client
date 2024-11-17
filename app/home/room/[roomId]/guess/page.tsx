@@ -7,17 +7,12 @@ import {
   IEventGuessOption,
   IEventGuessOptionCase,
 } from "@/types/IEvent.model";
-import { ICreateGuessPaperGuess } from "@/types/IGuessPaper.model";
+import { ICreateGuessPaperGuess, IHandleOptionSelected } from "@/types/IGuessPaper.model";
+import { IRoomUser } from "@/types/IRoom.model";
 import { useEffect, useState } from "react";
 
 interface IRoomGuessProps {
   params: { roomId: string };
-}
-
-interface IHandleOptionSelected {
-  event: IEvent;
-  eventGuessOption: IEventGuessOption;
-  eventGuessOptionCase: IEventGuessOptionCase;
 }
 
 const RoomGuess = ({ params }: IRoomGuessProps) => {
@@ -26,7 +21,7 @@ const RoomGuess = ({ params }: IRoomGuessProps) => {
   const [stake, setStake] = useState<number>(100);
   const [wins, setWins] = useState<number>(100);
 
-  const [roomUser, setRoomUser] = useState(null);
+  const [roomUser, setRoomUser] = useState<IRoomUser>();
 
   const resetGuessPaper = () => {
     setStake(100);
@@ -38,10 +33,18 @@ const RoomGuess = ({ params }: IRoomGuessProps) => {
   const handleOptionSelected = ({
     event,
     eventGuessOption,
-    eventGuessOptionCase,
+    eventGuessOptionCase
   }: IHandleOptionSelected) => {
+    if (
+      event === undefined ||
+      event.id === undefined ||
+      eventGuessOption === undefined ||
+      eventGuessOption.id === undefined ||
+      eventGuessOptionCase.id === undefined
+    )
+      return;
     const guessSignature = `${event.id}-${eventGuessOption.id}`;
-    const guess = {
+    const guess: ICreateGuessPaperGuess = {
       eventId: event.id,
       eventGuessOptionId: eventGuessOption.id,
       eventGuessOptionName: eventGuessOption.name,
@@ -83,7 +86,9 @@ const RoomGuess = ({ params }: IRoomGuessProps) => {
     setWins(
       Number(
         (
-          Number(guesses.reduce((acc, guess) => acc * guess.odd, 1).toFixed(2)) * stake
+          Number(
+            guesses.reduce((acc, guess) => acc * guess.odd, 1).toFixed(2)
+          ) * stake
         ).toFixed(2)
       )
     );
@@ -100,22 +105,26 @@ const RoomGuess = ({ params }: IRoomGuessProps) => {
 
   return (
     <div>
-      <ActiveGuessPaper
-        guesses={guesses}
-        totalOdds={totalOdds}
-        stake={stake}
-        setStake={setStake}
-        wins={wins}
-        roomUser={roomUser}
-        resetGuessPaper={resetGuessPaper}
-      />
+      {roomUser && (
+        <>
+          <ActiveGuessPaper
+            guesses={guesses}
+            totalOdds={totalOdds}
+            stake={stake}
+            setStake={setStake}
+            wins={wins}
+            roomUser={roomUser}
+            resetGuessPaper={resetGuessPaper}
+          />
 
-      <RoomActiveEvents
-        roomId={params.roomId}
-        roomUser={roomUser}
-        handleOptionSelected={handleOptionSelected}
-        guesses={guesses}
-      />
+          <RoomActiveEvents
+            roomId={params.roomId}
+            roomUser={roomUser}
+            handleOptionSelected={handleOptionSelected}
+            guesses={guesses}
+          />
+        </>
+      )}
     </div>
   );
 };

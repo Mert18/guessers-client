@@ -5,7 +5,7 @@ import PublicRoomsList from "@/components/home/PublicRoomsList";
 import SelfGuessPapersList from "@/components/home/SelfGuessPapersList";
 import SelfRoomsList from "@/components/home/SelfRoomsList";
 import { IPaging } from "@/types/IRequest.model";
-import { IRoomUser } from "@/types/IRoom.model";
+import { IRoomBasic, IRoomUser } from "@/types/IRoom.model";
 import { useEffect, useState } from "react";
 
 const Home = () => {
@@ -13,11 +13,11 @@ const Home = () => {
   const [selfRoomsPaging, setSelfRoomsPaging] = useState<IPaging>({ page: 0, size: 5, totalPages: 0, totalElements: 0 });
   const [selfRoomsLoading, setSelfRoomsLoading] = useState<boolean>(false);
 
-  const [publicRooms, setPublicRooms] = useState<IRoomUser[]>([]);
+  const [publicRooms, setPublicRooms] = useState<IRoomBasic[]>([]);
   const [publicRoomsPaging, setPublicRoomsPaging] = useState<IPaging>({ page: 0, size: 5, totalPages: 0, totalElements: 0 });
   const [publicRoomsLoading, setPublicRoomsLoading] = useState<boolean>(false);
 
-  const [selfGuessPapers, setSelfGuessPapers] = useState<IRoomUser[]>([]);
+  const [selfGuessPapers, setSelfGuessPapers] = useState<IRoomBasic[]>([]);
   const [selfGuessPapersLoading, setSelfGuessPapersLoading] = useState<boolean>(false);
   const [selfGuessPapersPaging, setSelfGuessPapersPaging] = useState<IPaging>({ page: 0, size: 5, totalPages: 0, totalElements: 0 });
 

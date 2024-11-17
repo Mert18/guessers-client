@@ -68,6 +68,8 @@ const CreateRoom = () => {
             placeholder={"Room Type"}
             options={borderlessOptions}
           />
+
+          <div className="my-2"></div>
           {loading ? (
             <Loader />
           ) : (

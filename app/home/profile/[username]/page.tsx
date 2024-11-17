@@ -25,9 +25,9 @@ const User = ({ params }: IUserProps) => {
 
   return (
     userMetadata && (
-      <div className="flex flex-col justify-center items-center text-text">
-        <h1 className="font-bold text-2xl"><span className="text-primary">Welcome, </span>{userMetadata.username}</h1>
-        <p>{userMetadata.luck}</p>
+      <div className="flex flex-col justify-center text-text my-4">
+        <h1 className="font-bold text-2xl my-2"><span className="text-primary">Welcome, </span>{userMetadata.username}</h1>
+        <p><span className="text-primary text-base font-bold">%{userMetadata.luck.toFixed(2)}</span> luck percentage.</p>
       </div>
     )
   );

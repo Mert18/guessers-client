@@ -6,7 +6,7 @@ interface IUseActiveEventsProps {
   roomId: string;
 }
 
-export const useActiveEvents = (roomId: IUseActiveEventsProps) => {
+export const useActiveEvents = ({roomId}: IUseActiveEventsProps) => {
   const [activeEvents, setActiveEvents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [paging, setPaging] = useState<IPaging>({ page: 0, size: 5, totalPages: 0 });
@@ -17,7 +17,7 @@ export const useActiveEvents = (roomId: IUseActiveEventsProps) => {
 
       setLoading(true);
       try {
-        const response = await getActiveEvents(roomId, paging);
+        const response = await getActiveEvents({roomId: roomId, paging: paging});
         setActiveEvents(response?.data?.content);
         setPaging({
           page: response?.data?.page.number,

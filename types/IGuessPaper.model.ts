@@ -49,3 +49,9 @@ export enum GuessPaperStatus {
   LOST = "LOST",
   CANCELLED = "CANCELLED",
 }
+
+export interface IHandleOptionSelected {
+  event: IEvent;
+  eventGuessOption: IEventGuessOption;
+  eventGuessOptionCase: IEventGuessOptionCase;
+}

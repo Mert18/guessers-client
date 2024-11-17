@@ -4,13 +4,13 @@ import { startEvent } from "@/api/event";
 import EventGuessOptions from "./EventGuessOptions";
 import EventCardHeader from "./EventCardHeader";
 import { IEvent } from "@/types/IEvent.model";
-import { ISingleGuess } from "@/types/IGuessPaper.model";
+import { ICreateGuessPaperGuess, IHandleOptionSelected } from "@/types/IGuessPaper.model";
 import { IRoomUser } from "@/types/IRoom.model";
 
 interface IEventCardProps {
   event: IEvent;
-  handleOptionSelected: (eventGuessOptionId: number) => void;
-  guesses: ISingleGuess[];
+  handleOptionSelected: ({ event, eventGuessOption, eventGuessOptionCase}: IHandleOptionSelected) => void;
+  guesses: ICreateGuessPaperGuess[];
   roomUser: IRoomUser;
 }
 
@@ -26,7 +26,7 @@ const EventCard = ({ event, handleOptionSelected, guesses, roomUser }: IEventCar
   return (
     <div
       key={event.id}
-      className={`flex flex-col justify-center items-center w-full rounder-md text-primary text-xs my-2 py-2`}
+      className={`flex flex-col justify-center items-center w-full text-primary text-xs my-2 py-2 bg-backgroundhover border border-primary90 rounded-md`}
     >
       <EventCardHeader
         event={event}

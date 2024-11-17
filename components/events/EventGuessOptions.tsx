@@ -1,11 +1,11 @@
 import { IEvent, IEventGuessOption } from "@/types/IEvent.model";
 import EventGuessOption from "./EventGuessOption";
-import { ICreateGuessPaperGuess } from "@/types/IGuessPaper.model";
+import { ICreateGuessPaperGuess, IHandleOptionSelected } from "@/types/IGuessPaper.model";
 
 interface IEventGuessOptions {
   event: IEvent;
   eventGuessOptions: IEventGuessOption[];
-  handleOptionSelected: (eventGuessOptionId: number) => void;
+  handleOptionSelected: ({ event, eventGuessOption, eventGuessOptionCase}: IHandleOptionSelected) => void;
   guesses: ICreateGuessPaperGuess[];
 }
 
@@ -16,7 +16,7 @@ const EventGuessOptions = ({
   guesses,
 }: IEventGuessOptions) => {
   return (
-    <div className="w-full grid grid-cols-1 gap-5">
+    <div className="w-full grid grid-cols-2 gap-5 p-2">
       {eventGuessOptions.map((eventGuessOption) => (
         <EventGuessOption
           key={eventGuessOption.id}

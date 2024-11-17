@@ -22,13 +22,13 @@ export interface ICreateEventEvent {
 }
 
 export interface IEventGuessOption {
-    id: string;
+    id?: string;
     name: string;
     eventGuessOptionCases: IEventGuessOptionCase[];
 }
 
 export interface IEventGuessOptionCase {
-    id: string;
+    id?: string;
     name: string;
     odds: number;
     status?: string;

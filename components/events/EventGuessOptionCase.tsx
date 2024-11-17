@@ -3,17 +3,20 @@ import {
   IEventGuessOption,
   IEventGuessOptionCase,
 } from "@/types/IEvent.model";
-import { ICreateGuessPaperGuess } from "@/types/IGuessPaper.model";
+import {
+  ICreateGuessPaperGuess,
+  IHandleOptionSelected,
+} from "@/types/IGuessPaper.model";
 
 interface IEventGuessOptionCaseProps {
   event: IEvent;
   eventGuessOption: IEventGuessOption;
   eventGuessOptionCase: IEventGuessOptionCase;
-  handleOptionSelected: (
-    event: IEvent,
-    eventGuessOption: IEventGuessOption,
-    eventGuessOptionCase: IEventGuessOptionCase
-  ) => void;
+  handleOptionSelected: ({
+    event,
+    eventGuessOption,
+    eventGuessOptionCase,
+  }: IHandleOptionSelected) => void;
   guesses: ICreateGuessPaperGuess[];
 }
 
@@ -27,13 +30,17 @@ const EventGuessOptionCase = ({
   return (
     <button
       key={eventGuessOptionCase.id}
-      className="flex-1 flex flex-col justify-center items-center hover:cursor-pointer"
+      className="flex flex-col justify-center items-center hover:cursor-pointer m-0.5"
       onClick={() => {
-        handleOptionSelected(event, eventGuessOption, eventGuessOptionCase);
+        handleOptionSelected({
+          event: event,
+          eventGuessOption: eventGuessOption,
+          eventGuessOptionCase: eventGuessOptionCase,
+        });
       }}
     >
-      <div className="text-text w-full flex justify-center items-center border-b border-primary_accent py-2">
-        <p className="truncate">{eventGuessOptionCase.name}</p>
+      <div className="text-text w-full flex justify-start items-center py-2">
+        <p className="truncate font-bold">{eventGuessOptionCase.name}</p>
       </div>
       <div
         className={`${
@@ -41,7 +48,7 @@ const EventGuessOptionCase = ({
             (guess) => guess.eventGuessOptionCaseId === eventGuessOptionCase.id
           ) >= 0
             ? "bg-primary text-background"
-            : "text-primary bg-background"
+            : "text-primary bg-[#434146]"
         } w-full py-2 m-1 flex justify-evenly items-center font-bold`}
       >
         <p>{eventGuessOptionCase.odds}</p>

@@ -37,7 +37,7 @@ export interface IRoomUser {
     user: IUser;
     room: IRoomBasic;
     balance: number;
-    isOwner: boolean;
+    owner: boolean;
     score: number;
     memberCount: number;
 }

@@ -1,18 +1,17 @@
 "use client";
 import EventCard from "../events/EventCard";
 import ComponentTitle from "../common/ComponentTitle";
-import { t } from "i18next";
 import Loader from "../common/Loader";
 import Pager from "../common/Pager";
 import { useActiveEvents } from "@/hooks/useActiveEvents";
 import { IRoomUser } from "@/types/IRoom.model";
-import { ISingleGuess } from "@/types/IGuessPaper.model";
+import { ICreateGuessPaperGuess, IHandleOptionSelected } from "@/types/IGuessPaper.model";
 
 interface RoomActiveEventsProps {
   roomId: string;
   roomUser: IRoomUser;
-  handleOptionSelected: any;
-  guesses: ISingleGuess[];
+  handleOptionSelected: ({ event, eventGuessOption, eventGuessOptionCase}: IHandleOptionSelected) => void;
+  guesses: ICreateGuessPaperGuess[];
 }
 
 const RoomActiveEvents = ({
@@ -21,7 +20,7 @@ const RoomActiveEvents = ({
   handleOptionSelected,
   guesses,
 }: RoomActiveEventsProps) => {
-  const { activeEvents, loading, paging, setPaging } = useActiveEvents(roomId);
+  const { activeEvents, loading, paging, setPaging } = useActiveEvents({roomId});
 
   const eventsRenderer = () => {
     if (loading) {
@@ -40,7 +39,6 @@ const RoomActiveEvents = ({
                 handleOptionSelected={handleOptionSelected}
                 guesses={guesses}
                 roomUser={roomUser}
-                status="IN_PROGRESS"
               />
             ))}
           <Pager paging={paging} setPaging={setPaging} />

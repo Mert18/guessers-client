@@ -5,7 +5,7 @@ interface IProfileLayoutProps {
 }
 
 const ProfileLayout = ({ children }: IProfileLayoutProps) => {
-  return <div className="p-3">{children}</div>;
+  return <div>{children}</div>;
 };
 
 export default ProfileLayout;
