@@ -33,6 +33,7 @@ const LoginOrRegister = () => {
           type="button"
           text={"Login"}
           onClick={() => signIn("keycloak")}
+          bg={true}
         />
       </p>
 
@@ -42,6 +43,7 @@ const LoginOrRegister = () => {
           type="button"
           text={"Register"}
           onClick={() => setRegisterFormVisible(!registerFormVisible)}
+          bg={true}
         />
       </p>
 

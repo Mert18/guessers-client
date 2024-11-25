@@ -35,7 +35,6 @@ const CreateRoom = () => {
         initialValues={initialValues}
         onSubmit={(values) => {
           setLoading(true);
-          console.log("sent values: ", values)
           createRoom(values)
             .then(() => {
               router.push("/home/");

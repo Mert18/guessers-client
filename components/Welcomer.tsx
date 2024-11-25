@@ -12,11 +12,11 @@ const Welcomer = ({ stats }: IWelcomerProps) => {
       </div>
       <div className="flex justify-start items-center py-4 w-full">
         <p>
-          <span className="text-primary font-bold">{stats.userCount}</span>{" "}
+          <span className="text-text-default text-2xl font-bold">{stats.userCount}</span>{" "}
           Users,{" "}
-          <span className="text-primary font-bold">{stats.roomCount}</span>{" "}
+          <span className="text-text-default text-2xl font-bold">{stats.roomCount}</span>{" "}
           Rooms,{" "}
-          <span className="text-primary font-bold">{stats.eventCount}</span>{" "}
+          <span className="text-text-default text-2xl font-bold">{stats.eventCount}</span>{" "}
           Events
         </p>
       </div>

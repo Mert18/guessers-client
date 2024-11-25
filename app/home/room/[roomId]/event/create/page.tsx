@@ -37,7 +37,6 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
 
 
   useEffect(() => {
-  console.log("params: ", params)
     getRoom(params.roomId).then((response) => {
       setRoom(response.data);
     });
@@ -74,7 +73,6 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          console.log("values: ", values)
           createEvent({event: values, roomId: params.roomId}).then(() => {
             setTimeout(() => {
               router.push(`/home/room/${params.roomId}/guess`);

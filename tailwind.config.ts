@@ -12,20 +12,23 @@ export default {
         '2xs': '0.6rem'
       },
       colors: {
-        background: "#1F1A24",
-        backgroundhover: "#160F20",
-        text: "#E8F1F2",
-        text90: "#E8F1F290",
-        primary: "#ECEC3C",
-        primary90: "#39390A",
-        secondary: "#BB6D1E",
-        secondary90: "#BB6D1E90",
-        tertiary: "#9649CB",
-        tertiary90: "#9649CB90",
-        failure: "#CF1919",
-        failure90: "#CF191990",
+        background: {
+          default: "#CED8D1",
+          bright: "#efefef",
+        },
+        primary : {
+          default: "#9B7DD7",
+          bright: "#B19CDA",
+        },
+        text: {
+          default: "#6A3788",
+          bright: "#8A669E"
+        },
+        secondary: {
+          default: "#BB6D1E",
+        },
+        failure: "#CE4A3A",
         success: "#4EE521",
-        success90: "#4EE52190"
       }
     },
   },
