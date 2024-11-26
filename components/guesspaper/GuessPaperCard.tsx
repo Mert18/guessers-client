@@ -33,7 +33,7 @@ const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
       </div>
       {guessPaperDetailsOpen && (
         <Modal
-          title={"guessPaperDetails"}
+          title={"Guess Paper Details"}
           handleCloseModal={handleCloseDetails}
         >
           <GuessPaperDetails guessPaper={guessPaper} />

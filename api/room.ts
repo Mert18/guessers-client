@@ -11,7 +11,7 @@ const baseURL = process.env.NEXT_PUBLIC_BACKEND_URI + "/api/rooms";
 
 export const getRoom = async (roomId: string) => {
   const response = await axiosInstance.get(baseURL + "/" + roomId);
-  return response.data;
+  return response?.data;
 };
 
 export const listSelfRooms = async (paging: IPaging) => {
@@ -26,7 +26,7 @@ export const listSelfRooms = async (paging: IPaging) => {
 
 export const createRoom = async (room: ICreateRoom) => {
   const response = await axiosInstance.post(baseURL + "/create", room);
-  return response.data;
+  return response?.data;
 };
 
 export const invitePeople = async ({
@@ -36,22 +36,22 @@ export const invitePeople = async ({
   const response = await axiosInstance.get(
     baseURL + "/" + roomId + "/invite/" + invitedUsername
   );
-  return response.data;
+  return response?.data;
 };
 
 export const acceptRoomInvite = async (roomId: string) => {
   const response = await axiosInstance.get(baseURL + "/" + roomId + "/accept");
-  return response.data;
+  return response?.data;
 };
 
 export const rejectRoomInvite = async (roomId: string) => {
   const response = await axiosInstance.get(baseURL + "/" + roomId + "/reject");
-  return response.data;
+  return response?.data;
 };
 
 export const getRanks = async (roomId: string) => {
   const response = await axiosInstance.get(baseURL + "/" + roomId + "/ranks");
-  return response.data;
+  return response?.data;
 };
 
 export const listPublicRooms = async (paging: IPaging) => {
@@ -61,12 +61,12 @@ export const listPublicRooms = async (paging: IPaging) => {
       size: paging.size,
     },
   });
-  return response.data;
+  return response?.data;
 };
 
 export const joinPublicRoom = async (roomId: string) => {
   const response = await axiosInstance.get(baseURL + "/" + roomId + "/join");
-  return response.data;
+  return response?.data;
 };
 
 export const searchRoom = async ({ query, paging }: ISearchRoom) => {
@@ -77,21 +77,25 @@ export const searchRoom = async ({ query, paging }: ISearchRoom) => {
       query: query,
     },
   });
-  return response.data;
+  return response?.data;
 };
 
 export const getRoomUser = async (roomId: string) => {
   const response = await axiosInstance.get(baseURL + "/" + roomId + "/self");
-  return response.data;
+  return response?.data;
 };
 
 export const fetchRoomUsers = async (roomId: string) => {
   const response = await axiosInstance.get(baseURL + "/" + roomId + "/users");
-  return response.data;
+  return response?.data;
 };
 
-export const giveTokenToUsers = async ({roomId, roomUserIds, amount}: IGiveTokenToUser) => {
-  await axiosInstance.get(
+export const giveTokenToUsers = async ({
+  roomId,
+  roomUserIds,
+  amount,
+}: IGiveTokenToUser) => {
+  const response = await axiosInstance.get(
     baseURL +
       "/" +
       roomId +
@@ -100,4 +104,5 @@ export const giveTokenToUsers = async ({roomId, roomUserIds, amount}: IGiveToken
       "&amount=" +
       amount
   );
+  return response?.data;
 };

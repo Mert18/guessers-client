@@ -6,7 +6,7 @@ const baseURL = process.env.NEXT_PUBLIC_BACKEND_URI + "/api/guess-papers";
 
 export const createGuessPaper = async (guessPaper: ICreateGuessPaper) => {
     const response = await axiosInstance.post(baseURL + "/create", guessPaper);
-    return response.data;
+    return response?.data;
   
 };
 
@@ -21,7 +21,7 @@ export const listRoomGuessPapersByStatus = async ({roomId, paging}: IListRoomGue
         },
       }
     );
-    return response.data;
+    return response?.data;
   
 };
 
@@ -33,5 +33,5 @@ export const listSelfGuessPapers = async (paging: IPaging) => {
         size: paging.size,
       },
     });
-    return response.data;
+    return response?.data;
 };

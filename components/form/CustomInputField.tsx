@@ -24,7 +24,7 @@ const CustomInputField = ({
       return (
         <Field
           name={name}
-          className={`w-${width} text-sm px-2 text-text-default font-bold outline-none border border-primary-default bg-background-bright my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary-default`}
+          className={`w-${width} text-sm px-2 text-text-default font-bold outline-none border border-primary-default bg-background-bright h-8 rounded-sm focus:ring-2 focus:ring-primary-default`}
           type={type}
           autoComplete="off"
           placeholder={placeholderInside ? placeholder : ""}
@@ -34,7 +34,7 @@ const CustomInputField = ({
       return (
         <Field
           as="select"
-          className={`w-${width} text-sm px-2 text-text-default font-bold outline-none border border-primary-default my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary-default bg-background-bright`}
+          className={`w-${width} text-sm px-2 text-text-default font-bold outline-none border border-primary-default h-8 rounded-sm focus:ring-2 focus:ring-primary-default bg-background-bright`}
           name={name}
         >
           {options?.map((option) => (
@@ -49,7 +49,7 @@ const CustomInputField = ({
         <Field
           name={name}
           type={type}
-          className={`w-${width} text-sm px-2 py-1 text-text font-bold outline-none border-b border-primary bg-transparent my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
+          className={`w-${width} text-sm px-2 py-1 text-text-default font-bold outline-none border border-primary-default bg-background-bright h-8 rounded-sm focus:ring-2 focus:ring-primary-default`}
           min={"1.00"}
           autoComplete="off"
           placeholder={placeholderInside ? placeholder : ""}
@@ -58,9 +58,9 @@ const CustomInputField = ({
     }
   };
   return (
-    <div className={`flex flex-col justify-start items-start my-1 w-${width}`}>
+    <div className={`flex flex-col justify-start items-start w-${width}`}>
       {withLabel && !placeholderInside && (
-        <span className="text-primary text-sm font-bold">
+        <span className="text-text-default text-sm font-light">
           {placeholder}
         </span>
       )}

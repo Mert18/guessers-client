@@ -16,7 +16,7 @@ export const getRoomPrizes = async ({
       active: active,
     },
   });
-  return response.data;
+  return response?.data;
 };
 
 export const createPrize = async ({
@@ -25,11 +25,11 @@ export const createPrize = async ({
 }: ICreatePrize) => {
   const url = baseURL + "/create/" + roomId;
   const response = await axiosInstance.post(url, createPrizeRequest);
-  return response.data;
+  return response?.data;
 };
 
 export const buyPrize = async (prizeId: string) => {
   const url = baseURL + "/buy/" + prizeId;
   const response = await axiosInstance.get(url);
-  return response.data;
+  return response?.data;
 };

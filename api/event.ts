@@ -18,7 +18,7 @@ export const getActiveEvents = async ({ roomId, paging }: IGetActiveEvents) => {
       size: paging.size,
     },
   });
-  return response.data;
+  return response?.data;
 };
 
 export const getCompletedEvents = async ({
@@ -32,12 +32,12 @@ export const getCompletedEvents = async ({
       size: paging.size,
     },
   });
-  return response.data;
+  return response?.data;
 };
 
 export const getEvent = async (eventId: string) => {
   const response = await axiosInstance.get(baseURL + "/" + eventId);
-  return response.data;
+  return response?.data;
 };
 
 export const createEvent = async ({ event, roomId }: ICreateEvent) => {
@@ -45,7 +45,7 @@ export const createEvent = async ({ event, roomId }: ICreateEvent) => {
     baseURL + "/create" + "/" + roomId,
     event
   );
-  return response.data;
+  return response?.data;
 };
 
 export const createEventFromReadyEvent = async ({
@@ -55,14 +55,14 @@ export const createEventFromReadyEvent = async ({
   const response = await axiosInstance.get(
     baseURL + "/create/" + roomId + "?readyEventIds=" + readyEventIds.join(",")
   );
-  return response.data;
+  return response?.data;
 };
 
 export const startEvent = async ({ eventId, roomId }: IStartEvent) => {
   const response = await axiosInstance.get(
     baseURL + "/" + eventId + "/start/" + roomId
   );
-  return response.data;
+  return response?.data;
 };
 
 export const finalizeEvent = async ({
@@ -74,5 +74,5 @@ export const finalizeEvent = async ({
     baseURL + "/" + eventId + "/finalize/" + roomId,
     request
   );
-  return response.data;
+  return response?.data;
 };

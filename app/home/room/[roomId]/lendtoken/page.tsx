@@ -1,12 +1,15 @@
 "use client";
-import { fetchRoomUsers, giveTokenToUsers } from "@/api/room";
+import { fetchRoomUsers, getRoom, giveTokenToUsers } from "@/api/room";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import ComponentWithHeader from "@/components/common/ComponentWithHeader";
+import Loader from "@/components/common/Loader";
 import CustomSelect from "@/components/form/CustomSelect";
-import { IRoomUser } from "@/types/IRoom.model";
+import RoomName from "@/components/room/RoomName";
+import { IRoomBasic, IRoomUser } from "@/types/IRoom.model";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 interface ILendTokenProps {
   params: {
@@ -15,9 +18,11 @@ interface ILendTokenProps {
 }
 
 const LendToken = ({ params }: ILendTokenProps) => {
+  const [room, setRoom] = useState<IRoomBasic>();
   const [roomUsers, setRoomUsers] = useState<IRoomUser[]>([]);
   const [roomUserIdsToLend, setRoomUserIdsToLend] = useState<string[]>([]);
   const [amount, setAmount] = useState<number>(0);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const getRoomUsers = () => {
@@ -27,34 +32,38 @@ const LendToken = ({ params }: ILendTokenProps) => {
     });
   };
   useEffect(() => {
+    getRoom(params.roomId).then((response) => {
+      setRoom(response.data);
+    });
+  }, [params.roomId]);
+
+  useEffect(() => {
     getRoomUsers();
   }, []);
 
   const handleLendToken = () => {
-    giveTokenToUsers({roomId: params.roomId, roomUserIds: roomUserIdsToLend, amount}).finally(() => {
-      router.push(`/home/room/${params.roomId}`);
-    });
+    if (roomUserIdsToLend.length === 0) {
+      toast.error("Please select at least one user to lend token.");
+      return;
+    }
+    setLoading(true);
+    giveTokenToUsers({
+      roomId: params.roomId,
+      roomUserIds: roomUserIdsToLend,
+      amount,
+    })
+      .then(() => {
+        router.push(`/home/room/${params.roomId}/guess`);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
-  interface IAmountOption {
-    value: number;
-    label: string;
-  }
-
-  const amountOptions: IAmountOption[] = [
-    { value: 100, label: "100" },
-    { value: 200, label: "200" },
-    { value: 500, label: "500" },
-    { value: 1000, label: "1000" },
-    { value: 5000, label: "5000" },
-    { value: 10000, label: "10000" },
-  ];
-
   return (
-    <div className="flex flex-col justify-center items-center text-text">
-      <div>
-        <ComponentTitle text="Lend Token" />
-      </div>
+    <div className="flex flex-col justify-center items-center text-text-default">
+      <ComponentTitle text={"Lend Token"} />
+      {room?.name && <RoomName roomName={room.name} roomId={params.roomId} />}
 
       <div className="w-full max-h-[300px] overflow-y-auto my-4 scrollbar-thin">
         <ComponentWithHeader name="Select Room Users">
@@ -73,9 +82,9 @@ const LendToken = ({ params }: ILendTokenProps) => {
                 key={roomUser.id}
                 className={`${
                   roomUserIdsToLend.includes(roomUser.id)
-                    ? "text-primary"
-                    : "text-text"
-                } flex justify-between items-center w-full`}
+                    ? "text-background-bright bg-primary-default"
+                    : "bg-transparent text-text-default"
+                } flex justify-between items-center w-full p-2 my-1 rounded-md`}
               >
                 <div>{roomUser.user.username}</div>
                 <div>{roomUser.balance}</div>
@@ -86,15 +95,31 @@ const LendToken = ({ params }: ILendTokenProps) => {
       </div>
 
       <ComponentWithHeader name="Amount">
-        <CustomSelect
-          options={amountOptions}
-          value={amount}
-          onChange={(selectedOption: IAmountOption) => setAmount(selectedOption.value)}
-          placeholder={"selectAmount"}
-        />
+        <p>
+          <span className="font-bold">{amount}</span>{" "}
+          <button onClick={() => setAmount(amount + 50)}>+</button>{" "}
+          <button
+            onClick={() => {
+              if (amount > 100) {
+                setAmount(amount - 50);
+              }
+            }}
+          >
+            -
+          </button>
+        </p>
       </ComponentWithHeader>
 
-      <PrimaryButton type="submit" text="Lend Token" onClick={() => handleLendToken()} />
+      {loading ? (
+        <Loader />
+      ) : (
+        <PrimaryButton
+          type="submit"
+          text="Lend Token"
+          onClick={() => handleLendToken()}
+          bg
+        />
+      )}
     </div>
   );
 };

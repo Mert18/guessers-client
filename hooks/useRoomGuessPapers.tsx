@@ -21,10 +21,11 @@ export const useRoomGuessPapers = ({
 
       setLoading(true);
       try {
-        const guessPapersResponse = await listRoomGuessPapersByStatus(
+        const guessPapersResponse = await listRoomGuessPapersByStatus({
           roomId,
-          paging
-        );
+          paging,
+        });
+        console.log("guessPapersResponse", guessPapersResponse);
         setRoomGuessPapers(guessPapersResponse.data.content);
       } catch (error) {
         console.error("Error fetching active events", error);
@@ -34,7 +35,7 @@ export const useRoomGuessPapers = ({
     };
 
     fetchRoomGuessPapers();
-  }, [roomId, paging.page]);
+  }, [roomId, paging?.page]);
 
   return { roomGuessPapers, loading, setPaging };
 };

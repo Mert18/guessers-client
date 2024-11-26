@@ -2,14 +2,17 @@
 import { createEvent } from "@/api/event";
 import { getRoom } from "@/api/room";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
+import Loader from "@/components/common/Loader";
 import ListReadyEvents from "@/components/events/ListReadyEvents";
 import CustomInputField from "@/components/form/CustomInputField";
 import Modal from "@/components/Modal";
+import RoomName from "@/components/room/RoomName";
 import { IRoomBasic } from "@/types/IRoom.model";
 import { FieldArray, Form, Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 interface ICreateEventProps {
   params: { roomId: string };
@@ -19,6 +22,7 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
   const [createReadyEventModalOpen, setCreateReadyEventModalOpen] =
     useState<boolean>(false);
   const [room, setRoom] = useState<IRoomBasic>();
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const initialValues = {
     name: "",
@@ -35,7 +39,6 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
     setCreateReadyEventModalOpen(false);
   };
 
-
   useEffect(() => {
     getRoom(params.roomId).then((response) => {
       setRoom(response.data);
@@ -44,8 +47,9 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
 
   return (
     <div className="flex flex-col justify-center items-center text-text">
-      <h2 className="font-bold text-text my-4">{room?.name}</h2>
-      <div className="text-primary text-xl font-bold text-center py-2">
+      {room?.name && <RoomName roomName={room.name} roomId={params.roomId} />}
+
+      <div className="text-text-default text-xl font-bold text-center py-2">
         Create Event
       </div>
 
@@ -58,7 +62,7 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
 
       {createReadyEventModalOpen && (
         <Modal
-          title={"readyEvents"}
+          title={"Ready Events"}
           handleCloseModal={handleCloseReadyEventModal}
         >
           <ListReadyEvents
@@ -68,16 +72,25 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
         </Modal>
       )}
 
-      <p className="my-2">or create manually.</p>
+      <p className="my-2 text-text-default">or create manually.</p>
 
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          createEvent({event: values, roomId: params.roomId}).then(() => {
-            setTimeout(() => {
-              router.push(`/home/room/${params.roomId}/guess`);
-            }, 2000);
-          });
+          if (values.eventGuessOptions.length < 1) {
+            toast.error("At least one option is required.");
+            return;
+          }
+          setLoading(true);
+          createEvent({ event: values, roomId: params.roomId })
+            .then(() => {
+              setTimeout(() => {
+                router.push(`/home/room/${params.roomId}/guess`);
+              }, 2000);
+            })
+            .finally(() => {
+              setLoading(false);
+            });
         }}
       >
         {({ values }) => (
@@ -96,8 +109,6 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
               placeholder={"Event Description"}
             />
 
-            
-
             <FieldArray name="eventGuessOptions">
               {({
                 push: pushEventGuessOption,
@@ -105,18 +116,17 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
               }) => (
                 <div className="flex flex-col items-start w-full">
                   <div className="my-4">
-                  <PrimaryButton
-                    type="button"
-                    text={"Add Option"}
-                    onClick={() =>
-                      pushEventGuessOption({
-                        name: "",
-                        eventGuessOptionCases: [{ name: "", odds: 1.01 }],
-                      })
-                    }
-                  />
-
-</div>
+                    <PrimaryButton
+                      type="button"
+                      text={"Add Option"}
+                      onClick={() =>
+                        pushEventGuessOption({
+                          name: "",
+                          eventGuessOptionCases: [{ name: "", odds: 1.01 }],
+                        })
+                      }
+                    />
+                  </div>
 
                   {values.eventGuessOptions.map(
                     (eventGuessOption, eventGuessOptionIndex) => (
@@ -134,7 +144,7 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
 
                           <button
                             type="button"
-                            className="text-sm"
+                            className="text-sm mt-5"
                             onClick={() =>
                               removeEventGuessOption(eventGuessOptionIndex)
                             }
@@ -186,7 +196,7 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
                                       type="number"
                                       name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionCases[${eventGuessOptionOptionIndex}].odds`}
                                       placeholder={"optionOdds"}
-                                      className="w-2/3 text-sm px-2 py-1 text-text outline-none bg-background border-b border-primary h-8 focus:ring-1 focus:ring-primary my-1"
+                                      className="w-2/3 text-sm px-2 py-1 text-text outline-none bg-background-bright border border-primary-default h-8 focus:ring-1 focus:ring-primary-default"
                                       step={"0.01"}
                                       min={"1.00"}
                                       defaultValue={1.01}
@@ -232,9 +242,13 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
               )}
             </FieldArray>
 
-            <div className={"flex justify-center items-center w-full my-8"}>
-              <PrimaryButton type="submit" text={"Create Event"} bg={true} />
-            </div>
+            {loading ? (
+              <Loader />
+            ) : (
+              <div className={"flex justify-center items-center w-full my-8"}>
+                <PrimaryButton type="submit" text={"Create Event"} bg={true} />
+              </div>
+            )}
           </Form>
         )}
       </Formik>
