@@ -30,14 +30,14 @@ const Invites = () => {
       {pendingInvites.length === 0 ? (
         <p className="text-primary">You do not have any room invites.</p>
       ) : (
-        <div className="bg-background flex justify-start items-center text-primary border-b border-primary font-bold">
+        <div className="bg-primary-default p-2 rounded-md flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
           <h2 className="flex-1">{"Room Name"}</h2>
           <h2 className="flex-1">{"Options"}</h2>
         </div>
       )}
 
       {pendingInvites.map((invite) => (
-        <div key={invite.room.id} className="w-full flex">
+        <div key={invite.room.id} className="flex justify-start items-center bg-background-bright my-1 text-primary-default border-2 border-primary-default hover:bg-primary-default hover:text-background-bright hover:-translate-y-1 transition-all px-2 py-3 rounded-md">
           <div className="whitespace-nowrap overflow-ellipsis overflow-hidden text-text flex-1">
             <p>{invite.room.name}</p>
           </div>

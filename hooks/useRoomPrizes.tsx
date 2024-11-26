@@ -21,7 +21,11 @@ export const useRoomPrizes = ({
 
       setLoading(true);
       try {
-        const activePrizesResponse = await getRoomPrizes(roomId, paging, true);
+        const activePrizesResponse = await getRoomPrizes({
+          roomId,
+          paging,
+          active: true,
+        });
         setRoomActivePrizes(activePrizesResponse.data.content);
       } catch (error) {
         console.error("Error fetching active prizes", error);

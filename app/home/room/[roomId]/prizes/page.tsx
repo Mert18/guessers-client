@@ -10,16 +10,12 @@ interface IRoomPrizesProps {
 
 const RoomPrizes = ({ params }: IRoomPrizesProps) => {
   const initialPaging = { page: 0, size: 5 };
-  const { roomActivePrizes, loading, setPaging } = useRoomPrizes(
-    params.roomId,
-    initialPaging
-  );
+  const { roomActivePrizes, loading, setPaging } = useRoomPrizes({
+    roomId: params.roomId,
+    initialPaging,
+  });
 
-  return (
-    <div>
-      <RoomActivePrizes prizes={roomActivePrizes} roomId={params.roomId} />
-    </div>
-  );
+  return <RoomActivePrizes prizes={roomActivePrizes} roomId={params.roomId} />;
 };
 
 export default RoomPrizes;

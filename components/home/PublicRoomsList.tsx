@@ -16,19 +16,19 @@ const PublicRoomsList = ({ publicRooms, paging, setPaging, loading }: IPublicRoo
   const publicRoomsListRenderer = () => {
     if (loading) {
       return <Loader />;
-    } else if (publicRooms.length === 0) {
+    } else if (publicRooms?.length === 0) {
       return <p className="text-primary">No public rooms available.</p>;
     } else {
       return (
         <div className="w-full">
-          <div className="bg-background flex justify-start items-center text-primary border-b border-primary font-bold">
+          <div className="bg-primary-default p-2 rounded-md flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
             <h2 className="flex-1">{"Room Name"}</h2>
             <h2 className="flex-1">{"Owner"}</h2>
             <h2 className="flex-1">{"Members"}</h2>
             <h2 className="flex-1">{"Join"}</h2>
           </div>
 
-          {publicRooms.map((room) => (
+          {publicRooms?.map((room) => (
             <PublicRoomCard key={room.id} room={room} />
           ))}
           <Pager paging={paging} setPaging={setPaging} />

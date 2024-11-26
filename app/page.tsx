@@ -34,10 +34,14 @@ function Home() {
     );
   } else {
     return (
-      <div className="flex flex-col items-center justify-center lg:p-8 p-2 text-text lg:text-sm text-xs">
+      <div className="flex flex-col items-center justify-start text-text lg:text-sm text-xs w-full">
+        <div className="w-full h-2 bg-text-default"></div>
+        <div className="w-full h-4 bg-primary-default"></div>
+        
         <Welcomer stats={stats} />
 
         <LoginOrRegister />
+        
       </div>
     );
   }

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 interface IPrimaryButton {
@@ -6,6 +7,7 @@ interface IPrimaryButton {
   text: string;
   href?: string;
   bg?: boolean;
+  danger?: boolean;
 }
 
 const PrimaryButton = ({
@@ -13,13 +15,21 @@ const PrimaryButton = ({
   onClick,
   text,
   href,
-  bg = false
+  bg = false,
 }: IPrimaryButton) => {
   if (href) {
     return (
-      <Link href={href} onClick={onClick} className="flex-1 hover:text-primary90 hover:bg-backgroundhover transition-all text-center">
+      <Link
+        href={href}
+        onClick={onClick}
+        className={`py-2 flex-1 transition-all text-center`}
+      >
         <div
-          className={`py-2 text-primary font-bold`}
+          className={`text-text font-bold flex justify-center items-center rounded-md ${
+            bg
+              ? "bg-primary-default text-background-bright p-2 hover:bg-primary-bright"
+              : "bg-transparent text-text-default hover:text-primary-default"
+          }`}
         >
           <p>{text}</p>
         </div>
@@ -28,7 +38,11 @@ const PrimaryButton = ({
   } else {
     return (
       <button
-        className={`${bg ? "bg-primary text-background hover:bg-primary90 p-2" : "bg-transparent text-primary hover:text-primary90"} rounded-sm transition-all text-xs flex-1 font-bold`}
+        className={`${
+          bg
+            ? "bg-primary-default text-background-bright p-2 hover:bg-primary-bright"
+            : "bg-transparent text-text-default hover:text-primary-default"
+        } rounded-md transition-all text-xs flex-1 font-bold`}
         type={type}
         onClick={onClick}
       >

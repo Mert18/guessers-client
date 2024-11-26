@@ -2,7 +2,6 @@
 import AuthStatus from "@/components/authStatus";
 import Loader from "@/components/common/Loader";
 import Navbar from "@/components/common/Navbar";
-import SecondaryNavbar from "@/components/common/SecondaryNavbar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -23,12 +22,11 @@ export default function HomeLayout({ children }: IHomeLayoutProps){
     router.push("/");
   } else if (session) {
     return (
-      <div className="grid grid-cols-12">
+      <>
         <Navbar />
-        <SecondaryNavbar />
-        <div className="col-start-1 md:col-start-4 xl:col-start-5 col-end-13 md:col-end-10 xl:col-end-9">{children}</div>
+        <>{children}</>
         <AuthStatus />
-      </div>
+      </>
     );
   }
 };

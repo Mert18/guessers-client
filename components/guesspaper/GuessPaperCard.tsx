@@ -5,7 +5,7 @@ import GuessPaperDetails from "./GuessPaperDetails";
 import { IGuessPaper } from "@/types/IGuessPaper.model";
 
 interface IGuessPaperCardProps {
-  guessPaper: IGuessPaper
+  guessPaper: IGuessPaper;
 }
 
 const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
@@ -16,8 +16,8 @@ const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
   };
 
   return (
-    <div className="w-full text-text">
-      <div className="bg-background flex justify-start items-center text-text border-b border-primary">
+    <div className="w-full font-bold">
+      <div className="flex justify-start items-center bg-background-bright my-1 text-primary-default border-2 border-primary-default transition-all px-2 py-3 rounded-md">
         <p className="flex-1">{guessPaper.user.username}</p>
         <p className="flex-1">{guessPaper.status}</p>
         <p className="flex-1">{guessPaper.stake.toFixed(2)}</p>
@@ -25,16 +25,15 @@ const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
         <p className="flex-1">{guessPaper.wins.toFixed(2)}</p>
         <div className="flex-1">
           <PrimaryButton
-          type="button"
+            type="button"
             text="Details"
             onClick={() => setGuessPaperDetailsOpen(true)}
-            
           />
         </div>
       </div>
       {guessPaperDetailsOpen && (
         <Modal
-          title={"guessPaperDetails"}
+          title={"Guess Paper Details"}
           handleCloseModal={handleCloseDetails}
         >
           <GuessPaperDetails guessPaper={guessPaper} />

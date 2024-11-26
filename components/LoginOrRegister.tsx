@@ -20,66 +20,62 @@ const RegisterSchema = Yup.object().shape({
 
 const LoginOrRegister = () => {
   const [loading, setLoading] = useState(false);
-  const [registerFormVisible, setRegisterFormVisible] = useState(false);
   const initialValues = {
     username: "",
     password: "",
   };
   return (
-    <div className="flex flex-col justify-start items-start w-full my-8">
-      <p>
-        Already have an account?{" "}
+    <div className="flex flex-col justify-center items-center my-8">
+      <p className="flex flex-col w-full text-center">
+        <span className="my-2">Already have an account?</span>
         <PrimaryButton
           type="button"
           text={"Login"}
           onClick={() => signIn("keycloak")}
+          bg={true}
         />
       </p>
 
-      <p className="my-4">
-        Do not have an account yet?{" "}
-        <PrimaryButton
-          type="button"
-          text={"Register"}
-          onClick={() => setRegisterFormVisible(!registerFormVisible)}
-        />
-      </p>
+      <div className="w-full h-0.5 bg-primary-default my-4"></div>
 
-      {registerFormVisible && (
-        <Formik
-          initialValues={initialValues}
-          validationSchema={RegisterSchema}
-          validateOnChange={false}
-          validateOnBlur={false}
-          onSubmit={(values) => {
-            setLoading(true);
-            createUser(values).finally(() => {
-              setLoading(false);
-            });
-          }}
-        >
-          {({ errors, touched }) => (
-            <Form className="flex flex-col justify-start items-start">
-              <div className="flex justify-start items-center">
-                <CustomInputField
-                  withLabel={true}
-                  name="username"
-                  type="text"
-                  placeholder={"username"}
-                  placeholderInside={true}
-                />
-              </div>
+      <p className="my-2">Do not have an account yet? </p>
 
-              <div className="flex justify-start items-center">
-                <CustomInputField
-                  withLabel={true}
-                  name="password"
-                  type="password"
-                  placeholder={"password"}
-                  placeholderInside={true}
-                />
-              </div>
+      <p className="text-start w-full text-text-default font-bold">Register</p>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={RegisterSchema}
+        validateOnChange={false}
+        validateOnBlur={false}
+        onSubmit={(values) => {
+          setLoading(true);
+          createUser(values).finally(() => {
+            setLoading(false);
+          });
+        }}
+      >
+        {({ errors, touched }) => (
+          <Form className="flex flex-col justify-start items-start">
+            <div className="flex justify-start items-center">
+              <CustomInputField
+                withLabel={true}
+                name="username"
+                type="text"
+                placeholder={"username"}
+                placeholderInside={true}
+              />
+            </div>
 
+            <div className="flex justify-start items-center">
+              <CustomInputField
+                withLabel={true}
+                name="password"
+                type="password"
+                placeholder={"password"}
+                placeholderInside={true}
+              />
+            </div>
+
+            <div className="flex flex-col w-full text-center">
               {loading ? (
                 <div className="text-xs text-primary">
                   <Loader />
@@ -87,17 +83,17 @@ const LoginOrRegister = () => {
               ) : (
                 <PrimaryButton type="submit" text={"Register"} bg={true} />
               )}
+            </div>
 
-              {errors.username && touched.username ? (
-                <div className="text-xs my-2 text-primary">{errors.username}</div>
-              ) : null}
-              {errors.password && touched.password ? (
-                <div className="text-xs my-2 text-primary">{errors.password}</div>
-              ) : null}
-            </Form>
-          )}
-        </Formik>
-      )}
+            {errors.username && touched.username ? (
+              <div className="text-xs my-2 text-primary">{errors.username}</div>
+            ) : null}
+            {errors.password && touched.password ? (
+              <div className="text-xs my-2 text-primary">{errors.password}</div>
+            ) : null}
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };

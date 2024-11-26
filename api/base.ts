@@ -15,7 +15,6 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.error("Error in request interceptor", error);
     return Promise.reject(error);
   }
 );
@@ -28,8 +27,6 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.error("Error in Axios response:", error);
-    toast.error("An error occurred.");
-    return Promise.reject(error);
+    toast.error("An error occured." + error.response?.data?.message);
   }
 );

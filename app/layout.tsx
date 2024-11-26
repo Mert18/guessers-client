@@ -1,11 +1,11 @@
 import "./globals.css";
-import { Kanit } from "next/font/google";
+import { Rubik } from "next/font/google";
 import SessionProviderWrapper from "@/util/sessionProviderWrapper";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Metadata } from "next";
 
-const kanit = Kanit({ subsets: ["latin"], weight: ["400", "700"] });
+const font = Rubik({ subsets: ["latin"], weight: ["300", "400", "700"] });
 
 export const metadata: Metadata = {
   title: "Guessers",
@@ -21,10 +21,10 @@ export default function RootLayout({
     <SessionProviderWrapper>
       <html lang="en">
         <body
-          className={`${kanit.className} bg-background`}
+          className={`${font.className} bg-background-default grid grid-cols-12`}
           style={{ position: "relative" }}
         >
-          <div>{children}</div>
+          <div className="col-start-1 md:col-start-4 xl:col-start-5 col-end-13 md:col-end-10 xl:col-end-9">{children}</div>
           <ToastContainer />
         </body>
       </html>

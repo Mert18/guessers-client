@@ -6,6 +6,7 @@ import Loader from "../common/Loader";
 import { useRouter } from "next/navigation";
 import PrimaryButton from "../common/button/PrimaryButton";
 import { IReadyEvent } from "@/types/IReadyEvent.model";
+import { toast } from "react-toastify";
 
 const leagues = [
   {
@@ -71,6 +72,11 @@ const ListReadyEvents = ({
   }, [selectedLeague]);
 
   const handleCreateEventFromReadyEvent = () => {
+    if (readyEventIdsToCreate.length === 0) {
+      toast.error("Please select at least one event to create.");
+      return;
+    }
+
     setLoading(true);
     createEventFromReadyEvent({
       roomId,

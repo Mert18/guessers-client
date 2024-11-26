@@ -8,6 +8,7 @@ import { ISelectOption } from "@/types/IGlobal.model";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const CreateRoom = () => {
   const [loading, setLoading] = useState(false);
@@ -34,8 +35,11 @@ const CreateRoom = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
+          if(values.name === null || values.name.length < 3) {
+            toast.error("Room name is required and must be at least 3 characters long.");
+            return;
+          }
           setLoading(true);
-          console.log("sent values: ", values)
           createRoom(values)
             .then(() => {
               router.push("/home/");

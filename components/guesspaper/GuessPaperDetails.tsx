@@ -10,12 +10,12 @@ const GuessPaperDetails = ({ guessPaper }: IGuessPaperDetailsProps) => {
   return (
     <>
     <div className="w-full text-xs">
-      <div className="bg-background flex justify-start items-center text-primary border-b border-primary">
-        <h2 className="flex-1">{"event"}</h2>
-        <h2 className="flex-1">{"guessOption"}</h2>
-        <h2 className="flex-1">{"guess"}</h2>
-        <h2 className="flex-1">{"odds"}</h2>
-        <h2 className="flex-1">{"status"}</h2>
+      <div className="bg-primary-default p-2 rounded-md flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
+        <h2 className="flex-1">{"Event"}</h2>
+        <h2 className="flex-1">{"Guess Option"}</h2>
+        <h2 className="flex-1">{"Guess"}</h2>
+        <h2 className="flex-1">{"Odds"}</h2>
+        <h2 className="flex-1">{"Status"}</h2>
       </div>
       {guessPaper.guesses.map((guess) => (
         <GuessPaperGuess

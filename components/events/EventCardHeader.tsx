@@ -3,6 +3,7 @@ import SecondaryButton from "../common/button/SecondaryButton";
 import { IEvent } from "@/types/IEvent.model";
 import { IRoomUser } from "@/types/IRoom.model";
 import { convertToUserTimeZone } from "@/util/dateUtil";
+import PrimaryButton from "../common/button/PrimaryButton";
 
 interface IEventCardHeaderProps {
   event: IEvent;
@@ -22,28 +23,24 @@ const EventCardHeader = ({
 
   return (
     <div
-      className={`w-full font-bold p-2 bg-backgroundhover`}
+      className={`w-full font-bold p-2`}
     >
       <div
-        className={`w-full flex justify-between`}
+        className={`w-full flex justify-between items-center`}
       >
         <p className={`flex-1`}>{event.name}</p>
 
         {roomUser?.owner && (
-          <div className="flex flex-1">
+          <div className="flex-1">
+            <div className="mr-5">
             {event.status === "IN_PROGRESS" ? (
-              <SecondaryButton
-                text="Start Event"
-                onClick={() => handleStartEvent(event)}
-              />
+              <PrimaryButton bg type="button" text="Start Event" onClick={() => handleStartEvent(event)} />
             ) : (
               event.status === "STARTED" && (
-                <SecondaryButton
-                  text="Finalize Event"
-                  href={`/home/room/${roomUser.room.id}/event/${event.id}/finalize`}
-                />
+                <PrimaryButton bg type="button" text="Finalize Event" href={`/home/room/${roomUser.room.id}/event/${event.id}/finalize`} />
               )
             )}
+            </div>
           </div>
         )}
 

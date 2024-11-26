@@ -1,4 +1,5 @@
 "use client";
+import ComponentTitle from "@/components/common/ComponentTitle";
 import ComponentWithHeader from "@/components/common/ComponentWithHeader";
 import Loader from "@/components/common/Loader";
 import RoomRichests from "@/components/room/RoomRichests";
@@ -19,17 +20,19 @@ const RoomRanks = ({ params }: IRoomRanksProps) => {
   return loading ? (
     <Loader />
   ) : (
-    <div className="flex flex-col justify-center items-center w-full">
+    <div className="flex flex-col justify-center items-start w-full">
       {rankedPredictions && (
-        <ComponentWithHeader name={"roomTopPredictors"}>
+        <>
+          <ComponentTitle text={"Top Predictors"} />
           <RoomTopPredictors rankedPredictions={rankedPredictions} />
-        </ComponentWithHeader>
+        </>
       )}
 
       {rankedRiches && (
-        <ComponentWithHeader name={"roomRichests"}>
+        <>
+          <ComponentTitle text={"Richests"} />
           <RoomRichests rankedRiches={rankedRiches} />
-        </ComponentWithHeader>
+        </>
       )}
     </div>
   );

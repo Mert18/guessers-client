@@ -25,13 +25,13 @@ const SelfGuessPapersList = ({
     } else {
       return (
         <div className="w-full">
-          <div className="bg-background flex justify-start items-center text-primary border-b border-primary">
-            <h2 className="flex-1">{"username"}</h2>
-            <h2 className="flex-1">{"status"}</h2>
-            <h2 className="flex-1">{"stakes"}</h2>
-            <h2 className="flex-1">{"optionOdds"}</h2>
-            <h2 className="flex-1">{"wins"}</h2>
-            <h2 className="flex-1">{"details"}</h2>
+          <div className="bg-primary-default p-2 rounded-md flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
+            <h2 className="flex-1">{"Username"}</h2>
+            <h2 className="flex-1">{"Status"}</h2>
+            <h2 className="flex-1">{"Stakes"}</h2>
+            <h2 className="flex-1">{"Odds"}</h2>
+            <h2 className="flex-1">{"Wins"}</h2>
+            <h2 className="flex-1">{"Details"}</h2>
           </div>
           {selfGuessPapers.map((guessPaper) => (
             <GuessPaperCard key={guessPaper.id} guessPaper={guessPaper} />

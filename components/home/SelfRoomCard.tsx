@@ -9,13 +9,12 @@ const SelfRoomCard = ({ roomUser }: ISelfRoomCardProps) => {
   return (
     <Link
       href={`/home/room/${roomUser.room.id}/guess`}
-      className="w-full text-text"
+      className="w-full font-bold"
     >
-      <div className="bg-background flex justify-start items-center text-text border-b border-primary hover:bg-backgroundhover transition-all py-2">
+      <div className="flex justify-start items-center bg-background-bright my-1 text-primary-default border-2 border-primary-default hover:bg-primary-default hover:text-background-bright hover:-translate-y-1 transition-all px-2 py-3 rounded-md">
         <h2 className="flex-1">{roomUser.room.name}</h2>
         <p className="flex-1">{roomUser.room.owner.username}</p>
         <p className="flex-1">{roomUser.memberCount}</p>
-        <p className="flex-1">{roomUser.room.public ? <span>{"yes"}</span> : <span>{"no"}</span>}</p>
         <p className="flex-1">{roomUser.balance.toFixed(2)}</p>
       </div>
     </Link>

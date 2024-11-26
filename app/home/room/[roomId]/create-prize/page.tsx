@@ -5,6 +5,7 @@ import PrimaryButton from "@/components/common/button/PrimaryButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import Logo from "@/components/common/Logo";
 import CustomInputField from "@/components/form/CustomInputField";
+import RoomName from "@/components/room/RoomName";
 import { IRoomBasic } from "@/types/IRoom.model";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/navigation";
@@ -34,19 +35,16 @@ const CreatePrize = ({ params }: ICreatePrizeProps) => {
 
   return (
     room && (
-      <div className="flex flex-col justify-center items-center h-screen">
-        <div>
-          <Logo />
-        </div>
+      <div className="flex flex-col justify-center items-center">
+        <ComponentTitle text={"Create Prize"} />
 
-        <ComponentTitle text={"createPrize"} />
-
-        <h1 className="text-2xl font-bold my-4 text-text">{room.name}</h1>
+        <RoomName roomName={room.name} />
 
         <Formik
           initialValues={initialValues}
           onSubmit={(values) => {
-            createPrize(values, params.roomId).then(() => {// TODO: what is it
+            createPrize(values, params.roomId).then(() => {
+              // TODO: what is it
               setTimeout(() => {
                 router.push(`/home/room/${params.roomId}`);
               }, 2000);
@@ -75,7 +73,7 @@ const CreatePrize = ({ params }: ICreatePrizeProps) => {
               withLabel={true}
             />
 
-            <PrimaryButton type="submit" text={"createPrize"} />
+            <PrimaryButton type="submit" text={"Create Prize"} bg />
           </Form>
         </Formik>
       </div>

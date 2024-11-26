@@ -1,4 +1,3 @@
-import PrimaryButton from "../common/button/PrimaryButton";
 import { joinPublicRoom } from "@/api/room";
 import { IRoomBasic } from "@/types/IRoom.model";
 
@@ -13,13 +12,15 @@ const PublicRoomCard = ({ room }: IPublicRoomCardProps) => {
     });
   };
   return (
-    <div className="w-full text-text">
-      <div className="bg-background flex justify-start items-center text-text border-b border-primary hover:bg-backgroundhover transition-all py-2">
+    <div className="w-full font-bold">
+      <div className="flex justify-start items-center bg-background-bright my-1 text-primary-default border-2 border-primary-default transition-all px-2 py-3 rounded-md">
         <h2 className="flex-1">{room.name}</h2>
         <p className="flex-1">{room.owner.username}</p>
         <p className="flex-1">{room.memberCount}</p>
         <div className="flex-1">
-          <PrimaryButton type="button" onClick={handleJoinRoom} text="Join"  />
+          <button className="bg-primary-default hover:bg-primary-bright p-2 text-xs text-background-bright rounded-md" onClick={() => handleJoinRoom()}>
+            Join
+          </button>
         </div>
       </div>
     </div>
