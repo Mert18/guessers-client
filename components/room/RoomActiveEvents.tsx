@@ -26,7 +26,7 @@ const RoomActiveEvents = ({
     if (loading) {
       return <Loader />;
     } else if (activeEvents?.length === 0) {
-      return <p className="text-primary">No active events available.</p>;
+      return <p className="text-text-default">No active events available.</p>;
     } else {
       return (
         <div>

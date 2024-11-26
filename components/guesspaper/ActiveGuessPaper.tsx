@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { IRoomUser } from "@/types/IRoom.model";
 import { ISelectOption } from "@/types/IGlobal.model";
 import { ICreateGuessPaperGuess } from "@/types/IGuessPaper.model";
+import { useState } from "react";
 
 interface IActiveGuessPaperProps {
   guesses: ICreateGuessPaperGuess[];
@@ -29,7 +30,7 @@ const ActiveGuessPaper = ({
 }: IActiveGuessPaperProps) => {
 
   const sendGuessPaper = () => {
-    if(guesses.length === 0) {
+    if (guesses.length === 0) {
       toast.error("Your guess paper is empty.");
       return;
     }
@@ -44,51 +45,49 @@ const ActiveGuessPaper = ({
     });
   };
 
-  const stakeOptions: ISelectOption[] = [
-    { value: 100, label: '100' },
-    { value: 200, label: '200' },
-    { value: 500, label: '500' },
-    { value: 1000, label: '1000' },
-    { value: 5000, label: '5000' },
-    { value: 10000, label: '10000' },
-  ];
-
   return (
-    <div className="flex justify-start items-start text-text flex-col my-8">
+    <>
       <ComponentTitle text={"currentGuessPaper"} icon="/ticket.svg" />
+      <div className="flex w-full">
+        <div className="flex justify-start items-start text-text flex-col bg-background-bright border-2 border-primary-default p-2 text-text-default w-full">
+          <div className="flex justify-around w-full items-center h-full">
+            <div className="flex flex-col justify-center items-start">
+              <p className="text-xs">{"Total Odds"}</p>
+              <p className="text-sm text-primary font-bold">{totalOdds}</p>
+            </div>
+            <div className="flex flex-col justify-center items-start">
+              <p className="text-xs">{"Stakes"}</p>
+              <p>
+                <span className="font-bold">{stake}</span>{" "}
+                <button onClick={() => setStake(stake + 50)}>+</button>{" "}
+                <button
+                  onClick={() => {
+                    if (stake > 100) {
+                      setStake(stake - 50);
+                    }
+                  }}
+                >
+                  -
+                </button>
+              </p>
+            </div>
 
-      <div className="flex justify-between w-full">
-        <div className="flex flex-col justify-center items-start w-full">
-          <p className="text-xs">{"totalOdds"}</p>
-          <p className="text-sm text-primary font-bold">{totalOdds}</p>
+            <div className="flex flex-col justify-center items-start">
+              <p className="text-xs">{"Wins"}</p>
+              <p className="text-sm font-bold text-primary">{wins}₺</p>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col justify-center items-start w-full">
-          <p className="text-xs">{"stakes"}</p>
-          <CustomSelect
-            options={stakeOptions}
-            value={stakeOptions.find(option => option.value === stake)}
-            onChange={(selectedOption) => setStake(selectedOption.value)}
-            placeholder={"selectStake"}
-            width="2/3"
-          />
-        </div>
-
-        <div className="flex flex-col justify-center items-start w-full">
-          <p className="text-xs">{"wins"}</p>
-          <p className="text-sm font-bold text-primary">{wins}₺</p>
-        </div>
-
-        <div className="flex flex-col justify-center items-start w-full">
-          <PrimaryButton
-            type="button"
-            text={"createGuessPaper"}
-            onClick={() => {
-              sendGuessPaper();
-            }}
-          />
-        </div>
+        <button className="bg-primary-default hover:bg-primary-bright text-background-bright p-2 flex flex-col w-12 font-bold" onClick={() => sendGuessPaper()}>
+          <span>C</span>
+          <span>R</span>
+          <span>E</span>
+          <span>A</span>
+          <span>T</span>
+          <span>E</span>
+        </button>
       </div>
-    </div>
+    </>
   );
 };
 

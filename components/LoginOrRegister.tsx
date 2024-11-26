@@ -39,12 +39,14 @@ const LoginOrRegister = () => {
 
       <p className="my-4">
         Do not have an account yet?{" "}
-        <PrimaryButton
-          type="button"
-          text={"Register"}
-          onClick={() => setRegisterFormVisible(!registerFormVisible)}
-          bg={true}
-        />
+        {!registerFormVisible && (
+          <PrimaryButton
+            type="button"
+            text={"Register"}
+            onClick={() => setRegisterFormVisible(!registerFormVisible)}
+            bg={true}
+          />
+        )}
       </p>
 
       {registerFormVisible && (
@@ -91,10 +93,14 @@ const LoginOrRegister = () => {
               )}
 
               {errors.username && touched.username ? (
-                <div className="text-xs my-2 text-primary">{errors.username}</div>
+                <div className="text-xs my-2 text-primary">
+                  {errors.username}
+                </div>
               ) : null}
               {errors.password && touched.password ? (
-                <div className="text-xs my-2 text-primary">{errors.password}</div>
+                <div className="text-xs my-2 text-primary">
+                  {errors.password}
+                </div>
               ) : null}
             </Form>
           )}

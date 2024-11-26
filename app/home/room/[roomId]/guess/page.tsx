@@ -2,11 +2,6 @@
 import { getRoomUser } from "@/api/room";
 import ActiveGuessPaper from "@/components/guesspaper/ActiveGuessPaper";
 import RoomActiveEvents from "@/components/room/RoomActiveEvents";
-import {
-  IEvent,
-  IEventGuessOption,
-  IEventGuessOptionCase,
-} from "@/types/IEvent.model";
 import { ICreateGuessPaperGuess, IHandleOptionSelected } from "@/types/IGuessPaper.model";
 import { IRoomUser } from "@/types/IRoom.model";
 import { useEffect, useState } from "react";
@@ -36,10 +31,8 @@ const RoomGuess = ({ params }: IRoomGuessProps) => {
     eventGuessOptionCase
   }: IHandleOptionSelected) => {
     if (
-      event === undefined ||
-      event.id === undefined ||
-      eventGuessOption === undefined ||
-      eventGuessOption.id === undefined ||
+      event?.id === undefined ||
+      eventGuessOption?.id === undefined ||
       eventGuessOptionCase.id === undefined
     )
       return;

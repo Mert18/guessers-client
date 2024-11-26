@@ -24,7 +24,7 @@ const CustomInputField = ({
       return (
         <Field
           name={name}
-          className={`w-${width} text-sm px-2 text-text font-bold outline-none border-b border-primary bg-transparent my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary`}
+          className={`w-${width} text-sm px-2 text-text-default font-bold outline-none border border-primary-default bg-background-bright my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary-default`}
           type={type}
           autoComplete="off"
           placeholder={placeholderInside ? placeholder : ""}
@@ -34,7 +34,7 @@ const CustomInputField = ({
       return (
         <Field
           as="select"
-          className={`w-${width} text-sm px-2 text-text font-bold outline-none border-b border-primary my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary bg-background`}
+          className={`w-${width} text-sm px-2 text-text-default font-bold outline-none border border-primary-default my-1 h-8 rounded-sm focus:ring-2 focus:ring-primary-default bg-background-bright`}
           name={name}
         >
           {options?.map((option) => (

@@ -32,42 +32,42 @@ const RoomLayout = ({ params, children }: IRoomLayoutProps) => {
         <>
           <RoomHeader roomUser={roomUser} />
 
-          <div className="flex w-full text-sm my-8">
+          <div className="flex w-full text-sm gap-1">
             <Link
-              className={`border-b p-2 flex-1 flex justify-center items-center hover:border-b-primary transition-all ${
+              className={`border-2 rounded-md p-2 text-xs flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
                 pathname.endsWith("guess")
-                  ? "border-b border-primary bg-primary text-background"
-                  : "border-transparent text-primary"
+                  ? "border-primary-default bg-primary-default text-background-bright hover:bg-primary-bright"
+                  : "border-primary-default text-text-default bg-background-bright hover:bg-primary-default hover:text-background-bright"
               }`}
               href={`/home/room/${params.roomId}/guess`}
             >
               {"Guess"}
             </Link>
             <Link
-              className={`border-b p-2 flex-1 flex justify-center items-center hover:border-b-primary transition-all ${
+              className={`border-2 rounded-md p-2 text-xs flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
                 pathname.endsWith("ranks")
-                  ? "border-b border-primary bg-primary text-background"
-                  : "border-transparent text-primary"
+                  ? "border-primary-default bg-primary-default text-background-bright hover:bg-primary-bright"
+                  : "border-primary-default text-text-default bg-background-bright hover:bg-primary-default hover:text-background-bright"
               }`}
               href={`/home/room/${params.roomId}/ranks`}
             >
               {"Ranks"}
             </Link>
             <Link
-              className={`border-b p-2 flex-1 flex justify-center items-center hover:border-b-primary transition-all ${
+              className={`border-2 rounded-md p-2 text-xs flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
                 pathname.endsWith("papers")
-                  ? "border-b border-primary bg-primary text-background"
-                  : "border-transparent text-primary"
+                  ? "border-primary-default bg-primary-default text-background-bright hover:bg-primary-bright"
+                  : "border-primary-default text-text-default bg-background-bright hover:bg-primary-default hover:text-background-bright"
               }`}
               href={`/home/room/${params.roomId}/papers`}
             >
               {"Guess Papers"}
             </Link>
             <Link
-              className={`border-b p-2 flex-1 flex justify-center items-center hover:border-b-primary transition-all ${
+              className={`border-2 rounded-md p-2 text-xs flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
                 pathname.endsWith("prizes")
-                  ? "border-b border-primary bg-primary text-background"
-                  : "border-transparent text-primary"
+                  ? "border-primary-default bg-primary-default text-background-bright hover:bg-primary-bright"
+                  : "border-primary-default text-text-default bg-background-bright hover:bg-primary-default hover:text-background-bright"
               }`}
               href={`/home/room/${params.roomId}/prizes`}
             >

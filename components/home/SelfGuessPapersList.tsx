@@ -25,7 +25,7 @@ const SelfGuessPapersList = ({
     } else {
       return (
         <div className="w-full">
-          <div className="bg-background flex justify-start items-center text-primary border-b border-primary">
+          <div className="bg-primary-default p-2 rounded-md flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
             <h2 className="flex-1">{"username"}</h2>
             <h2 className="flex-1">{"status"}</h2>
             <h2 className="flex-1">{"stakes"}</h2>

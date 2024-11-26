@@ -13,7 +13,7 @@ export default {
       },
       colors: {
         background: {
-          default: "#CED8D1",
+          default: "#E2E9E4",
           bright: "#efefef",
         },
         primary : {
@@ -25,7 +25,7 @@ export default {
           bright: "#8A669E"
         },
         secondary: {
-          default: "#BB6D1E",
+          default: "#EEA370",
         },
         failure: "#CE4A3A",
         success: "#4EE521",

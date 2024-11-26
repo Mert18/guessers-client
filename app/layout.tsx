@@ -21,7 +21,7 @@ export default function RootLayout({
     <SessionProviderWrapper>
       <html lang="en">
         <body
-          className={`${font.className} bg-background`}
+          className={`${font.className} bg-background-default`}
           style={{ position: "relative" }}
         >
           <div>{children}</div>

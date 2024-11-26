@@ -12,7 +12,12 @@ interface ISelfRoomsListProps {
   loading: boolean;
 }
 
-const SelfRoomsList = ({ selfRooms, paging, setPaging, loading }: ISelfRoomsListProps) => {
+const SelfRoomsList = ({
+  selfRooms,
+  paging,
+  setPaging,
+  loading,
+}: ISelfRoomsListProps) => {
   const selfRoomsListRenderer = () => {
     if (loading) {
       return <Loader />;
@@ -20,12 +25,11 @@ const SelfRoomsList = ({ selfRooms, paging, setPaging, loading }: ISelfRoomsList
       return <p className="text-primary">You have not attended any rooms.</p>;
     } else {
       return (
-        <div className="w-full">
-          <div className="bg-background flex justify-start items-center text-primary border-b border-primary font-bold">
+        <div className="w-full border-2">
+          <div className="bg-primary-default p-2 rounded-md flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
             <h2 className="flex-1">{"Room Name"}</h2>
             <h2 className="flex-1">{"Owner"}</h2>
             <h2 className="flex-1">{"Members"}</h2>
-            <h2 className="flex-1">{"Public"}</h2>
             <h2 className="flex-1">{"Balance"}</h2>
           </div>
           {selfRooms.map((room) => (

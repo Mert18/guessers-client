@@ -28,10 +28,10 @@ const Pager = ({ paging, setPaging }: IPagerProps) => {
         disabled={paging.page === 0}
         className={`${
           paging.page === 0
-            ? "bg-primary text-background hover:bg-primary90"
-            : "text-text bg-backgroundhover hover:bg-primary hover:text-background"
-        } font-bold rounded-sm h-6 w-6 cursor-pointer transition-all`}
-      >
+            ? "bg-primary-default text-background-bright hover:bg-primary-bright"
+            : "text-primary-default bg-background-bright hover:bg-primary-default hover:text-background-bright"
+        } font-bold rounded-md h-8 w-8 cursor-pointer transition-all border border-primary-default mr-1`}
+      > 
         1
       </button>
 
@@ -43,8 +43,8 @@ const Pager = ({ paging, setPaging }: IPagerProps) => {
           }}
           disabled={page.active}
           className={`${
-            paging.page === page.page -1 ? "bg-primary text-background hover:bg-primary90" : " text-primary bg-backgroundhover hover:bg-primary hover:text-background"
-          } font-bold rounded-sm h-6 w-6 cursor-pointer transition-all`}
+            paging.page === page.page -1 ? "bg-primary-default text-background-bright hover:bg-primary-bright" : "text-primary-default bg-background-bright hover:bg-primary-default hover:text-background-bright"
+          } font-bold rounded-md h-8 w-8 cursor-pointer transition-all border border-primary-default mr-1`}
         >
           {page.page}
         </button>

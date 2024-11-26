@@ -16,16 +16,21 @@ const PrimaryButton = ({
   text,
   href,
   bg = false,
-  danger,
 }: IPrimaryButton) => {
   if (href) {
     return (
       <Link
         href={href}
         onClick={onClick}
-        className={`py-2 flex-1 ${danger ? "text-failure hover:text-background-bright hover:bg-failure border-failure" : "text-primary-default hover:text-background-bright border-primary-default"}   hover:bg-primary-default transition-all text-center bg-background-bright rounded-md border-2`}
+        className={`py-2 flex-1 transition-all text-center`}
       >
-        <div className={`text-text font-bold flex justify-center items-center`}>
+        <div
+          className={`text-text font-bold flex justify-center items-center rounded-md ${
+            bg
+              ? "bg-primary-default text-background-bright p-2 hover:bg-primary-bright"
+              : "bg-transparent text-text-default hover:text-primary-default"
+          }`}
+        >
           <p>{text}</p>
         </div>
       </Link>
@@ -35,9 +40,9 @@ const PrimaryButton = ({
       <button
         className={`${
           bg
-            ? "bg-background-bright p-2"
-            : "bg-transparent hover:text-primary-bright"
-        } rounded-md transition-all text-xs flex-1 font-bold text-primary-default`}
+            ? "bg-primary-default text-background-bright p-2 hover:bg-primary-bright"
+            : "bg-transparent text-text-default hover:text-primary-default"
+        } rounded-md transition-all text-xs flex-1 font-bold`}
         type={type}
         onClick={onClick}
       >

@@ -1,8 +1,8 @@
 "use client";
 import RoomName from "./RoomName";
-import ComponentWithHeader from "../common/ComponentWithHeader";
 import PrimaryButton from "../common/button/PrimaryButton";
 import { IRoomUser } from "@/types/IRoom.model";
+import ComponentTitle from "../common/ComponentTitle";
 
 interface IRoomHeaderProps {
   roomUser: IRoomUser;
@@ -11,9 +11,11 @@ interface IRoomHeaderProps {
 const RoomHeader = ({ roomUser }: IRoomHeaderProps) => {
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center w-full my-4">
       {roomUser.owner && (
-        <div className="text-xs flex justify-center items-center w-full my-4">
+        <div className="w-full">
+          <ComponentTitle text={"Owner Actions"} />
+        <div className="text-xs flex justify-center items-center w-full gap-2">
           <PrimaryButton
             type="button"
             href={`/home/room/${roomUser?.room?.id}/event/create`}
@@ -35,11 +37,11 @@ const RoomHeader = ({ roomUser }: IRoomHeaderProps) => {
             text={"Lend Token"}
           />
         </div>
+        </div>
       )}
       <div className="w-full">
-        <ComponentWithHeader name={"Room"}>
           <RoomName roomName={roomUser?.room?.name} />
-        </ComponentWithHeader>
+          <p className="text-text-default text-center text-xs">Your balance: <span className="font-bold text-base">{roomUser?.balance}</span></p>
       </div>
     </div>
   );
