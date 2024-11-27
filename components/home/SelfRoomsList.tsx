@@ -8,7 +8,7 @@ import { IPaging } from "@/types/IRequest.model";
 interface ISelfRoomsListProps {
   selfRooms: IRoomUser[];
   paging: IPaging;
-  setPaging: (paging: IPaging) => void;
+  setPaging: React.Dispatch<React.SetStateAction<IPaging>>;
   loading: boolean;
 }
 

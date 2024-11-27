@@ -3,7 +3,7 @@ import { finalizeEvent, getEvent } from "@/api/event";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { IEvent, IEventGuessOptionCase } from "@/types/IEvent.model";
+import { IEvent, IEventGuessOptionCase, IFinalizeEventRequest } from "@/types/IEvent.model";
 
 interface IEventFinalizeProps {
   params: {
@@ -43,13 +43,12 @@ const EventFinalize = ({ params }: IEventFinalizeProps) => {
     const winningCaseIds = winningOptions.map(
       (winningOption) => winningOption.id
     );
-    const finalizeRequest = {
+    const finalizeRequest: IFinalizeEventRequest = {
       winnerEventGuessOptionCases: winningCaseIds,
     };
-    finalizeEvent(finalizeRequest, params.eventId, params.roomId).finally(
+    finalizeEvent({request: finalizeRequest, eventId: params.eventId, roomId: params.roomId}).finally(
       () => {
-        // TODO fix it what is it
-        router.push("/home/room/" + params.roomId);
+        router.push("/home/room/" + params.roomId + "/guess");
       }
     );
   };

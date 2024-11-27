@@ -85,7 +85,7 @@ const ListReadyEvents = ({
       setLoading(false);
       handleCloseReadyEventModal();
       setTimeout(() => {
-        router.push(`/home/room/${roomId}`);
+        router.push(`/home/room/${roomId}/guess`);
       }, 1000);
     });
   };

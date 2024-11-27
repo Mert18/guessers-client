@@ -50,8 +50,8 @@ export interface IFinalizeEvent {
     roomId: string;
 }
 
-interface IFinalizeEventRequest {
-    winnerEventGuessOptionCases: string[];
+export interface IFinalizeEventRequest {
+    winnerEventGuessOptionCases: (string | undefined)[];
 }
 
 export interface IEvent {

@@ -8,7 +8,7 @@ import Pager from "../common/Pager";
 interface IPublicRoomsListProps {
   publicRooms: IRoomBasic[];
   paging: IPaging;
-  setPaging: (paging: IPaging) => void;
+  setPaging: React.Dispatch<React.SetStateAction<IPaging>>;
   loading: boolean;
 }
 
@@ -31,6 +31,7 @@ const PublicRoomsList = ({ publicRooms, paging, setPaging, loading }: IPublicRoo
           {publicRooms?.map((room) => (
             <PublicRoomCard key={room.id} room={room} />
           ))}
+          
           <Pager paging={paging} setPaging={setPaging} />
         </div>
       );

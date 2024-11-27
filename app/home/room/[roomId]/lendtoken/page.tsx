@@ -4,7 +4,6 @@ import PrimaryButton from "@/components/common/button/PrimaryButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import ComponentWithHeader from "@/components/common/ComponentWithHeader";
 import Loader from "@/components/common/Loader";
-import CustomSelect from "@/components/form/CustomSelect";
 import RoomName from "@/components/room/RoomName";
 import { IRoomBasic, IRoomUser } from "@/types/IRoom.model";
 import { useRouter } from "next/navigation";
@@ -21,7 +20,7 @@ const LendToken = ({ params }: ILendTokenProps) => {
   const [room, setRoom] = useState<IRoomBasic>();
   const [roomUsers, setRoomUsers] = useState<IRoomUser[]>([]);
   const [roomUserIdsToLend, setRoomUserIdsToLend] = useState<string[]>([]);
-  const [amount, setAmount] = useState<number>(0);
+  const [amount, setAmount] = useState<number>(100);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -83,8 +82,8 @@ const LendToken = ({ params }: ILendTokenProps) => {
                 className={`${
                   roomUserIdsToLend.includes(roomUser.id)
                     ? "text-background-bright bg-primary-default"
-                    : "bg-transparent text-text-default"
-                } flex justify-between items-center w-full p-2 my-1 rounded-md`}
+                    : "bg-background-bright text-text-default"
+                } flex justify-between items-center w-full p-2 my-1 rounded-md border-2 border-primary-default`}
               >
                 <div>{roomUser.user.username}</div>
                 <div>{roomUser.balance}</div>
