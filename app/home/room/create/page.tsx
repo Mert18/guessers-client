@@ -42,7 +42,7 @@ const CreateRoom = () => {
           setLoading(true);
           createRoom(values)
             .then(() => {
-              router.push("/home/");
+              router.push("/home");
             })
             .finally(() => {
               setLoading(false);

@@ -55,7 +55,7 @@ const LoginOrRegister = () => {
       >
         {({ errors, touched }) => (
           <Form className="flex flex-col justify-start items-start">
-            <div className="flex justify-start items-center">
+            <div className="flex justify-start items-center my-1">
               <CustomInputField
                 withLabel={true}
                 name="username"
@@ -65,7 +65,7 @@ const LoginOrRegister = () => {
               />
             </div>
 
-            <div className="flex justify-start items-center">
+            <div className="flex justify-start items-center my-1">
               <CustomInputField
                 withLabel={true}
                 name="password"

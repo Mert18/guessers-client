@@ -3,11 +3,12 @@ import GuessPaperCard from "../guesspaper/GuessPaperCard";
 import Loader from "../common/Loader";
 import { IGuessPaper } from "@/types/IGuessPaper.model";
 import { IPaging } from "@/types/IRequest.model";
+import Pager from "../common/Pager";
 
 interface ISelfGuessPapersListProps {
   selfGuessPapers: IGuessPaper[];
   paging: IPaging;
-  setPaging: (paging: IPaging) => void;
+  setPaging: React.Dispatch<React.SetStateAction<IPaging>>;
   loading: boolean;
 }
 
@@ -36,6 +37,8 @@ const SelfGuessPapersList = ({
           {selfGuessPapers.map((guessPaper) => (
             <GuessPaperCard key={guessPaper.id} guessPaper={guessPaper} />
           ))}
+
+          <Pager paging={paging} setPaging={setPaging} />
         </div>
       );
     }

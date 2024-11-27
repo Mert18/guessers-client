@@ -2,14 +2,17 @@ import ComponentTitle from "../common/ComponentTitle";
 import GuessPaperCard from "../guesspaper/GuessPaperCard";
 import Loader from "../common/Loader";
 import { IGuessPaper } from "@/types/IGuessPaper.model";
+import { IPaging } from "@/types/IRequest.model";
+import Pager from "../common/Pager";
 
 interface IRoomGuessPapersProps {
   guessPapers: IGuessPaper[];
-  setPaging: (paging: number) => void;
+  paging: IPaging;
+  setPaging: React.Dispatch<React.SetStateAction<IPaging>>;
   loading: boolean;
 }
 
-const RoomGuessPapers = ({ guessPapers, setPaging, loading }: IRoomGuessPapersProps) => {
+const RoomGuessPapers = ({ guessPapers, paging, setPaging, loading }: IRoomGuessPapersProps) => {
 
   const roomGuessPapersRenderer = () => {
     if (loading) {
@@ -30,6 +33,7 @@ const RoomGuessPapers = ({ guessPapers, setPaging, loading }: IRoomGuessPapersPr
           {guessPapers.map((guessPaper) => (
             <GuessPaperCard key={guessPaper.id} guessPaper={guessPaper} />
           ))}
+          <Pager paging={paging} setPaging={setPaging} />
         </div>
       );
     }
