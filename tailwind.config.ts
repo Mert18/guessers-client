@@ -29,6 +29,7 @@ export default {
         },
         failure: "#CE4A3A",
         success: "#4EE521",
+        warning: "#E28043"
       }
     },
   },
