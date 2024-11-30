@@ -46,10 +46,11 @@ const LoginOrRegister = () => {
         validationSchema={RegisterSchema}
         validateOnChange={false}
         validateOnBlur={false}
-        onSubmit={(values) => {
+        onSubmit={(values, { resetForm }) => {
           setLoading(true);
           createUser(values).finally(() => {
             setLoading(false);
+            resetForm();
           });
         }}
       >

@@ -15,8 +15,8 @@ export const createUser = async (user: IUserRegister) => {
         toast.success("User created successfully.");
       }
     })
-    .catch(() => {
-      toast.error("An error occurred.");
+    .catch((err) => {
+      toast.error(err?.response?.data?.message);
     });
 };
 
