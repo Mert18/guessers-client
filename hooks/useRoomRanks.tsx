@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
 import { getRanks } from "@/api/room";
 
-interface IUseRoomRanksProps {
-  roomId: string;
-}
 
-export const useRoomRanks = (roomId: IUseRoomRanksProps) => {
+export const useRoomRanks = (roomId: string) => {
   const [rankedRiches, setRankedRiches] = useState([]);
   const [rankedPredictions, setRankedPredictions] = useState([]);
   const [loading, setLoading] = useState(false);

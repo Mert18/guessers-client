@@ -43,8 +43,8 @@ export const useRoomData = ({
       setLoading((prev) => ({ ...prev, guessPapers: true }));
       try {
         const guessPapersResponse = await listRoomGuessPapersByStatus(
-          roomId,
-          roomGuessPapersPaging
+          {roomId: roomId,
+          paging: roomGuessPapersPaging}
         );
         setRoomGuessPapers(guessPapersResponse.data.content);
       } catch (error) {
@@ -56,11 +56,11 @@ export const useRoomData = ({
       // Fetch Prizes
       setLoading((prev) => ({ ...prev, prizes: true }));
       try {
-        const prizesResponse = await getRoomPrizes(
-          roomId,
-          roomPrizesPaging,
-          true
-        );
+        const prizesResponse = await getRoomPrizes({
+          roomId: roomId,
+          paging: roomPrizesPaging,
+          active: true,
+        });
         setRoomPrizes(prizesResponse.data.content);
       } catch (error) {
         console.error("Failed to fetch room prizes", error);

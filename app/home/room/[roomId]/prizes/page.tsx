@@ -1,6 +1,7 @@
 "use client";
 import { getRoomPrizes } from "@/api/prize";
 import RoomActivePrizes from "@/components/room/RoomActivePrizes";
+import { IPaging } from "@/types/IRequest.model";
 import { useEffect, useState } from "react";
 
 interface IRoomPrizesProps {
@@ -12,7 +13,7 @@ interface IRoomPrizesProps {
 const RoomPrizes = ({ params }: IRoomPrizesProps) => {
   const [roomActivePrizes, setRoomActivePrizes] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [paging, setPaging] = useState({
+  const [paging, setPaging] = useState<IPaging>({
     page: 0,
     size: 5,
     totalPages: 0,

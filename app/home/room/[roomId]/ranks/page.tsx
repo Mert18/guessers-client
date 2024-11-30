@@ -1,6 +1,5 @@
 "use client";
 import ComponentTitle from "@/components/common/ComponentTitle";
-import ComponentWithHeader from "@/components/common/ComponentWithHeader";
 import Loader from "@/components/common/Loader";
 import RoomRichests from "@/components/room/RoomRichests";
 import RoomTopPredictors from "@/components/room/RoomTopPredictors";

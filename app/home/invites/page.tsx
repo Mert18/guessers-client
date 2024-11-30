@@ -3,13 +3,14 @@ import { acceptRoomInvite, rejectRoomInvite } from "@/api/room";
 import { getInvites } from "@/api/user";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import Pager from "@/components/common/Pager";
+import { IPaging } from "@/types/IRequest.model";
 import { IPendingInvite } from "@/types/IUser.model";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const Invites = () => {
   const [pendingInvites, setPendingInvites] = useState<IPendingInvite[]>([]);
-  const [invitesPaging, setInvitesPaging] = useState({
+  const [invitesPaging, setInvitesPaging] = useState<IPaging>({
     page: 0,
     size: 5,
     totalPages: 0,
