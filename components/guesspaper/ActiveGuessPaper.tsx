@@ -74,7 +74,7 @@ const ActiveGuessPaper = ({
             </div>
           </div>
         </div>
-        <button className="bg-primary-default hover:bg-primary-bright text-background-bright p-2 flex flex-col w-12 font-bold" onClick={() => sendGuessPaper()}>
+        <button className="bg-primary-default hover:bg-primary-bright text-background-bright p-2 flex justify-center items-center flex-col w-12 font-bold" onClick={() => sendGuessPaper()}>
           <span>C</span>
           <span>R</span>
           <span>E</span>
