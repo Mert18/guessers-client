@@ -28,7 +28,7 @@ const RoomLayout = ({ params, children }: IRoomLayoutProps) => {
   if (!roomUser) return;
   return (
     <div>
-      {!pathname.endsWith("create") && !pathname.endsWith("invite") && !pathname.endsWith("create-prize") && !pathname.endsWith("lendtoken") && ( // Do not show tabs in create room page
+      {!pathname.endsWith("create") && !pathname.endsWith("invite") && !pathname.endsWith("create-prize") && !pathname.endsWith("lendtoken") && !pathname.endsWith("finalize") && ( // Do not show tabs in create room page
         <>
           <RoomHeader roomUser={roomUser} />
 

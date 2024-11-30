@@ -4,6 +4,10 @@ import PrimaryButton from "@/components/common/button/PrimaryButton";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { IEvent, IEventGuessOptionCase, IFinalizeEventRequest } from "@/types/IEvent.model";
+import ComponentTitle from "@/components/common/ComponentTitle";
+import { IRoomBasic } from "@/types/IRoom.model";
+import { getRoom } from "@/api/room";
+import RoomName from "@/components/room/RoomName";
 
 interface IEventFinalizeProps {
   params: {
@@ -13,6 +17,7 @@ interface IEventFinalizeProps {
 }
 
 const EventFinalize = ({ params }: IEventFinalizeProps) => {
+  const [room, setRoom] = useState<IRoomBasic>();
   const [event, setEvent] = useState<IEvent>();
   const [winningOptions, setWinningOptions] = useState<IEventGuessOptionCase[]>(
     []
@@ -24,6 +29,12 @@ const EventFinalize = ({ params }: IEventFinalizeProps) => {
       setEvent(response.data);
     });
   }, []);
+
+  useEffect(() => {
+    getRoom(params.roomId).then((response) => {
+      setRoom(response.data);
+    });
+  }, [params.roomId]);
 
   const handleChangeWinningOptions = (
     eventGuessOptionCase: IEventGuessOptionCase
@@ -53,27 +64,27 @@ const EventFinalize = ({ params }: IEventFinalizeProps) => {
     );
   };
   return (
-    event && (
-      <div className="flex flex-col justify-center items-center text-text text-xs">
-        <div className="text-primary text-2xl font-bold text-center">
-          Finalize Event
-        </div>
+    event && room && (
+      <div className="flex flex-col justify-center items-center text-text-default text-xs">
+        <ComponentTitle text="Finalize Event" />
+
+        <RoomName roomName={room.name} roomId={room.id} />
 
         <p>Select the winning options.</p>
-        <div className="flex flex-col justify-center items-center w-full rounder-md text-primary text-xs">
-          <div className="flex justify-between items-center text-primary w-full font-bold border-b border-primary py-2">
+        <div className="flex flex-col justify-center items-center w-full rounder-md text-xs bg-background-bright border-2 border-primary-default rounded-md">
+          <div className="flex justify-between items-center w-full font-bold p-4 rounded-md">
             <p>{event.name}</p>
 
-            <p>{new Date(event.createdOn).toLocaleDateString()}</p>
+            <p>{new Date(event.createdOn).toLocaleString()}</p>
           </div>
 
-          <div className="w-full grid grid-cols-1">
+          <div className="w-full grid grid-cols-2 gap-5 p-2">
             {event.eventGuessOptions?.map((eventGuessOption) => (
               <div
                 key={eventGuessOption.id}
-                className="w-full flex flex-col justify-start items-start"
+                className="flex flex-col justify-start items-start"
               >
-                <p className="text-text text-xs lowercase m-1">
+                <p className="text-background-bright bg-primary-default p-2 rounded-md text-xs lowercase my-1 font-bold">
                   {eventGuessOption.name}
                 </p>
                 <div className="w-full grid auto-cols-fr grid-flow-col">
@@ -86,20 +97,20 @@ const EventFinalize = ({ params }: IEventFinalizeProps) => {
                             "_" +
                             eventGuessOptionCase.odds
                           }
-                          className="flex-1 flex flex-col justify-center items-center hover:cursor-pointer"
+                          className="flex flex-col justify-center items-center hover:cursor-pointer m-0.5"
                           onClick={() =>
                             handleChangeWinningOptions(eventGuessOptionCase)
                           }
                         >
-                          <div className="text-text w-full p-2 flex justify-center items-center border-b border-secondary">
-                            <p>{eventGuessOptionCase.name}</p>
+                          <div className="text-text w-full flex justify-start items-center py-2">
+                            <p className="truncate font-bold">{eventGuessOptionCase.name}</p>
                           </div>
                           <div
                             className={`${
                               winningOptions.includes(eventGuessOptionCase)
-                                ? "bg-primary text-background"
-                                : "text-text bg-background2"
-                            } w-full p-2 flex justify-center items-center`}
+                                ? "bg-primary-default text-background-bright"
+                                : "text-primary-default bg-background-bright"
+                            } w-full py-2 m-1 flex justify-evenly items-center font-bold border-2 border-primary-default rounded-md`}
                           >
                             <p>{eventGuessOptionCase.odds}</p>
                           </div>
@@ -112,8 +123,9 @@ const EventFinalize = ({ params }: IEventFinalizeProps) => {
             ))}
           </div>
         </div>
-
-        <PrimaryButton type="submit" text={"finalize"} onClick={() => handleFinalize()} />
+        <div className="my-4">
+        <PrimaryButton type="submit" text={"Finalize Event"} onClick={() => handleFinalize()} bg />
+        </div>
       </div>
     )
   );
