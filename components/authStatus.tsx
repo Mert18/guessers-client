@@ -10,8 +10,8 @@ export default function AuthStatus() {
   useEffect(() => {
     if (
       status != "loading" &&
-      session &&
-      session?.error === "RefreshAccessTokenError"
+      session
+      // session?.error === "RefreshAccessTokenError"
     ) {
       signOut({ callbackUrl: "/" });
     }

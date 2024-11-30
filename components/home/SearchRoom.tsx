@@ -5,9 +5,10 @@ import CustomInputField from "../form/CustomInputField";
 import PrimaryButton from "../common/button/PrimaryButton";
 import { searchRoom } from "@/api/room";
 import PublicRoomCard from "./PublicRoomCard";
+import { IPaging } from "@/types/IRequest.model";
 
 const SearchRoom = () => {
-  const [paging, setPaging] = useState({ page: 0, size: 10 });
+  const [paging, setPaging] = useState<IPaging>({ page: 0, size: 10 });
   const [roomsResult, setRoomsResult] = useState([]);
 
   const initialValues = {
@@ -19,7 +20,7 @@ const SearchRoom = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          searchRoom(values.query, paging).then((response) => {
+          searchRoom({query: values.query, paging: paging}).then((response) => {
             setRoomsResult(response.data.content);
           });
         }}

@@ -38,6 +38,7 @@ const CustomInputField = ({
           name={name}
         >
           {options?.map((option) => (
+            // @ts-ignore
             <option className="bg-background" key={option.value} value={option.value}>
               {option.label}
             </option>

@@ -1,5 +1,6 @@
 import { encrypt } from "@/util/encryption";
 import { jwtDecode } from "jwt-decode";
+import { Session } from "next-auth";
 import KeycloakProvider from "next-auth/providers/keycloak";
 
 export const authOptions = {
@@ -36,7 +37,7 @@ export const authOptions = {
         }
       }
     },
-    async session({ session, token }: any) {
+    async session({ session, token}: {session: any, token?: any}) {
       // TODO fix any
       // Send properties to the client
       session.access_token = encrypt(token.access_token); // see utils/sessionTokenAccessor.js

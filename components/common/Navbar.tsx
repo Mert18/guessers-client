@@ -68,8 +68,10 @@ const Navbar = () => {
         {session && (
           <>
             <Link
+              // @ts-ignore
               href={`/home/profile/${session.username}`}
               className={`py-2 flex-1 ${
+                // @ts-ignore
                 path === `/home/profile/${session.username}`
                   ? "text-background-bright hover:bg-primary-bright bg-primary-default"
                   : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"

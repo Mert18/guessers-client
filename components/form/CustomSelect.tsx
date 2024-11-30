@@ -50,6 +50,7 @@ const CustomSelect = ({ options, value, onChange, placeholder = 'Select an optio
         <div className="absolute z-10 w-full bg-background mt-1 rounded-md shadow-lg max-h-[300px] overflow-y-auto my-4 scrollbar-thin border border-primary">
           {options.map((option) => (
             <div
+              // @ts-ignore
               key={option.value}
               className="p-2 hover:bg-background2 cursor-pointer"
               onClick={() => handleOptionClick(option)}
