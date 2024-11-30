@@ -10,7 +10,7 @@ const GuessPaperMetadata = ({ guessPaper }: IGuessPaperMetadataProps) => {
       <div className="w-1/2">
         <div className="flex justify-between w-full">
           <p className="font-medium">Status</p>
-          <p>{guessPaper.status}</p>
+          <p className={`${guessPaper.status === "IN_PROGRESS" ? "text-warning": guessPaper.status === "WON" ? "text-success" : guessPaper.status === "LOST" ? "text-failure" : "text-text-default"}`}>{guessPaper.status}</p>
         </div>
         <div className="flex justify-between w-full">
           <p className="font-medium">Username</p>
