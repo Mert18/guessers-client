@@ -21,7 +21,7 @@ const SelfRoomsList = ({
   const selfRoomsListRenderer = () => {
     if (loading) {
       return <Loader />;
-    } else if (selfRooms.length === 0) {
+    } else if (selfRooms?.length === 0) {
       return <p className="text-primary">You have not attended any rooms.</p>;
     } else {
       return (
@@ -32,7 +32,7 @@ const SelfRoomsList = ({
             <h2 className="flex-1">{"Members"}</h2>
             <h2 className="flex-1">{"Balance"}</h2>
           </div>
-          {selfRooms.map((room) => (
+          {selfRooms?.map((room) => (
             <SelfRoomCard key={room.id} roomUser={room} />
           ))}
           <Pager paging={paging} setPaging={setPaging} />

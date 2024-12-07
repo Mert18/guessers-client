@@ -16,6 +16,7 @@ COPY . .
 COPY .env.production .env
 
 ENV NODE_ENV=production
+ENV TZ=Europe/Istanbul
 
 # Build the Next.js application
 RUN npm run build
