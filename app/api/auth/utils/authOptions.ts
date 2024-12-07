@@ -1,6 +1,4 @@
-import { encrypt } from "@/util/encryption";
 import { jwtDecode } from "jwt-decode";
-import { Session } from "next-auth";
 import KeycloakProvider from "next-auth/providers/keycloak";
 
 export const authOptions = {
@@ -11,39 +9,35 @@ export const authOptions = {
       issuer: `${process.env.KEYCLOAK_ISSUER}`,
     }),
   ],
-
   callbacks: {
-    async jwt({ token, account }: any) {
-      // TODO fix any
-      const nowTimeStamp = Math.floor(Date.now() / 1000);
-      if (account) {
-        // account is only available the first time this callback is called on a new session (after the user signs in)
+    async jwt({ token, account }) {
+      const nowTimestamp = Math.floor(Date.now() / 1000);
+      if(account) {
         token.decoded = jwtDecode(account.access_token);
-        token.access_token = account.access_token;
         token.id_token = account.id_token;
         token.expires_at = account.expires_at;
         token.refresh_token = account.refresh_token;
-        return token;
-      } else if (nowTimeStamp < token.expires_at) {
-        // token has not expired yet, return it
+        token.access_token = account.access_token;
+      } else if(nowTimestamp < token.expires_at) {
+        console.log("Token is still valid");
         return token;
       } else {
-        // token is expired, try to refresh it
         try {
+          console.log("Refreshing access token");
           const refreshedToken = await refreshAccessToken(token);
           return refreshedToken;
         } catch (error) {
+          console.error("Error refreshing access token", error);
           return { ...token, error: "RefreshAccessTokenError" };
         }
       }
+      return token;
     },
-    async session({ session, token}: {session: any, token?: any}) {
-      // TODO fix any
-      // Send properties to the client
-      session.access_token = encrypt(token.access_token); // see utils/sessionTokenAccessor.js
-      session.id_token = encrypt(token.id_token); // see utils/sessionTokenAccessor.js
-      session.roles = token.decoded.realm_access.roles;
+    async session({ session, token }) {
       session.username = token.decoded.preferred_username;
+      session.email = token.decoded.email;
+      session.email_verified = token.decoded.email_verified;
+      session.access_token = token.access_token;
       session.error = token.error;
       return session;
     },
@@ -51,7 +45,7 @@ export const authOptions = {
       // TODO fix any
       return url.startsWith(baseUrl) ? url : baseUrl + "/";
     },
-  },
+  }
 };
 
 // this will refresh an expired access token, when needed

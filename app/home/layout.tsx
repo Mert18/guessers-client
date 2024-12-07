@@ -12,6 +12,7 @@ interface IHomeLayoutProps {
 export default function HomeLayout({ children }: IHomeLayoutProps){
   const router = useRouter();
   const { data: session, status } = useSession();
+
   if (status === "loading") {
     return (
       <div>

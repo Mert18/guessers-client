@@ -3,11 +3,14 @@ import Link from "next/link";
 import Logo from "./Logo";
 import { signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import axios from "axios";
 
 async function keycloakSessionLogOut() {
   try {
-    await fetch(`/api/auth/logout`, { method: "GET" });
-  } catch (err) {}
+    await axios.get(`/api/auth/logout`);
+  } catch (err) {
+    console.error("error session loggingo ut", err);
+  }
 }
 
 const Navbar = () => {

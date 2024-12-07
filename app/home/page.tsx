@@ -25,12 +25,13 @@ const Home = () => {
   const fetchSelfRooms = async () => {
     setSelfRoomsLoading(true);
     try {
-      const response = await listSelfRooms(selfRoomsPaging);
-      setSelfRooms(response.data.content);
+      const response = await listSelfRooms(publicRoomsPaging);
+      if(!response.data.content || response.data.content === undefined) return;
+      setSelfRooms(response?.data?.content);
       setSelfRoomsPaging((prevState) => ({
         ...prevState,
-        totalPages: response.data.page.totalPages,
-        totalElements: response.data.page.totalElements,
+        totalPages: response?.data?.page?.totalPages,
+        totalElements: response?.data?.page?.totalElements,
       }));
     } finally {
       setSelfRoomsLoading(false);
@@ -72,18 +73,18 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetchPublicRooms();
+    // fetchPublicRooms();
     fetchSelfRooms();
-    fetchSelfGuessPapers();
+    // fetchSelfGuessPapers();
   }, [])
 
   useEffect(() => {
     fetchSelfRooms();
   }, [selfRoomsPaging.page])
 
-  useEffect(() => {
-    fetchPublicRooms();
-  }, [publicRoomsPaging.page])
+  // useEffect(() => {
+  //   fetchPublicRooms();
+  // }, [publicRoomsPaging.page])
 
   useEffect(() => {
     fetchSelfRooms();

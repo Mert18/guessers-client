@@ -26,6 +26,9 @@ function Home() {
     }
   }, [status, router]);
 
+  useEffect(() => {
+  }, [session])
+
   if (status === "loading") {
     return (
       <div>

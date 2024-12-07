@@ -1,6 +1,9 @@
 import Cryptr from "cryptr";
 
 export function encrypt(text: string) {
+  if(text === undefined || text === null) {
+    throw new Error("Text is undefined.");
+  }
   const secretKey: string | undefined = process.env.NEXTAUTH_SECRET;
 
   if (secretKey !== undefined) {
@@ -14,6 +17,9 @@ export function encrypt(text: string) {
 }
 
 export function decrypt(encryptedString: string) {
+  if(encryptedString === undefined || encryptedString === null) {
+    throw new Error("Encrypted string is undefined.");
+  }
   const secretKey = process.env.NEXTAUTH_SECRET;
   if (secretKey !== undefined) {
     const cryptr = new Cryptr(secretKey);
