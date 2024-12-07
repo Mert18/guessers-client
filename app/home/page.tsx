@@ -73,18 +73,18 @@ const Home = () => {
   };
 
   useEffect(() => {
-    // fetchPublicRooms();
+    fetchPublicRooms();
     fetchSelfRooms();
-    // fetchSelfGuessPapers();
+    fetchSelfGuessPapers();
   }, [])
 
   useEffect(() => {
     fetchSelfRooms();
   }, [selfRoomsPaging.page])
 
-  // useEffect(() => {
-  //   fetchPublicRooms();
-  // }, [publicRoomsPaging.page])
+  useEffect(() => {
+    fetchPublicRooms();
+  }, [publicRoomsPaging.page])
 
   useEffect(() => {
     fetchSelfRooms();
