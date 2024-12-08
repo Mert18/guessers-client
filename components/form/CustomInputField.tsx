@@ -59,7 +59,7 @@ const CustomInputField = ({
     }
   };
   return (
-    <div className={`flex flex-col justify-start items-start w-${width}`}>
+    <div className={`flex flex-col justify-start items-start w-${width} my-0.5`}>
       {withLabel && !placeholderInside && (
         <span className="text-text-default text-sm font-light">
           {placeholder}

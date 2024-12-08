@@ -48,7 +48,7 @@ const RoomActiveEvents = ({
   };
   return (
     <div className="my-8 text-xs">
-      <ComponentTitle text={"activeEvents"} icon="/calendar.svg" />
+      <ComponentTitle text={"Active Events"} icon="/calendar.svg" />
       {eventsRenderer()}
     </div>
   );

@@ -5,7 +5,6 @@ import PrimaryButton from "@/components/common/button/PrimaryButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import ComponentWithHeader from "@/components/common/ComponentWithHeader";
 import Loader from "@/components/common/Loader";
-import Logo from "@/components/common/Logo";
 import CustomInputField from "@/components/form/CustomInputField";
 import RoomName from "@/components/room/RoomName";
 import { IRoomBasic } from "@/types/IRoom.model";
@@ -22,7 +21,6 @@ interface ICreatePrizeProps {
 
 const CreatePrize = ({ params }: ICreatePrizeProps) => {
   const [room, setRoom] = useState<IRoomBasic>();
-  const [amount, setAmount] = useState(100);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -48,22 +46,23 @@ const CreatePrize = ({ params }: ICreatePrizeProps) => {
         <Formik
           initialValues={initialValues}
           onSubmit={(values) => {
-            if(values.name === "" || values.description === "") {
+            if (values.name === "" || values.description === "") {
               toast.error("Please fill all fields");
               return;
             }
             setLoading(true);
-            values.value = amount;
             createPrize({
               createPrizeRequest: values,
               roomId: params.roomId,
-            }).then(() => {
-              setTimeout(() => {
-                router.push(`/home/room/${params.roomId}/guess`);
-              }, 1000);
-            }).finally(() => {
-              setLoading(false);
             })
+              .then(() => {
+                setTimeout(() => {
+                  router.push(`/home/room/${params.roomId}/guess`);
+                }, 1000);
+              })
+              .finally(() => {
+                setLoading(false);
+              });
           }}
         >
           <Form className="flex flex-col justify-center items-center">
@@ -81,26 +80,21 @@ const CreatePrize = ({ params }: ICreatePrizeProps) => {
               withLabel={true}
             />
 
-            <ComponentWithHeader name="Amount">
-              <p>
-                <span className="font-bold">{amount}</span>{" "}
-                <button type="button" onClick={() => setAmount(amount + 50)}>
-                  +
-                </button>{" "}
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (amount > 100) {
-                      setAmount(amount - 50);
-                    }
-                  }}
-                >
-                  -
-                </button>
-              </p>
-            </ComponentWithHeader>
+
+            <CustomInputField
+              name={`value`}
+              type="select"
+              placeholder={"value"}
+              withLabel={true}
+              options={[{ value: 100, label: "100" }, { value: 200, label: "200" }, { value: 500, label: "500" }, { value: 1000, label: "1000" }, { value: 2000, label: "2000" }, { value: 5000, label: "5000" }, { value: 10000, label: "10000" }]}
+            />
+            
             <div className="my-2">
-            {loading ? <Loader /> :  <PrimaryButton type="submit" text={"Create Prize"} bg />}
+              {loading ? (
+                <Loader />
+              ) : (
+                <PrimaryButton type="submit" text={"Create Prize"} bg />
+              )}
             </div>
           </Form>
         </Formik>
