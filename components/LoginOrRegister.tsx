@@ -60,25 +60,21 @@ const LoginOrRegister = () => {
       >
         {({ errors, touched }) => (
           <Form className="flex flex-col justify-start items-start w-full">
-            <div className="flex justify-start items-center my-1 w-full">
-              <CustomInputField
-                withLabel={true}
-                name="username"
-                type="text"
-                placeholder={"username"}
-                placeholderInside={true}
-              />
-            </div>
+            <CustomInputField
+              withLabel={true}
+              name="username"
+              type="text"
+              placeholder={"username"}
+              placeholderInside={true}
+            />
 
-            <div className="flex justify-start items-center my-1 w-full">
-              <CustomInputField
-                withLabel={true}
-                name="password"
-                type="password"
-                placeholder={"password"}
-                placeholderInside={true}
-              />
-            </div>
+            <CustomInputField
+              withLabel={true}
+              name="password"
+              type="password"
+              placeholder={"password"}
+              placeholderInside={true}
+            />
 
             <div className="flex flex-col w-full text-center">
               {loading ? (

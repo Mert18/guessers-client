@@ -4,6 +4,8 @@ import ComponentTitle from "../common/ComponentTitle";
 import { toast } from "react-toastify";
 import { IRoomUser } from "@/types/IRoom.model";
 import { ICreateGuessPaperGuess } from "@/types/IGuessPaper.model";
+import { useState } from "react";
+import Loader from "../common/Loader";
 
 interface IActiveGuessPaperProps {
   guesses: ICreateGuessPaperGuess[];
@@ -24,12 +26,14 @@ const ActiveGuessPaper = ({
   roomUser,
   resetGuessPaper,
 }: IActiveGuessPaperProps) => {
+  const [loading, setLoading] = useState<boolean>(false);
 
   const sendGuessPaper = () => {
     if (guesses.length === 0) {
       toast.error("Your guess paper is empty.");
       return;
     }
+    setLoading(true);
     const guessPaperToCreate = {
       guesses: guesses,
       stake: stake,
@@ -37,14 +41,15 @@ const ActiveGuessPaper = ({
     };
 
     createGuessPaper(guessPaperToCreate).finally(() => {
+      setLoading(false);
       resetGuessPaper();
     });
   };
 
   return (
     <>
-      <ComponentTitle text={"currentGuessPaper"} icon="/ticket.svg" />
-      <div className="flex w-full">
+      <ComponentTitle text={"Current Guess Paper"} icon="/ticket.svg" />
+      <div className="flex w-full h-48">
         <div className="flex justify-start items-start text-text flex-col bg-background-bright border-2 border-primary-default p-2 text-text-default w-full">
           <div className="flex justify-around w-full items-center h-full">
             <div className="flex flex-col justify-center items-start">
@@ -74,14 +79,23 @@ const ActiveGuessPaper = ({
             </div>
           </div>
         </div>
-        <button className="bg-primary-default hover:bg-primary-bright text-background-bright p-2 flex justify-center items-center flex-col w-12 font-bold" onClick={() => sendGuessPaper()}>
-          <span>C</span>
-          <span>R</span>
-          <span>E</span>
-          <span>A</span>
-          <span>T</span>
-          <span>E</span>
-        </button>
+        <div className="flex justify-center items-center">
+          {loading ? (
+            <Loader />
+          ) : (
+            <button
+              className="bg-primary-default hover:bg-primary-bright text-background-bright p-2 flex justify-center items-center flex-col w-12 font-bold h-full"
+              onClick={() => sendGuessPaper()}
+            >
+              <span>C</span>
+              <span>R</span>
+              <span>E</span>
+              <span>A</span>
+              <span>T</span>
+              <span>E</span>
+            </button>
+          )}
+        </div>
       </div>
     </>
   );

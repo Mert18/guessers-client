@@ -3,6 +3,7 @@ import { createEvent } from "@/api/event";
 import { getRoom } from "@/api/room";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
 import Loader from "@/components/common/Loader";
+import EventGuessOption from "@/components/events/EventGuessOption";
 import ListReadyEvents from "@/components/events/ListReadyEvents";
 import CustomInputField from "@/components/form/CustomInputField";
 import Modal from "@/components/Modal";
@@ -13,10 +14,14 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import * as Yup from "yup";
 
 interface ICreateEventProps {
   params: { roomId: string };
 }
+const CreateEventSchema = Yup.object().shape({
+  name: Yup.string().required("Event Name is Required.")
+});
 
 const CreateEvent = ({ params }: ICreateEventProps) => {
   const [createReadyEventModalOpen, setCreateReadyEventModalOpen] =
@@ -80,6 +85,18 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
           if (values.eventGuessOptions.length < 1) {
             toast.error("At least one option is required.");
             return;
+          } else if (values.eventGuessOptions.some((option) => option.eventGuessOptionCases.length < 2)) {
+            toast.error("At least two cases are required for each option.");
+            return;
+          } else if(values.eventGuessOptions.some((option) => option.name === "")) {
+            toast.error("There should not be any empty option name.");
+            return;
+          } else if(values.eventGuessOptions.some((option) => option.eventGuessOptionCases.some((optionCase) => optionCase.name === ""))) {
+            toast.error("There should not be any empty case name.");
+            return;
+          } else if(values.eventGuessOptions.some((option) => option.eventGuessOptionCases.some((optionCase) => optionCase.odds < 1.01))) {
+            toast.error("Odds should be greater than 1.00.");
+            return;
           }
           setLoading(true);
           createEvent({ event: values, roomId: params.roomId })
@@ -92,8 +109,11 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
               setLoading(false);
             });
         }}
+        validationSchema={CreateEventSchema}
+        validateOnChange={false}
+        validateOnBlur={false}
       >
-        {({ values }) => (
+        {({ errors, values }) => (
           <Form className="flex flex-col items-center justify-center p-4 w-full">
             <CustomInputField
               withLabel={true}
@@ -196,7 +216,7 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
                                       type="number"
                                       name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionCases[${eventGuessOptionOptionIndex}].odds`}
                                       placeholder={"optionOdds"}
-                                      className="w-2/3 text-sm px-2 py-1 text-text outline-none bg-background-bright border border-primary-default h-8 focus:ring-1 focus:ring-primary-default"
+                                      className="w-2/3 text-sm px-2 py-1 text-text outline-none bg-background-bright border border-primary-default h-8 focus:ring-1 focus:ring-primary-default text-text-default font-bold"
                                       step={"0.01"}
                                       min={"1.00"}
                                       defaultValue={1.01}
@@ -241,6 +261,10 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
                 </div>
               )}
             </FieldArray>
+
+            <div className="w-full text-failure">
+              {errors.name && <p>{errors.name}</p>}
+            </div>
 
             {loading ? (
               <Loader />
