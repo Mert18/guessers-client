@@ -24,8 +24,6 @@ export const useActiveEvents = ({roomId}: IUseActiveEventsProps) => {
           size: response?.data?.page.size,
           totalPages: response?.data?.page.totalPages,
         });
-      } catch (error) {
-        console.error("Error fetching active events", error);
       } finally {
         setLoading(false);
       }

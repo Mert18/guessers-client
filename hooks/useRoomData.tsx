@@ -33,8 +33,6 @@ export const useRoomData = ({
       try {
         const userResponse = await getRoomUser(roomId);
         setRoomUser(userResponse.data);
-      } catch (error) {
-        console.error("Failed to fetch room user", error);
       } finally {
         setLoading((prev) => ({ ...prev, user: false }));
       }
@@ -47,8 +45,6 @@ export const useRoomData = ({
           paging: roomGuessPapersPaging}
         );
         setRoomGuessPapers(guessPapersResponse.data.content);
-      } catch (error) {
-        console.error("Failed to fetch guess papers", error);
       } finally {
         setLoading((prev) => ({ ...prev, guessPapers: false }));
       }
@@ -62,8 +58,6 @@ export const useRoomData = ({
           active: true,
         });
         setRoomPrizes(prizesResponse.data.content);
-      } catch (error) {
-        console.error("Failed to fetch room prizes", error);
       } finally {
         setLoading((prev) => ({ ...prev, prizes: false }));
       }

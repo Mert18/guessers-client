@@ -16,7 +16,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     // If the token is valid, Keycloak returns user info
     return NextResponse.json({ valid: true, userInfo: response.data });
   } catch (error) {
-    console.error('Token validation failed:', error.response?.data || error.message);
     return NextResponse.json({ valid: false }, { status: 401 });
   }
 }

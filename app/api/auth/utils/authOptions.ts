@@ -1,5 +1,7 @@
 import { jwtDecode } from "jwt-decode";
-import KeycloakProvider from "next-auth/providers/keycloak";
+import { JWT } from "next-auth/jwt";
+import KeycloakProvider, { KeycloakProfile } from "next-auth/providers/keycloak";
+import { OAuthConfig } from "next-auth/providers/oauth";
 
 export const authOptions = {
   providers: [
@@ -19,15 +21,12 @@ export const authOptions = {
         token.refresh_token = account.refresh_token;
         token.access_token = account.access_token;
       } else if(nowTimestamp < token.expires_at) {
-        console.log("Token is still valid");
         return token;
       } else {
         try {
-          console.log("Refreshing access token");
           const refreshedToken = await refreshAccessToken(token);
           return refreshedToken;
         } catch (error) {
-          console.error("Error refreshing access token", error);
           return { ...token, error: "RefreshAccessTokenError" };
         }
       }
@@ -38,12 +37,25 @@ export const authOptions = {
       session.email = token.decoded.email;
       session.email_verified = token.decoded.email_verified;
       session.access_token = token.access_token;
+      session.id_token = token.id_token;
+      session.expires_at = token.expires_at;
       session.error = token.error;
       return session;
     },
     async redirect({ url, baseUrl }: any) {
       // TODO fix any
       return url.startsWith(baseUrl) ? url : baseUrl + "/";
+    },
+  },
+  events: {
+    async signOut({ token }: { token: JWT }) {
+      if (token.provider === "keycloak") {
+        const issuerUrl = (authOptions.providers.find(p => p.id === "keycloak") as OAuthConfig<KeycloakProfile>).options!.issuer!
+        const logOutUrl = new URL(`${issuerUrl}/protocol/openid-connect/logout`)
+        // @ts-ignore
+        logOutUrl.searchParams.set("id_token_hint", token.id_token!)
+        await fetch(logOutUrl);
+      }
     },
   }
 };

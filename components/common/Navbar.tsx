@@ -6,11 +6,7 @@ import { usePathname } from "next/navigation";
 import axios from "axios";
 
 async function keycloakSessionLogOut() {
-  try {
-    await axios.get(`/api/auth/logout`);
-  } catch (err) {
-    console.error("error session loggingo ut", err);
-  }
+  await axios.get(`/api/auth/logout`);
 }
 
 const Navbar = () => {
