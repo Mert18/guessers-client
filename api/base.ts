@@ -11,7 +11,9 @@ export const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   async (config) => {
     const accessToken = await getAccessToken();
-    config.headers["Authorization"] = `Bearer ${accessToken}`;
+    if(accessToken){
+      config.headers["Authorization"] = `Bearer ${accessToken}`;
+    }
     return config;
   },
   (error) => {

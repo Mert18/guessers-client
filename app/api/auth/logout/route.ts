@@ -8,7 +8,6 @@ export async function GET() {
 
   if (session) {
     const idToken = await getIdToken();
-
     // this will log out the user on Keycloak side
     const url = `${
       process.env.END_SESSION_URL
@@ -19,7 +18,6 @@ export async function GET() {
     try {
       await axios.get(url);
     } catch (err) {
-      console.error("error session logging out", err);
       return new Response(null, { status: 500 });
     }
   }
