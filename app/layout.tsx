@@ -4,6 +4,7 @@ import SessionProviderWrapper from "@/util/sessionProviderWrapper";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Metadata } from "next";
+import BetaWatermark from "@/components/BetaWatermark";
 
 const font = Rubik({ subsets: ["latin"], weight: ["300", "400", "700"] });
 
@@ -27,9 +28,7 @@ export default function RootLayout({
           <div className="col-start-1 md:col-start-4 xl:col-start-5 col-end-13 md:col-end-10 xl:col-end-9">{children}</div>
           <ToastContainer />
 
-          <div className="opacity-50 absolute right-2 top-2">
-            <p className="text-failure">You are viewing the beta version of guessers.io. <br /> Your data may be removed eventually.</p>
-          </div>
+          <BetaWatermark />
         </body>
       </html>
     </SessionProviderWrapper>

@@ -21,7 +21,7 @@ const RoomActivePrizes = ({ prizes, paging, setPaging, loading }: IRoomActivePri
       return <p className="text-text-default">No prizes available.</p>;
     } else {
       return <div className="w-full">
-        <div className="bg-primary-default p-2 rounded-md flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
+        <div className="bg-primary-default p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
           <h2 className="flex-1">{"Name"}</h2>
           <h2 className="flex-1">{"Description"}</h2>
           <h2 className="flex-1">{"Cost"}</h2>

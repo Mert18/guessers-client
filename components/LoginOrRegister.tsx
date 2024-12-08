@@ -29,7 +29,7 @@ const LoginOrRegister = () => {
     password: "",
   };
   return (
-    <div className="flex flex-col justify-center items-center my-8 w-full">
+    <div className="flex flex-col justify-center items-center my-8 w-full lg:w-1/2 p-2">
       <p className="flex flex-col w-full text-center">
         <span className="my-2">Already have an account?</span>
         <PrimaryButton

@@ -26,7 +26,7 @@ const SelfGuessPapersList = ({
     } else {
       return (
         <div className="w-full">
-          <div className="bg-primary-default p-2 rounded-md flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
+          <div className="bg-primary-default p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
             <h2 className="flex-1">{"Username"}</h2>
             <h2 className="flex-1">{"Status"}</h2>
             <h2 className="flex-1">{"Stakes"}</h2>
@@ -45,7 +45,7 @@ const SelfGuessPapersList = ({
   };
   return (
     <div className="my-8 text-xs">
-      <ComponentTitle text="Self Guess Papers" icon="/ticket.svg" />
+      <ComponentTitle text="Your Guess Papers" icon="/ticket.svg" />
       {selfGuessPapersRenderer()}
     </div>
   );

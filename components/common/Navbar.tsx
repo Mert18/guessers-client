@@ -25,7 +25,7 @@ const Navbar = () => {
             path === "/home"
               ? "text-background-bright hover:bg-primary-bright bg-primary-default"
               : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-          }  transition-all text-center rounded-md border-2`}
+          }  transition-all text-center border-2`}
         >
           <div
             className={`text-text font-bold flex justify-center items-center`}
@@ -40,7 +40,7 @@ const Navbar = () => {
             path === "/home/invites"
               ? "text-background-bright hover:bg-primary-bright bg-primary-default"
               : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-          }  transition-all text-center rounded-md border-2`}
+          }  transition-all text-center border-2`}
         >
           <div
             className={`text-text font-bold flex justify-center items-center`}
@@ -55,7 +55,7 @@ const Navbar = () => {
             path === "/home/room/create"
               ? "text-background-bright hover:bg-primary-bright bg-primary-default"
               : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-          }  transition-all text-center rounded-md border-2`}
+          }  transition-all text-center border-2`}
         >
           <div
             className={`text-text font-bold flex justify-center items-center`}
@@ -74,7 +74,7 @@ const Navbar = () => {
                 path === `/home/profile/${session.username}`
                   ? "text-background-bright hover:bg-primary-bright bg-primary-default"
                   : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-              }  transition-all text-center rounded-md border-2`}
+              }  transition-all text-center border-2`}
             >
               <div
                 className={`text-text font-bold flex justify-center items-center`}
@@ -85,7 +85,7 @@ const Navbar = () => {
 
             <Link
               href={"/"}
-              className={`py-2 flex-1 text-failure hover:text-background-bright hover:bg-failure border-failure transition-all text-center rounded-md border-2`}
+              className={`py-2 flex-1 text-failure hover:text-background-bright hover:bg-failure border-failure transition-all text-center border-2`}
               onClick={() => {
                 keycloakSessionLogOut().then(() =>
                   signOut({ callbackUrl: "/" })

@@ -26,7 +26,7 @@ const EventCard = ({ event, handleOptionSelected, guesses, roomUser }: IEventCar
   return (
     <div
       key={event.id}
-      className={`flex flex-col justify-center items-center w-full text-text-default text-xs my-2 py-2 bg-background-bright border-2 border-primary-default rounded-md`}
+      className={`flex flex-col justify-center items-center w-full text-text-default text-xs my-2 py-2 bg-background-bright border-2 border-primary-default`}
     >
       <EventCardHeader
         event={event}

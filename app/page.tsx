@@ -4,6 +4,7 @@ import Loader from "@/components/common/Loader";
 import LoginOrRegister from "@/components/LoginOrRegister";
 import Welcomer from "@/components/Welcomer";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -35,13 +36,14 @@ function Home() {
   } else {
     return (
       <div className="flex flex-col items-center justify-start text-text lg:text-sm text-xs w-full">
-        <div className="w-full h-2 bg-text-default"></div>
-        <div className="w-full h-4 bg-primary-default"></div>
-        
+        <div className="my-4"></div>
+        <div className="flex justify-center items-center w-full">
+          <Image src="/logo/logo-with-text.svg" alt="logo" width={240} height={240} />
+        </div>
+        <div className="my-4"></div>
         <Welcomer stats={stats} />
 
         <LoginOrRegister />
-        
       </div>
     );
   }
