@@ -34,7 +34,7 @@ const RoomLayout = ({ params, children }: IRoomLayoutProps) => {
 
           <div className="flex w-full text-sm gap-1">
             <Link
-              className={`border-2 rounded-md p-2 text-xs flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
+              className={`border-2 p-2 text-xs flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
                 pathname.endsWith("guess")
                   ? "border-primary-default bg-primary-default text-background-bright hover:bg-primary-bright"
                   : "border-primary-default text-text-default bg-background-bright hover:bg-primary-default hover:text-background-bright"
@@ -44,7 +44,7 @@ const RoomLayout = ({ params, children }: IRoomLayoutProps) => {
               {"Guess"}
             </Link>
             <Link
-              className={`border-2 rounded-md p-2 text-xs flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
+              className={`border-2 p-2 text-xs flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
                 pathname.endsWith("ranks")
                   ? "border-primary-default bg-primary-default text-background-bright hover:bg-primary-bright"
                   : "border-primary-default text-text-default bg-background-bright hover:bg-primary-default hover:text-background-bright"
@@ -54,7 +54,7 @@ const RoomLayout = ({ params, children }: IRoomLayoutProps) => {
               {"Ranks"}
             </Link>
             <Link
-              className={`border-2 rounded-md p-2 text-xs flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
+              className={`border-2 p-2 text-xs flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
                 pathname.endsWith("papers")
                   ? "border-primary-default bg-primary-default text-background-bright hover:bg-primary-bright"
                   : "border-primary-default text-text-default bg-background-bright hover:bg-primary-default hover:text-background-bright"
@@ -64,7 +64,7 @@ const RoomLayout = ({ params, children }: IRoomLayoutProps) => {
               {"Guess Papers"}
             </Link>
             <Link
-              className={`border-2 rounded-md p-2 text-xs flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
+              className={`border-2 p-2 text-xs flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
                 pathname.endsWith("prizes")
                   ? "border-primary-default bg-primary-default text-background-bright hover:bg-primary-bright"
                   : "border-primary-default text-text-default bg-background-bright hover:bg-primary-default hover:text-background-bright"

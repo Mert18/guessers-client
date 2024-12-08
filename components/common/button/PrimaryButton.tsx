@@ -25,7 +25,7 @@ const PrimaryButton = ({
         className={`py-2 flex-1 transition-all text-center`}
       >
         <div
-          className={`text-text font-bold flex justify-center items-center rounded-md ${
+          className={`text-text font-bold flex justify-center items-center ${
             bg
               ? "bg-primary-default text-background-bright p-2 hover:bg-primary-bright"
               : "bg-transparent text-text-default hover:text-primary-default"
@@ -42,7 +42,7 @@ const PrimaryButton = ({
           bg
             ? "bg-primary-default text-background-bright p-2 hover:bg-primary-bright"
             : "bg-transparent text-text-default hover:text-primary-default"
-        } rounded-md transition-all text-xs flex-1 font-bold`}
+        } transition-all text-xs flex-1 font-bold`}
         type={type}
         onClick={onClick}
       >

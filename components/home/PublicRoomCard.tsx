@@ -13,12 +13,12 @@ const PublicRoomCard = ({ room }: IPublicRoomCardProps) => {
   };
   return (
     <div className="w-full font-bold">
-      <div className="flex justify-start items-center bg-background-bright my-1 text-primary-default border-2 border-primary-default transition-all px-2 py-3 rounded-md">
+      <div className="flex justify-start items-center bg-background-bright my-1 text-primary-default border-2 border-primary-default transition-all px-2 py-3">
         <h2 className="flex-1">{room.name}</h2>
         <p className="flex-1">{room.owner.username}</p>
         <p className="flex-1">{room.memberCount}</p>
         <div className="flex-1">
-          <button className="bg-primary-default hover:bg-primary-bright p-2 text-xs text-background-bright rounded-md" onClick={() => handleJoinRoom()}>
+          <button className="bg-primary-default hover:bg-primary-bright p-2 text-xs text-background-bright" onClick={() => handleJoinRoom()}>
             Join
           </button>
         </div>

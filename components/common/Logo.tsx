@@ -1,9 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const Logo = () => {
   return (
-    <Link href="/">
-      <h1 className="bg-primary-default text-background-bright font-bold p-2 text-sm rounded-lg">guessers.io</h1>
+    <Link href="/home">
+      <Image src="/logo/logo.svg" alt="letter g" width={50} height={50} />
     </Link>
   );
 };

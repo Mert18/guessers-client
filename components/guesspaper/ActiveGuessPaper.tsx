@@ -6,6 +6,7 @@ import { IRoomUser } from "@/types/IRoom.model";
 import { ICreateGuessPaperGuess } from "@/types/IGuessPaper.model";
 import { useState } from "react";
 import Loader from "../common/Loader";
+import TokenSymbol from "../common/TokenSymbol";
 
 interface IActiveGuessPaperProps {
   guesses: ICreateGuessPaperGuess[];
@@ -75,7 +76,7 @@ const ActiveGuessPaper = ({
 
             <div className="flex flex-col justify-center items-start">
               <p className="text-xs">{"Wins"}</p>
-              <p className="text-sm font-bold text-primary">{wins}₺</p>
+              <p className="text-sm font-bold text-primary flex justify-center items-center">{wins}<TokenSymbol /></p>
             </div>
           </div>
         </div>

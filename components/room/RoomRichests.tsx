@@ -1,6 +1,7 @@
 import { IRoomUser } from "@/types/IRoom.model";
 import Image from "next/image";
 import Link from "next/link";
+import TokenSymbol from "../common/TokenSymbol";
 
 interface IRoomRichestsProps {
   rankedRiches: any; // TODO: fix it pls
@@ -18,7 +19,7 @@ const RoomRichests = ({ rankedRiches }: IRoomRichestsProps) => {
               : index == 1
               ? "bg-primary-default"
               : "bg-primary-bright"
-          } rounded-md my-1`}
+          } my-1`}
         >
           <div className="mr-1">
             {index == 0 ? (
@@ -50,8 +51,8 @@ const RoomRichests = ({ rankedRiches }: IRoomRichestsProps) => {
                 {roomUser.user.username}
               </Link>
             </p>
-            <p className="font-bold text-background-bright">
-              {roomUser.balance.toFixed(2)}₺
+            <p className="font-bold text-background-bright flex justify-center items-center">
+              {roomUser.balance.toFixed(2)} <TokenSymbol />
             </p>
           </div>
         </li>
