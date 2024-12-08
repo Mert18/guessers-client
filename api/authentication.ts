@@ -8,15 +8,11 @@ const baseURLAuthentication =
 export const createUser = async (user: IUserRegister) => {
   return await axios
     .post(baseURLAuthentication + "/create-user", user)
-    .then((response) => {
-      if (!response.data.success) {
-        toast.error(response.data.message);
-      } else {
-        toast.success("User created successfully.");
-      }
+    .then(() => {
+      toast.success("User created successfully.");
     })
     .catch((err) => {
-      toast.error(err?.response?.data?.message);
+      toast.error("Error creating user. " + err?.response?.data?.message);
     });
 };
 

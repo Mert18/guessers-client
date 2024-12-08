@@ -9,11 +9,15 @@ import * as Yup from "yup";
 
 const RegisterSchema = Yup.object().shape({
   username: Yup.string()
+    .matches(
+      /^[a-zA-Z0-9._-]+$/,
+      "Username can only contain alphanumeric characters, dashes, underscores, and periods."
+    )
     .min(4, "Username too Short!")
     .max(30, "Username too Long!")
     .required("Username is Required."),
   password: Yup.string()
-    .min(6, "Password too Short!")
+    .min(3, "Password too Short!")
     .max(50, "Password too Long!")
     .required("Password is Required."),
 });
@@ -25,7 +29,7 @@ const LoginOrRegister = () => {
     password: "",
   };
   return (
-    <div className="flex flex-col justify-center items-center my-8">
+    <div className="flex flex-col justify-center items-center my-8 w-full">
       <p className="flex flex-col w-full text-center">
         <span className="my-2">Already have an account?</span>
         <PrimaryButton
@@ -49,14 +53,14 @@ const LoginOrRegister = () => {
         onSubmit={(values, { resetForm }) => {
           setLoading(true);
           createUser(values).finally(() => {
-            setLoading(false);
             resetForm();
+            setLoading(false);
           });
         }}
       >
         {({ errors, touched }) => (
-          <Form className="flex flex-col justify-start items-start">
-            <div className="flex justify-start items-center my-1">
+          <Form className="flex flex-col justify-start items-start w-full">
+            <div className="flex justify-start items-center my-1 w-full">
               <CustomInputField
                 withLabel={true}
                 name="username"
@@ -66,7 +70,7 @@ const LoginOrRegister = () => {
               />
             </div>
 
-            <div className="flex justify-start items-center my-1">
+            <div className="flex justify-start items-center my-1 w-full">
               <CustomInputField
                 withLabel={true}
                 name="password"
@@ -85,13 +89,18 @@ const LoginOrRegister = () => {
                 <PrimaryButton type="submit" text={"Register"} bg={true} />
               )}
             </div>
-
-            {errors.username && touched.username ? (
-              <div className="text-xs my-2 text-primary">{errors.username}</div>
-            ) : null}
-            {errors.password && touched.password ? (
-              <div className="text-xs my-2 text-primary">{errors.password}</div>
-            ) : null}
+            <div className="w-full">
+              {errors.username && touched.username ? (
+                <div className="text-xs my-2 text-failure">
+                  {errors.username}
+                </div>
+              ) : null}
+              {errors.password && touched.password ? (
+                <div className="text-xs my-2 text-failure">
+                  {errors.password}
+                </div>
+              ) : null}
+            </div>
           </Form>
         )}
       </Formik>
