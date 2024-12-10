@@ -1,5 +1,6 @@
 "use client";
 import AuthStatus from "@/components/authStatus";
+import Footer from "@/components/common/Footer";
 import Loader from "@/components/common/Loader";
 import Navbar from "@/components/common/Navbar";
 import { useSession } from "next-auth/react";
@@ -9,7 +10,7 @@ interface IHomeLayoutProps {
   children: React.ReactNode;
 }
 
-export default function HomeLayout({ children }: IHomeLayoutProps){
+export default function HomeLayout({ children }: IHomeLayoutProps) {
   const router = useRouter();
   const { data: session, status } = useSession();
 
@@ -19,15 +20,16 @@ export default function HomeLayout({ children }: IHomeLayoutProps){
         <Loader />
       </div>
     );
-  } else if(!session) {
+  } else if (!session) {
     router.push("/");
   } else if (session) {
     return (
-      <>
+      <div className="min-h-screen flex flex-col">
         <Navbar />
-        <>{children}</>
+        <div className="flex-grow">{children}</div>
         <AuthStatus />
-      </>
+        <Footer />
+      </div>
     );
   }
-};
+}
