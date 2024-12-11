@@ -26,7 +26,7 @@ export default function HomeLayout({ children }: IHomeLayoutProps) {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <div className="flex-grow">{children}</div>
+        <div className="flex-grow p-2 md:p-0">{children}</div>
         <AuthStatus />
         <Footer />
       </div>
