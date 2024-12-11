@@ -3,7 +3,6 @@ import { createEvent } from "@/api/event";
 import { getRoom } from "@/api/room";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
 import Loader from "@/components/common/Loader";
-import EventGuessOption from "@/components/events/EventGuessOption";
 import ListReadyEvents from "@/components/events/ListReadyEvents";
 import CustomInputField from "@/components/form/CustomInputField";
 import Modal from "@/components/Modal";
@@ -58,14 +57,14 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
         Create Event
       </div>
 
-      <PrimaryButton
+      {/* <PrimaryButton
         type="submit"
         text="Create From Ready Event"
         onClick={() => setCreateReadyEventModalOpen(true)}
         bg={true}
-      />
+      /> */}
 
-      {createReadyEventModalOpen && (
+      {/* {createReadyEventModalOpen && (
         <Modal
           title={"Ready Events"}
           handleCloseModal={handleCloseReadyEventModal}
@@ -77,7 +76,7 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
         </Modal>
       )}
 
-      <p className="my-2 text-text-default">or create manually.</p>
+      <p className="my-2 text-text-default">or create manually.</p> */}
 
       <Formik
         initialValues={initialValues}
