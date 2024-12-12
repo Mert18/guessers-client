@@ -11,32 +11,20 @@ import { toast } from "react-toastify";
 const leagues = [
   {
     name: "English Premier League",
-    key: "soccer_epl",
+    key: 3,
   },
   {
     name: "Turkish Super League",
-    key: "soccer_turkey_super_league",
+    key: 2,
   },
   {
     name: "UEFA Champions League",
-    key: "soccer_uefa_champs_league",
+    key: 0,
   },
   {
     name: "UEFA Europe League",
-    key: "soccer_uefa_europa_league",
-  },
-  {
-    name: "Italy Serie A",
-    key: "soccer_italy_serie_a",
-  },
-  {
-    name: "Bundesliga",
-    key: "soccer_germany_bundesliga",
-  },
-  {
-    name: "Ligue 1",
-    key: "soccer_france_ligue_one",
-  },
+    key: 1,
+  }
 ];
 
 interface IListReadyEventsProps {
@@ -48,7 +36,7 @@ const ListReadyEvents = ({
   handleCloseReadyEventModal,
   roomId,
 }: IListReadyEventsProps) => {
-  const [selectedLeague, setSelectedLeague] = useState<string>("soccer_epl");
+  const [selectedLeague, setSelectedLeague] = useState<number>(0);
   const [readyEvents, setReadyEvents] = useState<IReadyEvent[]>([]);
   const [readyEventIdsToCreate, setReadyEventIdsToCreate] = useState<string[]>(
     []
@@ -56,7 +44,7 @@ const ListReadyEvents = ({
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const fetchReadyEvents = (selectedLeague: string) => {
+  const fetchReadyEvents = (selectedLeague: number) => {
     setLoading(true);
     getReadyEvents(selectedLeague)
       .then((response) => {
@@ -112,7 +100,7 @@ const ListReadyEvents = ({
         {loading ? (
           <Loader />
         ) : (
-          readyEvents.map((readyEvent) => (
+          readyEvents?.map((readyEvent) => (
             <button
               key={readyEvent.id}
               className={`${

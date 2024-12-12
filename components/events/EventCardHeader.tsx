@@ -49,11 +49,6 @@ const EventCardHeader = ({
             <p className="flex-1">
               {convertToUserTimeZone(event.eventTime + "")}
             </p>
-            {event.status === "IN_PROGRESS" && (
-              <div className={`mr-2 ${optionsOpen ? "rotate-180" : ""}`}>
-                <Image src="/arrow.svg" alt="arrow" width={10} height={10} />
-              </div>
-            )}
           </>
         )}
 
