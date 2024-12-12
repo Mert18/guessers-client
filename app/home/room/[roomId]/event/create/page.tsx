@@ -57,14 +57,14 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
         Create Event
       </div>
 
-      {/* <PrimaryButton
+      <PrimaryButton
         type="submit"
         text="Create From Ready Event"
         onClick={() => setCreateReadyEventModalOpen(true)}
         bg={true}
-      /> */}
+      />
 
-      {/* {createReadyEventModalOpen && (
+      {createReadyEventModalOpen && (
         <Modal
           title={"Ready Events"}
           handleCloseModal={handleCloseReadyEventModal}
@@ -76,7 +76,7 @@ const CreateEvent = ({ params }: ICreateEventProps) => {
         </Modal>
       )}
 
-      <p className="my-2 text-text-default">or create manually.</p> */}
+      <p className="my-2 text-text-default">or create manually.</p>
 
       <Formik
         initialValues={initialValues}
