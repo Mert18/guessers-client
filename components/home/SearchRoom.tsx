@@ -1,7 +1,7 @@
 "use client";
 import { Form, Formik } from "formik";
 import { useState } from "react";
-import CustomInputField from "../form/CustomInputField";
+import CustomInputField from "../common/CustomInputField";
 import PrimaryButton from "../common/button/PrimaryButton";
 import { searchRoom } from "@/api/room";
 import PublicRoomCard from "./PublicRoomCard";

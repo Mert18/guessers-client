@@ -1,8 +1,8 @@
 "use client";
-import AuthStatus from "@/components/authStatus";
-import Footer from "@/components/common/Footer";
+import AuthStatus from "@/components/auth/authStatus";
+import Footer from "@/components/layout/Footer";
 import Loader from "@/components/common/Loader";
-import Navbar from "@/components/common/Navbar";
+import Navbar from "@/components/layout/Navbar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 

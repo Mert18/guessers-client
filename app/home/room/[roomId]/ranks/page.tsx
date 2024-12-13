@@ -1,8 +1,8 @@
 "use client";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import Loader from "@/components/common/Loader";
-import RoomRichests from "@/components/room/RoomRichests";
-import RoomTopPredictors from "@/components/room/RoomTopPredictors";
+import RoomRichests from "@/components/room/pages/ranks/RoomRichests";
+import RoomTopPredictors from "@/components/room/pages/ranks/RoomTopPredictors";
 import { useRoomRanks } from "@/hooks/useRoomRanks";
 
 interface IRoomRanksProps {

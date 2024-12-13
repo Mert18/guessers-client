@@ -1,17 +1,17 @@
 "use client";
-import { listRoomGuessPapersByStatus } from "@/api/guesspaper";
+import { getRoomPrizes } from "@/api/prize";
 import { IPaging } from "@/types/IRequest.model";
 import React, { useEffect, useState } from "react";
-import RoomGuessPapers from "../RoomGuessPapers";
+import RoomActivePrizes from "./RoomActivePrizes";
 
-interface IRoomPapersContentProps {
+interface IRoomPrizesContentProps {
   params: {
     roomId: string;
   };
 }
 
-const RoomPapersContent = ({ params }: IRoomPapersContentProps) => {
-  const [roomGuessPapers, setRoomGuessPapers] = useState([]);
+const RoomPrizesContent = ({ params }: IRoomPrizesContentProps) => {
+  const [roomActivePrizes, setRoomActivePrizes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [paging, setPaging] = useState<IPaging>({
     page: 0,
@@ -20,16 +20,17 @@ const RoomPapersContent = ({ params }: IRoomPapersContentProps) => {
     totalElements: 0,
   });
 
-  const fetchRoomGuessPapers = async (roomId: string) => {
-    if (!roomId) return; // Prevent calling if roomId is missing
+  const fetchRoomActivePrizes = async (roomId: string) => {
+    if (!roomId) return;
 
     setLoading(true);
-    await listRoomGuessPapersByStatus({
+    await getRoomPrizes({
       roomId,
       paging,
+      active: true,
     })
       .then((response) => {
-        setRoomGuessPapers(response.data.content);
+        setRoomActivePrizes(response.data.content);
         setPaging({
           page: response.data.page.number,
           size: response.data.page.size,
@@ -43,12 +44,12 @@ const RoomPapersContent = ({ params }: IRoomPapersContentProps) => {
   };
 
   useEffect(() => {
-    fetchRoomGuessPapers(params?.roomId);
-  }, [params?.roomId, paging?.page]);
+    fetchRoomActivePrizes(params.roomId);
+  }, [params?.roomId, paging.page]);
 
   return (
-    <RoomGuessPapers
-      guessPapers={roomGuessPapers}
+    <RoomActivePrizes
+      prizes={roomActivePrizes}
       paging={paging}
       setPaging={setPaging}
       loading={loading}
@@ -56,4 +57,4 @@ const RoomPapersContent = ({ params }: IRoomPapersContentProps) => {
   );
 };
 
-export default RoomPapersContent;
+export default RoomPrizesContent;

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import PrimaryButton from "./common/button/PrimaryButton";
+import PrimaryButton from "../common/button/PrimaryButton";
 import { signIn } from "next-auth/react";
 import { Form, Formik } from "formik";
-import Loader from "./common/Loader";
+import Loader from "../common/Loader";
 import { createUser } from "@/api/authentication";
-import CustomInputField from "./form/CustomInputField";
+import CustomInputField from "../common/CustomInputField";
 import * as Yup from "yup";
 
 const RegisterSchema = Yup.object().shape({

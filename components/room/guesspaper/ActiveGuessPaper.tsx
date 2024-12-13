@@ -1,12 +1,12 @@
 "use client";
 import { createGuessPaper } from "@/api/guesspaper";
-import ComponentTitle from "../common/ComponentTitle";
+import ComponentTitle from "../../common/ComponentTitle";
 import { toast } from "react-toastify";
 import { IRoomUser } from "@/types/IRoom.model";
 import { ICreateGuessPaperGuess } from "@/types/IGuessPaper.model";
 import { useState } from "react";
-import Loader from "../common/Loader";
-import TokenSymbol from "../common/TokenSymbol";
+import Loader from "../../common/Loader";
+import TokenSymbol from "../../common/TokenSymbol";
 
 interface IActiveGuessPaperProps {
   guesses: ICreateGuessPaperGuess[];

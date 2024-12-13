@@ -2,13 +2,12 @@
 import { fetchRoomUsers, getRoom, giveTokenToUsers } from "@/api/room";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
-import ComponentWithHeader from "@/components/common/ComponentWithHeader";
 import Loader from "@/components/common/Loader";
 import { IRoomBasic, IRoomUser } from "@/types/IRoom.model";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import RoomName from "../RoomName";
+import RoomName from "../../layout/RoomName";
 
 interface IRoomLendTokenContentProps {
   params: {
@@ -65,35 +64,34 @@ const RoomLendTokenContent = ({ params }: IRoomLendTokenContentProps) => {
       {room?.name && <RoomName roomName={room.name} roomId={params.roomId} />}
 
       <div className="w-full max-h-[300px] overflow-y-auto my-4 scrollbar-thin">
-        <ComponentWithHeader name="Select Room Users">
-          <div className="w-full my-2">
-            {roomUsers.map((roomUser) => (
-              <button
-                onClick={() => {
-                  if (roomUserIdsToLend.includes(roomUser.id)) {
-                    setRoomUserIdsToLend(
-                      roomUserIdsToLend.filter((id) => id !== roomUser.id)
-                    );
-                  } else {
-                    setRoomUserIdsToLend([...roomUserIdsToLend, roomUser.id]);
-                  }
-                }}
-                key={roomUser.id}
-                className={`${
-                  roomUserIdsToLend.includes(roomUser.id)
-                    ? "text-background-bright bg-primary-default"
-                    : "bg-background-bright text-text-default"
-                } flex justify-between items-center w-full p-2 my-1 rounded-md border-2 border-primary-default`}
-              >
-                <div>{roomUser.user.username}</div>
-                <div>{roomUser.balance}</div>
-              </button>
-            ))}
-          </div>
-        </ComponentWithHeader>
+        <ComponentTitle text="Select Room Users" />
+        <div className="w-full my-2">
+          {roomUsers.map((roomUser) => (
+            <button
+              onClick={() => {
+                if (roomUserIdsToLend.includes(roomUser.id)) {
+                  setRoomUserIdsToLend(
+                    roomUserIdsToLend.filter((id) => id !== roomUser.id)
+                  );
+                } else {
+                  setRoomUserIdsToLend([...roomUserIdsToLend, roomUser.id]);
+                }
+              }}
+              key={roomUser.id}
+              className={`${
+                roomUserIdsToLend.includes(roomUser.id)
+                  ? "text-background-bright bg-primary-default"
+                  : "bg-background-bright text-text-default"
+              } flex justify-between items-center w-full p-2 my-1 rounded-md border-2 border-primary-default`}
+            >
+              <div>{roomUser.user.username}</div>
+              <div>{roomUser.balance}</div>
+            </button>
+          ))}
+        </div>
       </div>
 
-      <ComponentWithHeader name="Amount">
+      <ComponentTitle text="Amount" />
         <p>
           <span className="font-bold">{amount}</span>{" "}
           <button onClick={() => setAmount(amount + 50)}>+</button>{" "}
@@ -107,7 +105,6 @@ const RoomLendTokenContent = ({ params }: IRoomLendTokenContentProps) => {
             -
           </button>
         </p>
-      </ComponentWithHeader>
 
       {loading ? (
         <Loader />

@@ -1,13 +1,13 @@
 "use client";
 import { getRoomUser } from "@/api/room";
-import ActiveGuessPaper from "@/components/guesspaper/ActiveGuessPaper";
+import ActiveGuessPaper from "@/components/room/guesspaper/ActiveGuessPaper";
 import {
   ICreateGuessPaperGuess,
   IHandleOptionSelected,
 } from "@/types/IGuessPaper.model";
 import { IRoomUser } from "@/types/IRoom.model";
 import React, { useEffect, useState } from "react";
-import RoomActiveEvents from "../RoomActiveEvents";
+import RoomActiveEvents from "./RoomActiveEvents";
 
 interface IRoomGuessContentProps {
   params: { roomId: string };

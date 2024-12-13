@@ -2,7 +2,7 @@
 
 import { useSession, signOut } from "next-auth/react";
 import { useEffect } from "react";
-import Loader from "./common/Loader";
+import Loader from "../common/Loader";
 
 export default function AuthStatus() {
   const { data: session, status } = useSession();

@@ -1,5 +1,5 @@
 import ComponentTitle from "../common/ComponentTitle";
-import GuessPaperCard from "../guesspaper/GuessPaperCard";
+import GuessPaperCard from "../room/guesspaper/GuessPaperCard";
 import Loader from "../common/Loader";
 import { IGuessPaper } from "@/types/IGuessPaper.model";
 import { IPaging } from "@/types/IRequest.model";

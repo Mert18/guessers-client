@@ -1,4 +1,4 @@
-import RoomPapersContent from "@/components/room/pages/RoomPapersContent";
+import RoomPapersContent from "@/components/room/pages/papers/RoomPapersContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

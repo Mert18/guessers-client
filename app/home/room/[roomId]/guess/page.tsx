@@ -1,4 +1,4 @@
-import RoomGuessContent from "@/components/room/pages/RoomGuessContent";
+import RoomGuessContent from "@/components/room/pages/guess/RoomGuessContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

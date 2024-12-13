@@ -1,4 +1,4 @@
-import RoomLendTokenContent from "@/components/room/pages/RoomLendTokenContent";
+import RoomLendTokenContent from "@/components/room/pages/lendtoken/RoomLendTokenContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

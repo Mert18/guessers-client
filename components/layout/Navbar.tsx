@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
-import Logo from "./Logo";
+import Logo from "../common/Logo";
 import { signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import axios from "axios";
 import useIsMobile from "@/hooks/useIsMobile";
-import HamburgerMenu from "../HamburgerMenu";
+import HamburgerMenu from "../common/HamburgerMenu";
 
 async function keycloakSessionLogOut() {
   await axios.get(`/api/auth/logout`);

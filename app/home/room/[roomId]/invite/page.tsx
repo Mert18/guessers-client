@@ -1,4 +1,4 @@
-import RoomInviteContent from "@/components/room/pages/RoomInviteContent";
+import RoomInviteContent from "@/components/room/pages/invite/RoomInviteContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

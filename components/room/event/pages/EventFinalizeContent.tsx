@@ -3,7 +3,7 @@ import { getEvent, finalizeEvent } from "@/api/event";
 import { getRoom } from "@/api/room";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
-import RoomName from "@/components/room/RoomName";
+import RoomName from "@/components/room/layout/RoomName";
 import {
   IEvent,
   IEventGuessOptionCase,

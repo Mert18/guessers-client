@@ -1,4 +1,4 @@
-import RoomLayoutContent from "@/components/room/RoomLayoutContent";
+import RoomLayoutContent from "@/components/room/layout/RoomLayoutContent";
 import { Metadata } from "next";
 import React from "react";
 

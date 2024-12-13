@@ -1,7 +1,7 @@
 import { IRoomUser } from "@/types/IRoom.model";
 import Image from "next/image";
 import Link from "next/link";
-import TokenSymbol from "../common/TokenSymbol";
+import TokenSymbol from "../../../common/TokenSymbol";
 
 interface IRoomRichestsProps {
   rankedRiches: any; // TODO: fix it pls

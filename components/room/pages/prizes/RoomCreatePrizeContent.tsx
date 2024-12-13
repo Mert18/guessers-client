@@ -4,13 +4,13 @@ import { getRoom } from "@/api/room";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import Loader from "@/components/common/Loader";
-import CustomInputField from "@/components/form/CustomInputField";
+import CustomInputField from "@/components/common/CustomInputField";
 import { IRoomBasic } from "@/types/IRoom.model";
 import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import RoomName from "../RoomName";
+import RoomName from "../../layout/RoomName";
 
 interface IRoomCreatePrizeContentProps {
   params: {

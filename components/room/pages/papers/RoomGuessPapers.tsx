@@ -1,9 +1,9 @@
-import ComponentTitle from "../common/ComponentTitle";
-import GuessPaperCard from "../guesspaper/GuessPaperCard";
-import Loader from "../common/Loader";
+import ComponentTitle from "../../../common/ComponentTitle";
+import GuessPaperCard from "../../guesspaper/GuessPaperCard";
+import Loader from "../../../common/Loader";
 import { IGuessPaper } from "@/types/IGuessPaper.model";
 import { IPaging } from "@/types/IRequest.model";
-import Pager from "../common/Pager";
+import Pager from "../../../common/Pager";
 
 interface IRoomGuessPapersProps {
   guessPapers: IGuessPaper[];

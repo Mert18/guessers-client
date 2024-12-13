@@ -3,7 +3,7 @@ import { createRoom } from "@/api/room";
 import PrimaryButton from "@/components/common/button/PrimaryButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import Loader from "@/components/common/Loader";
-import CustomInputField from "@/components/form/CustomInputField";
+import CustomInputField from "@/components/common/CustomInputField";
 import { ISelectOption } from "@/types/IGlobal.model";
 import { Formik, Form } from "formik";
 import { useRouter } from "next/router";

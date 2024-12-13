@@ -1,11 +1,11 @@
 "use client";
-import EventCard from "../event/EventCard";
-import ComponentTitle from "../common/ComponentTitle";
-import Loader from "../common/Loader";
-import Pager from "../common/Pager";
+import ComponentTitle from "../../../common/ComponentTitle";
+import Loader from "../../../common/Loader";
+import Pager from "../../../common/Pager";
 import { useActiveEvents } from "@/hooks/useActiveEvents";
 import { IRoomUser } from "@/types/IRoom.model";
 import { ICreateGuessPaperGuess, IHandleOptionSelected } from "@/types/IGuessPaper.model";
+import EventCard from "../../event/EventCard";
 
 interface RoomActiveEventsProps {
   roomId: string;

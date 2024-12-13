@@ -1,9 +1,9 @@
 "use client";
-import RoomName from "./RoomName";
-import PrimaryButton from "../common/button/PrimaryButton";
+import PrimaryButton from "../../common/button/PrimaryButton";
 import { IRoomUser } from "@/types/IRoom.model";
-import ComponentTitle from "../common/ComponentTitle";
-import TokenSymbol from "../common/TokenSymbol";
+import ComponentTitle from "../../common/ComponentTitle";
+import TokenSymbol from "../../common/TokenSymbol";
+import RoomName from "./RoomName";
 
 interface IRoomHeaderProps {
   roomUser: IRoomUser;

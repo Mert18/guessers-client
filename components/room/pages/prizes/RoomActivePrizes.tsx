@@ -1,10 +1,10 @@
 "use client";
-import ComponentTitle from "../common/ComponentTitle";
-import Loader from "../common/Loader";
-import PrizeCard from "../prize/PrizeCard";
+import ComponentTitle from "../../../common/ComponentTitle";
+import Loader from "../../../common/Loader";
+import PrizeCard from "../../../prize/PrizeCard";
 import { IPrize } from "@/types/IPrize.model";
 import { IPaging } from "@/types/IRequest.model";
-import Pager from "../common/Pager";
+import Pager from "../../../common/Pager";
 
 interface IRoomActivePrizesProps {
   prizes: IPrize[];
