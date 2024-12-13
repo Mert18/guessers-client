@@ -1,5 +1,5 @@
 "use client";
-import EventCard from "../events/EventCard";
+import EventCard from "../event/EventCard";
 import ComponentTitle from "../common/ComponentTitle";
 import Loader from "../common/Loader";
 import Pager from "../common/Pager";
