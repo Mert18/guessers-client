@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Metadata } from "next";
 import BetaWatermark from "@/components/layout/BetaWatermark";
+import GoogleAnalytics from "@/components/external/GoogleAnalytics";
 
 const font = Rubik({ subsets: ["latin"], weight: ["300", "400", "700"] });
 
@@ -21,11 +22,16 @@ export default function RootLayout({
   return (
     <SessionProviderWrapper>
       <html lang="en">
+        <GoogleAnalytics
+          GA_TRACKING_ID={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || ""}
+        />
         <body
           className={`${font.className} bg-background-default grid grid-cols-12`}
           style={{ position: "relative" }}
         >
-          <div className="col-start-1 md:col-start-4 xl:col-start-5 col-end-13 md:col-end-10 xl:col-end-9">{children}</div>
+          <div className="col-start-1 md:col-start-4 xl:col-start-5 col-end-13 md:col-end-10 xl:col-end-9">
+            {children}
+          </div>
           <ToastContainer />
 
           <BetaWatermark />
