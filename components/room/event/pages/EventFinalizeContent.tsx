@@ -10,7 +10,7 @@ import {
   IFinalizeEventRequest,
 } from "@/types/IEvent.model";
 import { IRoomBasic } from "@/types/IRoom.model";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface IEventFinalizeContentProps {

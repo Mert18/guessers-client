@@ -7,11 +7,11 @@ import CustomInputField from "@/components/common/CustomInputField";
 import RoomName from "@/components/room/layout/RoomName";
 import { IRoomBasic } from "@/types/IRoom.model";
 import { Formik, Form, FieldArray } from "formik";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface ICreateEventContentProps {
   params: { roomId: string };
@@ -79,7 +79,7 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
 
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
+        onSubmit={(values, { resetForm }) => {
           if (values.eventGuessOptions.length < 1) {
             toast.error("At least one option is required.");
             return;
@@ -117,9 +117,10 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
           setLoading(true);
           createEvent({ event: values, roomId: params.roomId })
             .then(() => {
+              resetForm();
               setTimeout(() => {
                 router.push(`/home/room/${params.roomId}/guess`);
-              }, 2000);
+              }, 1000);
             })
             .finally(() => {
               setLoading(false);

@@ -4,7 +4,7 @@ import PrimaryButton from "@/components/common/button/PrimaryButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import Loader from "@/components/common/Loader";
 import { IRoomBasic, IRoomUser } from "@/types/IRoom.model";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import RoomName from "../../layout/RoomName";

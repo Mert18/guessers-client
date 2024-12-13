@@ -26,10 +26,10 @@ export default function RootLayout({
           GA_TRACKING_ID={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || ""}
         />
         <body
-          className={`${font.className} bg-background-default grid grid-cols-12`}
+          className={`${font.className} bg-background-default grid grid-cols-12 min-h-screen`}
           style={{ position: "relative" }}
         >
-          <div className="col-start-1 md:col-start-4 xl:col-start-5 col-end-13 md:col-end-10 xl:col-end-9">
+          <div className="col-start-1 md:col-start-4 xl:col-start-5 col-end-13 md:col-end-10 xl:col-end-9 bg-background-bright p-4 shadow-lg">
             {children}
           </div>
           <ToastContainer />

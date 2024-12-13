@@ -1,7 +1,7 @@
 "use client";
 import { acceptRoomInvite, rejectRoomInvite } from "@/api/room";
 import { IPendingInvite } from "@/types/IUser.model";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface IPendingInviteCard {
   key: string;

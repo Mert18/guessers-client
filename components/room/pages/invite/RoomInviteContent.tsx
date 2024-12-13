@@ -9,6 +9,7 @@ import { Formik, Form } from "formik";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import RoomName from "../../layout/RoomName";
+import { useRouter } from "next/navigation";
 
 interface IRoomInviteContentProps {
   params: { roomId: string };
@@ -20,6 +21,7 @@ const RoomInviteContent = ({ params }: IRoomInviteContentProps) => {
   const initialValues = {
     username: "",
   };
+  const router = useRouter();
 
   useEffect(() => {
     getRoom(params.roomId).then((response) => {
@@ -33,7 +35,7 @@ const RoomInviteContent = ({ params }: IRoomInviteContentProps) => {
 
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
+        onSubmit={(values, { resetForm }) => {
           if (values.username === null || values.username.length < 3) {
             toast.error(
               "Username is required and must be at least 3 characters long."
@@ -45,9 +47,14 @@ const RoomInviteContent = ({ params }: IRoomInviteContentProps) => {
           invitePeople({
             invitedUsername: values.username,
             roomId: params.roomId,
-          }).finally(() => {
-            setLoading(false);
-          });
+          })
+            .then(() => {
+              router.push(`/home/room/${params.roomId}/guess`);
+            })
+            .finally(() => {
+              setLoading(false);
+              resetForm();
+            });
         }}
       >
         <Form className="flex flex-col justify-center items-center">

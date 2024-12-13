@@ -7,7 +7,7 @@ import Loader from "@/components/common/Loader";
 import CustomInputField from "@/components/common/CustomInputField";
 import { IRoomBasic } from "@/types/IRoom.model";
 import { Formik, Form } from "formik";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import RoomName from "../../layout/RoomName";

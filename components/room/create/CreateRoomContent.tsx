@@ -6,9 +6,9 @@ import Loader from "@/components/common/Loader";
 import CustomInputField from "@/components/common/CustomInputField";
 import { ISelectOption } from "@/types/IGlobal.model";
 import { Formik, Form } from "formik";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const CreateRoomContent = () => {
   const [loading, setLoading] = useState(false);
