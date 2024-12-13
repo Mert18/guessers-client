@@ -1,8 +1,8 @@
 "use client";
 import { getStats } from "@/api/authentication";
 import Loader from "@/components/common/Loader";
-import LoginOrRegister from "@/components/LoginOrRegister";
-import Welcomer from "@/components/Welcomer";
+import LoginOrRegister from "@/components/auth/LoginOrRegister";
+import Welcomer from "@/components/common/Welcomer";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -37,10 +37,14 @@ function Home() {
     return (
       <div className="flex flex-col items-center justify-start text-text lg:text-sm text-xs w-full">
         <div className="my-4"></div>
-        <div className="flex justify-center items-center w-full">
-          <Image src="/logo/logo-with-text.svg" alt="logo" width={240} height={240} />
+        <div className="flex justify-center items-center w-full mb-4">
+          <Image
+            src="/logo/logo-with-text.svg"
+            alt="logo"
+            width={240}
+            height={240}
+          />
         </div>
-        <div className="my-4"></div>
         <Welcomer stats={stats} />
 
         <LoginOrRegister />

@@ -1,4 +1,9 @@
-import React from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Guessers | Profile",
+  description: "Guessers.io, check your latest guess papers. Check your profile information in guessers.io.",
+};
 
 interface IProfileLayoutProps {
   children?: React.ReactNode;

@@ -2,7 +2,7 @@
 import { getProfile } from "@/api/user";
 import { IUser } from "@/types/IUser.model";
 import { useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface IUserProps {
   params: {
@@ -14,9 +14,6 @@ const User = ({ params }: IUserProps) => {
   const { data: session } = useSession();
   const [userMetadata, setUserMetadata] = useState<IUser>();
 
-  useEffect(() => {
-    
-  })
   useEffect(() => {
     getProfile(params.username).then((response) => {
       setUserMetadata(response.data);

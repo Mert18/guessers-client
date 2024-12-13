@@ -4,7 +4,7 @@ import SessionProviderWrapper from "@/util/sessionProviderWrapper";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Metadata } from "next";
-import BetaWatermark from "@/components/BetaWatermark";
+import BetaWatermark from "@/components/layout/BetaWatermark";
 
 const font = Rubik({ subsets: ["latin"], weight: ["300", "400", "700"] });
 
