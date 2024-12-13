@@ -11,7 +11,7 @@ import {
 } from "@/types/IEvent.model";
 import { IRoomBasic } from "@/types/IRoom.model";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface IEventFinalizeContentProps {
   params: {

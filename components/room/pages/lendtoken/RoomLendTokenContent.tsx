@@ -5,7 +5,7 @@ import ComponentTitle from "@/components/common/ComponentTitle";
 import Loader from "@/components/common/Loader";
 import { IRoomBasic, IRoomUser } from "@/types/IRoom.model";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import RoomName from "../../layout/RoomName";
 

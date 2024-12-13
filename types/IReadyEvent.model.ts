@@ -7,18 +7,18 @@ export interface IReadyEvent {
     league: IReadyEventLeague;
 }
 
-export interface IReadyEventOption {
+interface IReadyEventOption {
     id: string;
     name: string;
     readyEventOptionCases: IReadyEventOptionCase[];   
 }
 
-export interface IReadyEventOptionCase{
+interface IReadyEventOptionCase{
     id: string;
     name: string;
     odds: number;
 }
 
-export interface IReadyEventLeague{
+interface IReadyEventLeague{
     key: string;
 }

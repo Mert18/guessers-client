@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { Lobster } from "next/font/google";
-import React from "react";
 const font = Lobster({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata: Metadata = {

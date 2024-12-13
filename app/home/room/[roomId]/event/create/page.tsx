@@ -1,4 +1,4 @@
-import EventCreateContent from "@/components/event/pages/EventCreateContent";
+import EventCreateContent from "@/components/room/event/pages/EventCreateContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

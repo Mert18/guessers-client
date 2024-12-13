@@ -6,7 +6,7 @@ import {
   IHandleOptionSelected,
 } from "@/types/IGuessPaper.model";
 import { IRoomUser } from "@/types/IRoom.model";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import RoomActiveEvents from "./RoomActiveEvents";
 
 interface IRoomGuessContentProps {

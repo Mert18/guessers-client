@@ -2,7 +2,7 @@
 import { getRoomUser } from "@/api/room";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import RoomHeader from "./RoomHeader";
 
 interface IRoomLayoutContentProps {

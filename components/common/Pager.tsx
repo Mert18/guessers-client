@@ -1,6 +1,6 @@
 "use client";
 import { IPaging } from "@/types/IRequest.model";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface IPagerProps {
   paging: IPaging;

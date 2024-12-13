@@ -1,5 +1,4 @@
-import React from "react";
-import PrimaryButton from "./common/button/PrimaryButton";
+import PrimaryButton from "./button/PrimaryButton";
 
 interface IModalProps {
   title: string;

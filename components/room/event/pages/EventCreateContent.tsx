@@ -8,12 +8,10 @@ import RoomName from "@/components/room/layout/RoomName";
 import { IRoomBasic } from "@/types/IRoom.model";
 import { Formik, Form, FieldArray } from "formik";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import ListReadyEvents from "../ListReadyEvents";
 import * as Yup from "yup";
 import Image from "next/image";
-import Modal from "@/components/Modal";
 
 interface ICreateEventContentProps {
   params: { roomId: string };

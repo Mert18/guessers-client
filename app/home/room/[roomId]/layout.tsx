@@ -1,6 +1,5 @@
 import RoomLayoutContent from "@/components/room/layout/RoomLayoutContent";
 import { Metadata } from "next";
-import React from "react";
 
 export const metadata: Metadata = {
   title: "Guessers | Room",

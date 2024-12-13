@@ -43,7 +43,7 @@ export interface IGuessPaper {
   createdOn: Date;
 }
 
-export enum GuessPaperStatus {
+enum GuessPaperStatus {
   IN_PROGRESS = "IN_PROGRESS",
   WON = "WON",
   LOST = "LOST",

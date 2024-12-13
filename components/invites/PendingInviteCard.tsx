@@ -2,7 +2,6 @@
 import { acceptRoomInvite, rejectRoomInvite } from "@/api/room";
 import { IPendingInvite } from "@/types/IUser.model";
 import { useRouter } from "next/router";
-import React from "react";
 
 interface IPendingInviteCard {
   key: string;

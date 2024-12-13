@@ -2,7 +2,7 @@
 import { getInvites } from "@/api/user";
 import { IPaging } from "@/types/IRequest.model";
 import { IPendingInvite } from "@/types/IUser.model";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ComponentTitle from "../common/ComponentTitle";
 import Pager from "../common/Pager";
 import PendingInviteCard from "./PendingInviteCard";

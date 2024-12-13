@@ -7,7 +7,7 @@ import CustomInputField from "@/components/common/CustomInputField";
 import { ISelectOption } from "@/types/IGlobal.model";
 import { Formik, Form } from "formik";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 const CreateRoomContent = () => {

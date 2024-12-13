@@ -15,7 +15,7 @@ export interface ICreateEvent {
   roomId: string;
 }
 
-export interface ICreateEventEvent {
+interface ICreateEventEvent {
     name: string;
     description: string;
     eventGuessOptions: IEventGuessOption[];

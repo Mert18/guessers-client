@@ -2,7 +2,7 @@ import axios from "axios";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 
 async function keycloakSessionLogOut() {
   await axios.get(`/api/auth/logout`);

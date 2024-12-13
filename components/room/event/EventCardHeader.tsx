@@ -1,9 +1,8 @@
 import Image from "next/image";
-import SecondaryButton from "../common/button/SecondaryButton";
 import { IEvent } from "@/types/IEvent.model";
 import { IRoomUser } from "@/types/IRoom.model";
 import { convertToUserTimeZone } from "@/util/dateUtil";
-import PrimaryButton from "../common/button/PrimaryButton";
+import PrimaryButton from "@/components/common/button/PrimaryButton";
 
 interface IEventCardHeaderProps {
   event: IEvent;

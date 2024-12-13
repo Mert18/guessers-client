@@ -1,7 +1,7 @@
 "use client";
 import { listRoomGuessPapersByStatus } from "@/api/guesspaper";
 import { IPaging } from "@/types/IRequest.model";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import RoomGuessPapers from "./RoomGuessPapers";
 
 interface IRoomPapersContentProps {

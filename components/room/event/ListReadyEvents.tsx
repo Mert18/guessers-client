@@ -2,11 +2,11 @@
 import { createEventFromReadyEvent } from "@/api/event";
 import { getReadyEvents } from "@/api/readyevent";
 import { useEffect, useState } from "react";
-import Loader from "../common/Loader";
 import { useRouter } from "next/navigation";
-import PrimaryButton from "../common/button/PrimaryButton";
 import { IReadyEvent } from "@/types/IReadyEvent.model";
 import { toast } from "react-toastify";
+import Loader from "@/components/common/Loader";
+import PrimaryButton from "@/components/common/button/PrimaryButton";
 
 const leagues = [
   {

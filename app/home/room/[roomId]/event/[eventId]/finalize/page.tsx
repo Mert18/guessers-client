@@ -1,4 +1,4 @@
-import EventFinalizeContent from "@/components/event/pages/EventFinalizeContent";
+import EventFinalizeContent from "@/components/room/event/pages/EventFinalizeContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

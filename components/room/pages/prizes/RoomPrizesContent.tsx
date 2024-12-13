@@ -1,7 +1,7 @@
 "use client";
 import { getRoomPrizes } from "@/api/prize";
 import { IPaging } from "@/types/IRequest.model";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import RoomActivePrizes from "./RoomActivePrizes";
 
 interface IRoomPrizesContentProps {
