@@ -3,7 +3,7 @@
 Server code: https://github.com/Mert18/guessers-server
 
 ## Setting up the development environment
-- First you need to set up the backend but luckily, it is so easy. Download the backend code [here](https://github.com/Mert18/guessers-server) then follow the instructions [here](https://github.com/Mert18/guessers-server?tab=readme-ov-file#deploying-for-development-purposes)
+- First you need to set up the backend but luckily, it is so easy. Download the backend code [here](https://github.com/Mert18/guessers-server) then follow the instructions [here](https://github.com/Mert18/guessers-server?tab=readme-ov-file#deploying-for-development)
 - Then come back here and download this code.
 - Run `npm install` at the root of this project.
 - Run `npm run dev` to start in development mode.
