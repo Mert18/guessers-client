@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "../../common/Modal";
 import PrimaryButton from "../../common/button/PrimaryButton";
-import GuessPaperDetails from "./GuessPaperDetails";
+import GuessPaperDetails from "./GuessPaperDetailsModal";
 import { IGuessPaper } from "@/types/IGuessPaper.model";
 
 interface IGuessPaperCardProps {

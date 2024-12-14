@@ -2,11 +2,11 @@ import { IGuessPaper } from "@/types/IGuessPaper.model";
 import GuessPaperGuess from "./GuessPaperGuess";
 import GuessPaperMetadata from "./GuessPaperMetadata";
 
-interface IGuessPaperDetailsProps {
+interface IGuessPaperDetailsModalProps {
   guessPaper: IGuessPaper
 }
 
-const GuessPaperDetails = ({ guessPaper }: IGuessPaperDetailsProps) => {
+const GuessPaperDetailsModal = ({ guessPaper }: IGuessPaperDetailsModalProps) => {
   return (
     <>
     <div className="w-full text-xs">
@@ -33,4 +33,4 @@ const GuessPaperDetails = ({ guessPaper }: IGuessPaperDetailsProps) => {
   );
 };
 
-export default GuessPaperDetails;
+export default GuessPaperDetailsModal;

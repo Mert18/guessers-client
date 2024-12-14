@@ -91,7 +91,7 @@ const EventFinalizeContent = ({ params }: IEventFinalizeContentProps) => {
                 key={eventGuessOption.id}
                 className="flex flex-col justify-start items-start"
               >
-                <p className="text-background-bright bg-primary-default p-2 rounded-md text-xs lowercase my-1 font-bold">
+                <p className="text-background-bright bg-primary-default p-2 rounded-md text-xs my-1 font-bold">
                   {eventGuessOption.name}
                 </p>
                 <div className="w-full grid auto-cols-fr grid-flow-col">

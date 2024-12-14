@@ -12,6 +12,8 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import ListReadyEvents from "../ListReadyEvents";
+import Modal from "@/components/common/Modal";
 
 interface ICreateEventContentProps {
   params: { roomId: string };
@@ -56,14 +58,14 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
         Create Event
       </div>
 
-      {/* <PrimaryButton
+      <PrimaryButton
         type="submit"
         text="Create From Ready Event"
         onClick={() => setCreateReadyEventModalOpen(true)}
         bg={true}
-      /> */}
+      />
 
-      {/* {createReadyEventModalOpen && (
+      {createReadyEventModalOpen && (
         <Modal
           title={"Ready Events"}
           handleCloseModal={handleCloseReadyEventModal}
@@ -75,7 +77,7 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
         </Modal>
       )}
 
-      <p className="my-2 text-text-default">or create manually.</p> */}
+      <p className="my-2 text-text-default">or create manually.</p>
 
       <Formik
         initialValues={initialValues}

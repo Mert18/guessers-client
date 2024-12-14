@@ -25,6 +25,7 @@ export interface IEventGuessOption {
     id?: string;
     name: string;
     eventGuessOptionCases: IEventGuessOptionCase[];
+    precedence: number;
 }
 
 export interface IEventGuessOptionCase {

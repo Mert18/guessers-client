@@ -10,21 +10,25 @@ import PrimaryButton from "@/components/common/button/PrimaryButton";
 
 const leagues = [
   {
-    name: "English Premier League",
-    key: 3,
-  },
-  {
-    name: "Turkish Super League",
-    key: 2,
-  },
-  {
     name: "UEFA Champions League",
     key: 0,
   },
   {
     name: "UEFA Europe League",
     key: 1,
-  }
+  },
+  {
+    name: "Turkish Super League",
+    key: 2,
+  },
+  {
+    name: "English Premier League",
+    key: 3,
+  },
+  {
+    name: "La Liga",
+    key: 4,
+  },
 ];
 
 interface IListReadyEventsProps {
@@ -85,8 +89,8 @@ const ListReadyEvents = ({
           <button
             className={`${
               selectedLeague === league.key
-                ? "text-primary underline"
-                : "text-text"
+                ? "text-primary-default underline"
+                : "text-black"
             } px-2`}
             key={league.key}
             onClick={() => setSelectedLeague(league.key)}
@@ -105,7 +109,7 @@ const ListReadyEvents = ({
               key={readyEvent.id}
               className={`${
                 readyEventIdsToCreate.includes(readyEvent.id)
-                  ? "text-primary"
+                  ? "bg-primary-default text-background-default"
                   : "text-text"
               } flex flex-col justify-center items-center w-full py-2 cursor-pointer hover:text-primary my-1`}
               onClick={() => {
