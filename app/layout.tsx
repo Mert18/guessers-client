@@ -1,11 +1,11 @@
 import "./globals.css";
 import { Rubik } from "next/font/google";
-import SessionProviderWrapper from "@/util/sessionProviderWrapper";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Metadata } from "next";
 import BetaWatermark from "@/components/layout/BetaWatermark";
 import GoogleAnalytics from "@/components/external/GoogleAnalytics";
+import SessionProviderWrapper from "@/util/sessionProviderWrapper";
 
 const font = Rubik({ subsets: ["latin"], weight: ["300", "400", "700"] });
 
@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionProviderWrapper>
-      <html lang="en">
+    <html lang="en">
+      <SessionProviderWrapper>
         <GoogleAnalytics
           GA_TRACKING_ID={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || ""}
         />
@@ -36,7 +36,7 @@ export default function RootLayout({
 
           <BetaWatermark />
         </body>
-      </html>
-    </SessionProviderWrapper>
+      </SessionProviderWrapper>
+    </html>
   );
 }

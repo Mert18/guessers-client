@@ -1,3 +1,4 @@
+import TokenSymbol from "@/components/common/TokenSymbol";
 import { IGuessPaper } from "@/types/IGuessPaper.model";
 
 interface IGuessPaperMetadataProps {
@@ -6,16 +7,29 @@ interface IGuessPaperMetadataProps {
 
 const GuessPaperMetadata = ({ guessPaper }: IGuessPaperMetadataProps) => {
   return (
-    <div className="w-full flex justify-center items-center my-4 text-text-default">
-      <div className="w-1/2">
-        <div className="flex justify-between w-full">
-          <p className="font-medium">Status</p>
-          <p className={`${guessPaper.status === "IN_PROGRESS" ? "text-warning": guessPaper.status === "WON" ? "text-success" : guessPaper.status === "LOST" ? "text-failure" : "text-text-default"}`}>{guessPaper.status}</p>
-        </div>
+    <div className="w-full flex justify-center items-center my-4 text-text-default text-sm">
+      <div className="w-full">
         <div className="flex justify-between w-full">
           <p className="font-medium">Username</p>
           <p>{guessPaper.user.username}</p>
         </div>
+        <div className="flex justify-between w-full">
+          <p className="font-medium">Status</p>
+          <p
+            className={`${
+              guessPaper.status === "IN_PROGRESS"
+                ? "text-warning"
+                : guessPaper.status === "WON"
+                ? "text-success"
+                : guessPaper.status === "LOST"
+                ? "text-failure"
+                : "text-text-default"
+            }`}
+          >
+            {guessPaper.status}
+          </p>
+        </div>
+
         <div className="flex justify-between w-full">
           <p className="font-medium">Total Odds</p>
           <p>{guessPaper.totalOdd.toFixed(2)}</p>
@@ -26,7 +40,7 @@ const GuessPaperMetadata = ({ guessPaper }: IGuessPaperMetadataProps) => {
         </div>
         <div className="flex justify-between w-full">
           <p className="font-medium">Wins</p>
-          <p>{guessPaper.wins}</p>
+          <p className="flex items-center"><TokenSymbol />{guessPaper.wins}</p>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import LogoWithText from "@/components/common/LogoWithText";
 
 function Home() {
   const { data: session, status } = useSession();
@@ -37,14 +38,7 @@ function Home() {
     return (
       <div className="flex flex-col items-center justify-start text-text lg:text-sm text-xs w-full">
         <div className="my-4"></div>
-        <div className="flex justify-center items-center w-full mb-4">
-          <Image
-            src="/logo/logo-with-text.svg"
-            alt="logo"
-            width={240}
-            height={240}
-          />
-        </div>
+        <LogoWithText />
         <Welcomer stats={stats} />
 
         <LoginOrRegister />

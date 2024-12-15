@@ -8,8 +8,13 @@ import { IRoomUser, IRoomBasic } from "@/types/IRoom.model";
 import PublicRoomsList from "./PublicRoomsList";
 import SelfGuessPapersList from "./SelfGuessPapersList";
 import SelfRoomsList from "./SelfRoomsList";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const HomeContent = () => {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
   const [selfRooms, setSelfRooms] = useState<IRoomUser[]>([]);
   const [selfRoomsPaging, setSelfRoomsPaging] = useState<IPaging>({
     page: 0,
@@ -89,20 +94,38 @@ const HomeContent = () => {
   };
 
   useEffect(() => {
+    if (!session || status === "unauthenticated") {
+      router.push("/");
+    }
+  }, [session]);
+
+  useEffect(() => {
+    if (!session || status === "unauthenticated") {
+      return;
+    }
     fetchPublicRooms();
     fetchSelfRooms();
     fetchSelfGuessPapers();
-  }, []);
+  }, [session]);
 
   useEffect(() => {
+    if (!session || status === "unauthenticated") {
+      return;
+    }
     fetchSelfRooms();
   }, [selfRoomsPaging.page]);
 
   useEffect(() => {
+    if (!session || status === "unauthenticated") {
+      return;
+    }
     fetchPublicRooms();
   }, [publicRoomsPaging.page]);
 
   useEffect(() => {
+    if (!session || status === "unauthenticated") {
+      return;
+    }
     fetchSelfRooms();
   }, [selfGuessPapersPaging.page]);
   return (

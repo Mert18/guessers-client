@@ -3,9 +3,11 @@
 import { useSession, signOut } from "next-auth/react";
 import { useEffect } from "react";
 import Loader from "../common/Loader";
+import { useRouter } from "next/navigation";
 
 export default function AuthStatus() {
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     if (
@@ -14,7 +16,9 @@ export default function AuthStatus() {
       // @ts-ignore
       session?.error === "RefreshAccessTokenError"
     ) {
-      signOut({ callbackUrl: "/api/auth/logout", });
+      signOut({ callbackUrl: "/api/auth/logout" });
+    } else if (status === "unauthenticated" || !session) {
+      router.push("/");
     }
   }, [session, status]);
 
