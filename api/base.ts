@@ -11,7 +11,7 @@ export const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   async (config) => {
     const accessToken = await getAccessToken();
-    if(accessToken){
+    if (accessToken) {
       config.headers["Authorization"] = `Bearer ${accessToken}`;
     }
     return config;
@@ -29,6 +29,11 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
-    toast.error("An error occured." + error.response?.data?.message);
+    if (
+      error.response?.data?.message != undefined ||
+      error.response?.data?.message != null
+    ) {
+      toast.error("An error occured." + error.response?.data?.message);
+    }
   }
 );
