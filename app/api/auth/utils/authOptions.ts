@@ -43,8 +43,9 @@ export const authOptions = {
       return session;
     },
     async redirect({ url, baseUrl }: any) {
+      console.log("url: ", url)
       // TODO fix any
-      return url.startsWith(baseUrl) ? url : baseUrl + "/";
+      return url.startsWith(baseUrl) ? url : baseUrl + "/home";
     },
   },
   events: {

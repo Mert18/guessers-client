@@ -4,7 +4,6 @@ import Loader from "@/components/common/Loader";
 import LoginOrRegister from "@/components/auth/LoginOrRegister";
 import Welcomer from "@/components/common/Welcomer";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import LogoWithText from "@/components/common/LogoWithText";
