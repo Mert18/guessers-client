@@ -52,6 +52,7 @@ const LoginOrRegister = () => {
         validateOnBlur={false}
         onSubmit={(values, { resetForm }) => {
           setLoading(true);
+          values.username = values.username.toLowerCase();
           createUser(values).finally(() => {
             resetForm();
             setLoading(false);
