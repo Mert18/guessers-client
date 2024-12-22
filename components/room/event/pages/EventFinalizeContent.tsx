@@ -77,24 +77,24 @@ const EventFinalizeContent = ({ params }: IEventFinalizeContentProps) => {
 
         <RoomName roomName={room.name} roomId={room.id} />
 
-        <p>Select the winning options.</p>
-        <div className="flex flex-col justify-center items-center w-full rounder-md text-xs bg-background-bright border-2 border-primary-default rounded-md">
-          <div className="flex justify-between items-center w-full font-bold p-4 rounded-md">
+        <p className="my-2">Select the winning options.</p>
+        <div className="flex flex-col justify-center items-center w-full text-xs bg-background-bright border-2 border-primary-default">
+          <div className="flex justify-between items-center w-full font-bold p-4">
             <p>{event.name}</p>
 
             <p>{new Date(event.createdOn).toLocaleString()}</p>
           </div>
 
-          <div className="w-full grid grid-cols-2 gap-5 p-2">
+          <div className="w-full grid grid-cols-1 gap-5 p-2">
             {event.eventGuessOptions?.map((eventGuessOption) => (
               <div
                 key={eventGuessOption.id}
-                className="flex flex-col justify-start items-start"
+                className="flex flex-col justify-start items-start w-full"
               >
-                <p className="text-background-bright bg-primary-default p-2 rounded-md text-xs my-1 font-bold">
+                <p className="text-background-bright bg-primary-default p-2 text-xs my-0.5 font-bold">
                   {eventGuessOption.name}
                 </p>
-                <div className="w-full grid auto-cols-fr grid-flow-col">
+                <div className="w-full grid grid-cols-2 gap-x-1">
                   {eventGuessOption.eventGuessOptionCases?.map(
                     (eventGuessOptionCase) => {
                       return (
@@ -104,7 +104,7 @@ const EventFinalizeContent = ({ params }: IEventFinalizeContentProps) => {
                             "_" +
                             eventGuessOptionCase.odds
                           }
-                          className="flex flex-col justify-center items-center hover:cursor-pointer m-0.5"
+                          className="flex flex-col justify-center items-center hover:cursor-pointer m-0.5 w-full"
                           onClick={() =>
                             handleChangeWinningOptions(eventGuessOptionCase)
                           }
@@ -119,7 +119,7 @@ const EventFinalizeContent = ({ params }: IEventFinalizeContentProps) => {
                               winningOptions.includes(eventGuessOptionCase)
                                 ? "bg-primary-default text-background-bright"
                                 : "text-primary-default bg-background-bright"
-                            } w-full py-2 m-1 flex justify-evenly items-center font-bold border-2 border-primary-default rounded-md`}
+                            } w-full py-2 m-1 flex justify-evenly items-center font-bold border-2 border-primary-default`}
                           >
                             <p>{eventGuessOptionCase.odds}</p>
                           </div>
