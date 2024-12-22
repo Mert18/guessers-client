@@ -15,7 +15,6 @@ const SelfRoomCard = ({ roomUser }: ISelfRoomCardProps) => {
         <h2 className="flex-1">{roomUser.room.name}</h2>
         <p className="flex-1">{roomUser.room.owner.username}</p>
         <p className="flex-1">{roomUser.memberCount}</p>
-        <p className="flex-1">{roomUser.balance.toFixed(2)}</p>
       </div>
     </Link>
   );

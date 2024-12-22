@@ -41,7 +41,7 @@ const PrimaryButton = ({
           bg
             ? "bg-primary-default text-background-bright p-2 hover:bg-primary-bright"
             : "bg-transparent text-text-default hover:text-primary-default"
-        } transition-all text-xs flex-1 font-bold`}
+        } transition-all text-xs flex-1 font-bold my-1`}
         type={type}
         onClick={onClick}
       >

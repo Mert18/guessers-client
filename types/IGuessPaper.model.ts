@@ -5,7 +5,6 @@ import { IUser } from "./IUser.model";
 
 export interface ICreateGuessPaper {
   guesses: ICreateGuessPaperGuess[];
-  stake: number;
   roomId: string;
 }
 
@@ -15,7 +14,6 @@ export interface ICreateGuessPaperGuess {
   eventGuessOptionName: string;
   eventGuessOptionCaseId: string;
   eventGuessOptionCaseName: string;
-  odd: number;
   signature: string;
 }
 
@@ -36,9 +34,6 @@ export interface IGuessPaper {
   user: IUser;
   room: IRoomBasic;
   guesses: ISingleGuess[];
-  totalOdd: number;
-  stake: number;
-  wins: number;
   status: GuessPaperStatus;
   createdOn: Date;
 }

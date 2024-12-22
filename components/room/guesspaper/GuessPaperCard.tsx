@@ -18,9 +18,10 @@ const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
   return (
     <div className="w-full font-bold">
       <div
-        className={`flex justify-start items-center bg-background-bright my-1 text-primary-default border-2 border-primary-default transition-all px-2 py-3`}
+        className={`flex   items-center bg-background-bright my-1 text-primary-default border-2 border-primary-default transition-all px-2 py-3`}
       >
         <p className="flex-1">{guessPaper.user.username}</p>
+
         <p
           className={`flex-1 ${
             guessPaper.status === "IN_PROGRESS"
@@ -34,9 +35,7 @@ const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
         >
           {guessPaper.status}
         </p>
-        <p className="flex-1">{guessPaper.stake.toFixed(2)}</p>
-        <p className="flex-1">{guessPaper.totalOdd.toFixed(2)}</p>
-        <p className="flex-1">{guessPaper.wins.toFixed(2)}</p>
+
         <div className="flex-1">
           <PrimaryButton
             type="button"
@@ -44,6 +43,7 @@ const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
             onClick={() => setGuessPaperDetailsOpen(true)}
           />
         </div>
+
       </div>
       {guessPaperDetailsOpen && (
         <Modal

@@ -48,12 +48,6 @@ const OwnerActions = ({ roomId }: IOwnerActionsProps) => {
           >
             Create Prize
           </button>
-          <button
-            onClick={() => router.push(`/home/room/${roomId}/lendtoken`)}
-            className="text-sm p-2 text-background-bright bg-primary-default hover:bg-primary-bright transition-all w-full"
-          >
-            Lend Token
-          </button>
         </div>
       )}
     </div>
