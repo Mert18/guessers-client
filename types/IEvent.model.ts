@@ -31,7 +31,6 @@ export interface IEventGuessOption {
 export interface IEventGuessOptionCase {
     id?: string;
     name: string;
-    odds: number;
     status?: string;
 }
 

@@ -16,7 +16,6 @@ interface IReadyEventOption {
 interface IReadyEventOptionCase{
     id: string;
     name: string;
-    odds: number;
 }
 
 interface IReadyEventLeague{

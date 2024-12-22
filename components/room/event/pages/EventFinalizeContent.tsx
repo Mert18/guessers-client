@@ -100,9 +100,7 @@ const EventFinalizeContent = ({ params }: IEventFinalizeContentProps) => {
                       return (
                         <button
                           key={
-                            eventGuessOptionCase.name +
-                            "_" +
-                            eventGuessOptionCase.odds
+                            eventGuessOptionCase.name
                           }
                           className="flex flex-col justify-center items-center hover:cursor-pointer m-0.5 w-full"
                           onClick={() =>
@@ -113,15 +111,6 @@ const EventFinalizeContent = ({ params }: IEventFinalizeContentProps) => {
                             <p className="truncate font-bold">
                               {eventGuessOptionCase.name}
                             </p>
-                          </div>
-                          <div
-                            className={`${
-                              winningOptions.includes(eventGuessOptionCase)
-                                ? "bg-primary-default text-background-bright"
-                                : "text-primary-default bg-background-bright"
-                            } w-full py-2 m-1 flex justify-evenly items-center font-bold border-2 border-primary-default`}
-                          >
-                            <p>{eventGuessOptionCase.odds}</p>
                           </div>
                         </button>
                       );

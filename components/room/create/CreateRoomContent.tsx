@@ -15,18 +15,12 @@ const CreateRoomContent = () => {
   const router = useRouter();
   const initialValues = {
     name: "",
-    publico: false,
-    borderless: false,
+    publico: false
   };
 
   const publicOptions: ISelectOption[] = [
     { value: true, label: "public" },
     { value: false, label: "private" },
-  ];
-
-  const borderlessOptions: ISelectOption[] = [
-    { value: false, label: "normal" },
-    { value: true, label: "borderless" },
   ];
 
   return (
@@ -67,15 +61,6 @@ const CreateRoomContent = () => {
             placeholder={"Public / Private"}
           />
 
-          <CustomInputField
-            withLabel={true}
-            type={"select"}
-            name={"borderless"}
-            placeholder={"Room Type"}
-            options={borderlessOptions}
-          />
-
-          <div className="my-2"></div>
           {loading ? (
             <Loader />
           ) : (

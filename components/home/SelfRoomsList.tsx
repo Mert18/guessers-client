@@ -30,7 +30,6 @@ const SelfRoomsList = ({
             <h2 className="flex-1">{"Room Name"}</h2>
             <h2 className="flex-1">{"Owner"}</h2>
             <h2 className="flex-1">{"Members"}</h2>
-            <h2 className="flex-1">{"Balance"}</h2>
           </div>
           {selfRooms?.map((room) => (
             <SelfRoomCard key={room.id} roomUser={room} />
