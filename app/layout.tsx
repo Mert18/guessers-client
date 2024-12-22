@@ -3,7 +3,6 @@ import { Rubik } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Metadata } from "next";
-import BetaWatermark from "@/components/layout/BetaWatermark";
 import GoogleAnalytics from "@/components/external/GoogleAnalytics";
 import SessionProviderWrapper from "@/util/sessionProviderWrapper";
 
@@ -33,8 +32,6 @@ export default function RootLayout({
             {children}
           </div>
           <ToastContainer />
-
-          <BetaWatermark />
         </body>
       </SessionProviderWrapper>
     </html>

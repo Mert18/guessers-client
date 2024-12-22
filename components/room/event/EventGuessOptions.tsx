@@ -16,7 +16,7 @@ const EventGuessOptions = ({
   guesses,
 }: IEventGuessOptions) => {
   return (
-    <div className="w-full grid grid-cols-2 gap-5 p-2">
+    <div className="w-full grid grid-cols-1 gap-5 p-2">
       {eventGuessOptions.sort((a, b) => a.precedence - b.precedence).map((eventGuessOption) => (
         <EventGuessOption
           key={eventGuessOption.id}
