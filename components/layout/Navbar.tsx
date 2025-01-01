@@ -21,18 +21,16 @@ const Navbar = () => {
       return <HamburgerMenu session={session} />;
     } else {
       return (
-        <div className="flex text-xs w-full border-b border-primary gap-2">
+        <div className="flex text-xs w-full gap-2">
           <Link
             href={"/home"}
             className={`py-2 flex-1 ${
               path === "/home"
-                ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-            }  transition-all text-center border-2 flex justify-center items-center`}
+                ? "bg-primary-one text-dark-text"
+                : "bg-light-bg-sec dark:bg-dark-bg-sec text-light-text dark:text-dark-text"
+            }  transition-all text-center rounded-sm flex justify-center items-center hover:bg-primary-one-hover hover:text-light-bg`}
           >
-            <div
-              className={`text-text font-bold flex justify-center items-center`}
-            >
+            <div className={`font-bold flex justify-center items-center`}>
               <p>Home</p>
             </div>
           </Link>
@@ -41,13 +39,11 @@ const Navbar = () => {
             href={"/home/invites"}
             className={`py-2 flex-1 ${
               path === "/home/invites"
-                ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-            }  transition-all text-center border-2 flex justify-center items-center`}
+                ? "bg-primary-one text-dark-text"
+                : "bg-light-bg-sec dark:bg-dark-bg-sec text-light-text dark:text-dark-text"
+            }  transition-all text-center rounded-sm flex justify-center items-center hover:bg-primary-one-hover hover:text-light-bg`}
           >
-            <div
-              className={`text-text font-bold flex justify-center items-center`}
-            >
+            <div className={`font-bold flex justify-center items-center`}>
               <p>Invites</p>
             </div>
           </Link>
@@ -56,13 +52,11 @@ const Navbar = () => {
             href={"/home/room/create"}
             className={`py-2 flex-1 ${
               path === "/home/room/create"
-                ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-            }  transition-all text-center border-2 flex justify-center items-center`}
+                ? "bg-primary-one text-dark-text"
+                : "bg-light-bg-sec dark:bg-dark-bg-sec text-light-text dark:text-dark-text"
+            }  transition-all text-center rounded-sm flex justify-center items-center hover:bg-primary-one-hover hover:text-light-bg`}
           >
-            <div
-              className={`text-text font-bold flex justify-center items-center`}
-            >
+            <div className={`font-bold flex justify-center items-center`}>
               <p>Create Room</p>
             </div>
           </Link>
@@ -75,29 +69,26 @@ const Navbar = () => {
                 className={`py-2 flex-1 ${
                   // @ts-ignore
                   path === `/home/profile/${session.username}`
-                    ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                    : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-                }  transition-all text-center border-2 flex justify-center items-center`}
+                    ? "bg-primary-one text-dark-text"
+                    : "bg-light-bg-sec dark:bg-dark-bg-sec text-light-text dark:text-dark-text"
+                }  transition-all text-center rounded-sm flex justify-center items-center hover:bg-primary-one-hover hover:text-light-bg`}
               >
-                <div
-                  className={`text-text font-bold flex justify-center items-center`}
-                >
+                <div className={`font-bold flex justify-center items-center`}>
                   <p>Profile</p>
                 </div>
               </Link>
 
               <Link
                 href={"/"}
-                className={`py-2 flex-1 text-failure hover:text-background-bright hover:bg-failure border-failure transition-all text-center border-2 flex justify-center items-center`}
+                className={`p-2 transition-all text-center rounded-sm flex justify-center items-center
+                  bg-light-bg-sec dark:bg-dark-bg-sec text-light-text dark:text-dark-text hover:bg-feedback-failure hover:text-light-bg`}
                 onClick={() => {
                   keycloakSessionLogOut().then(() =>
                     signOut({ callbackUrl: "/" })
                   );
                 }}
               >
-                <div
-                  className={`text-text font-bold flex justify-center items-center`}
-                >
+                <div className={`font-bold flex justify-center items-center `}>
                   <p>Logout</p>
                 </div>
               </Link>
@@ -108,7 +99,7 @@ const Navbar = () => {
     }
   };
   return (
-    <div className="col-start-1 md:col-start-4 xl:col-start-5 col-end-13 md:col-end-10 xl:col-end-9 flex flex-col justify-between items-center text-text bg-background">
+    <div className="col-start-1 md:col-start-4 xl:col-start-5 col-end-13 md:col-end-10 xl:col-end-9 flex flex-col justify-between items-center bg-background">
       <div className="w-full flex justify-center items-center my-4">
         <Logo />
       </div>

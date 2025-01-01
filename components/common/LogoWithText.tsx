@@ -6,7 +6,6 @@ const LogoWithText = () => {
   return (
     <Link
       href={"/home"}
-      className="flex justify-center items-center w-full mb-4"
     >
       <Image
         src="/logo/logo-with-text.svg"

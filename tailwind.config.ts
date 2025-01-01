@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
+  darkMode: "selector",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,32 +10,49 @@ export default {
   theme: {
     extend: {
       fontSize: {
-        '2xs': '0.6rem'
+        "2xs": "0.6rem",
       },
       colors: {
-        background: {
-          default: "#E2E9E4",
-          bright: "#e5e5e5",
+        primary: {
+          one: {
+            DEFAULT: "#007BFF",
+            hover: "#0056B3",
+          },
+          two: {
+            DEFAULT: "#FF9500",
+            hover: "#CC7700",
+          },
         },
-        primary : {
-          default: "#9B7DD7",
-          bright: "#B19CDA",
+        dark: {
+          bg: {
+            DEFAULT: "#020f1d",
+            sec: "#031629"
+          },
+          text: {
+            DEFAULT: "#eeeeee",
+            sec: "#efefef"
+          }
         },
-        text: {
-          default: "#6A3788",
-          bright: "#8A669E"
+        light: {
+          bg: {
+            DEFAULT: "#eeeeee",
+            sec: "#e7e7e7"
+          },
+          text: {
+            DEFAULT: "#333333",
+            sec: "#010101"
+          }
         },
-        secondary: {
-          default: "#EEA370",
+        feedback: {
+          success: "#28A745",
+          failure: "#DC3545",
+          info: "#17A2B8",
         },
-        failure: "#CE4A3A",
-        success: "#4EE521",
-        warning: "#E28043"
-      }
+      },
     },
   },
   variants: {
-    scrollbar: ['rounded'],
+    scrollbar: ["rounded"],
   },
   plugins: [],
 } satisfies Config;

@@ -3,7 +3,8 @@ import GuessPaperCard from "../../guesspaper/GuessPaperCard";
 import Loader from "../../../common/Loader";
 import { IGuessPaper } from "@/types/IGuessPaper.model";
 import { IPaging } from "@/types/IRequest.model";
-import Pager from "../../../common/Pager";
+import Pager from "../../../common/table/Pager";
+import TableEmptyInfo from "@/components/common/table/TableEmptyInfo";
 
 interface IRoomGuessPapersProps {
   guessPapers: IGuessPaper[];
@@ -12,13 +13,17 @@ interface IRoomGuessPapersProps {
   loading: boolean;
 }
 
-const RoomGuessPapers = ({ guessPapers, paging, setPaging, loading }: IRoomGuessPapersProps) => {
-
+const RoomGuessPapers = ({
+  guessPapers,
+  paging,
+  setPaging,
+  loading,
+}: IRoomGuessPapersProps) => {
   const roomGuessPapersRenderer = () => {
     if (loading) {
       return <Loader />;
     } else if (guessPapers.length === 0) {
-      return <p className="text-primary">No Room guess papers available.</p>;
+      return <TableEmptyInfo text="No Room guess papers available." />;
     } else {
       return (
         <div className="w-full">

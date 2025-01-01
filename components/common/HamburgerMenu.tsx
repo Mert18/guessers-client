@@ -21,17 +21,17 @@ const HamburgerMenu = ({ session }: any) => {
           }}
         >
           <div
-            className={`h-1 w-6 bg-primary-default transition-all ${
+            className={`h-1 w-6 bg-primary-one transition-all ${
               isOpen ? "my-1" : "my-0.5"
             }`}
           ></div>
           <div
-            className={`h-1 w-6 bg-primary-default transition-all ${
+            className={`h-1 w-6 bg-primary-one transition-all ${
               isOpen ? "my-1" : "my-0.5"
             }`}
           ></div>
           <div
-            className={`h-1 w-6 bg-primary-default transition-all ${
+            className={`h-1 w-6 bg-primary-one transition-all ${
               isOpen ? "my-1" : "my-0.5"
             }`}
           ></div>
@@ -44,8 +44,8 @@ const HamburgerMenu = ({ session }: any) => {
             href={"/home"}
             className={`py-2 flex-1 ${
               path === "/home"
-                ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
+                ? "text-background-bright hover:bg-primary-bright bg-primary-one"
+                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-one bg-background-bright"
             }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-xs`}
           >
             <div
@@ -59,8 +59,8 @@ const HamburgerMenu = ({ session }: any) => {
             href={"/home/invites"}
             className={`py-2 flex-1 ${
               path === "/home/invites"
-                ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
+                ? "text-background-bright hover:bg-primary-bright bg-primary-one"
+                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-one bg-background-bright"
             }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-xs`}
           >
             <div
@@ -74,8 +74,8 @@ const HamburgerMenu = ({ session }: any) => {
             href={"/home/room/create"}
             className={`py-2 flex-1 ${
               path === "/home/room/create"
-                ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
+                ? "text-background-bright hover:bg-primary-bright bg-primary-one"
+                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-one bg-background-bright"
             }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-xs`}
           >
             <div
@@ -93,8 +93,8 @@ const HamburgerMenu = ({ session }: any) => {
                 className={`py-2 flex-1 ${
                   // @ts-ignore
                   path === `/home/profile/${session.username}`
-                    ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                    : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
+                    ? "text-background-bright hover:bg-primary-bright bg-primary-one"
+                    : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-one bg-background-bright"
                 }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-xs`}
               >
                 <div

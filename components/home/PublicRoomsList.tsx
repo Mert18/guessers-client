@@ -3,7 +3,10 @@ import ComponentTitle from "../common/ComponentTitle";
 import Loader from "../common/Loader";
 import { IRoomBasic } from "@/types/IRoom.model";
 import { IPaging } from "@/types/IRequest.model";
-import Pager from "../common/Pager";
+import Pager from "../common/table/Pager";
+import TableHeader from "../common/table/TableHeader";
+import TableEmptyInfo from "../common/table/TableEmptyInfo";
+import TableWrapper from "../common/table/TableWrapper";
 
 interface IPublicRoomsListProps {
   publicRooms: IRoomBasic[];
@@ -12,28 +15,31 @@ interface IPublicRoomsListProps {
   loading: boolean;
 }
 
-const PublicRoomsList = ({ publicRooms, paging, setPaging, loading }: IPublicRoomsListProps) => {
+const PublicRoomsList = ({
+  publicRooms,
+  paging,
+  setPaging,
+  loading,
+}: IPublicRoomsListProps) => {
   const publicRoomsListRenderer = () => {
     if (loading) {
       return <Loader />;
-    } else if (publicRooms?.length === 0) {
-      return <p className="text-primary">No public rooms available.</p>;
     } else {
       return (
-        <div className="w-full">
-          <div className="bg-primary-default p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
-            <h2 className="flex-1">{"Room Name"}</h2>
-            <h2 className="flex-1">{"Owner"}</h2>
-            <h2 className="flex-1">{"Members"}</h2>
-            <h2 className="flex-1">{"Join"}</h2>
-          </div>
+        <TableWrapper>
+          <TableHeader columns={["Room Name", "Owner", "Members", "Join"]} />
+          {publicRooms?.length === 0 ? (
+            <TableEmptyInfo text="No public rooms available." />
+          ) : (
+            <>
+              {publicRooms?.map((room) => (
+                <PublicRoomCard key={room.id} room={room} />
+              ))}
 
-          {publicRooms?.map((room) => (
-            <PublicRoomCard key={room.id} room={room} />
-          ))}
-          
-          <Pager paging={paging} setPaging={setPaging} />
-        </div>
+              <Pager paging={paging} setPaging={setPaging} />
+            </>
+          )}
+        </TableWrapper>
       );
     }
   };

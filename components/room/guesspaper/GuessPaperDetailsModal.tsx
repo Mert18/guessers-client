@@ -6,6 +6,7 @@ import { useState } from "react";
 import Loader from "@/components/common/Loader";
 import { shareGuessPaper } from "@/api/sharedguesspaper";
 import Link from "next/link";
+import TableHeader from "@/components/common/table/TableHeader";
 
 interface IGuessPaperDetailsModalProps {
   guessPaper: IGuessPaper;
@@ -25,12 +26,7 @@ const GuessPaperDetailsModal = ({
     guessPaper && (
       <>
         <div className="w-full text-xs">
-          <div className="bg-primary-default p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
-            <h2 className="flex-1">{"Event"}</h2>
-            <h2 className="flex-1">{"Guess Option"}</h2>
-            <h2 className="flex-1">{"Guess"}</h2>
-            <h2 className="flex-1">{"Status"}</h2>
-          </div>
+          <TableHeader columns={["Event", "Guess Option", "Guess", "Status"]} />
           {guessPaper?.guesses?.map((guess) => (
             <GuessPaperGuess
               key={

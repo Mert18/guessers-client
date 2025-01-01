@@ -47,7 +47,8 @@ const HomeContent = () => {
     setSelfRoomsLoading(true);
     try {
       const response = await listSelfRooms(publicRoomsPaging);
-      if (!response.data.content || response.data.content === undefined) return;
+      if (!response?.data?.content || response?.data?.content === undefined)
+        return;
       setSelfRooms(response?.data?.content);
       setSelfRoomsPaging((prevState) => ({
         ...prevState,
@@ -63,7 +64,7 @@ const HomeContent = () => {
     setPublicRoomsLoading(true);
     try {
       const response = await listPublicRooms(publicRoomsPaging);
-      if (!response.data.rooms || response.data.rooms === undefined) return;
+      if (!response?.data.rooms || response?.data.rooms === undefined) return;
       setPublicRooms(response.data.rooms?.content);
       setPublicRoomsPaging({
         page: response.data.rooms.page.number,
@@ -80,7 +81,7 @@ const HomeContent = () => {
     setSelfGuessPapersLoading(true);
     try {
       const response = await listSelfGuessPapers(selfGuessPapersPaging);
-      if (response.data.content === undefined) return;
+      if (response?.data?.content === undefined) return;
       setSelfGuessPapers(response.data.content);
       setSelfGuessPapersPaging({
         page: response.data.page.number,
@@ -129,7 +130,7 @@ const HomeContent = () => {
     fetchSelfRooms();
   }, [selfGuessPapersPaging.page]);
   return (
-    <div className="w-full">
+    <div className="w-full grid grid-cols-1 xl:grid-cols-2 gap-2">
       <SelfRoomsList
         selfRooms={selfRooms}
         paging={selfRoomsPaging}

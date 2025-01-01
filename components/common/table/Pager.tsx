@@ -20,7 +20,7 @@ const Pager = ({ paging, setPaging }: IPagerProps) => {
   }, [paging.totalPages]);
   
   return (
-    <div className="py-2">
+    <div>
       <button
         onClick={() => {
           setPaging((prev) => ({ ...prev, page: 0 }));
@@ -28,9 +28,9 @@ const Pager = ({ paging, setPaging }: IPagerProps) => {
         disabled={paging.page === 0}
         className={`${
           paging.page === 0
-            ? "bg-primary-default text-background-bright hover:bg-primary-bright"
-            : "text-primary-default bg-background-bright hover:bg-primary-default hover:text-background-bright"
-        } font-bold h-8 w-8 cursor-pointer transition-all border border-primary-default mr-1`}
+            ? "bg-primary-one text-dark-text"
+            : "bg-light-bg-sec dark:bg-dark-bg-sec border border-primary-one"
+        } hover:bg-primary-one-hover font-bold h-7 w-7 cursor-pointer transition-all mr-1 rounded-sm`}
       > 
         1
       </button>
@@ -43,8 +43,8 @@ const Pager = ({ paging, setPaging }: IPagerProps) => {
           }}
           disabled={page.active}
           className={`${
-            paging.page === page.page -1 ? "bg-primary-default text-background-bright hover:bg-primary-bright" : "text-primary-default bg-background-bright hover:bg-primary-default hover:text-background-bright"
-          } font-bold h-8 w-8 cursor-pointer transition-all border border-primary-default mr-1`}
+            paging.page === page.page -1 ? "bg-primary-one text-dark-text" : "bg-light-bg-sec dark:bg-dark-bg-sec border border-primary-one"
+          } hover:bg-primary-one-hover font-bold h-7 w-7 cursor-pointer transition-all mr-1`}
         >
           {page.page}
         </button>

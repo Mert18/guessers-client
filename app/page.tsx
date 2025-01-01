@@ -7,8 +7,10 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import LogoWithText from "@/components/common/LogoWithText";
+import Image from "next/image";
 
 function Home() {
+  const [theme, setTheme] = useState("light");
   const { data: session, status } = useSession();
   const [stats, setStats] = useState({
     userCount: 0,
@@ -16,6 +18,28 @@ function Home() {
     eventCount: 0,
   });
   const router = useRouter();
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    if (document.documentElement.classList.contains("dark")) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      setTheme("light");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      setTheme("dark");
+    }
+  };
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -35,12 +59,22 @@ function Home() {
     );
   } else {
     return (
-      <div className="flex flex-col items-center justify-start text-text lg:text-sm text-xs w-full">
-        <div className="my-4"></div>
+      <div className="flex flex-col items-center justify-center w-full">
         <LogoWithText />
         <Welcomer stats={stats} />
 
         <LoginOrRegister />
+
+        <button
+          onClick={toggleTheme}
+          className="flex justify-center items-center absolute top-3 right-3"
+        >
+          {theme == "light" ? (
+            <Image src={"/icons/moon.svg"} width={20} height={20} alt="moon" />
+          ) : (
+            <Image src="/icons/sun.svg" width={20} height={20} alt="sun" />
+          )}
+        </button>
       </div>
     );
   }

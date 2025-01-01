@@ -64,7 +64,7 @@ const CreateRoomContent = () => {
           {loading ? (
             <Loader />
           ) : (
-            <PrimaryButton type="submit" text={"Create Room"} bg={true} />
+            <PrimaryButton type="submit" text={"Create Room"} />
           )}
         </Form>
       </Formik>

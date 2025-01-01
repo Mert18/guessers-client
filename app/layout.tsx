@@ -18,6 +18,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const toggleTheme = () => {
+    if (document.documentElement.classList.contains("dark")) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }
+  };
+
   return (
     <html lang="en">
       <SessionProviderWrapper>
@@ -25,10 +35,10 @@ export default function RootLayout({
           GA_TRACKING_ID={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || ""}
         />
         <body
-          className={`${font.className} bg-background-default grid grid-cols-12 min-h-screen`}
+          className={`${font.className} grid grid-cols-12 min-h-screen text-xs md:text-sm bg-light-bg dark:bg-dark-bg`}
           style={{ position: "relative" }}
         >
-          <div className="col-start-1 md:col-start-4 xl:col-start-5 col-end-13 md:col-end-10 xl:col-end-9 bg-background-bright p-4 shadow-lg">
+          <div className="col-start-1 xl:col-start-3 col-end-13 xl:col-end-11 p-4 shadow-lg dark:border-l dark:border-r border-primary-one">
             {children}
           </div>
           <ToastContainer />

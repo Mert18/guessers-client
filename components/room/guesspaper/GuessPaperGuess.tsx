@@ -1,3 +1,4 @@
+import TableCardWrapper from "@/components/common/table/TableCardWrapper";
 import { ISingleGuess } from "@/types/IGuessPaper.model";
 
 interface IGuessPaperGuessProps {
@@ -6,14 +7,12 @@ interface IGuessPaperGuessProps {
 
 const GuessPaperGuess = ({ guess }: IGuessPaperGuessProps) => {
   return (
-    <div
-      className="flex justify-start items-center bg-background-bright my-1 text-primary-default border-2 border-primary-default transition-all px-2 py-3"
-    >
+    <TableCardWrapper changeBgOnHover={false}>
       <p className="flex-1 truncate">{guess.event.name}</p>
       <p className="flex-1">{guess.eventGuessOption.name}</p>
       <p className="flex-1">{guess.eventGuessOptionCase.name}</p>
       <p className="flex-1">{guess.eventGuessOptionCase.status}</p>
-    </div>
+    </TableCardWrapper>
   );
 };
 

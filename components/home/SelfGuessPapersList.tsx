@@ -3,7 +3,10 @@ import GuessPaperCard from "../room/guesspaper/GuessPaperCard";
 import Loader from "../common/Loader";
 import { IGuessPaper } from "@/types/IGuessPaper.model";
 import { IPaging } from "@/types/IRequest.model";
-import Pager from "../common/Pager";
+import Pager from "../common/table/Pager";
+import TableHeader from "../common/table/TableHeader";
+import TableEmptyInfo from "../common/table/TableEmptyInfo";
+import TableWrapper from "../common/table/TableWrapper";
 
 interface ISelfGuessPapersListProps {
   selfGuessPapers: IGuessPaper[];
@@ -21,22 +24,22 @@ const SelfGuessPapersList = ({
   const selfGuessPapersRenderer = () => {
     if (loading) {
       return <Loader />;
-    } else if (selfGuessPapers.length === 0) {
-      return <p className="text-primary">No guess papers available.</p>;
     } else {
       return (
-        <div className="w-full">
-          <div className="bg-primary-default p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
-            <h2 className="flex-1">{"Username"}</h2>
-            <h2 className="flex-1">{"Status"}</h2>
-            <h2 className="flex-1">{"Details"}</h2>
-          </div>
-          {selfGuessPapers.map((guessPaper) => (
-            <GuessPaperCard key={guessPaper.id} guessPaper={guessPaper} />
-          ))}
+        <TableWrapper>
+          <TableHeader columns={["Username", "Status", "Details"]} />
+          {selfGuessPapers.length === 0 ? (
+            <TableEmptyInfo text="No guess papers available." />
+          ) : (
+            <>
+              {selfGuessPapers.map((guessPaper) => (
+                <GuessPaperCard key={guessPaper.id} guessPaper={guessPaper} />
+              ))}
 
-          <Pager paging={paging} setPaging={setPaging} />
-        </div>
+              <Pager paging={paging} setPaging={setPaging} />
+            </>
+          )}
+        </TableWrapper>
       );
     }
   };

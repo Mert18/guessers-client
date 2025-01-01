@@ -3,6 +3,7 @@ import Modal from "../../common/Modal";
 import PrimaryButton from "../../common/button/PrimaryButton";
 import GuessPaperDetails from "./GuessPaperDetailsModal";
 import { IGuessPaper } from "@/types/IGuessPaper.model";
+import TableCardWrapper from "@/components/common/table/TableCardWrapper";
 
 interface IGuessPaperCardProps {
   guessPaper: IGuessPaper;
@@ -16,10 +17,7 @@ const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
   };
 
   return (
-    <div className="w-full font-bold">
-      <div
-        className={`flex   items-center bg-background-bright my-1 text-primary-default border-2 border-primary-default transition-all px-2 py-3`}
-      >
+    <TableCardWrapper changeBgOnHover={false}>
         <p className="flex-1">{guessPaper.user.username}</p>
 
         <p
@@ -43,8 +41,6 @@ const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
             onClick={() => setGuessPaperDetailsOpen(true)}
           />
         </div>
-
-      </div>
       {guessPaperDetailsOpen && (
         <Modal
           title={"Guess Paper Details"}
@@ -53,7 +49,7 @@ const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
           <GuessPaperDetails guessPaper={guessPaper} isShare={false} />
         </Modal>
       )}
-    </div>
+    </TableCardWrapper>
   );
 };
 

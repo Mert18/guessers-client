@@ -29,22 +29,21 @@ const LoginOrRegister = () => {
     password: "",
   };
   return (
-    <div className="flex flex-col justify-center items-center my-8 w-full lg:w-1/2 p-2">
+    <div className="flex flex-col justify-center items-center my-8 md:w-1/3 w-full p-2 font-bold">
       <p className="flex flex-col w-full text-center">
-        <span className="my-2">Already have an account?</span>
+        <span className="my-2 text-primary-one font-normal">Already have an account?</span>
         <PrimaryButton
           type="button"
           text={"Login"}
           onClick={() => signIn("keycloak")}
-          bg={true}
         />
       </p>
 
-      <div className="w-full h-0.5 bg-primary-default my-4"></div>
+      <div className="w-full h-0.5 my-4"></div>
 
-      <p className="my-2">Do not have an account yet? </p>
+      <p className="my-2 text-primary-two font-normal">Do not have an account yet? </p>
 
-      <p className="text-start w-full text-text-default font-bold">Register</p>
+      <p className="text-start w-full font-bold text-primary-two">Register</p>
       <Formik
         initialValues={initialValues}
         validationSchema={RegisterSchema}
@@ -67,6 +66,7 @@ const LoginOrRegister = () => {
               type="text"
               placeholder={"username"}
               placeholderInside={true}
+              one={false}
             />
 
             <CustomInputField
@@ -75,6 +75,7 @@ const LoginOrRegister = () => {
               type="password"
               placeholder={"password"}
               placeholderInside={true}
+              one={false}
             />
 
             <div className="flex flex-col w-full text-center">
@@ -83,7 +84,7 @@ const LoginOrRegister = () => {
                   <Loader />
                 </div>
               ) : (
-                <PrimaryButton type="submit" text={"Register"} bg={true} />
+                <PrimaryButton type="submit" text={"Register"} one={false} />
               )}
             </div>
             <div className="w-full">
