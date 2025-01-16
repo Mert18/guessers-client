@@ -13,23 +13,22 @@ export default {
       },
       colors: {
         background: {
-          default: "#E2E9E4",
-          bright: "#e5e5e5",
+          default: "#FDFBFB",
+          bright: "#FDFBFB",
         },
         primary : {
-          default: "#9B7DD7",
-          bright: "#B19CDA",
+          default: "#297373",
+          bright: "#297373",
         },
         text: {
-          default: "#6A3788",
-          bright: "#8A669E"
+          default: "#333333",
+          bright: "#333333"
         },
         secondary: {
-          default: "#EEA370",
+          default: "#FF8552",
         },
-        failure: "#CE4A3A",
-        success: "#4EE521",
-        warning: "#E28043"
+        failure: "#DA3E3E",
+        success: "#32CD32"
       }
     },
   },
