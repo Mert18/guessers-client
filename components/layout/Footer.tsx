@@ -8,7 +8,7 @@ const Footer = () => {
         <Link className="flex items-center text-primary-default text-xs" href="https://github.com/Mert18/guessers-client">
           <span>git</span>
 
-          <Image className="mx-1" src="/icons/github.svg" alt="github" width={40} height={40} />
+          <Image src="/icons/github.svg" alt="github" width={40} height={40} />
           <span>hub</span>
         </Link>
       </div>
