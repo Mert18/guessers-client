@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className="flex justify-center items-center h-[10vh] relative w-full">
       <div>
-        <Link className="flex items-center text-primary-default text-xs" href="https://github.com/Mert18/guessers-client">
+        <Link className="flex items-center text-primary text-sm" href="https://github.com/Mert18/guessers-client">
           <span>git</span>
 
           <Image src="/icons/github.svg" alt="github" width={40} height={40} />

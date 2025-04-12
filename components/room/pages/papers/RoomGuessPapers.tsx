@@ -22,7 +22,7 @@ const RoomGuessPapers = ({ guessPapers, paging, setPaging, loading }: IRoomGuess
     } else {
       return (
         <div className="w-full">
-          <div className="bg-primary-default p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
+          <div className="bg-primary p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary">
             <h2 className="flex-1">{"Username"}</h2>
             <h2 className="flex-1">{"Status"}</h2>
             <h2 className="flex-1">{"Stakes"}</h2>
@@ -39,7 +39,7 @@ const RoomGuessPapers = ({ guessPapers, paging, setPaging, loading }: IRoomGuess
     }
   };
   return (
-    <div className="my-8 text-xs">
+    <div className="my-8 text-sm">
       <ComponentTitle text={"guessPapers"} icon="/ticket.svg" />
       {roomGuessPapersRenderer()}
     </div>

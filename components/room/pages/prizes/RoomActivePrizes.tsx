@@ -18,10 +18,10 @@ const RoomActivePrizes = ({ prizes, paging, setPaging, loading }: IRoomActivePri
     if (loading) {
       return <Loader />;
     } else if (prizes.length === 0) {
-      return <p className="text-text-default">No prizes available.</p>;
+      return <p className="text-text">No prizes available.</p>;
     } else {
       return <div className="w-full">
-        <div className="bg-primary-default p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
+        <div className="bg-primary p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary">
           <h2 className="flex-1">{"Name"}</h2>
           <h2 className="flex-1">{"Description"}</h2>
           <h2 className="flex-1">{"Cost"}</h2>
@@ -36,7 +36,7 @@ const RoomActivePrizes = ({ prizes, paging, setPaging, loading }: IRoomActivePri
   };
 
   return (
-    <div className="my-8 text-xs">
+    <div className="my-8 text-sm">
       <ComponentTitle text={"prizes"} icon="/price-tag.svg" />
       {prizesRenderer()}
     </div>

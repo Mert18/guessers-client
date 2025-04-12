@@ -13,7 +13,7 @@ const PendingInviteCard = ({ key, invite }: IPendingInviteCard) => {
   return (
     <div
       key={key}
-      className="flex justify-start items-center bg-background-bright my-1 text-primary-default border-2 border-primary-default transition-all px-2 py-3"
+      className="flex justify-start items-center bg-background-bright my-1 text-primary border-2 border-primary transition-all px-2 py-3"
     >
       <div className="whitespace-nowrap overflow-ellipsis overflow-hidden text-text flex-1">
         <p>{invite.room.name}</p>

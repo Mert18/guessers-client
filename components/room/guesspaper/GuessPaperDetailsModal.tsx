@@ -24,8 +24,8 @@ const GuessPaperDetailsModal = ({
   return (
     guessPaper && (
       <>
-        <div className="w-full text-xs">
-          <div className="bg-primary-default p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
+        <div className="w-full text-sm">
+          <div className="bg-primary p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary">
             <h2 className="flex-1">{"Event"}</h2>
             <h2 className="flex-1">{"Guess Option"}</h2>
             <h2 className="flex-1">{"Guess"}</h2>
@@ -50,7 +50,7 @@ const GuessPaperDetailsModal = ({
         ) : (
           !isShare && (
             <button
-              className="text-text-default hover:text-primary-default my-2"
+              className="text-text hover:text-primary my-2"
               onClick={() => {
                 setLoading(true);
                 shareGuessPaper(guessPaper.id)
@@ -69,7 +69,7 @@ const GuessPaperDetailsModal = ({
         )}
 
         {isSharedPopUpVisible && (
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-background-bright text-text-default p-4 border-2 border-text-default flex flex-col justify-center items-center">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-background-bright text-text p-4 border-2 border-text flex flex-col justify-center items-center">
             <p>Share this link with your friends:</p>
             {sharedToken ? (
               <div className="flex flex-col justify-center items-center">

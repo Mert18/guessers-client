@@ -26,7 +26,7 @@ const RoomActiveEvents = ({
     if (loading) {
       return <Loader />;
     } else if (activeEvents?.length === 0) {
-      return <p className="text-text-default">No active events available.</p>;
+      return <p className="text-text">No active events available.</p>;
     } else {
       return (
         <div>
@@ -47,7 +47,7 @@ const RoomActiveEvents = ({
     }
   };
   return (
-    <div className="my-8 text-xs">
+    <div className="my-8 text-sm">
       <ComponentTitle text={"Active Events"} icon="/calendar.svg" />
       {eventsRenderer()}
     </div>

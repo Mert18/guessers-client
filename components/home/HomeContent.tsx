@@ -48,7 +48,7 @@ const HomeContent = () => {
     try {
       const response = await listSelfRooms(publicRoomsPaging);
       if (!response.data.content || response.data.content === undefined) return;
-      setSelfRooms(response?.data?.content);
+      setSelfRooms([...selfRooms, ...response.data.content]);
       setSelfRoomsPaging((prevState) => ({
         ...prevState,
         totalPages: response?.data?.page?.totalPages,

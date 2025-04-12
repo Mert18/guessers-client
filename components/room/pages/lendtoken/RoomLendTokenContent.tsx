@@ -59,7 +59,7 @@ const RoomLendTokenContent = ({ params }: IRoomLendTokenContentProps) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center text-text-default">
+    <div className="flex flex-col justify-center items-center text-text">
       <ComponentTitle text={"Lend Token"} />
       {room?.name && <RoomName roomName={room.name} roomId={params.roomId} />}
 
@@ -80,9 +80,9 @@ const RoomLendTokenContent = ({ params }: IRoomLendTokenContentProps) => {
               key={roomUser.id}
               className={`${
                 roomUserIdsToLend.includes(roomUser.id)
-                  ? "text-background-bright bg-primary-default"
-                  : "bg-background-bright text-text-default"
-              } flex justify-between items-center w-full p-2 my-1 rounded-md border-2 border-primary-default`}
+                  ? "text-background-bright bg-primary"
+                  : "bg-background-bright text-text"
+              } flex justify-between items-center w-full p-2 my-1 rounded-md border-2 border-primary`}
             >
               <div>{roomUser.user.username}</div>
               <div>{roomUser.balance}</div>

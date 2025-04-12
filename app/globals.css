@@ -30,3 +30,9 @@ body {
   border-radius: 10px;
   border: 2px solid #333333;
 }
+
+@layer components {
+  .btn-gradient {
+    @apply bg-gradient-to-r from-primary to-primary-dark hover:bg-gradient-to-br;
+  }
+}

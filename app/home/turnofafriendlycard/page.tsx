@@ -13,7 +13,7 @@ const TurnOfAFriendlyCard = () => {
       className={` ${font.className} flex flex-col justify-center items-center h-[60vh]`}
     >
       <div>
-        <h1 className="text-3xl font-bold text-primary-default text-center my-4">
+        <h1 className="text-3xl font-bold text-primary text-center my-4">
           The game never ends when your whole world depends on the turn of a
           friendly card.
         </h1>

@@ -9,15 +9,15 @@ interface IRoomRichestsProps {
 
 const RoomRichests = ({ rankedRiches }: IRoomRichestsProps) => {
   return (
-    <ul className="w-full text-xs">
+    <ul className="w-full text-sm">
       {rankedRiches?.map((roomUser: IRoomUser, index: any) => (
         <li
           key={index}
           className={`p-2 flex items-center w-full justify-between ${
             index == 0
-              ? "bg-text-default"
+              ? "bg-text"
               : index == 1
-              ? "bg-primary-default"
+              ? "bg-primary"
               : "bg-primary-bright"
           } my-1`}
         >

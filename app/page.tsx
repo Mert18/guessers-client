@@ -1,12 +1,14 @@
 "use client";
 import { getStats } from "@/api/authentication";
-import Loader from "@/components/common/Loader";
 import LoginOrRegister from "@/components/auth/LoginOrRegister";
-import Welcomer from "@/components/common/Welcomer";
+import Loader from "@/components/common/Loader";
+import LogoWithText from "@/components/common/logo/LogoWithText";
 import { useSession } from "next-auth/react";
+import { Jersey_10 } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import LogoWithText from "@/components/common/LogoWithText";
+
+const font = Jersey_10({ subsets: ["latin"], weight: "400" });
 
 function Home() {
   const { data: session, status } = useSession();
@@ -27,6 +29,11 @@ function Home() {
     }
   }, [status, router]);
 
+  {
+    /* <LogoWithText />
+        <Welcomer stats={stats} /> */
+  }
+
   if (status === "loading") {
     return (
       <div>
@@ -35,12 +42,18 @@ function Home() {
     );
   } else {
     return (
-      <div className="flex flex-col items-center justify-start text-text lg:text-sm text-xs w-full">
-        <div className="my-4"></div>
-        <LogoWithText />
-        <Welcomer stats={stats} />
-
-        <LoginOrRegister />
+      <div
+        className={`${font.className} flex lg:flex-row flex-col w-full h-full`}
+      >
+        <div className="flex-1 bg-white">
+          <LoginOrRegister />
+        </div>
+        <div className="flex-1 bg-linear-primary bg-cover">
+          <div className="flex flex-col justify-center items-center h-full">
+            <LogoWithText />
+            <p className="text-white mt-2">Join the fun and start guessing!</p>
+          </div>
+        </div>
       </div>
     );
   }

@@ -4,7 +4,7 @@ import { IGuessPaper } from "@/types/IGuessPaper.model";
 import React, { useEffect, useState } from "react";
 import GuessPaperDetailsModal from "../room/guesspaper/GuessPaperDetailsModal";
 import Loader from "../common/Loader";
-import LogoWithText from "../common/LogoWithText";
+import LogoWithText from "../common/logo/LogoWithText";
 import Link from "next/link";
 
 interface ISharedGuessPaperContentProps {
@@ -35,7 +35,7 @@ const SharedGuessPaperContent = ({ params }: ISharedGuessPaperContentProps) => {
       <LogoWithText />
       <GuessPaperDetailsModal guessPaper={guessPaper} isShare={true} />
       <Link href="/home">
-        <p className="text-primary-default hover:text-primary-dark">
+        <p className="text-primary hover:text-primary-dark">
           Back to home
         </p>
       </Link>

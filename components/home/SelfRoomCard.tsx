@@ -7,15 +7,24 @@ interface ISelfRoomCardProps {
 
 const SelfRoomCard = ({ roomUser }: ISelfRoomCardProps) => {
   return (
-    <Link
-      href={`/home/room/${roomUser.room.id}/guess`}
-      className="w-full font-bold"
-    >
-      <div className="flex justify-start items-center bg-background-bright my-1 text-primary-default border-2 border-primary-default hover:bg-primary-default hover:text-background-bright hover:-translate-y-0.5 transition-all px-2 py-3">
-        <h2 className="flex-1">{roomUser.room.name}</h2>
-        <p className="flex-1">{roomUser.room.owner.username}</p>
-        <p className="flex-1">{roomUser.memberCount}</p>
-        <p className="flex-1">{roomUser.balance.toFixed(2)}</p>
+    <Link href={`/home/room/${roomUser.room.id}/guess`} className="inline-block mx-1"> 
+      <div className="rounded-md btn-gradient w-48 h-48 p-2 text-white">
+        <div>
+          <p className="opacity-50">Room Name</p>
+          <h2>{roomUser.room.name}</h2>
+        </div>
+        <div>
+          <p className="opacity-50">Owner</p>
+          <p>{roomUser.room.owner.username}</p>
+        </div>
+        <div>
+          <p className="opacity-50">Member Count</p>
+          <p>{roomUser.memberCount}</p>
+        </div>
+        <div>
+          <p className="opacity-50">Balance</p>
+          <p>{roomUser.balance.toFixed(2)}</p>
+        </div>
       </div>
     </Link>
   );

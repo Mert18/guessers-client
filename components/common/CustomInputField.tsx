@@ -24,7 +24,7 @@ const CustomInputField = ({
       return (
         <Field
           name={name}
-          className={`w-${width} text-sm px-2 text-text-default font-bold outline-none border border-primary-default bg-background-bright h-8 focus:ring-2 focus:ring-primary-default`}
+          className={`w-${width}  px-2 text-text font-bold outline-none border border-primary bg-background-bright h-8 focus:ring-2 focus:ring-primary rounded-md`}
           type={type}
           autoComplete="off"
           placeholder={placeholderInside ? placeholder : ""}
@@ -34,7 +34,7 @@ const CustomInputField = ({
       return (
         <Field
           as="select"
-          className={`w-${width} text-sm px-2 text-text-default font-bold outline-none border border-primary-default h-8 focus:ring-2 focus:ring-primary-default bg-background-bright`}
+          className={`w-${width}  px-2 text-text font-bold outline-none border border-primary h-8 focus:ring-2 focus:ring-primary bg-background-bright rounded-md`}
           name={name}
         >
           {options?.map((option) => (
@@ -50,7 +50,7 @@ const CustomInputField = ({
         <Field
           name={name}
           type={type}
-          className={`w-${width} text-sm px-2 py-1 text-text-default font-bold outline-none border border-primary-default bg-background-bright h-8 focus:ring-2 focus:ring-primary-default`}
+          className={`w-${width}  px-2 py-1 text-text font-bold outline-none border border-primary bg-background-bright h-8 focus:ring-2 focus:ring-primary rounded-md`}
           min={"1.00"}
           autoComplete="off"
           placeholder={placeholderInside ? placeholder : ""}
@@ -61,7 +61,7 @@ const CustomInputField = ({
   return (
     <div className={`flex flex-col justify-start items-start w-${width} my-0.5`}>
       {withLabel && !placeholderInside && (
-        <span className="text-text-default text-sm">
+        <span className="text-text ">
           {placeholder}
         </span>
       )}

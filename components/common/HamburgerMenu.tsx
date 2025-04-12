@@ -21,17 +21,17 @@ const HamburgerMenu = ({ session }: any) => {
           }}
         >
           <div
-            className={`h-1 w-6 bg-primary-default transition-all ${
+            className={`h-1 w-6 bg-primary transition-all ${
               isOpen ? "my-1" : "my-0.5"
             }`}
           ></div>
           <div
-            className={`h-1 w-6 bg-primary-default transition-all ${
+            className={`h-1 w-6 bg-primary transition-all ${
               isOpen ? "my-1" : "my-0.5"
             }`}
           ></div>
           <div
-            className={`h-1 w-6 bg-primary-default transition-all ${
+            className={`h-1 w-6 bg-primary transition-all ${
               isOpen ? "my-1" : "my-0.5"
             }`}
           ></div>
@@ -39,14 +39,14 @@ const HamburgerMenu = ({ session }: any) => {
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 w-full h-screen bg-background-default py-5">
+        <div className="absolute top-full left-0 w-full h-screen bg-background py-5">
           <Link
             href={"/home"}
             className={`py-2 flex-1 ${
               path === "/home"
-                ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-            }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-xs`}
+                ? "text-background-bright hover:bg-primary-bright bg-primary"
+                : "text-primary hover:text-background-bright border-primary hover:bg-primary bg-background-bright"
+            }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-sm`}
           >
             <div
               className={`text-text font-bold flex justify-center items-center`}
@@ -59,9 +59,9 @@ const HamburgerMenu = ({ session }: any) => {
             href={"/home/invites"}
             className={`py-2 flex-1 ${
               path === "/home/invites"
-                ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-            }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-xs`}
+                ? "text-background-bright hover:bg-primary-bright bg-primary"
+                : "text-primary hover:text-background-bright border-primary hover:bg-primary bg-background-bright"
+            }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-sm`}
           >
             <div
               className={`text-text font-bold flex justify-center items-center`}
@@ -74,9 +74,9 @@ const HamburgerMenu = ({ session }: any) => {
             href={"/home/room/create"}
             className={`py-2 flex-1 ${
               path === "/home/room/create"
-                ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-            }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-xs`}
+                ? "text-background-bright hover:bg-primary-bright bg-primary"
+                : "text-primary hover:text-background-bright border-primary hover:bg-primary bg-background-bright"
+            }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-sm`}
           >
             <div
               className={`text-text font-bold flex justify-center items-center`}
@@ -93,9 +93,9 @@ const HamburgerMenu = ({ session }: any) => {
                 className={`py-2 flex-1 ${
                   // @ts-ignore
                   path === `/home/profile/${session.username}`
-                    ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                    : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-                }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-xs`}
+                    ? "text-background-bright hover:bg-primary-bright bg-primary"
+                    : "text-primary hover:text-background-bright border-primary hover:bg-primary bg-background-bright"
+                }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-sm`}
               >
                 <div
                   className={`text-text font-bold flex justify-center items-center`}
@@ -106,7 +106,7 @@ const HamburgerMenu = ({ session }: any) => {
 
               <Link
                 href={"/"}
-                className={`py-2 flex-1 text-failure hover:text-background-bright hover:bg-failure border-failure transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-xs`}
+                className={`py-2 flex-1 text-failure hover:text-background-bright hover:bg-failure border-failure transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-sm`}
                 onClick={() => {
                   keycloakSessionLogOut().then(() =>
                     signOut({ callbackUrl: "/" })

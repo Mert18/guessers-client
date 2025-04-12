@@ -14,7 +14,7 @@ const RoomHeader = ({ roomUser }: IRoomHeaderProps) => {
     <div className="flex flex-col items-center justify-center w-full my-4">
       <div className="w-full">
         <RoomName roomName={roomUser?.room?.name} />
-        <p className="text-center text-xs flex flex-col items-center justify-center text-primary-default">
+        <p className="text-center text-sm flex flex-col items-center justify-center text-primary">
           <p>Your Balance</p>
           <div className="flex justify-center items-center">
             <span className="font-bold text-base">{roomUser?.balance}</span>

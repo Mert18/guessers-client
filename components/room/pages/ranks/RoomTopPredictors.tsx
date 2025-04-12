@@ -4,12 +4,12 @@ import Link from "next/link";
 
 const RoomTopPredictors = ({ rankedPredictions }: any) => {
   return (
-    <ul className="w-full text-xs">
+    <ul className="w-full text-sm">
       {rankedPredictions.length >= 1 &&
         rankedPredictions.map((roomUser: IRoomUser, index: any) => (
           <li
             key={roomUser.id}
-            className={`p-2 flex items-center w-full justify-between ${index == 0 ? "bg-text-default" : index == 1 ? "bg-primary-default" : "bg-primary-bright"} my-1`}
+            className={`p-2 flex items-center w-full justify-between ${index == 0 ? "bg-text" : index == 1 ? "bg-primary" : "bg-primary-bright"} my-1`}
           >
             <div className="mr-1">
               {index == 0 ? (

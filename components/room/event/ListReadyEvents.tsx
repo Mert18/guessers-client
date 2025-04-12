@@ -89,7 +89,7 @@ const ListReadyEvents = ({
           <button
             className={`${
               selectedLeague === league.key
-                ? "text-primary-default underline"
+                ? "text-primary underline"
                 : "text-black"
             } px-2`}
             key={league.key}
@@ -109,7 +109,7 @@ const ListReadyEvents = ({
               key={readyEvent.id}
               className={`${
                 readyEventIdsToCreate.includes(readyEvent.id)
-                  ? "bg-primary-default text-background-default"
+                  ? "bg-primary text-background"
                   : "text-text"
               } flex flex-col justify-center items-center w-full py-2 cursor-pointer hover:text-primary my-1`}
               onClick={() => {

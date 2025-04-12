@@ -54,7 +54,7 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
     <div className="flex flex-col justify-center items-center text-text">
       {room?.name && <RoomName roomName={room.name} roomId={params.roomId} />}
 
-      <div className="text-text-default text-xl font-bold text-center py-2">
+      <div className="text-text text-xl font-bold text-center py-2">
         Create Event
       </div>
 
@@ -77,7 +77,7 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
         </Modal>
       )}
 
-      <p className="my-2 text-text-default">or create manually.</p>
+      <p className="my-2 text-text">or create manually.</p>
 
       <Formik
         initialValues={initialValues}
@@ -183,7 +183,7 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
 
                           <button
                             type="button"
-                            className="text-sm mt-5"
+                            className=" mt-5"
                             onClick={() =>
                               removeEventGuessOption(eventGuessOptionIndex)
                             }
@@ -235,7 +235,7 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
                                       type="number"
                                       name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionCases[${eventGuessOptionOptionIndex}].odds`}
                                       placeholder={"optionOdds"}
-                                      className="w-2/3 text-sm px-2 py-1 text-text outline-none bg-background-bright border border-primary-default h-8 focus:ring-1 focus:ring-primary-default text-text-default font-bold"
+                                      className="w-2/3  px-2 py-1 text-text outline-none bg-background-bright border border-primary h-8 focus:ring-1 focus:ring-primary text-text font-bold"
                                       step={"0.01"}
                                       min={"1.00"}
                                       defaultValue={1.01}
@@ -243,7 +243,7 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
 
                                     <button
                                       type="button"
-                                      className="text-sm"
+                                      className=""
                                       onClick={() =>
                                         removeEventGuessOptionOption(
                                           eventGuessOptionOptionIndex

@@ -1,11 +1,12 @@
 "use client";
-import Link from "next/link";
-import Logo from "../common/Logo";
+import Logo from "../common/logo/Logo";
 import { signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import axios from "axios";
 import useIsMobile from "@/hooks/useIsMobile";
 import HamburgerMenu from "../common/HamburgerMenu";
+import PrimaryButton from "../common/button/PrimaryButton";
+import SecondaryButton from "../common/button/SecondaryButton";
 
 async function keycloakSessionLogOut() {
   await axios.get(`/api/auth/logout`);
@@ -21,86 +22,43 @@ const Navbar = () => {
       return <HamburgerMenu session={session} />;
     } else {
       return (
-        <div className="flex text-xs w-full border-b border-primary gap-2">
-          <Link
-            href={"/home"}
-            className={`py-2 flex-1 ${
-              path === "/home"
-                ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-            }  transition-all text-center border-2 flex justify-center items-center`}
-          >
-            <div
-              className={`text-text font-bold flex justify-center items-center`}
-            >
-              <p>Home</p>
-            </div>
-          </Link>
+        <div className="flex text-sm w-full gap-2">
+          <PrimaryButton type="button" href="/home" text={"Home"} bg={true} />
 
-          <Link
-            href={"/home/invites"}
-            className={`py-2 flex-1 ${
-              path === "/home/invites"
-                ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-            }  transition-all text-center border-2 flex justify-center items-center`}
-          >
-            <div
-              className={`text-text font-bold flex justify-center items-center`}
-            >
-              <p>Invites</p>
-            </div>
-          </Link>
-
-          <Link
-            href={"/home/room/create"}
-            className={`py-2 flex-1 ${
-              path === "/home/room/create"
-                ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-            }  transition-all text-center border-2 flex justify-center items-center`}
-          >
-            <div
-              className={`text-text font-bold flex justify-center items-center`}
-            >
-              <p>Create Room</p>
-            </div>
-          </Link>
+          <PrimaryButton
+            type="button"
+            href="/home/invites"
+            text={"Invites"}
+            bg={true}
+          />
+          <PrimaryButton
+            type="button"
+            href="/home/room/create"
+            text={"Create Room"}
+            bg={true}
+          />
 
           {session && (
             <>
-              <Link
+              <PrimaryButton
+                type="button"
                 // @ts-ignore
                 href={`/home/profile/${session.username}`}
-                className={`py-2 flex-1 ${
-                  // @ts-ignore
-                  path === `/home/profile/${session.username}`
-                    ? "text-background-bright hover:bg-primary-bright bg-primary-default"
-                    : "text-primary-default hover:text-background-bright border-primary-default hover:bg-primary-default bg-background-bright"
-                }  transition-all text-center border-2 flex justify-center items-center`}
-              >
-                <div
-                  className={`text-text font-bold flex justify-center items-center`}
-                >
-                  <p>Profile</p>
-                </div>
-              </Link>
+                text={"Profile"}
+                bg={true}
+              />
 
-              <Link
+              <SecondaryButton
+                type="button"
                 href={"/"}
-                className={`py-2 flex-1 text-failure hover:text-background-bright hover:bg-failure border-failure transition-all text-center border-2 flex justify-center items-center`}
+                text={"Logout"}
+                bg={true}
                 onClick={() => {
                   keycloakSessionLogOut().then(() =>
                     signOut({ callbackUrl: "/" })
                   );
                 }}
-              >
-                <div
-                  className={`text-text font-bold flex justify-center items-center`}
-                >
-                  <p>Logout</p>
-                </div>
-              </Link>
+              />
             </>
           )}
         </div>
@@ -108,7 +66,7 @@ const Navbar = () => {
     }
   };
   return (
-    <div className="col-start-1 md:col-start-4 xl:col-start-5 col-end-13 md:col-end-10 xl:col-end-9 flex flex-col justify-between items-center text-text bg-background">
+    <div>
       <div className="w-full flex justify-center items-center my-4">
         <Logo />
       </div>

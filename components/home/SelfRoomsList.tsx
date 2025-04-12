@@ -4,6 +4,10 @@ import Pager from "../common/Pager";
 import Loader from "../common/Loader";
 import { IRoomUser } from "@/types/IRoom.model";
 import { IPaging } from "@/types/IRequest.model";
+import PrimaryButton from "../common/button/PrimaryButton";
+import Link from "next/link";
+import SecondaryButton from "../common/button/SecondaryButton";
+import { useEffect, useRef } from "react";
 
 interface ISelfRoomsListProps {
   selfRooms: IRoomUser[];
@@ -18,30 +22,51 @@ const SelfRoomsList = ({
   setPaging,
   loading,
 }: ISelfRoomsListProps) => {
+  const handleLoadMoreRooms = () => {
+    setPaging((prev) => ({
+      ...prev,
+      page: prev.page + 1,
+    }));
+  };
   const selfRoomsListRenderer = () => {
     if (loading) {
       return <Loader />;
     } else if (selfRooms?.length === 0) {
-      return <p className="text-primary">You have not attended any rooms.</p>;
+      return (
+        <p className="text-primary">
+          You have not attended any rooms.{" "}
+          <Link
+            href={"/home/room/create"}
+            className="underline text-secondary hover:text-secondary-dark"
+          >
+            Create a new room.
+          </Link>
+        </p>
+      );
     } else {
       return (
-        <div className="w-full border-2">
-          <div className="bg-primary-default p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
-            <h2 className="flex-1">{"Room Name"}</h2>
-            <h2 className="flex-1">{"Owner"}</h2>
-            <h2 className="flex-1">{"Members"}</h2>
-            <h2 className="flex-1">{"Balance"}</h2>
+        <div>
+          <div className="flex flex-nowrap max-w-full overflow-x-auto py-2">
+            {selfRooms?.map((room) => (
+              <SelfRoomCard key={room.id} roomUser={room} />
+            ))}
+            {paging.totalElements !== selfRooms.length && (
+              <div className="w-96">
+                <SecondaryButton
+                  onClick={() => handleLoadMoreRooms()}
+                  type="button"
+                  text="Load More >>>"
+                  bg={true}
+                />
+              </div>
+            )}
           </div>
-          {selfRooms?.map((room) => (
-            <SelfRoomCard key={room.id} roomUser={room} />
-          ))}
-          <Pager paging={paging} setPaging={setPaging} />
         </div>
       );
     }
   };
   return (
-    <div className="my-8 text-xs">
+    <div className="text-sm">
       <ComponentTitle text="Your rooms" icon="/door.svg" />
       {selfRoomsListRenderer()}
     </div>

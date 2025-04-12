@@ -21,7 +21,7 @@ const PublicRoomsList = ({ publicRooms, paging, setPaging, loading }: IPublicRoo
     } else {
       return (
         <div className="w-full">
-          <div className="bg-primary-default p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
+          <div className="bg-primary p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary">
             <h2 className="flex-1">{"Room Name"}</h2>
             <h2 className="flex-1">{"Owner"}</h2>
             <h2 className="flex-1">{"Members"}</h2>
@@ -38,7 +38,7 @@ const PublicRoomsList = ({ publicRooms, paging, setPaging, loading }: IPublicRoo
     }
   };
   return (
-    <div className="my-8 text-xs">
+    <div className="my-8 text-sm">
       <ComponentTitle text="Public rooms" icon="door-open.svg" />
       {publicRoomsListRenderer()}
     </div>

@@ -1,7 +1,8 @@
 import { Jersey_10 } from "next/font/google";
 import Link from "next/link";
+import React from "react";
 
-interface IPrimaryButton {
+interface ISecondaryButton {
   type: "submit" | "button";
   onClick?: () => void;
   text: string;
@@ -11,16 +12,16 @@ interface IPrimaryButton {
   icon?: React.ReactNode;
 }
 
-const font = Jersey_10({ subsets: ["latin"], weight: "400"});
+const font = Jersey_10({ subsets: ["latin"], weight: "400" });
 
-const PrimaryButton = ({
+const SecondaryButton = ({
   type,
   onClick,
   text,
   href,
   bg = false,
   icon,
-}: IPrimaryButton) => {
+}: ISecondaryButton) => {
   if (href) {
     return (
       <Link
@@ -29,10 +30,10 @@ const PrimaryButton = ({
         className={`py-2 flex-1 text-center ${font.className}`}
       >
         <div
-          className={`font-bold flex justify-center items-center text-white h-full p-2 ${
+          className={`h-full font-bold flex justify-center items-center text-white p-2 ${
             bg
-              ? "btn-gradient"
-              : "bg-transparent hover:text-primary"
+              ? "bg-gradient-to-bl from-secondary to-secondary-dark hover:from-secondary-dark hover:to-secondary transition-all"
+              : "bg-transparent hover:text-secondary"
           }`}
         >
           {icon && (
@@ -49,9 +50,11 @@ const PrimaryButton = ({
       <button
         className={`${
           bg
-            ? "btn-gradient"
-            : "text-primary-dark"
-        } flex-1 font-bold text-white flex justify-center items-center p-2 rounded-md  ${font.className} w-full h-full`}
+            ? "bg-gradient-to-bl from-secondary to-secondary-bright hover:from-secondary-bright hover:to-secondary"
+            : "bg-transparent hover:text-secondary-dark"
+        } flex-1 font-bold text-white flex justify-center items-center p-2 rounded-md h-full ${
+          font.className
+        } w-full`}
         type={type}
         onClick={onClick}
       >
@@ -66,4 +69,4 @@ const PrimaryButton = ({
   }
 };
 
-export default PrimaryButton;
+export default SecondaryButton;

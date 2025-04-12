@@ -8,24 +8,31 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'linear-primary': "url('/backgrounds/login-bg.png')",
+      },
       fontSize: {
         '2xs': '0.6rem'
       },
       colors: {
-        background: {
-          default: "#E2E9E4",
-          bright: "#e5e5e5",
-        },
         primary : {
-          default: "#9B7DD7",
-          bright: "#B19CDA",
+          DEFAULT: "#8f6ed1",
+          bright: "#9068ee",
+          dark: "#6542B5",
+          darker: "#5c38ae"
         },
-        text: {
-          default: "#6A3788",
-          bright: "#8A669E"
+        white: {
+          DEFAULT: "#EEF8FF",
+          bright: "#FBFDFF"
+        },
+        black: {
+          DEFAULT: "#353535",
+          bright: "#464646"
         },
         secondary: {
-          default: "#EEA370",
+          DEFAULT: "#26c0bd",
+          bright: "#2bcac6",
+          dark: "#21b1ad"
         },
         failure: "#CE4A3A",
         success: "#4EE521",

@@ -12,7 +12,7 @@ const PrizeCard = ({ prize }: IPrizeCardProps) => {
   };
   return (
     <div className="w-full text-text">
-      <div className="flex justify-start items-center bg-background-bright my-1 text-primary-default border-2 border-primary-default transition-all px-2 py-3">
+      <div className="flex justify-start items-center bg-background-bright my-1 text-primary border-2 border-primary transition-all px-2 py-3">
         <p className="flex-1">{prize.name}</p>
         <p className="flex-1">{prize.description}</p>
         <p className="flex-1">{prize.value.toFixed(2)}</p>

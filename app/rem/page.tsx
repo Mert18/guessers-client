@@ -16,7 +16,7 @@ const ReadyEventsManagement = () => {
       {leagues.map((league) => (
         <button onClick={() => {
           readyEvents(league.code);
-        }} className="hover:text-primary-default" key={league.code}>
+        }} className="hover:text-primary" key={league.code}>
           <p>{league.name}</p>
         </button>
       ))}

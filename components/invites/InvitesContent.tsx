@@ -33,7 +33,7 @@ const InvitesContent = () => {
   }, [invitesPaging.page]);
 
   return (
-    <div className="w-full text-xs my-8">
+    <div className="w-full text-sm my-8">
       <ComponentTitle
         text={"invites" + " (" + pendingInvites?.length + ")"}
         icon="/invite.svg"
@@ -43,7 +43,7 @@ const InvitesContent = () => {
         <p className="text-primary">You do not have any room invites.</p>
       ) : (
         <>
-          <div className="bg-primary-default p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary-default">
+          <div className="bg-primary p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary">
             <h2 className="flex-1">{"Room Name"}</h2>
             <h2 className="flex-1">{"Options"}</h2>
           </div>
