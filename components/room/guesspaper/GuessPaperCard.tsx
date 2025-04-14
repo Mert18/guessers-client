@@ -3,6 +3,7 @@ import Modal from "../../common/Modal";
 import CustomButton from "../../common/CustomButton";
 import GuessPaperDetails from "./GuessPaperDetailsModal";
 import { IGuessPaper } from "@/types/IGuessPaper.model";
+import { ColorEnum } from "@/enum/enum";
 
 interface IGuessPaperCardProps {
   guessPaper: IGuessPaper;
@@ -16,32 +17,48 @@ const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
   };
 
   return (
-    <div className="w-full font-bold">
-      <div
-        className={`flex justify-start items-center my-1 text-primary border-2 border-primary transition-all px-2 py-3`}
-      >
-        <p className="flex-1">{guessPaper.user.username}</p>
-        <p
-          className={`flex-1 ${
-            guessPaper.status === "IN_PROGRESS"
-              ? "text-warning"
-              : guessPaper.status === "WON"
-              ? "text-success"
-              : guessPaper.status === "LOST"
-              ? "text-failure"
-              : "text-text"
-          }`}
-        >
-          {guessPaper.status}
-        </p>
-        <p className="flex-1">{guessPaper.stake.toFixed(2)}</p>
-        <p className="flex-1">{guessPaper.totalOdd.toFixed(2)}</p>
-        <p className="flex-1">{guessPaper.wins.toFixed(2)}</p>
-        <div className="flex-1">
+    <div className="inline-block mx-1">
+      <div className="rounded-md bg-primary-dark w-48 h-48 p-2 text-white flex flex-col flex-wrap">
+        <div>
+          <p className="opacity-50">Owner</p>
+          <p>{guessPaper.user.username}</p>
+        </div>
+        <div>
+          <p className="opacity-50">Status</p>
+          <p
+            className={`flex-1 ${
+              guessPaper.status === "IN_PROGRESS"
+                ? "text-warning"
+                : guessPaper.status === "WON"
+                ? "text-success"
+                : guessPaper.status === "LOST"
+                ? "text-failure"
+                : "text-text"
+            }`}
+          >
+            {guessPaper.status}
+          </p>
+        </div>
+        <div>
+          <p className="opacity-50">Stakes</p>
+          <p>{guessPaper.stake.toFixed(2)}</p>
+        </div>
+        <div>
+          <p className="opacity-50">Total Odd</p>
+          <p>{guessPaper.totalOdd.toFixed(2)}</p>
+        </div>
+        <div>
+          <p className="opacity-50">Wins</p>
+
+          <p>{guessPaper.wins.toFixed(2)}</p>
+        </div>
+        <div className="my-4">
           <CustomButton
             type="button"
             text="Details"
             onClick={() => setGuessPaperDetailsOpen(true)}
+            bg={true}
+            color={ColorEnum.PRIMARY}
           />
         </div>
       </div>

@@ -31,7 +31,7 @@ const SelfRoomsList = ({
       return <Loader />;
     } else if (selfRooms?.length === 0) {
       return (
-        <p className="text-primary">
+        <p>
           You have not attended any rooms.{" "}
           <Link
             href={"/home/room/create"}

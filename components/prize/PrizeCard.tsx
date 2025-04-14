@@ -1,5 +1,6 @@
 import CustomButton from "../common/CustomButton";
 import { buyPrize } from "@/api/prize";
+import { ColorEnum } from "@/enum/enum";
 import { IPrize } from "@/types/IPrize.model";
 
 interface IPrizeCardProps {
@@ -11,16 +12,27 @@ const PrizeCard = ({ prize }: IPrizeCardProps) => {
     buyPrize(prizeId);
   };
   return (
-    <div className="w-full text-text">
-      <div className="flex justify-start items-center bg-background-bright my-1 text-primary border-2 border-primary transition-all px-2 py-3">
-        <p className="flex-1">{prize.name}</p>
-        <p className="flex-1">{prize.description}</p>
-        <p className="flex-1">{prize.value.toFixed(2)}</p>
+    <div className="inline-block mx-1">
+      <div className="rounded-md bg-primary-dark w-48 h-48 p-2 text-white">
+        <div>
+          <p className="opacity-50">Prize Name</p>
+          <p className="flex-1">{prize.name}</p>
+        </div>
+        <div>
+          <p className="opacity-50">Description</p>
+          <p className="flex-1">{prize.description}</p>
+        </div>
+        <div>
+          <p className="opacity-50">Price</p>
+          <p className="flex-1">{prize.value.toFixed(2)}</p>
+        </div>
         <div className="flex-1">
           <CustomButton
             text="Buy"
             type="button"
             onClick={() => handleBuyPrize(prize.id)}
+            color={ColorEnum.SUCCESS}
+            bg={true}
           />
         </div>
       </div>

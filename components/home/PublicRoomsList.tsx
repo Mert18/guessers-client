@@ -12,7 +12,12 @@ interface IPublicRoomsListProps {
   loading: boolean;
 }
 
-const PublicRoomsList = ({ publicRooms, paging, setPaging, loading }: IPublicRoomsListProps) => {
+const PublicRoomsList = ({
+  publicRooms,
+  paging,
+  setPaging,
+  loading,
+}: IPublicRoomsListProps) => {
   const handleLoadMoreRooms = () => {
     setPaging((prev) => ({
       ...prev,
@@ -32,15 +37,15 @@ const PublicRoomsList = ({ publicRooms, paging, setPaging, loading }: IPublicRoo
             <PublicRoomCard key={room.id} room={room} />
           ))}
           {paging.totalElements !== publicRooms.length && (
-              <div className="w-48">
-                <CustomButton
-                  onClick={() => handleLoadMoreRooms()}
-                  type="button"
-                  text="Load More >>>"
-                  bg={true}
-                />
-              </div>
-            )}
+            <div className="w-48">
+              <CustomButton
+                onClick={() => handleLoadMoreRooms()}
+                type="button"
+                text="Load More >>>"
+                bg={true}
+              />
+            </div>
+          )}
         </div>
       );
     }

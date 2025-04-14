@@ -6,6 +6,7 @@ import GuessPaperDetailsModal from "../room/guesspaper/GuessPaperDetailsModal";
 import Loader from "../common/Loader";
 import LogoWithText from "../common/logo/LogoWithText";
 import Link from "next/link";
+import Logo from "../common/logo/Logo";
 
 interface ISharedGuessPaperContentProps {
   params: {
@@ -31,14 +32,15 @@ const SharedGuessPaperContent = ({ params }: ISharedGuessPaperContentProps) => {
   return guessPaper && loading ? (
     <Loader />
   ) : (
-    <div className="flex flex-col justify-center items-center min-h-[50vh]">
-      <LogoWithText />
-      <GuessPaperDetailsModal guessPaper={guessPaper} isShare={true} />
-      <Link href="/home">
-        <p className="text-primary hover:text-primary-dark">
-          Back to home
-        </p>
-      </Link>
+    <div className="w-full flex justify-center items-center p-4">
+      <div className="flex flex-col justify-center items-center w-full lg:w-1/2">
+        <Logo />
+        <span className="my-4"></span>
+        <GuessPaperDetailsModal guessPaper={guessPaper} isShare={true} />
+        <Link href="/home">
+          <p className="text-primary hover:text-primary-dark">Back to home</p>
+        </Link>
+      </div>
     </div>
   );
 };

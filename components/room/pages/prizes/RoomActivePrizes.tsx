@@ -5,6 +5,7 @@ import PrizeCard from "../../../prize/PrizeCard";
 import { IPrize } from "@/types/IPrize.model";
 import { IPaging } from "@/types/IRequest.model";
 import Pager from "../../../common/Pager";
+import CustomButton from "@/components/common/CustomButton";
 
 interface IRoomActivePrizesProps {
   prizes: IPrize[];
@@ -13,25 +14,42 @@ interface IRoomActivePrizesProps {
   loading: boolean;
 }
 
-const RoomActivePrizes = ({ prizes, paging, setPaging, loading }: IRoomActivePrizesProps) => {
+const RoomActivePrizes = ({
+  prizes,
+  paging,
+  setPaging,
+  loading,
+}: IRoomActivePrizesProps) => {
+  const handleLoadMorePrizes = () => {
+    setPaging((prev) => ({
+      ...prev,
+      page: prev.page + 1,
+    }));
+  };
+
   const prizesRenderer = () => {
     if (loading) {
       return <Loader />;
     } else if (prizes.length === 0) {
       return <p>No prizes available.</p>;
     } else {
-      return <div className="w-full text-white">
-        <div className="gradient-primary p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary">
-          <h2 className="flex-1">{"Name"}</h2>
-          <h2 className="flex-1">{"Description"}</h2>
-          <h2 className="flex-1">{"Cost"}</h2>
-          <h2 className="flex-1">{"Buy"}</h2>
+      return (
+        <div className="flex flex-nowrap max-w-full overflow-x-auto py-2">
+          {prizes.map((prize) => (
+            <PrizeCard key={prize.id} prize={prize} />
+          ))}
+          {paging.totalElements !== prizes.length && (
+            <div className="w-48">
+              <CustomButton
+                onClick={() => handleLoadMorePrizes()}
+                type="button"
+                text="Load More >>>"
+                bg={true}
+              />
+            </div>
+          )}
         </div>
-        {prizes.map((prize) => (
-          <PrizeCard key={prize.id} prize={prize} />
-        ))}
-        <Pager paging={paging} setPaging={setPaging} />
-      </div>;
+      );
     }
   };
 

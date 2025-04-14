@@ -82,7 +82,7 @@ const HomeContent = () => {
     try {
       const response = await listSelfGuessPapers(selfGuessPapersPaging);
       if (response.data.content === undefined) return;
-      setSelfGuessPapers(response.data.content);
+      setSelfGuessPapers([...selfGuessPapers, ...response.data.content]);
       setSelfGuessPapersPaging({
         page: response.data.page.number,
         size: response.data.page.size,

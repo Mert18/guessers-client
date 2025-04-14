@@ -30,7 +30,7 @@ const RoomPrizesContent = ({ params }: IRoomPrizesContentProps) => {
       active: true,
     })
       .then((response) => {
-        setRoomActivePrizes(response.data.content);
+        setRoomActivePrizes([...roomActivePrizes, ...response.data.content]);
         setPaging({
           page: response.data.page.number,
           size: response.data.page.size,

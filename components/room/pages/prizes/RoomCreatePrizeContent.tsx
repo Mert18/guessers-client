@@ -55,16 +55,14 @@ const RoomCreatePrizeContent = ({ params }: IRoomCreatePrizeContentProps) => {
               roomId: params.roomId,
             })
               .then(() => {
-                setTimeout(() => {
-                  router.push(`/home/room/${params.roomId}/guess`);
-                }, 1000);
+                router.push(`/home/room/${params.roomId}/guess`);
               })
               .finally(() => {
                 setLoading(false);
               });
           }}
         >
-          <Form className="flex flex-col justify-center items-center">
+          <Form className="w-full">
             <CustomInputField
               name={`name`}
               type="text"
