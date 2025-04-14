@@ -20,7 +20,7 @@ const EventGuessOption = ({
       key={eventGuessOption.id}
       className="flex flex-col justify-start items-start w-full"
     >
-      <p className="text-background-bright bg-primary p-2 text-sm my-0.5 font-bold">{eventGuessOption.name}</p>
+      <p className="my-0.5 font-bold text-primary-dark rounded-md">{eventGuessOption.name}</p>
       {event.status === "IN_PROGRESS" && (
         <div className="w-full grid grid-cols-2 gap-x-1">
           {eventGuessOption.eventGuessOptionCases?.map(

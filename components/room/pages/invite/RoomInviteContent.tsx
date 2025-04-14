@@ -1,6 +1,6 @@
 "use client";
 import { getRoom, invitePeople } from "@/api/room";
-import PrimaryButton from "@/components/common/button/PrimaryButton";
+import CustomButton from "@/components/common/CustomButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import Loader from "@/components/common/Loader";
 import CustomInputField from "@/components/common/CustomInputField";
@@ -69,7 +69,7 @@ const RoomInviteContent = ({ params }: IRoomInviteContentProps) => {
             {loading ? (
               <Loader />
             ) : (
-              <PrimaryButton type="submit" text={"Invite"} bg />
+              <CustomButton type="submit" text={"Invite"} bg={true} />
             )}
           </div>
         </Form>

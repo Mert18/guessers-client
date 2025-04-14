@@ -2,7 +2,8 @@ import Image from "next/image";
 import { IEvent } from "@/types/IEvent.model";
 import { IRoomUser } from "@/types/IRoom.model";
 import { convertToUserTimeZone } from "@/util/dateUtil";
-import PrimaryButton from "@/components/common/button/PrimaryButton";
+import CustomButton from "@/components/common/CustomButton";
+import CustomLink from "@/components/common/CustomLink";
 
 interface IEventCardHeaderProps {
   event: IEvent;
@@ -27,16 +28,16 @@ const EventCardHeader = ({
       <div
         className={`w-full flex justify-between items-center`}
       >
-        <p className={`flex-1`}>{event.name}</p>
+        <p className={`flex-1 text-base`}>{event.name}</p>
 
         {roomUser?.owner && (
           <div className="flex-1">
             <div className="mr-5">
             {event.status === "IN_PROGRESS" ? (
-              <PrimaryButton bg type="button" text="Start Event" onClick={() => handleStartEvent(event)} />
+              <CustomButton bg type="button" text="Start Event" onClick={() => handleStartEvent(event)} />
             ) : (
               event.status === "STARTED" && (
-                <PrimaryButton bg type="button" text="Finalize Event" href={`/home/room/${roomUser.room.id}/event/${event.id}/finalize`} />
+                <CustomLink text="Finalize Event" href={`/home/room/${roomUser.room.id}/event/${event.id}/finalize`} />
               )
             )}
             </div>
@@ -51,7 +52,7 @@ const EventCardHeader = ({
           </>
         )}
 
-        <button className={`p-1 transition-all ${optionsOpen ? "rotate-180" : "hover:rotate-45"}`} onClick={() => {
+        <button className={`transition-all ${optionsOpen ? "rotate-180" : "hover:rotate-45"} gradient-white border-2 border-primary rounded-md p-2`} onClick={() => {
           if (event.status === "IN_PROGRESS") {
             setOptionsOpen(!optionsOpen);
           }

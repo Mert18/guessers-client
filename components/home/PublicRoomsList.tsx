@@ -3,7 +3,7 @@ import ComponentTitle from "../common/ComponentTitle";
 import Loader from "../common/Loader";
 import { IRoomBasic } from "@/types/IRoom.model";
 import { IPaging } from "@/types/IRequest.model";
-import Pager from "../common/Pager";
+import CustomButton from "../common/CustomButton";
 
 interface IPublicRoomsListProps {
   publicRooms: IRoomBasic[];
@@ -13,6 +13,13 @@ interface IPublicRoomsListProps {
 }
 
 const PublicRoomsList = ({ publicRooms, paging, setPaging, loading }: IPublicRoomsListProps) => {
+  const handleLoadMoreRooms = () => {
+    setPaging((prev) => ({
+      ...prev,
+      page: prev.page + 1,
+    }));
+  };
+
   const publicRoomsListRenderer = () => {
     if (loading) {
       return <Loader />;
@@ -20,19 +27,20 @@ const PublicRoomsList = ({ publicRooms, paging, setPaging, loading }: IPublicRoo
       return <p className="text-primary">No public rooms available.</p>;
     } else {
       return (
-        <div className="w-full">
-          <div className="bg-primary p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary">
-            <h2 className="flex-1">{"Room Name"}</h2>
-            <h2 className="flex-1">{"Owner"}</h2>
-            <h2 className="flex-1">{"Members"}</h2>
-            <h2 className="flex-1">{"Join"}</h2>
-          </div>
-
+        <div className="flex flex-nowrap max-w-full overflow-x-auto py-2">
           {publicRooms?.map((room) => (
             <PublicRoomCard key={room.id} room={room} />
           ))}
-          
-          <Pager paging={paging} setPaging={setPaging} />
+          {paging.totalElements !== publicRooms.length && (
+              <div className="w-48">
+                <CustomButton
+                  onClick={() => handleLoadMoreRooms()}
+                  type="button"
+                  text="Load More >>>"
+                  bg={true}
+                />
+              </div>
+            )}
         </div>
       );
     }

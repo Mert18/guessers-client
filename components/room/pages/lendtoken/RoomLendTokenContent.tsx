@@ -1,6 +1,6 @@
 "use client";
 import { fetchRoomUsers, getRoom, giveTokenToUsers } from "@/api/room";
-import PrimaryButton from "@/components/common/button/PrimaryButton";
+import CustomButton from "@/components/common/CustomButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import Loader from "@/components/common/Loader";
 import { IRoomBasic, IRoomUser } from "@/types/IRoom.model";
@@ -109,7 +109,7 @@ const RoomLendTokenContent = ({ params }: IRoomLendTokenContentProps) => {
       {loading ? (
         <Loader />
       ) : (
-        <PrimaryButton
+        <CustomButton
           type="submit"
           text="Lend Token"
           onClick={() => handleLendToken()}

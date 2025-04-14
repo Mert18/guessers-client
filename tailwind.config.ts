@@ -34,9 +34,21 @@ export default {
           bright: "#2bcac6",
           dark: "#21b1ad"
         },
-        failure: "#CE4A3A",
-        success: "#4EE521",
-        warning: "#E28043"
+        failure: {
+          DEFAULT: "#CE4A3A",
+          bright: "#d85747",
+          dark: "#b83a2b",
+        },
+        success: {
+          DEFAULT: "#3dba18",
+          bright: "#4ac824",
+          dark: "#34a412",
+        },
+        warning: {
+          DEFAULT: "#E28043",
+          bright: "#f0955c",
+          dark: "#cc7037",
+        }
       }
     },
   },

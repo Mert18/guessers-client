@@ -10,6 +10,7 @@ import SelfGuessPapersList from "./SelfGuessPapersList";
 import SelfRoomsList from "./SelfRoomsList";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import InvitesList from "./InvitesList";
 
 const HomeContent = () => {
   const { data: session, status } = useSession();
@@ -64,7 +65,7 @@ const HomeContent = () => {
     try {
       const response = await listPublicRooms(publicRoomsPaging);
       if (!response.data.rooms || response.data.rooms === undefined) return;
-      setPublicRooms(response.data.rooms?.content);
+      setPublicRooms([...publicRooms, ...response.data.rooms.content]);
       setPublicRoomsPaging({
         page: response.data.rooms.page.number,
         size: response.data.rooms.page.size,
@@ -136,6 +137,8 @@ const HomeContent = () => {
         setPaging={setSelfRoomsPaging}
         loading={selfRoomsLoading}
       />
+
+      <InvitesList />
 
       <PublicRoomsList
         publicRooms={publicRooms}

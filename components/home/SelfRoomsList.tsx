@@ -1,13 +1,11 @@
 import ComponentTitle from "../common/ComponentTitle";
 import SelfRoomCard from "./SelfRoomCard";
-import Pager from "../common/Pager";
 import Loader from "../common/Loader";
 import { IRoomUser } from "@/types/IRoom.model";
 import { IPaging } from "@/types/IRequest.model";
-import PrimaryButton from "../common/button/PrimaryButton";
 import Link from "next/link";
-import SecondaryButton from "../common/button/SecondaryButton";
-import { useEffect, useRef } from "react";
+import CustomButton from "../common/CustomButton";
+import { ColorEnum } from "@/enum/enum";
 
 interface ISelfRoomsListProps {
   selfRooms: IRoomUser[];
@@ -51,12 +49,13 @@ const SelfRoomsList = ({
               <SelfRoomCard key={room.id} roomUser={room} />
             ))}
             {paging.totalElements !== selfRooms.length && (
-              <div className="w-96">
-                <SecondaryButton
+              <div className="w-48">
+                <CustomButton
                   onClick={() => handleLoadMoreRooms()}
                   type="button"
                   text="Load More >>>"
                   bg={true}
+                  color={ColorEnum.SECONDARY}
                 />
               </div>
             )}

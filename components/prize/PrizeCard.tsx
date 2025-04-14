@@ -1,4 +1,4 @@
-import PrimaryButton from "../common/button/PrimaryButton";
+import CustomButton from "../common/CustomButton";
 import { buyPrize } from "@/api/prize";
 import { IPrize } from "@/types/IPrize.model";
 
@@ -17,7 +17,7 @@ const PrizeCard = ({ prize }: IPrizeCardProps) => {
         <p className="flex-1">{prize.description}</p>
         <p className="flex-1">{prize.value.toFixed(2)}</p>
         <div className="flex-1">
-          <PrimaryButton
+          <CustomButton
             text="Buy"
             type="button"
             onClick={() => handleBuyPrize(prize.id)}

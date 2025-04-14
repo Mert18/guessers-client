@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import RoomHeader from "./RoomHeader";
+import CustomLink from "@/components/common/CustomLink";
 
 interface IRoomLayoutContentProps {
   params: {
@@ -27,56 +28,39 @@ const RoomLayoutContent = ({ params, children }: IRoomLayoutContentProps) => {
 
   if (!roomUser) return;
   return (
-    <div>
+    <div className="lg:w-2/3 w-full mx-auto">
       {!pathname.endsWith("create") &&
         !pathname.endsWith("invite") &&
         !pathname.endsWith("create-prize") &&
         !pathname.endsWith("lendtoken") &&
-        !pathname.endsWith("finalize") && ( // Do not show tabs in create room page
+        !pathname.endsWith("finalize") && (
           <>
             <RoomHeader roomUser={roomUser} />
 
             <div className="flex w-full  gap-1">
-              <Link
-                className={`border-2 p-2 text-sm flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
-                  pathname.endsWith("guess")
-                    ? "border-primary bg-primary text-background-bright hover:bg-primary-bright"
-                    : "border-primary text-text bg-background-bright hover:bg-primary hover:text-background-bright"
-                }`}
+              <CustomLink
+                text="Guess"
                 href={`/home/room/${params.roomId}/guess`}
-              >
-                {"Guess"}
-              </Link>
-              <Link
-                className={`border-2 p-2 text-sm flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
-                  pathname.endsWith("ranks")
-                    ? "border-primary bg-primary text-background-bright hover:bg-primary-bright"
-                    : "border-primary text-text bg-background-bright hover:bg-primary hover:text-background-bright"
-                }`}
+                bg={true}
+              />
+
+              <CustomLink
+                text="Ranks"
                 href={`/home/room/${params.roomId}/ranks`}
-              >
-                {"Ranks"}
-              </Link>
-              <Link
-                className={`border-2 p-2 text-sm flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
-                  pathname.endsWith("papers")
-                    ? "border-primary bg-primary text-background-bright hover:bg-primary-bright"
-                    : "border-primary text-text bg-background-bright hover:bg-primary hover:text-background-bright"
-                }`}
+                bg={true}
+              />
+
+              <CustomLink
+                text="Guess Papers"
                 href={`/home/room/${params.roomId}/papers`}
-              >
-                {"Guess Papers"}
-              </Link>
-              <Link
-                className={`border-2 p-2 text-sm flex-1 flex justify-center items-center hover:border-b-primary transition-all font-bold ${
-                  pathname.endsWith("prizes")
-                    ? "border-primary bg-primary text-background-bright hover:bg-primary-bright"
-                    : "border-primary text-text bg-background-bright hover:bg-primary hover:text-background-bright"
-                }`}
+                bg={true}
+              />
+
+              <CustomLink
+                text="Prizes"
                 href={`/home/room/${params.roomId}/prizes`}
-              >
-                {"Prizes"}
-              </Link>
+                bg={true}
+              />
             </div>
           </>
         )}

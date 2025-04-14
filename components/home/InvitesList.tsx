@@ -1,13 +1,12 @@
-"use client";
+import React, { useEffect, useState } from "react";
 import { getInvites } from "@/api/user";
-import { IPaging } from "@/types/IRequest.model";
-import { IPendingInvite } from "@/types/IUser.model";
-import { useEffect, useState } from "react";
 import ComponentTitle from "../common/ComponentTitle";
-import Pager from "../common/Pager";
 import PendingInviteCard from "./PendingInviteCard";
+import { IPendingInvite } from "@/types/IUser.model";
+import { IPaging } from "@/types/IRequest.model";
+import CustomButton from "../common/CustomButton";
 
-const InvitesContent = () => {
+const InvitesList = () => {
   const [pendingInvites, setPendingInvites] = useState<IPendingInvite[]>([]);
   const [invitesPaging, setInvitesPaging] = useState<IPaging>({
     page: 0,
@@ -18,7 +17,7 @@ const InvitesContent = () => {
 
   const fetchInvites = async () => {
     await getInvites(invitesPaging).then((response) => {
-      setPendingInvites(response.data.content);
+      setPendingInvites([...pendingInvites, ...response.data.content]);
       setInvitesPaging({
         page: response.data.page.number,
         size: response.data.page.size,
@@ -32,6 +31,12 @@ const InvitesContent = () => {
     fetchInvites();
   }, [invitesPaging.page]);
 
+  const handleLoadMoreInvites = () => {
+    setInvitesPaging((prev) => ({
+      ...prev,
+      page: prev.page + 1,
+    }));
+  };
   return (
     <div className="w-full text-sm my-8">
       <ComponentTitle
@@ -43,18 +48,25 @@ const InvitesContent = () => {
         <p className="text-primary">You do not have any room invites.</p>
       ) : (
         <>
-          <div className="bg-primary p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary">
-            <h2 className="flex-1">{"Room Name"}</h2>
-            <h2 className="flex-1">{"Options"}</h2>
+          <div className="flex flex-nowrap max-w-full overflow-x-auto py-2">
+            {pendingInvites?.map((invite: IPendingInvite) => (
+              <PendingInviteCard key={invite.id} invite={invite} />
+            ))}
+            {invitesPaging.totalElements !== pendingInvites.length && (
+              <div className="w-48">
+                <CustomButton
+                  onClick={() => handleLoadMoreInvites()}
+                  type="button"
+                  text="Load More >>>"
+                  bg={true}
+                />
+              </div>
+            )}
           </div>
-          {pendingInvites?.map((invite: IPendingInvite) => (
-            <PendingInviteCard key={invite.id} invite={invite} />
-          ))}
-          <Pager paging={invitesPaging} setPaging={setInvitesPaging} />
         </>
       )}
     </div>
   );
 };
 
-export default InvitesContent;
+export default InvitesList;

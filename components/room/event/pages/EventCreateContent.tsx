@@ -1,7 +1,7 @@
 "use client";
 import { createEvent } from "@/api/event";
 import { getRoom } from "@/api/room";
-import PrimaryButton from "@/components/common/button/PrimaryButton";
+import CustomButton from "@/components/common/CustomButton";
 import Loader from "@/components/common/Loader";
 import CustomInputField from "@/components/common/CustomInputField";
 import RoomName from "@/components/room/layout/RoomName";
@@ -51,18 +51,17 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
   }, [params.roomId]);
 
   return (
-    <div className="flex flex-col justify-center items-center text-text">
+    <div className="flex flex-col justify-center items-center">
       {room?.name && <RoomName roomName={room.name} roomId={params.roomId} />}
 
       <div className="text-text text-xl font-bold text-center py-2">
         Create Event
       </div>
 
-      <PrimaryButton
+      <CustomButton
         type="submit"
         text="Create From Ready Event"
         onClick={() => setCreateReadyEventModalOpen(true)}
-        bg={true}
       />
 
       {createReadyEventModalOpen && (
@@ -154,8 +153,8 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
                 remove: removeEventGuessOption,
               }) => (
                 <div className="flex flex-col items-start w-full">
-                  <div className="my-4">
-                    <PrimaryButton
+                  <div className="my-2">
+                    <CustomButton
                       type="button"
                       text={"Add Option"}
                       onClick={() =>
@@ -171,7 +170,7 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
                     (eventGuessOption, eventGuessOptionIndex) => (
                       <div
                         key={eventGuessOptionIndex}
-                        className="flex flex-col items-start w-full space-y-2 my-2"
+                        className="flex flex-col items-start w-full space-y-2"
                       >
                         <div className="flex items-center">
                           <CustomInputField
@@ -235,7 +234,7 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
                                       type="number"
                                       name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionCases[${eventGuessOptionOptionIndex}].odds`}
                                       placeholder={"optionOdds"}
-                                      className="w-2/3  px-2 py-1 text-text outline-none bg-background-bright border border-primary h-8 focus:ring-1 focus:ring-primary text-text font-bold"
+                                      className="w-2/3 px-2 py-1 outline-none border border-primary h-8 focus:ring-1 focus:ring-primary font-bold rounded-md"
                                       step={"0.01"}
                                       min={"1.00"}
                                       defaultValue={1.01}
@@ -261,7 +260,7 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
                                   </div>
                                 )
                               )}
-                              <PrimaryButton
+                              <CustomButton
                                 type="button"
                                 text={"Add Case"}
                                 onClick={() =>
@@ -289,7 +288,7 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
               <Loader />
             ) : (
               <div className={"flex justify-center items-center w-full my-8"}>
-                <PrimaryButton type="submit" text={"Create Event"} bg={true} />
+                <CustomButton type="submit" text={"Create Event"} bg={true} />
               </div>
             )}
           </Form>

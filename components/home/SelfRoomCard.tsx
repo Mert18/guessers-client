@@ -8,7 +8,7 @@ interface ISelfRoomCardProps {
 const SelfRoomCard = ({ roomUser }: ISelfRoomCardProps) => {
   return (
     <Link href={`/home/room/${roomUser.room.id}/guess`} className="inline-block mx-1"> 
-      <div className="rounded-md btn-gradient w-48 h-48 p-2 text-white">
+      <div className="rounded-md gradient-primary w-48 h-48 p-2 text-white">
         <div>
           <p className="opacity-50">Room Name</p>
           <h2>{roomUser.room.name}</h2>

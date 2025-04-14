@@ -15,7 +15,7 @@ interface IEventCardProps {
 }
 
 const EventCard = ({ event, handleOptionSelected, guesses, roomUser }: IEventCardProps) => {
-  const [optionsOpen, setOptionsOpen] = useState<boolean>(false);
+  const [optionsOpen, setOptionsOpen] = useState<boolean>(true);
 
   const handleStartEvent = (event: IEvent) => {
     startEvent({eventId: event.id, roomId: roomUser.room.id}).finally(() => {
@@ -26,7 +26,7 @@ const EventCard = ({ event, handleOptionSelected, guesses, roomUser }: IEventCar
   return (
     <div
       key={event.id}
-      className={`flex flex-col justify-center items-center w-full text-text text-sm my-2 py-2 bg-background-bright border-2 border-primary`}
+      className={`flex flex-col justify-center items-center w-full text-sm my-2 py-2 border-2 border-primary rounded-md bg-white-bright`}
     >
       <EventCardHeader
         event={event}

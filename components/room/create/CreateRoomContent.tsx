@@ -1,6 +1,6 @@
 "use client";
 import { createRoom } from "@/api/room";
-import PrimaryButton from "@/components/common/button/PrimaryButton";
+import CustomButton from "@/components/common/CustomButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import Loader from "@/components/common/Loader";
 import CustomInputField from "@/components/common/CustomInputField";
@@ -79,7 +79,7 @@ const CreateRoomContent = () => {
           {loading ? (
             <Loader />
           ) : (
-            <PrimaryButton type="submit" text={"Create Room"} bg={true} />
+            <CustomButton type="submit" text={"Create Room"} bg={true} />
           )}
         </Form>
       </Formik>

@@ -1,38 +1,24 @@
 "use client";
-import { getStats } from "@/api/authentication";
 import LoginOrRegister from "@/components/auth/LoginOrRegister";
 import Loader from "@/components/common/Loader";
 import LogoWithText from "@/components/common/logo/LogoWithText";
 import { useSession } from "next-auth/react";
 import { Jersey_10 } from "next/font/google";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const font = Jersey_10({ subsets: ["latin"], weight: "400" });
 
 function Home() {
   const { data: session, status } = useSession();
-  const [stats, setStats] = useState({
-    userCount: 0,
-    roomCount: 0,
-    eventCount: 0,
-  });
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     if (status === "authenticated") {
-      router.push("/home");
-    } else {
-      getStats().then((response) => {
-        setStats(response.data.data);
-      });
+        router.push("/home");
     }
   }, [status, router]);
-
-  {
-    /* <LogoWithText />
-        <Welcomer stats={stats} /> */
-  }
 
   if (status === "loading") {
     return (

@@ -2,42 +2,46 @@
 import { acceptRoomInvite, rejectRoomInvite } from "@/api/room";
 import { IPendingInvite } from "@/types/IUser.model";
 import { useRouter } from "next/navigation";
+import CustomButton from "../common/CustomButton";
+import { ColorEnum } from "@/enum/enum";
 
 interface IPendingInviteCard {
-  key: string;
   invite: IPendingInvite;
 }
 
-const PendingInviteCard = ({ key, invite }: IPendingInviteCard) => {
+const PendingInviteCard = ({invite }: IPendingInviteCard) => {
   const router = useRouter();
   return (
     <div
-      key={key}
-      className="flex justify-start items-center bg-background-bright my-1 text-primary border-2 border-primary transition-all px-2 py-3"
+      className="rounded-md gradient-primary-2 w-48 h-28 p-2 text-white flex flex-col justify-between"
     >
       <div className="whitespace-nowrap overflow-ellipsis overflow-hidden text-text flex-1">
+        <p className="opacity-50">Room Name</p>
         <p>{invite.room.name}</p>
       </div>
-      <div className="flex text-text flex-1">
-        <button
-          className="mr-2"
+      <div className="flex gap-1">
+        <CustomButton
+          type="button"
+          text="Accept"
+          bg={true}
           onClick={() => {
             acceptRoomInvite(invite.room.id).finally(() => {
               router.push("/home");
             });
           }}
-        >
-          <p className="hover:underline">{"accept"}</p>
-        </button>
-        <button
+          color={ColorEnum.SUCCESS}
+        />
+        <CustomButton
+          type="button"
+          text="Reject"
+          bg={true}
           onClick={() => {
             rejectRoomInvite(invite.room.id).finally(() => {
               router.push("/home");
             });
           }}
-        >
-          <p className="hover:underline">{"reject"}</p>
-        </button>
+          color={ColorEnum.FAILURE}
+        />
       </div>
     </div>
   );

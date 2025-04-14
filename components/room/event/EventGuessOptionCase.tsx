@@ -39,7 +39,7 @@ const EventGuessOptionCase = ({
         });
       }}
     >
-      <div className="text-text w-full flex justify-start items-center py-2">
+      <div className="text-text w-full flex justify-start items-center">
         <p className="truncate font-bold">{eventGuessOptionCase.name}</p>
       </div>
       <div
@@ -47,9 +47,9 @@ const EventGuessOptionCase = ({
           guesses.findIndex(
             (guess) => guess.eventGuessOptionCaseId === eventGuessOptionCase.id
           ) >= 0
-            ? "bg-primary text-background-bright"
-            : "text-primary bg-background-bright"
-        } w-full py-2 m-1 flex justify-evenly items-center font-bold border-2 border-primary`}
+            ? "gradient-primary text-white"
+            : "gradient-white text-primary"
+        } w-full py-2 m-1 flex justify-evenly items-center font-bold border border-primary rounded-md`}
       >
         <p>{eventGuessOptionCase.odds}</p>
       </div>

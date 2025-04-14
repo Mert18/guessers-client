@@ -1,7 +1,7 @@
 "use client";
 import { createPrize } from "@/api/prize";
 import { getRoom } from "@/api/room";
-import PrimaryButton from "@/components/common/button/PrimaryButton";
+import CustomButton from "@/components/common/CustomButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import Loader from "@/components/common/Loader";
 import CustomInputField from "@/components/common/CustomInputField";
@@ -99,7 +99,7 @@ const RoomCreatePrizeContent = ({ params }: IRoomCreatePrizeContentProps) => {
               {loading ? (
                 <Loader />
               ) : (
-                <PrimaryButton type="submit" text={"Create Prize"} bg />
+                <CustomButton type="submit" text={"Create Prize"} bg />
               )}
             </div>
           </Form>

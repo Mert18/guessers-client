@@ -9,17 +9,17 @@ interface IRoomRichestsProps {
 
 const RoomRichests = ({ rankedRiches }: IRoomRichestsProps) => {
   return (
-    <ul className="w-full text-sm">
+    <ul className="w-full">
       {rankedRiches?.map((roomUser: IRoomUser, index: any) => (
         <li
           key={index}
-          className={`p-2 flex items-center w-full justify-between ${
+          className={`p-2 flex items-center w-full justify-between text-white ${
             index == 0
-              ? "bg-text"
+              ? "gradient-primary"
               : index == 1
-              ? "bg-primary"
-              : "bg-primary-bright"
-          } my-1`}
+              ? "gradient-secondary"
+              : "gradient-white"
+          } rounded-md`}
         >
           <div className="mr-1">
             {index == 0 ? (

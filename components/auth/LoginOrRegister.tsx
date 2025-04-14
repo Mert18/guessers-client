@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PrimaryButton from "../common/button/PrimaryButton";
+import CustomButton from "../common/CustomButton";
 import { signIn } from "next-auth/react";
 import { Form, Formik } from "formik";
 import Loader from "../common/Loader";
@@ -7,8 +7,8 @@ import { createUser } from "@/api/authentication";
 import CustomInputField from "../common/CustomInputField";
 import * as Yup from "yup";
 import Image from "next/image";
-import SecondaryButton from "../common/button/SecondaryButton";
 import Logo from "../common/logo/Logo";
+import { ColorEnum } from "@/enum/enum";
 
 const RegisterSchema = Yup.object().shape({
   username: Yup.string()
@@ -41,11 +41,12 @@ const LoginOrRegister = () => {
       </div>
       <div className="flex flex-col justify-center items-center w-1/2">
         <div className="w-full">
-          <SecondaryButton
+          <CustomButton
             type="button"
             text={"Login"}
             onClick={() => signIn("keycloak")}
             bg={true}
+            color={ColorEnum.SECONDARY}
             icon={
               <Image
                 src="/icons/keycloak.svg"
@@ -90,7 +91,7 @@ const LoginOrRegister = () => {
                   placeholder={"password"}
                   placeholderInside={true}
                 />
-                <PrimaryButton type="submit" text={"Register"} bg={true} />
+                <CustomButton type="submit" text={"Register"} bg={true} />
 
                 <div className="w-full">
                   {errors.username && touched.username ? (
@@ -111,7 +112,7 @@ const LoginOrRegister = () => {
             </div>
           ) : (
             !isRegisterFormVisible && (
-              <PrimaryButton
+              <CustomButton
                 type="button"
                 text={"Register"}
                 bg={true}

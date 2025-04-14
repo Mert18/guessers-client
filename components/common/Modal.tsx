@@ -1,4 +1,4 @@
-import PrimaryButton from "./button/PrimaryButton";
+import CustomButton from "./CustomButton";
 
 interface IModalProps {
   title: string;
@@ -14,7 +14,7 @@ const Modal = ({ title, handleCloseModal, children }: IModalProps) => {
           <h3 className="text-xl font-bold text-text">{title}</h3>
           <div className="mt-2 px-3 py-3">{children}</div>
           <div className="flex justify-center mt-4">
-            <PrimaryButton
+            <CustomButton
               type="button"
               text="Close"
               onClick={() => handleCloseModal()}

@@ -1,0 +1,7 @@
+export enum ColorEnum {
+  SUCCESS = "SUCCESS",
+  FAILURE = "FAILURE",
+  WARNING = "WARNING",
+  PRIMARY = "PRIMARY",
+  SECONDARY = "SECONDARY",
+}

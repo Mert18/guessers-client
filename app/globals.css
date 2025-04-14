@@ -32,7 +32,31 @@ body {
 }
 
 @layer components {
-  .btn-gradient {
+  .gradient-primary {
     @apply bg-gradient-to-r from-primary to-primary-dark hover:bg-gradient-to-br;
+  }
+
+  .gradient-primary-2 {
+    @apply bg-gradient-to-r from-primary to-primary-dark;
+  }
+
+  .gradient-secondary {
+    @apply bg-gradient-to-r from-secondary to-secondary-dark hover:bg-gradient-to-br;
+  }
+
+  .gradient-success {
+    @apply bg-gradient-to-r from-success to-success-dark hover:bg-gradient-to-br;
+  }
+
+  .gradient-warning {
+    @apply bg-gradient-to-r from-warning to-warning-dark hover:bg-gradient-to-br;
+  }
+
+  .gradient-failure {
+    @apply bg-gradient-to-r from-failure to-failure-dark hover:bg-gradient-to-br;
+  }
+
+  .gradient-white {
+    @apply bg-gradient-to-r from-white to-white-bright hover:bg-gradient-to-br;
   }
 }

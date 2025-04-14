@@ -1,7 +1,7 @@
 "use client";
 import { getEvent, finalizeEvent } from "@/api/event";
 import { getRoom } from "@/api/room";
-import PrimaryButton from "@/components/common/button/PrimaryButton";
+import CustomButton from "@/components/common/CustomButton";
 import ComponentTitle from "@/components/common/ComponentTitle";
 import RoomName from "@/components/room/layout/RoomName";
 import {
@@ -133,7 +133,7 @@ const EventFinalizeContent = ({ params }: IEventFinalizeContentProps) => {
           </div>
         </div>
         <div className="my-4">
-          <PrimaryButton
+          <CustomButton
             type="submit"
             text={"Finalize Event"}
             onClick={() => handleFinalize()}

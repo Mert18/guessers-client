@@ -7,6 +7,8 @@ import { ICreateGuessPaperGuess } from "@/types/IGuessPaper.model";
 import { useState } from "react";
 import Loader from "../../common/Loader";
 import TokenSymbol from "../../common/TokenSymbol";
+import CustomButton from "@/components/common/CustomButton";
+import { ColorEnum } from "@/enum/enum";
 
 interface IActiveGuessPaperProps {
   guesses: ICreateGuessPaperGuess[];
@@ -51,18 +53,24 @@ const ActiveGuessPaper = ({
     <>
       <ComponentTitle text={"Current Guess Paper"} icon="/ticket.svg" />
       <div className="flex w-full h-48">
-        <div className="flex justify-start items-start text-text flex-col bg-background-bright border-2 border-primary p-2 text-text w-full">
+        <div className="flex justify-start items-start flex-col gradient-primary-2 rounded-md text-white w-full">
           <div className="flex justify-around w-full items-center h-full">
             <div className="flex flex-col justify-center items-start">
-              <p className="text-sm">{"Total Odds"}</p>
-              <p className=" text-primary font-bold">{totalOdds}</p>
+              <p>{"Total Odds"}</p>
+              <p className="font-bold text-lg">{totalOdds}</p>
             </div>
             <div className="flex flex-col justify-center items-start">
-              <p className="text-sm">{"Stakes"}</p>
+              <p>{"Stakes"}</p>
               <p>
-                <span className="font-bold">{stake}</span>{" "}
-                <button onClick={() => setStake(stake + 50)}>+</button>{" "}
+                <span className="font-bold text-lg">{stake}</span>{" "}
                 <button
+                  className="text-xl mr-1"
+                  onClick={() => setStake(stake + 50)}
+                >
+                  +
+                </button>
+                <button
+                  className="text-xl"
                   onClick={() => {
                     if (stake > 100) {
                       setStake(stake - 50);
@@ -75,8 +83,11 @@ const ActiveGuessPaper = ({
             </div>
 
             <div className="flex flex-col justify-center items-start">
-              <p className="text-sm">{"Wins"}</p>
-              <p className=" font-bold text-primary flex justify-center items-center">{wins}<TokenSymbol /></p>
+              <p>{"Wins"}</p>
+              <p className=" font-bold flex justify-center items-center text-lg">
+                {wins}
+                <TokenSymbol />
+              </p>
             </div>
           </div>
         </div>
@@ -85,7 +96,7 @@ const ActiveGuessPaper = ({
             <Loader />
           ) : (
             <button
-              className="bg-primary hover:bg-primary-bright text-background-bright p-2 flex justify-center items-center flex-col w-12 font-bold h-full"
+              className="ml-1 gradient-secondary rounded-md text-white p-2 flex justify-center items-center flex-col w-12 font-bold h-full"
               onClick={() => sendGuessPaper()}
             >
               <span>C</span>

@@ -1,8 +1,11 @@
 import axios from "axios";
 import { signOut } from "next-auth/react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
+import CustomButton from "./CustomButton";
+import CustomLink from "./CustomLink";
+import { ColorEnum } from "@/enum/enum";
+import Logo from "./logo/Logo";
+import LogoWithText from "./logo/LogoWithText";
 
 async function keycloakSessionLogOut() {
   await axios.get(`/api/auth/logout`);
@@ -10,10 +13,9 @@ async function keycloakSessionLogOut() {
 
 const HamburgerMenu = ({ session }: any) => {
   const [isOpen, setIsOpen] = useState(false);
-  const path = usePathname();
 
   return (
-    <div>
+    <>
       <div className="flex justify-center items-center">
         <button
           onClick={() => {
@@ -21,17 +23,17 @@ const HamburgerMenu = ({ session }: any) => {
           }}
         >
           <div
-            className={`h-1 w-6 bg-primary transition-all ${
+            className={`h-1 w-6 bg-primary-dark transition-all ${
               isOpen ? "my-1" : "my-0.5"
             }`}
           ></div>
           <div
-            className={`h-1 w-6 bg-primary transition-all ${
+            className={`h-1 w-6 bg-primary-dark transition-all ${
               isOpen ? "my-1" : "my-0.5"
             }`}
           ></div>
           <div
-            className={`h-1 w-6 bg-primary transition-all ${
+            className={`h-1 w-6 bg-primary-dark transition-all ${
               isOpen ? "my-1" : "my-0.5"
             }`}
           ></div>
@@ -39,91 +41,49 @@ const HamburgerMenu = ({ session }: any) => {
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 w-full h-screen bg-background py-5">
-          <Link
-            href={"/home"}
-            className={`py-2 flex-1 ${
-              path === "/home"
-                ? "text-background-bright hover:bg-primary-bright bg-primary"
-                : "text-primary hover:text-background-bright border-primary hover:bg-primary bg-background-bright"
-            }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-sm`}
-          >
-            <div
-              className={`text-text font-bold flex justify-center items-center`}
-            >
-              <p>Home</p>
-            </div>
-          </Link>
-
-          <Link
-            href={"/home/invites"}
-            className={`py-2 flex-1 ${
-              path === "/home/invites"
-                ? "text-background-bright hover:bg-primary-bright bg-primary"
-                : "text-primary hover:text-background-bright border-primary hover:bg-primary bg-background-bright"
-            }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-sm`}
-          >
-            <div
-              className={`text-text font-bold flex justify-center items-center`}
-            >
-              <p>Invites</p>
-            </div>
-          </Link>
-
-          <Link
-            href={"/home/room/create"}
-            className={`py-2 flex-1 ${
-              path === "/home/room/create"
-                ? "text-background-bright hover:bg-primary-bright bg-primary"
-                : "text-primary hover:text-background-bright border-primary hover:bg-primary bg-background-bright"
-            }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-sm`}
-          >
-            <div
-              className={`text-text font-bold flex justify-center items-center`}
-            >
-              <p>Create Room</p>
-            </div>
-          </Link>
-
+        <div className="fixed top-0 left-0 w-full z-50 flex flex-col gradient-primary h-screen">
+          <div className="flex justify-center items-center my-4">
+            <LogoWithText />
+          </div>
+          <div>
+            <CustomButton
+              type="button"
+              text="X"
+              bg={true}
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}
+            />
+          </div>
+          <CustomLink href="/home" text={"Home"} bg={true} />
+          <CustomLink href="/home/invites" text={"Invites"} bg={true} />
+          <CustomLink href="/home/room/create" text={"Create Room"} bg={true} />
           {session && (
             <>
-              <Link
+              <CustomButton
+                type="button"
                 // @ts-ignore
                 href={`/home/profile/${session.username}`}
-                className={`py-2 flex-1 ${
-                  // @ts-ignore
-                  path === `/home/profile/${session.username}`
-                    ? "text-background-bright hover:bg-primary-bright bg-primary"
-                    : "text-primary hover:text-background-bright border-primary hover:bg-primary bg-background-bright"
-                }  transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-sm`}
-              >
-                <div
-                  className={`text-text font-bold flex justify-center items-center`}
-                >
-                  <p>Profile</p>
-                </div>
-              </Link>
+                text={"Profile"}
+                bg={true}
+              />
 
-              <Link
-                href={"/"}
-                className={`py-2 flex-1 text-failure hover:text-background-bright hover:bg-failure border-failure transition-all text-center border-2 flex justify-center items-center m-2 py-4 text-sm`}
+              <CustomButton
+                type="button"
+                text={"Logout"}
+                bg={true}
                 onClick={() => {
                   keycloakSessionLogOut().then(() =>
                     signOut({ callbackUrl: "/" })
                   );
                 }}
-              >
-                <div
-                  className={`text-text font-bold flex justify-center items-center`}
-                >
-                  <p>Logout</p>
-                </div>
-              </Link>
+                color={ColorEnum.FAILURE}
+              />
             </>
           )}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

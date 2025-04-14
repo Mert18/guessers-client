@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { IReadyEvent } from "@/types/IReadyEvent.model";
 import { toast } from "react-toastify";
 import Loader from "@/components/common/Loader";
-import PrimaryButton from "@/components/common/button/PrimaryButton";
+import CustomButton from "@/components/common/CustomButton";
 
 const leagues = [
   {
@@ -130,7 +130,7 @@ const ListReadyEvents = ({
           ))
         )}
       </div>
-      <PrimaryButton
+      <CustomButton
         type="submit"
         text="Create Selected Events"
         onClick={() => handleCreateEventFromReadyEvent()}
