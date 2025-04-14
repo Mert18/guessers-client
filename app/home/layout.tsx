@@ -21,7 +21,7 @@ export default function HomeLayout({ children }: IHomeLayoutProps) {
     }, [session])
   
   return (
-      <div className="min-h-screen flex flex-col p-2">
+      <div className="min-h-screen flex flex-col p-2 lg:w-2/3 w-full mx-auto">
         <Navbar />
         <div className="flex-grow p-2 md:p-0">{children}</div>
         <AuthStatus />
