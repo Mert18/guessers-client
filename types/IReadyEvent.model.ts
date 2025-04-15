@@ -1,9 +1,9 @@
 export interface IReadyEvent {
     id: string;
     name: string;
-    commenceTime: Date;
+    commenceTime: string;
     readyEventOptions: IReadyEventOption[];
-    createdOn: Date;
+    createdOn: string;
     league: IReadyEventLeague;
 }
 

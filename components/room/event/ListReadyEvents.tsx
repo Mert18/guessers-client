@@ -7,6 +7,7 @@ import { IReadyEvent } from "@/types/IReadyEvent.model";
 import { toast } from "react-toastify";
 import Loader from "@/components/common/Loader";
 import CustomButton from "@/components/common/CustomButton";
+import { convertToUserTimeZone } from "@/util/dateUtil";
 
 const leagues = [
   {
@@ -59,7 +60,7 @@ const ListReadyEvents = ({
       });
   };
   useEffect(() => {
-    if (!selectedLeague) return;
+    if (!selectedLeague && selectedLeague !== 0) return;
     fetchReadyEvents(selectedLeague);
   }, [selectedLeague]);
 
@@ -89,7 +90,7 @@ const ListReadyEvents = ({
           <button
             className={`${
               selectedLeague === league.key
-                ? "text-primary underline"
+                ? "gradient-primary text-white rounded-md"
                 : "text-black"
             } px-2`}
             key={league.key}
@@ -109,9 +110,9 @@ const ListReadyEvents = ({
               key={readyEvent.id}
               className={`${
                 readyEventIdsToCreate.includes(readyEvent.id)
-                  ? "bg-primary text-background"
-                  : "text-text"
-              } flex flex-col justify-center items-center w-full py-2 cursor-pointer hover:text-primary my-1`}
+                  ? "gradient-primary text-white rounded-md"
+                  : "text-black"
+              } flex flex-col justify-center items-center w-full py-2 cursor-pointer my-1`}
               onClick={() => {
                 if (readyEventIdsToCreate.includes(readyEvent.id)) {
                   setReadyEventIdsToCreate(
@@ -126,6 +127,7 @@ const ListReadyEvents = ({
               }}
             >
               <p>{readyEvent.name}</p>
+              <p>{convertToUserTimeZone(readyEvent.commenceTime)}</p>
             </button>
           ))
         )}
