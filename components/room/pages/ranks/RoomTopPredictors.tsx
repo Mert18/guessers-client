@@ -4,12 +4,12 @@ import Link from "next/link";
 
 const RoomTopPredictors = ({ rankedPredictions }: any) => {
   return (
-    <ul className="w-full text-white">
+    <ul className="w-full text-black border border-primary rounded-md">
       {rankedPredictions.length >= 1 &&
         rankedPredictions.map((roomUser: IRoomUser, index: any) => (
           <li
             key={roomUser.id}
-            className={`p-2 flex items-center w-full justify-between ${index == 0 ? "gradient-primary" : index == 1 ? "gradient-secondary" : "gradient-white"} rounded-md`}
+            className={`p-2 flex items-center w-full justify-between gradient-white rounded-md`}
           >
             <div className="mr-1">
               {index == 0 ? (
@@ -35,7 +35,7 @@ const RoomTopPredictors = ({ rankedPredictions }: any) => {
                 />
               )}
             </div>
-            <div className="flex items-center w-full justify-between text-background-bright">
+            <div className="flex items-center w-full justify-between">
               <p className="font-bold p-2 underline">
                 <Link href={`/home/profile/${roomUser.user.username}`}>
                   {roomUser.user.username}

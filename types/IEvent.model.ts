@@ -15,52 +15,57 @@ export interface ICreateEvent {
   roomId: string;
 }
 
+export interface IDeleteEvent {
+  event: IEvent;
+  roomId: string;
+}
+
 interface ICreateEventEvent {
-    name: string;
-    description: string;
-    eventGuessOptions: IEventGuessOption[];
+  name: string;
+  description: string;
+  eventGuessOptions: IEventGuessOption[];
 }
 
 export interface IEventGuessOption {
-    id?: string;
-    name: string;
-    eventGuessOptionCases: IEventGuessOptionCase[];
-    precedence?: number;
+  id?: string;
+  name: string;
+  eventGuessOptionCases: IEventGuessOptionCase[];
+  precedence?: number;
 }
 
 export interface IEventGuessOptionCase {
-    id?: string;
-    name: string;
-    odds: number;
-    status?: string;
+  id?: string;
+  name: string;
+  odds: number;
+  status?: string;
 }
 
 export interface ICreateEventFromReadyEvent {
-    roomId: string;
-    readyEventIds: string[];
+  roomId: string;
+  readyEventIds: string[];
 }
 
 export interface IStartEvent {
-    eventId: string;
-    roomId: string;
+  eventId: string;
+  roomId: string;
 }
 
 export interface IFinalizeEvent {
-    request: IFinalizeEventRequest;
-    eventId: string;
-    roomId: string;
+  request: IFinalizeEventRequest;
+  eventId: string;
+  roomId: string;
 }
 
 export interface IFinalizeEventRequest {
-    winnerEventGuessOptionCases: (string | undefined)[];
+  winnerEventGuessOptionCases: (string | undefined)[];
 }
 
 export interface IEvent {
-    id: string;
-    name: string;
-    description: string;
-    createdOn: Date;
-    eventGuessOptions: IEventGuessOption[];
-    status: string;
-    eventTime: Date;
+  id: string;
+  name: string;
+  description: string;
+  createdOn: Date;
+  eventGuessOptions: IEventGuessOption[];
+  status: string;
+  eventTime: Date;
 }

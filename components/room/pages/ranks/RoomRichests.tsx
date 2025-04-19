@@ -9,17 +9,11 @@ interface IRoomRichestsProps {
 
 const RoomRichests = ({ rankedRiches }: IRoomRichestsProps) => {
   return (
-    <ul className="w-full">
+    <ul className="w-full text-black border border-primary rounded-md">
       {rankedRiches?.map((roomUser: IRoomUser, index: any) => (
         <li
           key={index}
-          className={`p-2 flex items-center w-full justify-between text-white ${
-            index == 0
-              ? "gradient-primary"
-              : index == 1
-              ? "gradient-secondary"
-              : "gradient-white"
-          } rounded-md`}
+          className={`p-2 flex items-center w-full justify-between gradient-white rounded-md`}
         >
           <div className="mr-1">
             {index == 0 ? (
@@ -45,7 +39,7 @@ const RoomRichests = ({ rankedRiches }: IRoomRichestsProps) => {
               />
             )}
           </div>
-          <div className="flex items-center w-full justify-between text-background-bright">
+          <div className="flex items-center w-full justify-between">
             <p className="font-bold ml-2 underline">
               <Link href={`/home/profile/${roomUser.user.username}`}>
                 {roomUser.user.username}

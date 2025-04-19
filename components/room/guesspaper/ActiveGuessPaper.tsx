@@ -9,6 +9,7 @@ import Loader from "../../common/Loader";
 import TokenSymbol from "../../common/TokenSymbol";
 import CustomButton from "@/components/common/CustomButton";
 import { ColorEnum } from "@/enum/enum";
+import CustomInputField from "@/components/common/CustomInputField";
 
 interface IActiveGuessPaperProps {
   guesses: ICreateGuessPaperGuess[];
@@ -52,62 +53,45 @@ const ActiveGuessPaper = ({
   return (
     <>
       <ComponentTitle text={"Current Guess Paper"} icon="/ticket.svg" />
-      <div className="flex w-full h-48">
-        <div className="flex justify-start items-start flex-col gradient-primary-2 rounded-md text-white w-full">
-          <div className="flex justify-around w-full items-center h-full">
-            <div className="flex flex-col justify-center items-start">
-              <p>{"Total Odds"}</p>
-              <p className="font-bold text-lg">{totalOdds}</p>
-            </div>
-            <div className="flex flex-col justify-center items-start">
-              <p>{"Stakes"}</p>
-              <p>
-                <span className="font-bold text-lg">{stake}</span>{" "}
-                <button
-                  className="text-xl mr-1"
-                  onClick={() => setStake(stake + 50)}
-                >
-                  +
-                </button>
-                <button
-                  className="text-xl"
-                  onClick={() => {
-                    if (stake > 100) {
-                      setStake(stake - 50);
-                    }
-                  }}
-                >
-                  -
-                </button>
-              </p>
-            </div>
+      <div className="rounded-md gradient-white p-2 border border-primary flex justify-around">
+        <div className="flex flex-col justify-center items-start">
+          <p>{"Total Odds"}</p>
+          {totalOdds}
+        </div>
+        <div className="flex flex-col justify-center items-start">
+          <p>{"Stakes"}</p>
+          <select
+            defaultValue={50}
+            className="p-2 rounded-md text-black"
+            onChange={(e) => setStake(Number(e.target.value))}
+          >
+            <option>50</option>
+            <option>100</option>
+            <option>200</option>
+            <option>500</option>
+            <option>1000</option>
+            <option>10000</option>
+            <option>50000</option>
+          </select>
+        </div>
 
-            <div className="flex flex-col justify-center items-start">
-              <p>{"Wins"}</p>
-              <p className=" font-bold flex justify-center items-center text-lg">
-                {wins}
-                <TokenSymbol />
-              </p>
-            </div>
-          </div>
+        <div className="flex flex-col justify-center items-start">
+          <p>{"Wins"}</p>
+          <p className="flex">
+            {wins}
+            <TokenSymbol color="white" />
+            </p>
         </div>
-        <div className="flex justify-center items-center">
-          {loading ? (
-            <Loader />
-          ) : (
-            <button
-              className="ml-1 gradient-secondary rounded-md text-white p-2 flex justify-center items-center flex-col w-12 font-bold h-full"
-              onClick={() => sendGuessPaper()}
-            >
-              <span>C</span>
-              <span>R</span>
-              <span>E</span>
-              <span>A</span>
-              <span>T</span>
-              <span>E</span>
-            </button>
-          )}
-        </div>
+        {loading ? (
+          <Loader />
+        ) : (
+          <button
+            className="gradient-primary text-white py-1 px-2 rounded-sm self-center"
+            onClick={() => sendGuessPaper()}
+          >
+            CREATE
+          </button>
+        )}
       </div>
     </>
   );

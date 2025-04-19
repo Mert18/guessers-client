@@ -1,8 +1,11 @@
-import Image from 'next/image'
 
-const TokenSymbol = () => {
+interface ITokenSymbol {
+  color?: string;
+}
+
+const TokenSymbol = ({color = "primary-dark"}: ITokenSymbol) => {
   return (
-    <Image className='rounded-full m-0.5' src="/logo/logo.svg" alt="letter g" width={24} height={24} />
+    <span className={`mx-1 text-${color}`}>G</span>
   )
 }
 

@@ -63,7 +63,7 @@ const RoomLendTokenContent = ({ params }: IRoomLendTokenContentProps) => {
       <ComponentTitle text={"Lend Token"} />
       {room?.name && <RoomName roomName={room.name} roomId={params.roomId} />}
 
-      <div className="w-full max-h-[300px] overflow-y-auto my-4 scrollbar-thin">
+      <div className="w-full overflow-y-auto my-4 scrollbar-thin">
         <ComponentTitle text="Select Room Users" />
         <div className="w-full my-2">
           {roomUsers.map((roomUser) => (
@@ -80,8 +80,8 @@ const RoomLendTokenContent = ({ params }: IRoomLendTokenContentProps) => {
               key={roomUser.id}
               className={`${
                 roomUserIdsToLend.includes(roomUser.id)
-                  ? "text-background-bright bg-primary"
-                  : "bg-background-bright text-text"
+                  ? "text-white gradient-primary"
+                  : "gradient-white text-primary"
               } flex justify-between items-center w-full p-2 my-1 rounded-md border-2 border-primary`}
             >
               <div>{roomUser.user.username}</div>
@@ -91,20 +91,22 @@ const RoomLendTokenContent = ({ params }: IRoomLendTokenContentProps) => {
         </div>
       </div>
 
-      <ComponentTitle text="Amount" />
-        <p>
-          <span className="font-bold">{amount}</span>{" "}
-          <button onClick={() => setAmount(amount + 50)}>+</button>{" "}
-          <button
-            onClick={() => {
-              if (amount > 100) {
-                setAmount(amount - 50);
-              }
-            }}
-          >
-            -
-          </button>
-        </p>
+      <div className="my-4 w-full flex justify-between items-center">
+        <ComponentTitle text="Amount" />
+        <select
+          defaultValue={50}
+          className="p-2 rounded-md text-black"
+          onChange={(e) => setAmount(Number(e.target.value))}
+        >
+          <option>50</option>
+          <option>100</option>
+          <option>200</option>
+          <option>500</option>
+          <option>1000</option>
+          <option>10000</option>
+          <option>50000</option>
+        </select>
+      </div>
 
       {loading ? (
         <Loader />

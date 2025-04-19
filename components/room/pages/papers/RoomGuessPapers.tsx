@@ -22,14 +22,6 @@ const RoomGuessPapers = ({ guessPapers, paging, setPaging, loading }: IRoomGuess
     } else {
       return (
         <div className="w-full">
-          <div className="bg-primary p-2 flex justify-start items-center text-background-bright font-bold border-2 border-primary">
-            <h2 className="flex-1">{"Username"}</h2>
-            <h2 className="flex-1">{"Status"}</h2>
-            <h2 className="flex-1">{"Stakes"}</h2>
-            <h2 className="flex-1">{"Odds"}</h2>
-            <h2 className="flex-1">{"Wins"}</h2>
-            <h2 className="flex-1">{"Details"}</h2>
-          </div>
           {guessPapers.map((guessPaper) => (
             <GuessPaperCard key={guessPaper.id} guessPaper={guessPaper} />
           ))}

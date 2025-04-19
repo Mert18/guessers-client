@@ -72,13 +72,13 @@ const EventFinalizeContent = ({ params }: IEventFinalizeContentProps) => {
   return (
     event &&
     room && (
-      <div className="flex flex-col justify-center items-center text-text text-sm">
+      <div className="flex flex-col justify-center items-center text-sm">
         <ComponentTitle text="Finalize Event" />
 
         <RoomName roomName={room.name} roomId={room.id} />
 
         <p className="my-2">Select the winning options.</p>
-        <div className="flex flex-col justify-center items-center w-full text-sm bg-background-bright border-2 border-primary">
+        <div className="flex flex-col justify-center items-center w-full text-sm bg-white-bright border-2 border-primary rounded-md">
           <div className="flex justify-between items-center w-full font-bold p-4">
             <p>{event.name}</p>
 
@@ -91,7 +91,7 @@ const EventFinalizeContent = ({ params }: IEventFinalizeContentProps) => {
                 key={eventGuessOption.id}
                 className="flex flex-col justify-start items-start w-full"
               >
-                <p className="text-background-bright bg-primary p-2 text-sm my-0.5 font-bold">
+                <p className="gradient-primary rounded-md p-2 text-sm text-white my-0.5 font-bold">
                   {eventGuessOption.name}
                 </p>
                 <div className="w-full grid grid-cols-2 gap-x-1">
@@ -117,9 +117,9 @@ const EventFinalizeContent = ({ params }: IEventFinalizeContentProps) => {
                           <div
                             className={`${
                               winningOptions.includes(eventGuessOptionCase)
-                                ? "bg-primary text-background-bright"
-                                : "text-primary bg-background-bright"
-                            } w-full py-2 m-1 flex justify-evenly items-center font-bold border-2 border-primary`}
+                                ? "gradient-primary text-white"
+                                : "text-primary gradient-white border border-primary"
+                            } w-full py-2 m-1 flex justify-evenly items-center font-bold rounded-md`}
                           >
                             <p>{eventGuessOptionCase.odds}</p>
                           </div>
