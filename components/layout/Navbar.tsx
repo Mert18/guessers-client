@@ -7,6 +7,7 @@ import HamburgerMenu from "../common/HamburgerMenu";
 import CustomButton from "../common/CustomButton";
 import CustomLink from "../common/CustomLink";
 import { ColorEnum } from "@/enum/enum";
+import Image from "next/image";
 
 async function keycloakSessionLogOut() {
   await axios.get(`/api/auth/logout`);
@@ -21,13 +22,33 @@ const Navbar = () => {
       return <HamburgerMenu session={session} />;
     } else {
       return (
-        <div className="flex text-sm gap-2 lg:w-2/3 w-full mx-auto">
-          <CustomLink href="/home" text={"Home"} bg={true} />
+        <div className="flex text-sm gap-2 w-full mx-auto">
+          <CustomLink
+            href="/home"
+            text={"Home"}
+            bg={true}
+            icon={
+              <Image
+                src={"/icons/home.svg"}
+                width={15}
+                height={15}
+                alt="door"
+              />
+            }
+          />
 
           <CustomLink
             href="/home/room/create"
             text={"Create Room"}
             bg={true}
+            icon={
+              <Image
+                src={"/icons/create.svg"}
+                width={15}
+                height={15}
+                alt="door"
+              />
+            }
           />
 
           {session && (
@@ -37,6 +58,14 @@ const Navbar = () => {
                 href={`/home/profile/${session.username}`}
                 text={"Profile"}
                 bg={true}
+                icon={
+                  <Image
+                    src={"/icons/user.svg"}
+                    width={15}
+                    height={15}
+                    alt="door"
+                  />
+                }
               />
 
               <CustomButton
@@ -49,6 +78,14 @@ const Navbar = () => {
                   );
                 }}
                 color={ColorEnum.FAILURE}
+                icon={
+                  <Image
+                    src={"/icons/door.svg"}
+                    width={15}
+                    height={15}
+                    alt="door"
+                  />
+                }
               />
             </>
           )}

@@ -42,7 +42,7 @@ const CustomButton = ({
       onClick={onClick}
     >
       {icon && (
-        <div className="flex justify-center items-center text-white mr-3">
+        <div className="flex justify-center items-center text-white mr-2">
           {icon}
         </div>
       )}

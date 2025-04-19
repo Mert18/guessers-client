@@ -28,7 +28,7 @@ const RoomLayoutContent = ({ params, children }: IRoomLayoutContentProps) => {
 
   if (!roomUser) return;
   return (
-    <div className="lg:w-2/3 w-full mx-auto">
+    <div className="w-full mx-auto">
       {!pathname.endsWith("create") &&
         !pathname.endsWith("invite") &&
         !pathname.endsWith("create-prize") &&

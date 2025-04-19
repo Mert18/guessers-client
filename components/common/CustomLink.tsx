@@ -5,7 +5,7 @@ import React from "react";
 interface ICustomLink {
   text: string;
   href: string;
-  icon?: string;
+  icon?: React.ReactNode;
   bg?: boolean;
   color?: ColorEnum;
 }
@@ -34,7 +34,7 @@ const CustomLink = ({ href, bg, icon, text, color = ColorEnum.PRIMARY }: ICustom
           }`}
       >
         {icon && (
-          <div className="flex justify-center items-center text-white">
+          <div className="flex justify-center items-center text-white mr-2">
             {icon}
           </div>
         )}
