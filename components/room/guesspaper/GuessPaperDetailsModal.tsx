@@ -29,7 +29,6 @@ const GuessPaperDetailsModal = ({
             <h2 className="flex-1">{"Event"}</h2>
             <h2 className="flex-1">{"Guess Option"}</h2>
             <h2 className="flex-1">{"Guess"}</h2>
-            <h2 className="flex-1">{"Odds"}</h2>
             <h2 className="flex-1">{"Status"}</h2>
           </div>
           {guessPaper?.guesses?.map((guess) => (

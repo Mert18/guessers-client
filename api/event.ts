@@ -1,6 +1,5 @@
 import {
   ICreateEvent,
-  ICreateEventFromReadyEvent,
   IFinalizeEvent,
   IGetActiveEvents,
   IGetCompletedEvents,
@@ -44,16 +43,6 @@ export const createEvent = async ({ event, roomId }: ICreateEvent) => {
   const response = await axiosInstance.post(
     baseURL + "/create" + "/" + roomId,
     event
-  );
-  return response?.data;
-};
-
-export const createEventFromReadyEvent = async ({
-  roomId,
-  readyEventIds,
-}: ICreateEventFromReadyEvent) => {
-  const response = await axiosInstance.get(
-    baseURL + "/create/" + roomId + "?readyEventIds=" + readyEventIds.join(",")
   );
   return response?.data;
 };

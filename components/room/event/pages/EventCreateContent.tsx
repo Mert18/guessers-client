@@ -12,8 +12,6 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import ListReadyEvents from "../ListReadyEvents";
-import Modal from "@/components/common/Modal";
 
 interface ICreateEventContentProps {
   params: { roomId: string };
@@ -24,8 +22,6 @@ const CreateEventSchema = Yup.object().shape({
 });
 
 const EventCreateContent = ({ params }: ICreateEventContentProps) => {
-  const [createReadyEventModalOpen, setCreateReadyEventModalOpen] =
-    useState<boolean>(false);
   const [room, setRoom] = useState<IRoomBasic>();
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
@@ -35,13 +31,9 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
     eventGuessOptions: [
       {
         name: "",
-        eventGuessOptionCases: [{ name: "", odds: 1.01 }],
+        eventGuessOptionCases: [{ name: "" }],
       },
     ],
-  };
-
-  const handleCloseReadyEventModal = () => {
-    setCreateReadyEventModalOpen(false);
   };
 
   useEffect(() => {
@@ -57,26 +49,6 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
       <div className="text-text text-xl font-bold text-center py-2">
         Create Event
       </div>
-
-      <CustomButton
-        type="submit"
-        text="Create From Ready Event"
-        onClick={() => setCreateReadyEventModalOpen(true)}
-      />
-
-      {createReadyEventModalOpen && (
-        <Modal
-          title={"Ready Events"}
-          handleCloseModal={handleCloseReadyEventModal}
-        >
-          <ListReadyEvents
-            handleCloseReadyEventModal={handleCloseReadyEventModal}
-            roomId={params.roomId}
-          />
-        </Modal>
-      )}
-
-      <p className="my-2 text-text">or create manually.</p>
 
       <Formik
         initialValues={initialValues}
@@ -105,16 +77,8 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
           ) {
             toast.error("There should not be any empty case name.");
             return;
-          } else if (
-            values.eventGuessOptions.some((option) =>
-              option.eventGuessOptionCases.some(
-                (optionCase) => optionCase.odds < 1.01
-              )
-            )
-          ) {
-            toast.error("Odds should be greater than 1.00.");
-            return;
           }
+
           setLoading(true);
           createEvent({ event: values, roomId: params.roomId })
             .then(() => {
@@ -160,7 +124,7 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
                       onClick={() =>
                         pushEventGuessOption({
                           name: "",
-                          eventGuessOptionCases: [{ name: "", odds: 1.01 }],
+                          eventGuessOptionCases: [{ name: "" }],
                         })
                       }
                     />
@@ -223,23 +187,6 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
                                       placeholder={"Case Name"}
                                     />
 
-                                    <input
-                                      onChange={(e) => {
-                                        values.eventGuessOptions[
-                                          eventGuessOptionIndex
-                                        ].eventGuessOptionCases[
-                                          eventGuessOptionOptionIndex
-                                        ].odds = parseFloat(e.target.value);
-                                      }}
-                                      type="number"
-                                      name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionCases[${eventGuessOptionOptionIndex}].odds`}
-                                      placeholder={"optionOdds"}
-                                      className="w-2/3 px-2 py-1 outline-none border border-primary h-8 focus:ring-1 focus:ring-primary font-bold rounded-md"
-                                      step={"0.01"}
-                                      min={"1.00"}
-                                      defaultValue={1.01}
-                                    />
-
                                     <button
                                       type="button"
                                       className=""
@@ -265,8 +212,7 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
                                 text={"Add Case"}
                                 onClick={() =>
                                   pushEventGuessOptionOption({
-                                    name: "",
-                                    odds: 1.01,
+                                    name: ""
                                   })
                                 }
                               />

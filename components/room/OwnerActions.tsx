@@ -12,7 +12,7 @@ const OwnerActions = ({ roomId }: IOwnerActionsProps) => {
   const router = useRouter();
 
   return (
-    <div className="flex md:flex-row flex-col items-center w-full gap-1">
+    <div className="flex items-center w-full gap-1">
       <CustomButton
         type="button"
         text="Create Event"

@@ -24,7 +24,7 @@ const EventGuessOption = ({
       {event.status === "IN_PROGRESS" && (
         <div className="w-full grid grid-cols-2 gap-x-1">
           {eventGuessOption.eventGuessOptionCases?.map(
-            (eventGuessOptionCase) => ( eventGuessOptionCase.odds &&
+            (eventGuessOptionCase) => (
               <EventGuessOptionCase
                 key={eventGuessOptionCase.id}
                 event={event}
