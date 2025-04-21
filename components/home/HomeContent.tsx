@@ -95,7 +95,7 @@ const HomeContent = () => {
   };
 
   useEffect(() => {
-    if (!session || status === "unauthenticated") {
+    if (status != "loading" && (!session || status === "unauthenticated")) {
       router.push("/");
     }
   }, [session]);

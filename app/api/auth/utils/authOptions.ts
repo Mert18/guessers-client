@@ -42,10 +42,11 @@ export const authOptions = {
       session.error = token.error;
       return session;
     },
-    async redirect({ url, baseUrl }: any) {
-      console.log("url: ", url)
-      // TODO fix any
-      return url.startsWith(baseUrl) ? url : baseUrl + "/home";
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith(`${baseUrl}/api/auth/callback`)) {
+        return `${baseUrl}/home`;
+      }
+      return url;
     },
   },
   events: {

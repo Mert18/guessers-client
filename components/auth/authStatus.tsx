@@ -17,7 +17,7 @@ export default function AuthStatus() {
       session?.error === "RefreshAccessTokenError"
     ) {
       signOut({ callbackUrl: "/api/auth/logout" });
-    } else if (status === "unauthenticated" || !session) {
+    } else if (status != "loading" && (status === "unauthenticated" || !session)) {
       router.push("/");
     }
   }, [session, status]);

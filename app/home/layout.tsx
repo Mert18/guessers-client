@@ -15,7 +15,7 @@ export default function HomeLayout({ children }: IHomeLayoutProps) {
     const router = useRouter();
 
     useEffect(() => {
-      if(!session || status === "unauthenticated") {
+      if(status != "loading" && (!session || status === "unauthenticated")) {
         router.push("/");
       }
     }, [session])

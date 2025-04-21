@@ -35,6 +35,7 @@ const RoomGuessContent = ({ params }: IRoomGuessContentProps) => {
     const guessSignature = `${event.id}-${eventGuessOption.id}`;
     const guess: ICreateGuessPaperGuess = {
       eventId: event.id,
+      eventName: event.name,
       eventGuessOptionId: eventGuessOption.id,
       eventGuessOptionName: eventGuessOption.name,
       eventGuessOptionCaseId: eventGuessOptionCase.id,

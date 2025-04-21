@@ -5,6 +5,7 @@ import PendingInviteCard from "./PendingInviteCard";
 import { IPendingInvite } from "@/types/IUser.model";
 import { IPaging } from "@/types/IRequest.model";
 import CustomButton from "../common/CustomButton";
+import Image from "next/image";
 
 const InvitesList = () => {
   const [pendingInvites, setPendingInvites] = useState<IPendingInvite[]>([]);
@@ -41,11 +42,11 @@ const InvitesList = () => {
     <div className="w-full text-sm my-8">
       <ComponentTitle
         text={"invites" + " (" + pendingInvites?.length + ")"}
-        icon="/invite.svg"
+        icon={<Image src={"/icons/envelope.svg"} width={20} height={20} alt="envelope" />}
       />
 
       {pendingInvites?.length === 0 ? (
-        <p className="text-primary">You do not have any room invites.</p>
+        <p className="text-primary px-1">You do not have any room invites.</p>
       ) : (
         <>
           <div className="flex flex-nowrap max-w-full overflow-x-auto py-2">

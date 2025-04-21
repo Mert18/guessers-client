@@ -10,6 +10,7 @@ export interface ICreateGuessPaper {
 
 export interface ICreateGuessPaperGuess {
   eventId: string;
+  eventName: string;
   eventGuessOptionId: string;
   eventGuessOptionName: string;
   eventGuessOptionCaseId: string;

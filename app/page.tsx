@@ -12,10 +12,9 @@ const font = Jersey_10({ subsets: ["latin"], weight: "400" });
 function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const pathname = usePathname();
 
   useEffect(() => {
-    if (status === "authenticated") {
+    if (status != "loading" && status === "authenticated") {
         router.push("/home");
     }
   }, [status, router]);

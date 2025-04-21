@@ -4,6 +4,7 @@ import Loader from "../../../common/Loader";
 import { IGuessPaper } from "@/types/IGuessPaper.model";
 import { IPaging } from "@/types/IRequest.model";
 import Pager from "../../../common/Pager";
+import Image from "next/image";
 
 interface IRoomGuessPapersProps {
   guessPapers: IGuessPaper[];
@@ -12,8 +13,12 @@ interface IRoomGuessPapersProps {
   loading: boolean;
 }
 
-const RoomGuessPapers = ({ guessPapers, paging, setPaging, loading }: IRoomGuessPapersProps) => {
-
+const RoomGuessPapers = ({
+  guessPapers,
+  paging,
+  setPaging,
+  loading,
+}: IRoomGuessPapersProps) => {
   const roomGuessPapersRenderer = () => {
     if (loading) {
       return <Loader />;
@@ -32,7 +37,17 @@ const RoomGuessPapers = ({ guessPapers, paging, setPaging, loading }: IRoomGuess
   };
   return (
     <div className="my-8 text-sm">
-      <ComponentTitle text={"guessPapers"} icon="/ticket.svg" />
+      <ComponentTitle
+        text={"guessPapers"}
+        icon={
+          <Image
+            src={"/icons/receipt.svg"}
+            width={20}
+            height={20}
+            alt="guess-paper"
+          />
+        }
+      />
       {roomGuessPapersRenderer()}
     </div>
   );

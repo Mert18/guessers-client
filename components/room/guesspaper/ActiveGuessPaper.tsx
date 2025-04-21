@@ -4,10 +4,10 @@ import ComponentTitle from "../../common/ComponentTitle";
 import { toast } from "react-toastify";
 import { IRoomUser } from "@/types/IRoom.model";
 import { ICreateGuessPaperGuess } from "@/types/IGuessPaper.model";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Loader from "../../common/Loader";
-import TokenSymbol from "../../common/TokenSymbol";
 import CustomButton from "@/components/common/CustomButton";
+import Image from "next/image";
 
 interface IActiveGuessPaperProps {
   guesses: ICreateGuessPaperGuess[];
@@ -39,42 +39,59 @@ const ActiveGuessPaper = ({
     });
   };
 
-  useEffect(() => {
-    console.log("guewsses: ", guesses);
-  }, [guesses]);
-
   return (
     <>
-      <ComponentTitle text={"Current Guess Paper"} icon="/ticket.svg" />
-      {guesses.length === 0 ? (
-        <div className="text-sm">
-          <p>{"You have not made any guesses yet."}</p>
-        </div>
-      ) : (
-        <div className="rounded-md gradient-white p-2 border-2 border-primary flex flex-col gap-2">
-          <div>
-            {guesses.map((guess) => (
-              <div>
-                <div key={guess.signature} className="flex justify-between">
-                  <p>{guess.eventGuessOptionName}</p>
-                  <p>{guess.eventGuessOptionCaseName}</p>
-                </div>
-              </div>
-            ))}
+      <ComponentTitle
+        text={"Current Guess Paper"}
+        icon={
+          <Image
+            src={"/icons/receipt.svg"}
+            width={20}
+            height={20}
+            alt="guess-paper"
+          />
+        }
+      />
+      <div className="min-h-40 max-h-40 overflow-y-auto border-2 border-primary rounded-md">
+        {guesses.length === 0 ? (
+          <div className="text-sm p-2">
+            <p>
+              {
+                "You have not made any guesses yet. Your guesses will show up here."
+              }
+            </p>
           </div>
+        ) : (
+          <div className="rounded-md gradient-white p-2 m-2 flex flex-col gap-2">
+            <div>
+              {guesses.map((guess) => (
+                <div>
+                  <div key={guess.signature} className="flex p-1">
+                    <p className="flex-1">{guess.eventName}</p>
+                    <p className="flex-1 flex justify-end">
+                      {guess.eventGuessOptionName}
+                    </p>
+                    <p className="flex-1 flex justify-end">
+                      {guess.eventGuessOptionCaseName}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-          {loading ? (
-            <Loader />
-          ) : (
-            <CustomButton
-              type="button"
-              text="CREATE"
-              onClick={() => sendGuessPaper()}
-              bg
-            />
-          )}
-        </div>
-      )}
+            {loading ? (
+              <Loader />
+            ) : (
+              <CustomButton
+                type="button"
+                text="CREATE"
+                onClick={() => sendGuessPaper()}
+                bg
+              />
+            )}
+          </div>
+        )}
+      </div>
     </>
   );
 };
