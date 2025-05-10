@@ -16,17 +16,11 @@ const CreateRoomContent = () => {
   const initialValues = {
     name: "",
     publico: false,
-    borderless: false,
   };
 
   const publicOptions: ISelectOption[] = [
     { value: true, label: "public" },
     { value: false, label: "private" },
-  ];
-
-  const borderlessOptions: ISelectOption[] = [
-    { value: false, label: "normal" },
-    { value: true, label: "borderless" },
   ];
 
   return (
@@ -51,7 +45,7 @@ const CreateRoomContent = () => {
             });
         }}
       >
-        <Form className="flex flex-col justify-center items-center lg:w-2/3 w-full">
+        <Form className="flex flex-col justify-center items-center w-full">
           <CustomInputField
             withLabel={true}
             name="name"
@@ -65,14 +59,6 @@ const CreateRoomContent = () => {
             type={"select"}
             name={"publico"}
             placeholder={"Public / Private"}
-          />
-
-          <CustomInputField
-            withLabel={true}
-            type={"select"}
-            name={"borderless"}
-            placeholder={"Room Type"}
-            options={borderlessOptions}
           />
 
           <div className="my-2"></div>

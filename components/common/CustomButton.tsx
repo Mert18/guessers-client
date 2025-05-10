@@ -1,6 +1,4 @@
 import { ColorEnum } from "@/enum/enum";
-import { Jersey_10 } from "next/font/google";
-import Link from "next/link";
 
 interface ICustomButton {
   type: "submit" | "button";

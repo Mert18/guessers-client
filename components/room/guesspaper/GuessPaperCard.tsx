@@ -39,19 +39,7 @@ const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
             {guessPaper.status}
           </p>
         </div>
-        <div>
-          <p className="opacity-50">Stakes</p>
-          <p>{guessPaper.stake.toFixed(2)}</p>
-        </div>
-        <div>
-          <p className="opacity-50">Total Odd</p>
-          <p>{guessPaper.totalOdd.toFixed(2)}</p>
-        </div>
-        <div>
-          <p className="opacity-50">Wins</p>
-
-          <p>{guessPaper.wins.toFixed(2)}</p>
-        </div>
+        
         <div className="my-4">
           <CustomButton
             type="button"

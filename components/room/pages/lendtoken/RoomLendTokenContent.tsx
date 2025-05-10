@@ -85,7 +85,6 @@ const RoomLendTokenContent = ({ params }: IRoomLendTokenContentProps) => {
               } flex justify-between items-center w-full p-2 my-1 rounded-md border-2 border-primary`}
             >
               <div>{roomUser.user.username}</div>
-              <div>{roomUser.balance}</div>
             </button>
           ))}
         </div>

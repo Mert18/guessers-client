@@ -6,6 +6,7 @@ import { useActiveEvents } from "@/hooks/useActiveEvents";
 import { IRoomUser } from "@/types/IRoom.model";
 import { ICreateGuessPaperGuess, IHandleOptionSelected } from "@/types/IGuessPaper.model";
 import EventCard from "../../event/EventCard";
+import Image from "next/image";
 
 interface RoomActiveEventsProps {
   roomId: string;
@@ -48,7 +49,16 @@ const RoomActiveEvents = ({
   };
   return (
     <div className="my-8 text-sm">
-      <ComponentTitle text={"Active Events"} icon="/calendar.svg" />
+      <ComponentTitle text={"Active Events"}
+        icon={
+          <Image 
+            src={"/icons/calendar.svg"}
+            width={20}
+            height={20}
+            alt="calendar"
+          />
+        }
+      />
       {eventsRenderer()}
     </div>
   );

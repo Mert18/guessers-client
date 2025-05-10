@@ -4,6 +4,7 @@ import Loader from "../common/Loader";
 import { IRoomBasic } from "@/types/IRoom.model";
 import { IPaging } from "@/types/IRequest.model";
 import CustomButton from "../common/CustomButton";
+import Image from "next/image";
 
 interface IPublicRoomsListProps {
   publicRooms: IRoomBasic[];
@@ -29,7 +30,7 @@ const PublicRoomsList = ({
     if (loading) {
       return <Loader />;
     } else if (publicRooms?.length === 0) {
-      return <p className="text-primary">No public rooms available.</p>;
+      return <p className="text-primary px-1">No public rooms available.</p>;
     } else {
       return (
         <div className="flex flex-nowrap max-w-full overflow-x-auto py-2">
@@ -52,7 +53,9 @@ const PublicRoomsList = ({
   };
   return (
     <div className="my-8 text-sm">
-      <ComponentTitle text="Public rooms" icon="door-open.svg" />
+      <ComponentTitle text="Public rooms"
+      icon={<Image src={"/icons/globe.svg"} width={20} height={20} alt="envelope" />}
+      />
       {publicRoomsListRenderer()}
     </div>
   );

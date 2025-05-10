@@ -21,10 +21,6 @@ const SelfRoomCard = ({ roomUser }: ISelfRoomCardProps) => {
           <p className="opacity-50">Member Count</p>
           <p>{roomUser.memberCount}</p>
         </div>
-        <div>
-          <p className="opacity-50">Balance</p>
-          <p>{roomUser.balance.toFixed(2)}</p>
-        </div>
       </div>
     </Link>
   );

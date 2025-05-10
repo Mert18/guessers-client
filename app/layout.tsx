@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Jersey_10, Rubik } from "next/font/google";
+import { Jersey_10 } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Metadata } from "next";

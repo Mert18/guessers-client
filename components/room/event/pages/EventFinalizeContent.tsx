@@ -91,7 +91,7 @@ const EventFinalizeContent = ({ params }: IEventFinalizeContentProps) => {
                 key={eventGuessOption.id}
                 className="flex flex-col justify-start items-start w-full"
               >
-                <p className="gradient-primary rounded-md p-2 text-sm text-white my-0.5 font-bold">
+                <p className="p-2 text-sm text-black my-0.5 font-bold">
                   {eventGuessOption.name}
                 </p>
                 <div className="w-full grid grid-cols-2 gap-x-1">
@@ -100,29 +100,16 @@ const EventFinalizeContent = ({ params }: IEventFinalizeContentProps) => {
                       return (
                         <button
                           key={
-                            eventGuessOptionCase.name +
-                            "_" +
-                            eventGuessOptionCase.odds
+                            eventGuessOptionCase.name
                           }
                           className="flex flex-col justify-center items-center hover:cursor-pointer m-0.5 w-full"
                           onClick={() =>
                             handleChangeWinningOptions(eventGuessOptionCase)
                           }
                         >
-                          <div className="text-text w-full flex justify-start items-center py-2">
-                            <p className="truncate font-bold">
+                          <p className={`${winningOptions.some((guess) => guess.id === eventGuessOptionCase.id) ? "gradient-primary text-white" : "gradient-white text-black"} w-full flex justify-start items-center p-2 rounded-md`}>
                               {eventGuessOptionCase.name}
-                            </p>
-                          </div>
-                          <div
-                            className={`${
-                              winningOptions.includes(eventGuessOptionCase)
-                                ? "gradient-primary text-white"
-                                : "text-primary gradient-white border border-primary"
-                            } w-full py-2 m-1 flex justify-evenly items-center font-bold rounded-md`}
-                          >
-                            <p>{eventGuessOptionCase.odds}</p>
-                          </div>
+                          </p>
                         </button>
                       );
                     }

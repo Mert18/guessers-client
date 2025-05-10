@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {  useState } from "react";
 import CustomButton from "../common/CustomButton";
 import { signIn } from "next-auth/react";
 import { Form, Formik } from "formik";
@@ -75,7 +75,10 @@ const LoginOrRegister = () => {
             }}
           >
             {({ errors, touched }) => (
-              <Form className="flex flex-col justify-start items-start w-full" autoComplete="off">
+              <Form
+                className="flex flex-col justify-start items-start w-full"
+                autoComplete="off"
+              >
                 <CustomInputField
                   withLabel={true}
                   name="username"

@@ -6,6 +6,7 @@ import { IPaging } from "@/types/IRequest.model";
 import Link from "next/link";
 import CustomButton from "../common/CustomButton";
 import { ColorEnum } from "@/enum/enum";
+import Image from "next/image";
 
 interface ISelfRoomsListProps {
   selfRooms: IRoomUser[];
@@ -31,7 +32,7 @@ const SelfRoomsList = ({
       return <Loader />;
     } else if (selfRooms?.length === 0) {
       return (
-        <p>
+        <p className="px-1">
           You have not attended any rooms.{" "}
           <Link
             href={"/home/room/create"}
@@ -43,8 +44,8 @@ const SelfRoomsList = ({
       );
     } else {
       return (
-        <div>
-          <div className="flex flex-nowrap max-w-full overflow-x-auto py-2">
+        <>
+          <div className="flex flex-nowrap max-w-full overflow-x-auto">
             {selfRooms?.map((room) => (
               <SelfRoomCard key={room.id} roomUser={room} />
             ))}
@@ -60,13 +61,13 @@ const SelfRoomsList = ({
               </div>
             )}
           </div>
-        </div>
+        </>
       );
     }
   };
   return (
     <div className="text-sm">
-      <ComponentTitle text="Your rooms" icon="/door.svg" />
+      <ComponentTitle text="Your rooms" icon={<Image src={"/icons/roomdoor.svg"} width={20} height={20} alt="door" />}/>
       {selfRoomsListRenderer()}
     </div>
   );

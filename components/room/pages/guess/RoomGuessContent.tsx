@@ -14,16 +14,10 @@ interface IRoomGuessContentProps {
 }
 const RoomGuessContent = ({ params }: IRoomGuessContentProps) => {
   const [guesses, setGuesses] = useState<ICreateGuessPaperGuess[]>([]);
-  const [totalOdds, setTotalOdds] = useState<number>(1.0);
-  const [stake, setStake] = useState<number>(100);
-  const [wins, setWins] = useState<number>(100);
 
   const [roomUser, setRoomUser] = useState<IRoomUser>();
 
   const resetGuessPaper = () => {
-    setStake(100);
-    setWins(100);
-    setTotalOdds(1.0);
     setGuesses([]);
   };
 
@@ -41,11 +35,11 @@ const RoomGuessContent = ({ params }: IRoomGuessContentProps) => {
     const guessSignature = `${event.id}-${eventGuessOption.id}`;
     const guess: ICreateGuessPaperGuess = {
       eventId: event.id,
+      eventName: event.name,
       eventGuessOptionId: eventGuessOption.id,
       eventGuessOptionName: eventGuessOption.name,
       eventGuessOptionCaseId: eventGuessOptionCase.id,
       eventGuessOptionCaseName: eventGuessOptionCase.name,
-      odd: eventGuessOptionCase.odds,
       signature: guessSignature,
     };
 
@@ -75,21 +69,6 @@ const RoomGuessContent = ({ params }: IRoomGuessContentProps) => {
   };
 
   useEffect(() => {
-    setTotalOdds(
-      Number(guesses.reduce((acc, guess) => acc * guess.odd, 1).toFixed(2))
-    );
-    setWins(
-      Number(
-        (
-          Number(
-            guesses.reduce((acc, guess) => acc * guess.odd, 1).toFixed(2)
-          ) * stake
-        ).toFixed(2)
-      )
-    );
-  }, [guesses, stake]);
-
-  useEffect(() => {
     const fetchRoomUser = async () => {
       const userResponse = await getRoomUser(params.roomId);
       setRoomUser(userResponse.data);
@@ -104,10 +83,6 @@ const RoomGuessContent = ({ params }: IRoomGuessContentProps) => {
         <>
           <ActiveGuessPaper
             guesses={guesses}
-            totalOdds={totalOdds}
-            stake={stake}
-            setStake={setStake}
-            wins={wins}
             roomUser={roomUser}
             resetGuessPaper={resetGuessPaper}
           />

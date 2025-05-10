@@ -30,19 +30,12 @@ export interface IEventGuessOption {
   id?: string;
   name: string;
   eventGuessOptionCases: IEventGuessOptionCase[];
-  precedence?: number;
 }
 
 export interface IEventGuessOptionCase {
   id?: string;
   name: string;
-  odds: number;
   status?: string;
-}
-
-export interface ICreateEventFromReadyEvent {
-  roomId: string;
-  readyEventIds: string[];
 }
 
 export interface IStartEvent {

@@ -45,9 +45,6 @@ const RoomRichests = ({ rankedRiches }: IRoomRichestsProps) => {
                 {roomUser.user.username}
               </Link>
             </p>
-            <p className="font-bold text-background-bright flex justify-center items-center">
-              {roomUser.balance.toFixed(2)} <TokenSymbol />
-            </p>
           </div>
         </li>
       ))}

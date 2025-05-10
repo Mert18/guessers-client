@@ -29,19 +29,6 @@ const GuessPaperMetadata = ({ guessPaper }: IGuessPaperMetadataProps) => {
             {guessPaper.status}
           </p>
         </div>
-
-        <div className="flex justify-between w-full">
-          <p className="font-medium">Total Odds</p>
-          <p>{guessPaper.totalOdd.toFixed(2)}</p>
-        </div>
-        <div className="flex justify-between w-full">
-          <p className="font-medium">Stakes</p>
-          <p>{guessPaper.stake}</p>
-        </div>
-        <div className="flex justify-between w-full">
-          <p className="font-medium">Wins</p>
-          <p className="flex items-center"><TokenSymbol />{guessPaper.wins}</p>
-        </div>
       </div>
     </div>
   );

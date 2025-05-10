@@ -6,6 +6,7 @@ import { IPaging } from "@/types/IRequest.model";
 import Pager from "../common/Pager";
 import CustomButton from "../common/CustomButton";
 import { ColorEnum } from "@/enum/enum";
+import Image from "next/image";
 
 interface ISelfGuessPapersListProps {
   selfGuessPapers: IGuessPaper[];
@@ -56,7 +57,17 @@ const SelfGuessPapersList = ({
   };
   return (
     <div className="my-8 text-sm">
-      <ComponentTitle text="Your Guess Papers" icon="/ticket.svg" />
+      <ComponentTitle
+        text="Your Guess Papers"
+        icon={
+          <Image
+            src={"/icons/receipt.svg"}
+            width={20}
+            height={20}
+            alt="guess-paper"
+          />
+        }
+      />
       {selfGuessPapersRenderer()}
     </div>
   );
