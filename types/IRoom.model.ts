@@ -26,7 +26,6 @@ export interface IRoomBasic {
     id: string;
     name: string;
     public: boolean;
-    borderless: boolean;
     owner: IUser;
     memberCount?: number;
 }

@@ -16,7 +16,6 @@ const CreateRoomContent = () => {
   const initialValues = {
     name: "",
     publico: false,
-    borderless: false,
   };
 
   const publicOptions: ISelectOption[] = [
