@@ -35,7 +35,7 @@ const CustomButton = ({
                 : ""
             }`
           : "bg-transparent text-primary-dark hover:text-primary hover:underline p-0"
-      } flex-1 font-bold flex justify-center items-center p-2 rounded-md w-full h-full`}
+      } flex-1 font-bold flex justify-center items-center p-2 rounded-md w-full h-full text-lg`}
       type={type}
       onClick={onClick}
     >

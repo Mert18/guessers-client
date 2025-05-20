@@ -48,7 +48,7 @@ const RoomActiveEvents = ({
     }
   };
   return (
-    <div className="my-8 text-sm">
+    <div className="my-8">
       <ComponentTitle text={"Active Events"}
         icon={
           <Image 

@@ -27,22 +27,6 @@ const OwnerActions = ({ roomId }: IOwnerActionsProps) => {
         color={ColorEnum.SECONDARY}
         bg
       />
-
-      <CustomButton
-        type="button"
-        text="Create Prize"
-        onClick={() => router.push(`/home/room/${roomId}/create-prize`)}
-        color={ColorEnum.SECONDARY}
-        bg
-      />
-
-      <CustomButton
-        type="button"
-        text="Lend Token"
-        onClick={() => router.push(`/home/room/${roomId}/lendtoken`)}
-        color={ColorEnum.SECONDARY}
-        bg
-      />
     </div>
   );
 };

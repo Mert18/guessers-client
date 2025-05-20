@@ -22,7 +22,7 @@ const Navbar = () => {
       return <HamburgerMenu session={session} />;
     } else {
       return (
-        <div className="flex text-sm gap-2 w-full mx-auto">
+        <div className="flex gap-2 w-full mx-auto">
           <CustomLink
             href="/home"
             text={"Home"}
@@ -98,6 +98,14 @@ const Navbar = () => {
       <div className="w-full flex justify-center items-center my-4 relative">
         <Logo />
       </div>
+      {session && (
+        <div className="w-full flex justify-center items-center my-4 relative">
+          <h1 className="text-xl font-bold text-primary-dark">
+            {/* @ts-ignore */}
+            {session.username}
+          </h1>
+        </div>
+      )}
       <div className="w-full">{navbarRenderer()}</div>
     </div>
   );

@@ -30,10 +30,10 @@ const PublicRoomsList = ({
     if (loading) {
       return <Loader />;
     } else if (publicRooms?.length === 0) {
-      return <p className="text-primary px-1">No public rooms available.</p>;
+      return <p className="text-primary px-1 text-lg">No public rooms available.</p>;
     } else {
       return (
-        <div className="flex flex-nowrap max-w-full overflow-x-auto py-2">
+        <div className="flex flex-nowrap max-w-full overflow-x-auto py-2 text-lg">
           {publicRooms?.map((room) => (
             <PublicRoomCard key={room.id} room={room} />
           ))}
@@ -52,7 +52,7 @@ const PublicRoomsList = ({
     }
   };
   return (
-    <div className="my-8 text-sm">
+    <div className="my-8">
       <ComponentTitle text="Public rooms"
       icon={<Image src={"/icons/globe.svg"} width={20} height={20} alt="envelope" />}
       />

@@ -72,13 +72,13 @@ const EventFinalizeContent = ({ params }: IEventFinalizeContentProps) => {
   return (
     event &&
     room && (
-      <div className="flex flex-col justify-center items-center text-sm">
+      <div className="flex flex-col justify-center items-center">
         <ComponentTitle text="Finalize Event" />
 
         <RoomName roomName={room.name} roomId={room.id} />
 
         <p className="my-2">Select the winning options.</p>
-        <div className="flex flex-col justify-center items-center w-full text-sm bg-white-bright border-2 border-primary rounded-md">
+        <div className="flex flex-col justify-center items-center w-full bg-white-bright border-2 border-primary rounded-md">
           <div className="flex justify-between items-center w-full font-bold p-4">
             <p>{event.name}</p>
 
@@ -91,7 +91,7 @@ const EventFinalizeContent = ({ params }: IEventFinalizeContentProps) => {
                 key={eventGuessOption.id}
                 className="flex flex-col justify-start items-start w-full"
               >
-                <p className="p-2 text-sm text-black my-0.5 font-bold">
+                <p className="p-2 text-black my-0.5 font-bold">
                   {eventGuessOption.name}
                 </p>
                 <div className="w-full grid grid-cols-2 gap-x-1">

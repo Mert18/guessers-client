@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import RoomHeader from "./RoomHeader";
 import CustomLink from "@/components/common/CustomLink";
+import path from "path";
 
 interface IRoomLayoutContentProps {
   params: {
@@ -31,8 +32,6 @@ const RoomLayoutContent = ({ params, children }: IRoomLayoutContentProps) => {
     <div className="w-full mx-auto">
       {!pathname.endsWith("create") &&
         !pathname.endsWith("invite") &&
-        !pathname.endsWith("create-prize") &&
-        !pathname.endsWith("lendtoken") &&
         !pathname.endsWith("finalize") && (
           <>
             <RoomHeader roomUser={roomUser} />
@@ -41,25 +40,19 @@ const RoomLayoutContent = ({ params, children }: IRoomLayoutContentProps) => {
               <CustomLink
                 text="Guess"
                 href={`/home/room/${params.roomId}/guess`}
-                bg={true}
+                bg={pathname.endsWith("guess")}
               />
 
               <CustomLink
                 text="Ranks"
                 href={`/home/room/${params.roomId}/ranks`}
-                bg={true}
+                bg={pathname.endsWith("ranks")}
               />
 
               <CustomLink
                 text="Guess Papers"
                 href={`/home/room/${params.roomId}/papers`}
-                bg={true}
-              />
-
-              <CustomLink
-                text="Prizes"
-                href={`/home/room/${params.roomId}/prizes`}
-                bg={true}
+                bg={pathname.endsWith("papers")}
               />
             </div>
           </>

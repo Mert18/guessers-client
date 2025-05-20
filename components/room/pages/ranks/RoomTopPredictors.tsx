@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const RoomTopPredictors = ({ rankedPredictions }: any) => {
   return (
-    <ul className="w-full text-black border border-primary rounded-md">
+    <ul className="w-full text-black border border-2 border-primary rounded-md">
       {rankedPredictions.length >= 1 &&
         rankedPredictions.map((roomUser: IRoomUser, index: any) => (
           <li

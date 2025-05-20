@@ -32,10 +32,10 @@ const SelfGuessPapersList = ({
     if (loading) {
       return <Loader />;
     } else if (selfGuessPapers.length === 0) {
-      return <p className="text-primary">No guess papers available.</p>;
+      return <p className="text-primary text-lg">No guess papers available.</p>;
     } else {
       return (
-        <div className="flex flex-nowrap max-w-full overflow-x-auto py-2">
+        <div className="flex flex-nowrap max-w-full overflow-x-auto py-2 text-lg">
           {selfGuessPapers.map((guessPaper) => (
             <GuessPaperCard key={guessPaper.id} guessPaper={guessPaper} />
           ))}
@@ -56,7 +56,7 @@ const SelfGuessPapersList = ({
     }
   };
   return (
-    <div className="my-8 text-sm">
+    <div className="my-8">
       <ComponentTitle
         text="Your Guess Papers"
         icon={

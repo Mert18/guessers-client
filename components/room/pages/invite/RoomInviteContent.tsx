@@ -57,7 +57,7 @@ const RoomInviteContent = ({ params }: IRoomInviteContentProps) => {
             });
         }}
       >
-        <Form className="flex flex-col justify-center items-center">
+        <Form className="flex flex-col justify-center items-center w-full">
           <CustomInputField
             name={`username`}
             type="text"
@@ -65,13 +65,12 @@ const RoomInviteContent = ({ params }: IRoomInviteContentProps) => {
             withLabel={true}
           />
 
-          <div className="my-2">
-            {loading ? (
-              <Loader />
-            ) : (
-              <CustomButton type="submit" text={"Invite"} bg={true} />
-            )}
-          </div>
+          <div className="my-2"></div>
+          {loading ? (
+            <Loader />
+          ) : (
+            <CustomButton type="submit" text={"Invite"} bg={true} />
+          )}
         </Form>
       </Formik>
     </div>

@@ -24,7 +24,7 @@ const GuessPaperDetailsModal = ({
   return (
     guessPaper && (
       <>
-        <div className="w-full text-sm text-white">
+        <div className="w-full text-white">
           <div className="bg-primary p-2 flex justify-start items-center font-bold border-2 border-primary rounded-md">
             <h2 className="flex-1">{"Event"}</h2>
             <h2 className="flex-1">{"Guess Option"}</h2>
