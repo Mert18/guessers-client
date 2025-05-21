@@ -1,7 +1,7 @@
 import React from "react";
 import ComponentTitle from "../common/ComponentTitle";
 import Image from "next/image";
-import PickOneAndHope from "../games/PickOneAndHope";
+import PickOneAndHopeInit from "../games/pickoneandhope/PickOneAndHopeInit";
 
 const PublicGames = () => {
   return (
@@ -14,7 +14,7 @@ const PublicGames = () => {
       />
 
       <div>
-        <PickOneAndHope />
+        <PickOneAndHopeInit />
       </div>
     </div>
   );
