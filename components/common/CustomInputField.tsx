@@ -24,7 +24,7 @@ const CustomInputField = ({
       return (
         <Field
           name={name}
-          className={`w-${width}  px-2 text-text font-bold outline-none border border-primary bg-background-bright h-8 focus:ring-2 focus:ring-primary rounded-md`}
+          className={`w-${width} px-2 text-text font-bold outline-none border border-primary h-10 focus:ring-2 focus:ring-primary rounded-md`}
           type={type}
           autoComplete="off"
           placeholder={placeholderInside ? placeholder : ""}
@@ -34,12 +34,12 @@ const CustomInputField = ({
       return (
         <Field
           as="select"
-          className={`w-${width}  px-2 text-text font-bold outline-none border border-primary h-8 focus:ring-2 focus:ring-primary bg-background-bright rounded-md`}
+          className={`w-${width} px-2 text-text font-bold outline-none border border-primary h-10 focus:ring-2 focus:ring-primary rounded-md`}
           name={name}
         >
           {options?.map((option) => (
             // @ts-ignore
-            <option className="bg-background" key={option.value} value={option.value}>
+            <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
@@ -50,7 +50,7 @@ const CustomInputField = ({
         <Field
           name={name}
           type={type}
-          className={`w-${width}  px-2 py-1 text-text font-bold outline-none border border-primary bg-background-bright h-8 focus:ring-2 focus:ring-primary rounded-md`}
+          className={`w-${width} px-2 py-1 text-text font-bold outline-none border border-primary h-10 focus:ring-2 focus:ring-primary rounded-md`}
           min={"1.00"}
           autoComplete="off"
           placeholder={placeholderInside ? placeholder : ""}

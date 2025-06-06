@@ -76,7 +76,7 @@ const LoginOrRegister = () => {
           >
             {({ errors, touched }) => (
               <Form
-                className="flex flex-col justify-start items-start w-full"
+                className="flex flex-col justify-start items-start w-full my-2"
                 autoComplete="off"
               >
                 <CustomInputField
@@ -94,6 +94,8 @@ const LoginOrRegister = () => {
                   placeholder={"password"}
                   placeholderInside={true}
                 />
+
+                <div className="my-1"></div>                
                 <CustomButton type="submit" text={"Register"} bg={true} />
 
                 <div className="w-full">

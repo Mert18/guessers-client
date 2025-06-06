@@ -30,7 +30,7 @@ function Home() {
       <div
         className={`${font.className} flex lg:flex-row flex-col w-full h-full`}
       >
-        <div className="flex-1 bg-white">
+        <div className="flex-1 bg-white my-2">
           <LoginOrRegister />
         </div>
         <div className="flex-1 bg-linear-primary bg-cover">

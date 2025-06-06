@@ -24,7 +24,7 @@ export default function RootLayout({
         <GoogleAnalytics
           GA_TRACKING_ID={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || ""}
         />
-        <body className={`${font.className} bg-white h-screen text-black`}>
+        <body className={`${font.className} bg-white h-screen text-black text-base`}>
           {children}
           <ToastContainer />
         </body>

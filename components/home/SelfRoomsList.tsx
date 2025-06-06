@@ -32,7 +32,7 @@ const SelfRoomsList = ({
       return <Loader />;
     } else if (selfRooms?.length === 0) {
       return (
-        <p className="px-1">
+        <p className="px-1 text-lg">
           You have not attended any rooms.{" "}
           <Link
             href={"/home/room/create"}
@@ -45,7 +45,7 @@ const SelfRoomsList = ({
     } else {
       return (
         <>
-          <div className="flex flex-nowrap max-w-full overflow-x-auto">
+          <div className="flex flex-nowrap max-w-full overflow-x-auto text-lg">
             {selfRooms?.map((room) => (
               <SelfRoomCard key={room.id} roomUser={room} />
             ))}
@@ -66,7 +66,7 @@ const SelfRoomsList = ({
     }
   };
   return (
-    <div className="text-sm">
+    <div>
       <ComponentTitle text="Your rooms" icon={<Image src={"/icons/roomdoor.svg"} width={20} height={20} alt="door" />}/>
       {selfRoomsListRenderer()}
     </div>

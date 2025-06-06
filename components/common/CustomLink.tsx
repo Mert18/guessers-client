@@ -12,7 +12,7 @@ interface ICustomLink {
 
 const CustomLink = ({ href, bg, icon, text, color = ColorEnum.PRIMARY }: ICustomLink) => {
   return (
-    <Link href={href} className="flex-1 text-center">
+    <Link href={href} className="flex-1 text-center text-lg">
       <div
         className={`font-bold flex justify-center h-full p-2 rounded-md
           ${
@@ -30,7 +30,7 @@ const CustomLink = ({ href, bg, icon, text, color = ColorEnum.PRIMARY }: ICustom
                     ? "gradient-success"
                     : ""
                 } text-white`
-              : `bg-transparent text-primary`
+              : `bg-transparent text-primary border-2 border-primary`
           }`}
       >
         {icon && (

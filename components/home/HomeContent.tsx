@@ -11,6 +11,7 @@ import SelfRoomsList from "./SelfRoomsList";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import InvitesList from "./InvitesList";
+import PublicGames from "./PublicGames";
 
 const HomeContent = () => {
   const { data: session, status } = useSession();
@@ -49,6 +50,7 @@ const HomeContent = () => {
     try {
       const response = await listSelfRooms(publicRoomsPaging);
       if (!response.data.content || response.data.content === undefined) return;
+      if (selfRooms.length !== 0) return;
       setSelfRooms([...selfRooms, ...response.data.content]);
       setSelfRoomsPaging((prevState) => ({
         ...prevState,
@@ -65,6 +67,7 @@ const HomeContent = () => {
     try {
       const response = await listPublicRooms(publicRoomsPaging);
       if (!response.data.rooms || response.data.rooms === undefined) return;
+      if (publicRooms.length !== 0) return;
       setPublicRooms([...publicRooms, ...response.data.rooms.content]);
       setPublicRoomsPaging({
         page: response.data.rooms.page.number,
@@ -82,6 +85,7 @@ const HomeContent = () => {
     try {
       const response = await listSelfGuessPapers(selfGuessPapersPaging);
       if (response.data.content === undefined) return;
+      if (selfGuessPapers.length !== 0) return;
       setSelfGuessPapers([...selfGuessPapers, ...response.data.content]);
       setSelfGuessPapersPaging({
         page: response.data.page.number,
@@ -131,28 +135,33 @@ const HomeContent = () => {
   }, [selfGuessPapersPaging.page]);
   return (
     <div className="w-full">
-      <SelfRoomsList
-        selfRooms={selfRooms}
-        paging={selfRoomsPaging}
-        setPaging={setSelfRoomsPaging}
-        loading={selfRoomsLoading}
-      />
+      <div>
+        <PublicGames />
+      </div>
+      <div>
+        <SelfRoomsList
+          selfRooms={selfRooms}
+          paging={selfRoomsPaging}
+          setPaging={setSelfRoomsPaging}
+          loading={selfRoomsLoading}
+        />
 
-      <InvitesList />
+        <InvitesList />
 
-      <PublicRoomsList
-        publicRooms={publicRooms}
-        paging={publicRoomsPaging}
-        setPaging={setPublicRoomsPaging}
-        loading={publicRoomsLoading}
-      />
+        <PublicRoomsList
+          publicRooms={publicRooms}
+          paging={publicRoomsPaging}
+          setPaging={setPublicRoomsPaging}
+          loading={publicRoomsLoading}
+        />
 
-      <SelfGuessPapersList
-        selfGuessPapers={selfGuessPapers}
-        paging={selfGuessPapersPaging}
-        setPaging={setSelfGuessPapersPaging}
-        loading={selfGuessPapersLoading}
-      />
+        <SelfGuessPapersList
+          selfGuessPapers={selfGuessPapers}
+          paging={selfGuessPapersPaging}
+          setPaging={setSelfGuessPapersPaging}
+          loading={selfGuessPapersLoading}
+        />
+      </div>
     </div>
   );
 };

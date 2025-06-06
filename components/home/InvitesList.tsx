@@ -39,7 +39,7 @@ const InvitesList = () => {
     }));
   };
   return (
-    <div className="w-full text-sm my-8">
+    <div className="w-full text-lg my-8">
       <ComponentTitle
         text={"invites" + " (" + pendingInvites?.length + ")"}
         icon={<Image src={"/icons/envelope.svg"} width={20} height={20} alt="envelope" />}
@@ -49,7 +49,7 @@ const InvitesList = () => {
         <p className="text-primary px-1">You do not have any room invites.</p>
       ) : (
         <>
-          <div className="flex flex-nowrap max-w-full overflow-x-auto py-2">
+          <div className="flex flex-nowrap max-w-full overflow-x-auto py-2 text-lg">
             {pendingInvites?.map((invite: IPendingInvite) => (
               <PendingInviteCard key={invite.id} invite={invite} />
             ))}

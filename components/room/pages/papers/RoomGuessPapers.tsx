@@ -36,7 +36,7 @@ const RoomGuessPapers = ({
     }
   };
   return (
-    <div className="my-8 text-sm">
+    <div className="my-8">
       <ComponentTitle
         text={"guessPapers"}
         icon={
