@@ -6,6 +6,8 @@ import PickOneAndHopeSearchingRoom from "./PickOneAndHopeSearchingRoom";
 import { Client } from "@stomp/stompjs";
 import { getAccessToken } from "@/util/sessionTokenAccessor";
 import { useSession } from "next-auth/react";
+import { IGameRoom } from "@/types/IPickOneAndHope";
+import PickOneAndHopeInGame from "./PickOneAndHopeInGame";
 
 interface IPickOneAndHope {
   onClose: () => void;
@@ -21,6 +23,8 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
   );
   const [selectedObject, setSelectedObject] =
     React.useState<PickOneAndHopeObjectsEnum>(PickOneAndHopeObjectsEnum.CHERRY);
+
+  const [roomInfo, setRoomInfo] = useState<IGameRoom>(null);
 
   const handleExitGame = () => {
     onClose();
@@ -61,14 +65,10 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
             setConnected(true);
             console.log("Connected!");
 
-            const username = session.data.user.name || "";
             client.subscribe(`/user/queue/room`, (message) => {
-              console.log(
-                "Received message from /user/queue/room ___________________________________"
-              );
-              console.log("Received message:", message);
-
               const room = JSON.parse(message.body);
+              setGameState(GameStateEnum.IN_GAME);
+              setRoomInfo(room);
               console.log("Received room info:", room);
             });
           },
@@ -110,12 +110,14 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
             handleStopSearching={() => handleStopSearching()}
           />
         );
-      case GameStateEnum.IN_ROOM:
-        return <div>In Room</div>;
-      case GameStateEnum.STARTING_GAME:
-        return <div>Starting Game...</div>;
       case GameStateEnum.IN_GAME:
-        return <div>In Game</div>;
+        return (
+          <PickOneAndHopeInGame
+            client={clientRef.current}
+            roomInfo={roomInfo}
+            onClose={onClose}
+          />
+        );
       case GameStateEnum.GAME_ENDED:
         return <div>Game Ended</div>;
       default:

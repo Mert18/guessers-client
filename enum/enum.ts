@@ -9,12 +9,9 @@ export enum ColorEnum {
 export enum GameStateEnum {
   NOT_IN_ROOM = 0,
   SEARCHING_ROOM = 1,
-  IN_ROOM = 2,
-  STARTING_GAME = 3,
-  IN_GAME = 4,
-  ENDING_GAME = 5,
-  GAME_ENDED = 6,
-  GAME_CLOSED = 7  
+  IN_GAME = 2,
+  GAME_ENDED = 3,
+  GAME_CANCELLED = 4  
 }
 
 export enum PickOneAndHopeObjectsEnum {
