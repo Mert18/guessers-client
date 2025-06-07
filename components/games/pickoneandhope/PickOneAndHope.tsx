@@ -36,8 +36,7 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
       return;
     }
     clientRef.current?.publish({
-      destination: "/app/join",
-      body: JSON.stringify({ object: selectedObject }), // or your payload
+      destination: "/app/join"
     });
     setGameState(GameStateEnum.SEARCHING_ROOM);
   };
