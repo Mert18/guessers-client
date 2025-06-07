@@ -31,7 +31,6 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
   };
 
   const handleJoinARoom = () => {
-    console.log("Selected Object: ", selectedObject);
     if (!connected || !clientRef.current) {
       console.error("Not connected to the STOMP broker.");
       return;
@@ -40,13 +39,19 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
       destination: "/app/join",
       body: JSON.stringify({ object: selectedObject }), // or your payload
     });
-    // handle join a room
     setGameState(GameStateEnum.SEARCHING_ROOM);
   };
 
   const handleStopSearching = () => {
-    // handle stop searching
-    console.log("Stop Searching");
+    if (!connected || !clientRef.current) {
+      console.error("Not connected to the STOMP broker.");
+      return;
+    }
+    clientRef.current?.publish({
+      destination: "/app/cancel",
+      body: JSON.stringify({ object: selectedObject }), // or your payload
+    });
+
     setGameState(GameStateEnum.NOT_IN_ROOM);
   };
 
