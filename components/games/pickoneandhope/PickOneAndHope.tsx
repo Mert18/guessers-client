@@ -5,7 +5,6 @@ import { GameStateEnum, PickOneAndHopeObjectsEnum } from "@/enum/enum";
 import PickOneAndHopeSearchingRoom from "./PickOneAndHopeSearchingRoom";
 import { Client } from "@stomp/stompjs";
 import { getAccessToken } from "@/util/sessionTokenAccessor";
-import { useSession } from "next-auth/react";
 import { IGameRoom } from "@/types/IPickOneAndHope";
 import PickOneAndHopeInGame from "./PickOneAndHopeInGame";
 
@@ -14,7 +13,6 @@ interface IPickOneAndHope {
 }
 
 const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
-  const session = useSession();
   const clientRef = useRef<Client | null>(null);
   const [connected, setConnected] = useState(false);
 
@@ -22,11 +20,12 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
     GameStateEnum.NOT_IN_ROOM
   );
   const [selectedObject, setSelectedObject] =
-    React.useState<PickOneAndHopeObjectsEnum>(PickOneAndHopeObjectsEnum.CHERRY);
+    useState<PickOneAndHopeObjectsEnum>(PickOneAndHopeObjectsEnum.CHERRY);
 
   const [roomInfo, setRoomInfo] = useState<IGameRoom>(null);
 
   const handleExitGame = () => {
+    console.log("Exiting game...");
     onClose();
   };
 
@@ -57,7 +56,6 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
   useEffect(() => {
     getAccessToken()
       .then((token) => {
-        console.log("Access Token:", token);
         const client = new Client({
           brokerURL: `ws://localhost:8080/ws/websocket?token=${token}`,
           connectHeaders: {
@@ -67,7 +65,6 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
           reconnectDelay: 5000,
           onConnect: () => {
             setConnected(true);
-            console.log("Connected!");
 
             client.subscribe(`/user/queue/room`, (message) => {
               const room = JSON.parse(message.body);
@@ -91,9 +88,6 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
           client.deactivate();
         };
       })
-      .catch((error) => {
-        console.error("Error getting access token:", error);
-      });
   }, []);
 
   const gameStateRender = () => {

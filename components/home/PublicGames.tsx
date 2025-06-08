@@ -1,7 +1,7 @@
 import React from "react";
 import ComponentTitle from "../common/ComponentTitle";
 import Image from "next/image";
-import PickOneAndHopeInit from "../games/pickoneandhope/PickOneAndHopeInit";
+import PickOneAndHopeCard from "../games/pickoneandhope/PickOneAndHopeCard";
 
 const PublicGames = () => {
   return (
@@ -13,9 +13,9 @@ const PublicGames = () => {
         }
       />
 
-      <div>
-        <PickOneAndHopeInit />
-      </div>
+      <ul>
+        <PickOneAndHopeCard />
+      </ul>
     </div>
   );
 };
