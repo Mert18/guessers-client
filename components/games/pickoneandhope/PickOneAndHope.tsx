@@ -36,7 +36,8 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
       return;
     }
     clientRef.current?.publish({
-      destination: "/app/join"
+      destination: "/app/join",
+      body: JSON.stringify({ object: selectedObject }), // or your payload
     });
     setGameState(GameStateEnum.SEARCHING_ROOM);
   };
@@ -48,7 +49,6 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
     }
     clientRef.current?.publish({
       destination: "/app/cancel",
-      body: JSON.stringify({ object: selectedObject }), // or your payload
     });
 
     setGameState(GameStateEnum.NOT_IN_ROOM);
