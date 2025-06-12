@@ -38,3 +38,7 @@ export interface IRoomUser {
     score: number;
     memberCount: number;
 }
+
+export interface ISelfRoomCardProps {
+  roomUser: IRoomUser;
+}

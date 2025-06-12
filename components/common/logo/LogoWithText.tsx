@@ -9,7 +9,7 @@ const LogoWithText = () => {
       className="flex justify-center items-center w-full mb-4"
     >
       <Image
-        src="/logo/logo-text-white.svg"
+        src="/logo/logo-text-primary.svg"
         alt="logo"
         width={240}
         height={240}
