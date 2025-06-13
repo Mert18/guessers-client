@@ -45,7 +45,7 @@ const CreateRoomContent = () => {
             });
         }}
       >
-        <Form className="flex flex-col justify-center items-center lg:w-1/3 w-full">
+        <Form className="flex flex-col justify-center items-center w-full">
           <CustomInputField
             withLabel={true}
             name="name"

@@ -9,52 +9,51 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        "linear-primary": "url('/backgrounds/login-bg.png')",
+        'linear-primary': "url('/backgrounds/login-bg.png')",
       },
       fontSize: {
-        "2xs": "0.6rem",
+        '2xs': '0.6rem'
       },
       colors: {
-        primary: {
-          DEFAULT: "#6C63FF",
-          bright: "#7C74FF",
-          dark: "#5246DD",
-          darker: "#453ABD",
+        primary : {
+          DEFAULT: "#8f6ed1",
+          bright: "#9068ee",
+          dark: "#6542B5",
+          darker: "#5c38ae"
         },
         white: {
-          DEFAULT: "#F5F7FA",
-          bright: "#FFFFFF",
-          darker: "#E8E8E8",
+          DEFAULT: "#EEF8FF",
+          bright: "#FBFDFF"
         },
         black: {
-          DEFAULT: "#2D2D2D",
-          bright: "#3A3A3A",
+          DEFAULT: "#353535",
+          bright: "#464646"
         },
         secondary: {
-          DEFAULT: "#3DB8A5",
-          bright: "#52CBBB",
-          dark: "#309D8C",
+          DEFAULT: "#26c0bd",
+          bright: "#2bcac6",
+          dark: "#21b1ad"
         },
         failure: {
-          DEFAULT: "#E74C3C",
-          bright: "#EE5A49",
-          dark: "#C0392B",
+          DEFAULT: "#CE4A3A",
+          bright: "#d85747",
+          dark: "#b83a2b",
         },
         success: {
-          DEFAULT: "#2ECC71",
-          bright: "#45D77C",
-          dark: "#27AE60",
+          DEFAULT: "#3dba18",
+          bright: "#4ac824",
+          dark: "#34a412",
         },
         warning: {
-          DEFAULT: "#F39C12",
-          bright: "#F4B142",
-          dark: "#D68910",
-        },
-      },
+          DEFAULT: "#E28043",
+          bright: "#f0955c",
+          dark: "#cc7037",
+        }
+      }
     },
   },
   variants: {
-    scrollbar: ["rounded"],
+    scrollbar: ['rounded'],
   },
   plugins: [],
 } satisfies Config;

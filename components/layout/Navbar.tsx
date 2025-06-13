@@ -8,7 +8,6 @@ import CustomButton from "../common/CustomButton";
 import CustomLink from "../common/CustomLink";
 import { ColorEnum } from "@/enum/enum";
 import Image from "next/image";
-import LogoWithText from "../common/logo/LogoWithText";
 
 async function keycloakSessionLogOut() {
   await axios.get(`/api/auth/logout`);
@@ -97,7 +96,7 @@ const Navbar = () => {
   return (
     <div>
       <div className="w-full flex justify-center items-center my-4 relative">
-        <LogoWithText />
+        <Logo />
       </div>
       {session && (
         <div className="w-full flex justify-center items-center my-4 relative">
