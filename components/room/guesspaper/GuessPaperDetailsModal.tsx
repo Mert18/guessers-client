@@ -49,7 +49,7 @@ const GuessPaperDetailsModal = ({
         ) : (
           !isShare && (
             <button
-              className="gradient-primary text-white p-2 rounded-md my-2"
+              className="gradient-white text-primary border border-primary p-2 rounded-md my-2"
               onClick={() => {
                 setLoading(true);
                 shareGuessPaper(guessPaper.id)
@@ -68,7 +68,7 @@ const GuessPaperDetailsModal = ({
         )}
 
         {isSharedPopUpVisible && (
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-background-bright text-text p-4 border-2 border-text flex flex-col justify-center items-center">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 border-2 border-primary flex flex-col justify-center items-center rounded-md">
             <p>Share this link with your friends:</p>
             {sharedToken ? (
               <div className="flex flex-col justify-center items-center">

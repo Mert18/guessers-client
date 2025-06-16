@@ -7,7 +7,11 @@ import { IPaging } from "@/types/IRequest.model";
 import CustomButton from "../common/CustomButton";
 import Image from "next/image";
 
-const InvitesList = () => {
+interface IInvitesList {
+  setInvitesVisible: (visible: boolean) => void;
+}
+
+const InvitesList = ({setInvitesVisible}: IInvitesList) => {
   const [pendingInvites, setPendingInvites] = useState<IPendingInvite[]>([]);
   const [invitesPaging, setInvitesPaging] = useState<IPaging>({
     page: 0,
@@ -18,6 +22,13 @@ const InvitesList = () => {
 
   const fetchInvites = async () => {
     await getInvites(invitesPaging).then((response) => {
+      if (response.data.content === undefined) return;
+      if (invitesPaging.page !== 0 && response.data.content.length === 0) {
+        setInvitesVisible(false);
+        return;
+      }else {
+        setInvitesVisible(true);
+      }
       setPendingInvites([...pendingInvites, ...response.data.content]);
       setInvitesPaging({
         page: response.data.page.number,
@@ -39,7 +50,7 @@ const InvitesList = () => {
     }));
   };
   return (
-    <div className="w-full text-lg my-8">
+    <div className="w-full my-8">
       <ComponentTitle
         text={"invites" + " (" + pendingInvites?.length + ")"}
         icon={<Image src={"/icons/envelope.svg"} width={20} height={20} alt="envelope" />}
@@ -49,7 +60,7 @@ const InvitesList = () => {
         <p className="text-primary px-1">You do not have any room invites.</p>
       ) : (
         <>
-          <div className="flex flex-nowrap max-w-full overflow-x-auto py-2 text-lg">
+          <div className="flex flex-nowrap max-w-full overflow-x-auto py-2">
             {pendingInvites?.map((invite: IPendingInvite) => (
               <PendingInviteCard key={invite.id} invite={invite} />
             ))}

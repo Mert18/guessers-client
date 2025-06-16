@@ -23,19 +23,19 @@ const CustomButton = ({
         bg
           ? `${
               color === ColorEnum.PRIMARY
-                ? "gradient-primary text-white"
+                ? "gradient-white text-primary border border-primary"
                 : color === ColorEnum.SECONDARY
-                ? "gradient-secondary text-white"
+                ? "gradient-secondary text-white border border-secondary"
                 : color === ColorEnum.WARNING
-                ? "gradient-warning text-white"
+                ? "gradient-warning text-white border border-warning"
                 : color === ColorEnum.FAILURE
-                ? "gradient-failure text-white"
+                ? "gradient-white text-failure border border-failure"
                 : color === ColorEnum.SUCCESS
-                ? "gradient-success text-white"
+                ? "gradient-success text-white border border-success"
                 : ""
             }`
-          : "bg-transparent text-primary-dark hover:text-primary hover:underline p-0"
-      } flex-1 font-bold flex justify-center items-center p-2 rounded-md w-full h-full text-lg`}
+          : ""
+      } flex-1 font-bold flex justify-center items-center p-2 rounded-md w-full h-full`}
       type={type}
       onClick={onClick}
     >

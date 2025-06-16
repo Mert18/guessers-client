@@ -12,7 +12,7 @@ const PickOneAndHopeSearchingRoom = ({
   handleStopSearching,
 }: IPickOneAndHopeSearchingRoom) => {
   return (
-    <div className="flex flex-col justify-center items-center text-lg">
+    <div className="flex flex-col justify-center items-center">
       <img
         src={`/icons/games/pickoneandhope/${selectedObject}.svg`}
         alt={selectedObject}

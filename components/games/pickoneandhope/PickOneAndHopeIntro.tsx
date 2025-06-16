@@ -16,7 +16,7 @@ const PickOneAndHopeIntro = ({
   handleExitGame,
 }: IPickOneAndHopeIntro) => {
   return (
-    <div className="text-lg flex flex-col justify-center items-center text-primary">
+    <div className="flex flex-col justify-center items-center text-primary">
       <div>
         <p>1. Select one object.</p>
         <p>2. Join a room.</p>

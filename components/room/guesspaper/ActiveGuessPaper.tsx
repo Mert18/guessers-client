@@ -52,7 +52,7 @@ const ActiveGuessPaper = ({
           />
         }
       />
-      <div className="min-h-40 max-h-40 overflow-y-auto border-2 border-primary rounded-md">
+      <div className="min-h-40 max-h-40 overflow-y-auto border-2 border-primary rounded-md gradient-white">
         {guesses.length === 0 ? (
           <div className="p-2">
             <p>

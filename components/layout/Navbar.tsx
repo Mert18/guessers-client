@@ -56,7 +56,8 @@ const Navbar = () => {
               <CustomLink
                 // @ts-ignore
                 href={`/home/profile/${session.username}`}
-                text={"Profile"}
+                // @ts-ignore
+                text={"Profile" + " (" + session.username + ")"}
                 bg={true}
                 icon={
                   <Image
@@ -72,12 +73,12 @@ const Navbar = () => {
                 type="button"
                 text={"Logout"}
                 bg={true}
+                color={ColorEnum.FAILURE}
                 onClick={() => {
                   keycloakSessionLogOut().then(() =>
                     signOut({ callbackUrl: "/" })
                   );
                 }}
-                color={ColorEnum.FAILURE}
                 icon={
                   <Image
                     src={"/icons/door.svg"}
@@ -98,14 +99,7 @@ const Navbar = () => {
       <div className="w-full flex justify-center items-center my-4 relative">
         <Logo />
       </div>
-      {session && (
-        <div className="w-full flex justify-center items-center my-4 relative">
-          <h1 className="text-xl font-bold text-primary-dark">
-            {/* @ts-ignore */}
-            {session.username}
-          </h1>
-        </div>
-      )}
+      
       <div className="w-full">{navbarRenderer()}</div>
     </div>
   );

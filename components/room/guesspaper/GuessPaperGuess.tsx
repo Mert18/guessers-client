@@ -7,7 +7,7 @@ interface IGuessPaperGuessProps {
 const GuessPaperGuess = ({ guess }: IGuessPaperGuessProps) => {
   return (
     <div
-      className="flex justify-start items-center bg-white rounded-md my-1 text-primary border-2 border-primary transition-all px-2 py-3"
+      className="flex justify-start items-center bg-white-bright rounded-md my-1 text-primary border-2 border-primary transition-all px-2 py-3"
     >
       <p className="flex-1 truncate">{guess.event.name}</p>
       <p className="flex-1">{guess.eventGuessOption.name}</p>

@@ -1,5 +1,5 @@
 import { IRoomUser } from "@/types/IRoom.model";
-import Link from "next/link";
+import CustomLink from "../common/CustomLink";
 
 interface ISelfRoomCardProps {
   roomUser: IRoomUser;
@@ -7,8 +7,8 @@ interface ISelfRoomCardProps {
 
 const SelfRoomCard = ({ roomUser }: ISelfRoomCardProps) => {
   return (
-    <Link href={`/home/room/${roomUser.room.id}/guess`} className="inline-block mx-1"> 
-      <div className="rounded-md gradient-primary w-48 h-48 p-2 text-white">
+    <div className="flex flex-col mr-2 justify-between rounded-md bg-white-dark w-48 h-48 p-2 text-primary border border-primary">
+      <div>
         <div>
           <p className="opacity-50">Room Name</p>
           <h2>{roomUser.room.name}</h2>
@@ -22,7 +22,14 @@ const SelfRoomCard = ({ roomUser }: ISelfRoomCardProps) => {
           <p>{roomUser.memberCount}</p>
         </div>
       </div>
-    </Link>
+      <div className="w-full">
+        <CustomLink
+          href={`/home/room/${roomUser.room.id}/guess`}
+          text="Enter Room"
+          bg={true}
+        />
+      </div>
+    </div>
   );
 };
 

@@ -1,7 +1,5 @@
 "use client";
-import CustomButton from "../../common/CustomButton";
 import { IRoomUser } from "@/types/IRoom.model";
-import TokenSymbol from "../../common/TokenSymbol";
 import RoomName from "./RoomName";
 import OwnerActions from "../OwnerActions";
 

@@ -105,10 +105,10 @@ const PickOneAndHopeInGame = ({ client, roomInfo, onClose }: InGameProps) => {
       <div className="flex-1">
         {gameStatus === GameStateEnum.GAME_ENDED ? (
           <div>
-            <h2 className="text-xl font-bold">Game Over</h2>
+            <h2 className="font-bold">Game Over</h2>
 
             {Object.entries(playersScore).map(([username, score]) => (
-              <p key={username} className="text-lg">
+              <p key={username}>
                 {username}: {score} points
               </p>
             ))}
@@ -145,7 +145,7 @@ const PickOneAndHopeInGame = ({ client, roomInfo, onClose }: InGameProps) => {
               </>
             ) : (
               <>
-                <h2 className="text-xl font-bold">Round {round}</h2>
+                <h2 className="font-bold">Round {round}</h2>
                 <p>{gameStatusMessage}</p>
                 <div className="flex justify-center items-center mt-4">
                   <div className="grid grid-cols-3 gap-4 mt-4">

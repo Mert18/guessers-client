@@ -13,8 +13,8 @@ const PublicRoomCard = ({ room }: IPublicRoomCardProps) => {
     });
   };
   return (
-    <div className="inline-block mx-1">
-      <div className="rounded-md bg-primary-dark w-48 h-48 p-2 text-white">
+    <div className="flex flex-col mr-2 justify-between rounded-md bg-white-dark w-48 h-48 p-2 text-primary border border-primary">
+      <div className="">
         <div>
           <p className="opacity-50">Room Name</p>
           <h2>{room.name}</h2>
@@ -24,17 +24,17 @@ const PublicRoomCard = ({ room }: IPublicRoomCardProps) => {
           <p>{room.owner.username}</p>
         </div>
         <div>
-          <p className="opacity-50">Room Name</p>
+          <p className="opacity-50">Member Count</p>
           <p>{room.memberCount}</p>
         </div>
-        <div>
-          <CustomButton
-            type="button"
-            text="Join"
-            onClick={() => handleJoinRoom()}
-            bg={true}
-          />
-        </div>
+      </div>
+      <div>
+        <CustomButton
+          type="button"
+          text="Join"
+          onClick={() => handleJoinRoom()}
+          bg={true}
+        />
       </div>
     </div>
   );

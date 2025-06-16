@@ -32,7 +32,7 @@ const SelfRoomsList = ({
       return <Loader />;
     } else if (selfRooms?.length === 0) {
       return (
-        <p className="px-1 text-lg">
+        <p className="px-1 text-primary">
           You have not attended any rooms.{" "}
           <Link
             href={"/home/room/create"}
@@ -45,7 +45,7 @@ const SelfRoomsList = ({
     } else {
       return (
         <>
-          <div className="flex flex-nowrap max-w-full overflow-x-auto text-lg">
+          <div className="flex flex-nowrap max-w-full overflow-x-auto">
             {selfRooms?.map((room) => (
               <SelfRoomCard key={room.id} roomUser={room} />
             ))}

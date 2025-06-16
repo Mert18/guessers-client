@@ -26,7 +26,7 @@ const EventCardHeader = ({
   return (
     <div className={`w-full font-bold p-2`}>
       <div className={`w-full flex justify-between items-center`}>
-        <p className={`flex-1 text-base`}>{event.name}</p>
+        <p className={`flex-1`}>{event.name}</p>
 
         {event.eventTime && (
           <>

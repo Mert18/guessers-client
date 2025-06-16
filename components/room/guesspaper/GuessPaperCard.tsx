@@ -17,8 +17,8 @@ const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
   };
 
   return (
-    <div className="inline-block mx-1">
-      <div className="rounded-md bg-primary-dark w-48 h-48 p-2 text-white flex flex-col flex-wrap">
+    <div className="flex flex-col mr-2 justify-between rounded-md bg-white-dark w-48 h-48 p-2 text-primary border border-primary">
+      <div>
         <div>
           <p className="opacity-50">Owner</p>
           <p>{guessPaper.user.username}</p>
@@ -39,16 +39,15 @@ const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
             {guessPaper.status}
           </p>
         </div>
-        
-        <div className="my-4">
-          <CustomButton
-            type="button"
-            text="Details"
-            onClick={() => setGuessPaperDetailsOpen(true)}
-            bg={true}
-            color={ColorEnum.PRIMARY}
-          />
-        </div>
+      </div>
+      <div className="my-4">
+        <CustomButton
+          type="button"
+          text="Details"
+          onClick={() => setGuessPaperDetailsOpen(true)}
+          bg={true}
+          color={ColorEnum.PRIMARY}
+        />
       </div>
       {guessPaperDetailsOpen && (
         <Modal

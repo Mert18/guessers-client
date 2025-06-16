@@ -17,14 +17,14 @@ const OwnerActions = ({ roomId }: IOwnerActionsProps) => {
         type="button"
         text="Create Event"
         onClick={() => router.push(`/home/room/${roomId}/event/create`)}
-        color={ColorEnum.SECONDARY}
+        color={ColorEnum.PRIMARY}
         bg
       />
       <CustomButton
         type="button"
         text="Invite People"
         onClick={() => router.push(`/home/room/${roomId}/invite`)}
-        color={ColorEnum.SECONDARY}
+        color={ColorEnum.PRIMARY}
         bg
       />
     </div>

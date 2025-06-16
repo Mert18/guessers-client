@@ -45,6 +45,8 @@ const HomeContent = () => {
     totalElements: 0,
   });
 
+  const [invitesVisible, setInvitesVisible] = useState<boolean>(false);
+
   const fetchSelfRooms = async () => {
     setSelfRoomsLoading(true);
     try {
@@ -146,7 +148,7 @@ const HomeContent = () => {
           loading={selfRoomsLoading}
         />
 
-        <InvitesList />
+        {invitesVisible && <InvitesList setInvitesVisible={setInvitesVisible} />}
 
         <PublicRoomsList
           publicRooms={publicRooms}

@@ -11,7 +11,7 @@ const ComponentTitle = ({ text, icon }: IComponentTitle) => {
           {icon}
         </div>
       )}
-      <h1 className="text-base text-text uppercase my-2 font-bold underline">{text}</h1>
+      <h1 className="uppercase my-2 font-bold underline">{text}</h1>
     </div>
   );
 };

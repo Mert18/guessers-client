@@ -46,7 +46,7 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
     <div className="flex flex-col justify-center items-center">
       {room?.name && <RoomName roomName={room.name} roomId={params.roomId} />}
 
-      <div className="text-text text-xl font-bold text-center py-2">
+      <div className="text-text font-bold text-center py-2">
         Create Event
       </div>
 

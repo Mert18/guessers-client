@@ -30,10 +30,10 @@ const PublicRoomsList = ({
     if (loading) {
       return <Loader />;
     } else if (publicRooms?.length === 0) {
-      return <p className="text-primary px-1 text-lg">No public rooms available.</p>;
+      return <p className="text-primary px-1">No public rooms available.</p>;
     } else {
       return (
-        <div className="flex flex-nowrap max-w-full overflow-x-auto py-2 text-lg">
+        <div className="flex flex-nowrap max-w-full overflow-x-auto py-2">
           {publicRooms?.map((room) => (
             <PublicRoomCard key={room.id} room={room} />
           ))}

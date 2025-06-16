@@ -12,29 +12,29 @@ interface ICustomLink {
 
 const CustomLink = ({ href, bg, icon, text, color = ColorEnum.PRIMARY }: ICustomLink) => {
   return (
-    <Link href={href} className="flex-1 text-center text-lg">
+    <Link href={href} className="flex-1 text-center">
       <div
         className={`font-bold flex justify-center h-full p-2 rounded-md
           ${
             bg
               ? `${
                   color === ColorEnum.PRIMARY
-                    ? "gradient-primary"
+                    ? "gradient-white text-primary border border-primary"
                     : color === ColorEnum.SECONDARY
-                    ? "gradient-secondary"
+                    ? "gradient-secondary text-white border border-secondary"
                     : color === ColorEnum.WARNING
-                    ? "gradient-warning"
+                    ? "gradient-warning text-white border border-warning"
                     : color === ColorEnum.FAILURE
-                    ? "gradient-failure"
+                    ? "gradient-failure text-white border border-failure"
                     : color === ColorEnum.SUCCESS
-                    ? "gradient-success"
+                    ? "gradient-success text-white border border-success"
                     : ""
-                } text-white`
-              : `bg-transparent text-primary border-2 border-primary`
-          }`}
+                }`
+              : `text-primary underline`
+          } `}
       >
         {icon && (
-          <div className="flex justify-center items-center text-white mr-2">
+          <div className="flex justify-center items-center mr-2">
             {icon}
           </div>
         )}
