@@ -28,9 +28,11 @@ const RoomInviteContent = ({ params }: IRoomInviteContentProps) => {
       setRoom(response.data);
     });
   }, [params.roomId]);
+
   return (
-    <div className="flex flex-col justify-center items-center my-6">
+    <div className="flex flex-col items-center my-4">
       <ComponentTitle text={"Invite People"} />
+
       {room?.name && <RoomName roomName={room.name} roomId={params.roomId} />}
 
       <Formik

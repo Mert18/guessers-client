@@ -3,9 +3,7 @@ import GuessPaperCard from "../room/guesspaper/GuessPaperCard";
 import Loader from "../common/Loader";
 import { IGuessPaper } from "@/types/IGuessPaper.model";
 import { IPaging } from "@/types/IRequest.model";
-import Pager from "../common/Pager";
 import CustomButton from "../common/CustomButton";
-import { ColorEnum } from "@/enum/enum";
 import Image from "next/image";
 
 interface ISelfGuessPapersListProps {
@@ -35,7 +33,7 @@ const SelfGuessPapersList = ({
       return <p className="text-primary">No guess papers available.</p>;
     } else {
       return (
-        <div className="flex flex-nowrap max-w-full overflow-x-auto py-2">
+        <div className="flex flex-nowrap max-w-full overflow-x-auto">
           {selfGuessPapers.map((guessPaper) => (
             <GuessPaperCard key={guessPaper.id} guessPaper={guessPaper} />
           ))}
@@ -55,7 +53,7 @@ const SelfGuessPapersList = ({
     }
   };
   return (
-    <div>
+    <div className="mt-4">
       <ComponentTitle
         text="Your Guess Papers"
         icon={

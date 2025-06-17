@@ -8,8 +8,8 @@ interface IRoomNameProps {
 const RoomName = ({ roomName, roomId }: IRoomNameProps) => {
   if (roomId) {
     return (
-      <Link href={`/home/room/${roomId}/guess`} className="my-4">
-        <h1 className="underline bg-white-dark text-center text-primary font-bold p-2 cursor-pointer">
+      <Link href={`/home/room/${roomId}/guess`} className="my-4 w-full">
+        <h1 className="underline text-center bg-primary text-white font-bold p-2 cursor-pointer">
           {roomName}
         </h1>
       </Link>

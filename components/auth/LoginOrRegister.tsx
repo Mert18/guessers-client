@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import CustomButton from "../common/CustomButton";
 import { signIn } from "next-auth/react";
 import { Form, Formik } from "formik";
@@ -37,8 +37,9 @@ const LoginOrRegister = () => {
     <div className="flex flex-col justify-evenly items-center w-full h-full">
       <div className="flex flex-col justify-center items-center w-1/2">
         <Logo />
-        <p>Invite your friends and start guessing.</p>
       </div>
+
+      <p>Invite your friends and start guessing.</p>
       <div className="flex flex-col justify-center items-center w-1/2">
         <div className="w-full">
           <CustomButton
@@ -95,7 +96,7 @@ const LoginOrRegister = () => {
                   placeholderInside={true}
                 />
 
-                <div className="my-1"></div>                
+                <div className="my-1"></div>
                 <CustomButton type="submit" text={"Register"} bg={true} />
 
                 <div className="w-full">

@@ -5,7 +5,7 @@ interface IComponentTitle {
 
 const ComponentTitle = ({ text, icon }: IComponentTitle) => {
   return (
-    <div className="flex justify-start items-center my-2">
+    <div className="flex w-max py-1 rounded-md">
       {icon && (
         <div className="flex justify-center items-center text-primary mr-2">
           {icon}

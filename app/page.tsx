@@ -28,7 +28,7 @@ function Home() {
   } else {
     return (
       <div
-        className={`${font.className} flex lg:flex-row flex-col w-full h-full`}
+        className={`${font.className} flex lg:flex-row flex-col w-full h-full text-lg`}
       >
         <div className="flex-1 bg-white my-2">
           <LoginOrRegister />

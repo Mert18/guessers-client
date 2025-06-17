@@ -5,7 +5,7 @@ import PickOneAndHopeCard from "../games/pickoneandhope/PickOneAndHopeCard";
 
 const PublicGames = () => {
   return (
-    <div>
+    <div className="mt-4">
       <ComponentTitle
         text="Public Games"
         icon={

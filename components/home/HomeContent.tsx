@@ -137,33 +137,30 @@ const HomeContent = () => {
   }, [selfGuessPapersPaging.page]);
   return (
     <div className="w-full">
-      <div>
-        <PublicGames />
-      </div>
-      <div>
-        <SelfRoomsList
-          selfRooms={selfRooms}
-          paging={selfRoomsPaging}
-          setPaging={setSelfRoomsPaging}
-          loading={selfRoomsLoading}
-        />
+      <PublicGames />
+      
+      <SelfRoomsList
+        selfRooms={selfRooms}
+        paging={selfRoomsPaging}
+        setPaging={setSelfRoomsPaging}
+        loading={selfRoomsLoading}
+      />
 
-        {invitesVisible && <InvitesList setInvitesVisible={setInvitesVisible} />}
+      {invitesVisible && <InvitesList setInvitesVisible={setInvitesVisible} />}
 
-        <PublicRoomsList
-          publicRooms={publicRooms}
-          paging={publicRoomsPaging}
-          setPaging={setPublicRoomsPaging}
-          loading={publicRoomsLoading}
-        />
+      <PublicRoomsList
+        publicRooms={publicRooms}
+        paging={publicRoomsPaging}
+        setPaging={setPublicRoomsPaging}
+        loading={publicRoomsLoading}
+      />
 
-        <SelfGuessPapersList
-          selfGuessPapers={selfGuessPapers}
-          paging={selfGuessPapersPaging}
-          setPaging={setSelfGuessPapersPaging}
-          loading={selfGuessPapersLoading}
-        />
-      </div>
+      <SelfGuessPapersList
+        selfGuessPapers={selfGuessPapers}
+        paging={selfGuessPapersPaging}
+        setPaging={setSelfGuessPapersPaging}
+        loading={selfGuessPapersLoading}
+      />
     </div>
   );
 };
