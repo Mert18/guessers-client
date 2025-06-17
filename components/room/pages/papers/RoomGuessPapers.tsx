@@ -26,17 +26,19 @@ const RoomGuessPapers = ({
       return <p className="text-primary">No Room guess papers available.</p>;
     } else {
       return (
-        <div className="w-full">
-          {guessPapers.map((guessPaper) => (
-            <GuessPaperCard key={guessPaper.id} guessPaper={guessPaper} />
-          ))}
+        <div className="flex flex-col items-start justify-center w-full">
+          <div className="w-full gap-1 flex flex-wrap">
+            {guessPapers.map((guessPaper) => (
+              <GuessPaperCard key={guessPaper.id} guessPaper={guessPaper} />
+            ))}
+          </div>
           <Pager paging={paging} setPaging={setPaging} />
         </div>
       );
     }
   };
   return (
-    <div className="my-8">
+    <div className="mt-4">
       <ComponentTitle
         text={"guessPapers"}
         icon={

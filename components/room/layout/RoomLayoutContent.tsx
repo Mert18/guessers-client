@@ -36,7 +36,7 @@ const RoomLayoutContent = ({ params, children }: IRoomLayoutContentProps) => {
           <>
             <RoomHeader roomUser={roomUser} />
 
-            <div className="flex w-full  gap-1">
+            <div className="flex w-full gap-1 mt-4">
               <CustomLink
                 text="Guess"
                 href={`/home/room/${params.roomId}/guess`}

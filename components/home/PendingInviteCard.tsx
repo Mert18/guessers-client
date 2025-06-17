@@ -15,7 +15,7 @@ const PendingInviteCard = ({invite }: IPendingInviteCard) => {
     <div
       className="rounded-md gradient-primary-2 w-48 h-28 p-2 text-white flex flex-col justify-between"
     >
-      <div className="whitespace-nowrap overflow-ellipsis overflow-hidden text-text flex-1">
+      <div className="whitespace-nowrap overflow-ellipsis overflow-hidden flex-1">
         <p className="opacity-50">Room Name</p>
         <p>{invite.room.name}</p>
       </div>

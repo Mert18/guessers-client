@@ -16,7 +16,7 @@ const RoomName = ({ roomName, roomId }: IRoomNameProps) => {
     );
   } else {
     return (
-      <h1 className="bg-primary border-2 border-primary rounded-md text-center text-white text-lg font-bold my-4 p-2">
+      <h1 className="bg-primary border-2 border-primary rounded-md text-center text-white text-lg font-bold p-2 w-full">
         {roomName}
       </h1>
     );

@@ -33,7 +33,7 @@ const GuessPaperCard = ({ guessPaper }: IGuessPaperCardProps) => {
                 ? "text-success"
                 : guessPaper.status === "LOST"
                 ? "text-failure"
-                : "text-text"
+                : ""
             }`}
           >
             {guessPaper.status}

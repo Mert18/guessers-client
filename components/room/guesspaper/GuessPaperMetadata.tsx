@@ -7,7 +7,7 @@ interface IGuessPaperMetadataProps {
 
 const GuessPaperMetadata = ({ guessPaper }: IGuessPaperMetadataProps) => {
   return (
-    <div className="w-full flex justify-center items-center my-4 text-text ">
+    <div className="w-full flex justify-center items-center my-4">
       <div className="w-full">
         <div className="flex justify-between w-full">
           <p className="font-medium">Username</p>
@@ -23,7 +23,7 @@ const GuessPaperMetadata = ({ guessPaper }: IGuessPaperMetadataProps) => {
                 ? "text-success"
                 : guessPaper.status === "LOST"
                 ? "text-failure"
-                : "text-text"
+                : ""
             }`}
           >
             {guessPaper.status}

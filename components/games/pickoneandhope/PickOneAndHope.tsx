@@ -70,7 +70,6 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
               const room = JSON.parse(message.body);
               setGameState(GameStateEnum.IN_GAME);
               setRoomInfo(room);
-              console.log("Received room info:", room);
             });
           },
           onStompError: (frame) => {

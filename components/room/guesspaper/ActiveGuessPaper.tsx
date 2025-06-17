@@ -40,7 +40,7 @@ const ActiveGuessPaper = ({
   };
 
   return (
-    <>
+    <div className="mt-4">
       <ComponentTitle
         text={"Current Guess Paper"}
         icon={
@@ -92,7 +92,7 @@ const ActiveGuessPaper = ({
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

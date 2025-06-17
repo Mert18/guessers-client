@@ -57,7 +57,7 @@ const PickOneAndHopeInGame = ({ client, roomInfo, onClose }: InGameProps) => {
             (m: string) => m === "right"
           ).length,
         });
-        setTimeout(() => setScoreDelta({}), 1000); // hide after animation
+        setTimeout(() => setScoreDelta({}), 1000);
         setPlayersScore({
           [roomInfo.players[0].username]:
             data.playersScore[roomInfo.players[0].username],
@@ -69,7 +69,6 @@ const PickOneAndHopeInGame = ({ client, roomInfo, onClose }: InGameProps) => {
         setGameStatusMessage("Game ended.");
       }
 
-      // handle game updates here (opponent action, game result, etc.)
     });
 
     return () => {
