@@ -3,7 +3,6 @@ import ComponentTitle from "@/components/common/ComponentTitle";
 import Loader from "@/components/common/Loader";
 import { useRoomRanks } from "@/hooks/useRoomRanks";
 import React from "react";
-import RoomRichests from "./RoomRichests";
 import RoomTopPredictors from "./RoomTopPredictors";
 
 interface IRoomRanksContentProps {
@@ -13,7 +12,7 @@ interface IRoomRanksContentProps {
 }
 
 const RoomRanksContent = ({ params }: IRoomRanksContentProps) => {
-  const { rankedRiches, rankedPredictions, loading } = useRoomRanks(
+  const { rankedPredictions, loading } = useRoomRanks(
     params.roomId
   );
 
@@ -25,13 +24,6 @@ const RoomRanksContent = ({ params }: IRoomRanksContentProps) => {
         <>
           <ComponentTitle text={"Top Predictors"} />
           <RoomTopPredictors rankedPredictions={rankedPredictions} />
-        </>
-      )}
-
-      {rankedRiches && (
-        <>
-          <ComponentTitle text={"Richests"} />
-          <RoomRichests rankedRiches={rankedRiches} />
         </>
       )}
     </div>

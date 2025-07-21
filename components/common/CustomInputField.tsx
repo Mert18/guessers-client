@@ -7,7 +7,6 @@ interface ICustomInputField {
   withLabel: boolean;
   options?: { value: string | number | boolean; label: string }[];
   width?: string;
-  placeholderInside?: boolean;
 }
 
 const CustomInputField = ({
@@ -17,24 +16,23 @@ const CustomInputField = ({
   withLabel,
   options,
   width = "full",
-  placeholderInside = false,
 }: ICustomInputField) => {
   const renderField = (type: string) => {
     if (type === "text" || type === "password") {
       return (
         <Field
           name={name}
-          className={`w-${width} px-2 font-bold outline-none border border-primary h-10 focus:ring-2 focus:ring-primary rounded-md`}
+          className={`w-${width} px-2 font-bold text-primary outline-none border border-primary h-10 focus:ring-2 focus:ring-primary rounded-md`}
           type={type}
           autoComplete="off"
-          placeholder={placeholderInside ? placeholder : ""}
+          placeholder={placeholder}
         />
       );
     } else if (type === "select") {
       return (
         <Field
           as="select"
-          className={`w-${width} px-2 font-bold outline-none border border-primary h-10 focus:ring-2 focus:ring-primary rounded-md`}
+          className={`w-${width} px-2 font-bold text-primary outline-none border border-primary h-10 focus:ring-2 focus:ring-primary rounded-md`}
           name={name}
         >
           {options?.map((option) => (
@@ -50,21 +48,19 @@ const CustomInputField = ({
         <Field
           name={name}
           type={type}
-          className={`w-${width} px-2 py-1 font-bold outline-none border border-primary h-10 focus:ring-2 focus:ring-primary rounded-md`}
+          className={`w-${width} px-2 py-1 font-bold text-primary outline-none border border-primary h-10 focus:ring-2 focus:ring-primary rounded-md`}
           min={"1.00"}
           autoComplete="off"
-          placeholder={placeholderInside ? placeholder : ""}
+          placeholder={placeholder}
         />
       );
     }
   };
   return (
-    <div className={`flex flex-col justify-start items-start w-${width} my-0.5`}>
-      {withLabel && !placeholderInside && (
-        <span>
-          {placeholder}
-        </span>
-      )}
+    <div
+      className={`flex flex-col text-primary justify-start items-start w-${width} my-0.5`}
+    >
+      {withLabel && <span className="text-primary">{placeholder}</span>}
       {renderField(type)}
     </div>
   );

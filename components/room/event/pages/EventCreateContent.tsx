@@ -181,7 +181,6 @@ const EventCreateContent = ({ params }: ICreateEventContentProps) => {
                                   >
                                     <CustomInputField
                                       withLabel={true}
-                                      placeholderInside={true}
                                       name={`eventGuessOptions[${eventGuessOptionIndex}].eventGuessOptionCases[${eventGuessOptionOptionIndex}].name`}
                                       type="text"
                                       placeholder={"Case Name"}

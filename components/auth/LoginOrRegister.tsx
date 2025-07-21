@@ -39,7 +39,7 @@ const LoginOrRegister = () => {
         <Logo />
       </div>
 
-      <p>Invite your friends and start guessing.</p>
+      <p className="text-white-bright bg-primary p-2 rounded-md">Invite your friends and start guessing.</p>
       <div className="flex flex-col justify-center items-center w-1/2">
         <div className="w-full">
           <CustomButton
@@ -59,7 +59,7 @@ const LoginOrRegister = () => {
           />
         </div>
 
-        <p>or</p>
+        <p className="my-4 text-primary">or</p>
         {isRegisterFormVisible && (
           <Formik
             initialValues={initialValues}
@@ -85,7 +85,6 @@ const LoginOrRegister = () => {
                   name="username"
                   type="text"
                   placeholder={"username"}
-                  placeholderInside={true}
                 />
 
                 <CustomInputField
@@ -93,7 +92,6 @@ const LoginOrRegister = () => {
                   name="password"
                   type="password"
                   placeholder={"password"}
-                  placeholderInside={true}
                 />
 
                 <div className="my-1"></div>

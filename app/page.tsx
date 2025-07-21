@@ -4,18 +4,18 @@ import Loader from "@/components/common/Loader";
 import LogoWithText from "@/components/common/logo/LogoWithText";
 import { useSession } from "next-auth/react";
 import { Jersey_10 } from "next/font/google";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 const font = Jersey_10({ subsets: ["latin"], weight: "400" });
 
 function Home() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
     if (status != "loading" && status === "authenticated") {
-        router.push("/home");
+      router.push("/home");
     }
   }, [status, router]);
 
