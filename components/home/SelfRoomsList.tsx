@@ -44,7 +44,6 @@ const SelfRoomsList = ({
       );
     } else {
       return (
-        <>
           <div className="flex flex-nowrap max-w-full overflow-x-auto">
             {selfRooms?.map((room) => (
               <SelfRoomCard key={room.id} roomUser={room} />
@@ -61,7 +60,6 @@ const SelfRoomsList = ({
               </div>
             )}
           </div>
-        </>
       );
     }
   };

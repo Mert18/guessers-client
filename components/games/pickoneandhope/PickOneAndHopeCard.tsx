@@ -10,7 +10,7 @@ const PickOneAndHopeInit = () => {
   };
 
   return (
-    <li className="rounded-md w-48 h-48 p-2 border border-primary bg-white-dark text-primary text-center flex flex-col justify-around items-center">
+    <li className="rounded-md w-48 h-48 p-2 border border-primary bg-gradient-white text-primary text-center flex flex-col justify-around items-center">
       <h1 className="font-semibold tracking-wide group-hover:scale-105 transition-transform">
         🎲 Pick One & Hope
       </h1>

@@ -16,13 +16,13 @@ const RegisterSchema = Yup.object().shape({
       /^[a-zA-Z0-9._-]+$/,
       "Username can only contain alphanumeric characters, dashes, underscores, and periods."
     )
-    .min(4, "Username too Short!")
-    .max(30, "Username too Long!")
-    .required("Username is Required."),
+    .min(4, "Username too short!")
+    .max(30, "Username too long!")
+    .required("Username is required."),
   password: Yup.string()
-    .min(3, "Password too Short!")
-    .max(50, "Password too Long!")
-    .required("Password is Required."),
+    .min(3, "Password too short!")
+    .max(50, "Password too long!")
+    .required("Password is required."),
 });
 
 const LoginOrRegister = () => {
@@ -37,9 +37,12 @@ const LoginOrRegister = () => {
     <div className="flex flex-col justify-evenly items-center w-full h-full">
       <div className="flex flex-col justify-center items-center w-1/2">
         <Logo />
+        <p className="text-2xl text-primary font-bold">Guessers.io</p>
       </div>
 
-      <p className="text-white-bright bg-primary p-2 rounded-md">Invite your friends and start guessing.</p>
+      <p className="text-primary p-2 rounded-md">
+        Invite your friends and start guessing.
+      </p>
       <div className="flex flex-col justify-center items-center w-1/2">
         <div className="w-full">
           <CustomButton

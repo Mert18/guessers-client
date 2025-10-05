@@ -7,7 +7,7 @@ interface ISelfRoomCardProps {
 
 const SelfRoomCard = ({ roomUser }: ISelfRoomCardProps) => {
   return (
-    <div className="flex flex-col mr-2 justify-between rounded-md bg-white-dark w-48 h-48 p-2 text-primary border border-primary">
+    <div className="flex flex-col mr-2 justify-between rounded-md bg-gradient-white w-48 h-48 p-2 text-primary border border-primary">
       <div>
         <div>
           <p className="opacity-50">Room Name</p>
