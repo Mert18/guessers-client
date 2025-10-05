@@ -64,7 +64,7 @@ const SelfRoomsList = ({
     }
   };
   return (
-    <div className="mt-4">
+    <div>
       <ComponentTitle text="Your rooms" icon={<Image src={"/icons/roomdoor.svg"} width={20} height={20} alt="door" />}/>
       {selfRoomsListRenderer()}
     </div>

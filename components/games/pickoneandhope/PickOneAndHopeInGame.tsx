@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Client } from "@stomp/stompjs";
 import { IGameRoom } from "@/types/IPickOneAndHope";
 import Image from "next/image";
-import { GameStateEnum } from "@/enum/enum";
+import { ColorEnum, GameStateEnum } from "@/enum/enum";
 import CustomButton from "@/components/common/CustomButton";
 import Loader from "@/components/common/Loader";
 
 interface InGameProps {
   client: Client;
   roomInfo: IGameRoom;
-  onClose: () => void;
 }
 
-const PickOneAndHopeInGame = ({ client, roomInfo, onClose }: InGameProps) => {
+const PickOneAndHopeInGame = ({ client, roomInfo }: InGameProps) => {
   const [gameStatusMessage, setGameStatusMessage] = useState<string>("");
   const [round, setRound] = useState<number>(1);
   const [roundPicks, setRoundPicks] = useState<string[]>([]);
@@ -68,7 +67,6 @@ const PickOneAndHopeInGame = ({ client, roomInfo, onClose }: InGameProps) => {
         setGameStatus(GameStateEnum.GAME_ENDED);
         setGameStatusMessage("Game ended.");
       }
-
     });
 
     return () => {
@@ -88,12 +86,14 @@ const PickOneAndHopeInGame = ({ client, roomInfo, onClose }: InGameProps) => {
 
   return (
     <div className="flex justify-center items-center h-full w-full">
-      <div className="flex justify-center items-center flex-col">
-        {roomInfo.players[0].username}
+      <div className="flex justify-center items-center flex-col bg-gray-50 text-primary p-2 rounded-md mb-2 border border-primary w-36">
+        <p className="py-2 text-xl">{roomInfo.players[0].username}</p>
 
         {objectRenderer(roomInfo.players[0].object)}
 
-        {playersScore[roomInfo.players[0].username]}
+        <p className="py-2 text-3xl">
+          {playersScore[roomInfo.players[0].username]}
+        </p>
 
         {scoreDelta[roomInfo.players[0].username] ? (
           <span className="text-green-500 animate-fade-in-up">
@@ -101,26 +101,35 @@ const PickOneAndHopeInGame = ({ client, roomInfo, onClose }: InGameProps) => {
           </span>
         ) : null}
       </div>
-      <div className="flex-1">
+      <div className="flex-1 mx-20">
         {gameStatus === GameStateEnum.GAME_ENDED ? (
           <div>
-            <h2 className="font-bold">Game Over</h2>
-
-            {Object.entries(playersScore).map(([username, score]) => (
-              <p key={username}>
-                {username}: {score} points
-              </p>
-            ))}
+            <h2 className="font-bold text-2xl text-primary">Game Over</h2>
+            <div className="flex justify-between text-primary-darker">
+              {Object.entries(playersScore).map(([username, score]) => (
+                <p key={username}>
+                  {username}: <span className="text-2xl">{score} points</span>
+                </p>
+              ))}
+            </div>
 
             {playersScore[roomInfo.players[0].username] >
             playersScore[roomInfo.players[1].username] ? (
-              <p className="text-green-500">
-                Player {roomInfo.players[0].username} wins!
+              <p className="">
+                Player{" "}
+                <span className="text-3xl px-4 text-green-500">
+                  {roomInfo.players[0].username}
+                </span>{" "}
+                wins!
               </p>
             ) : playersScore[roomInfo.players[0].username] <
               playersScore[roomInfo.players[1].username] ? (
-              <p className="text-red-500">
-                Player {roomInfo.players[1].username} wins!
+              <p className="">
+                Player{" "}
+                <span className="text-3xl px-4 text-green-500">
+                  {roomInfo.players[1].username}
+                </span>{" "}
+                wins!
               </p>
             ) : (
               <p className="text-yellow-500">It's a tie!</p>
@@ -129,9 +138,20 @@ const PickOneAndHopeInGame = ({ client, roomInfo, onClose }: InGameProps) => {
             <div className="mt-4">
               <CustomButton
                 type="submit"
+                text={"Play Again"}
+                bg={true}
+                onClick={() =>
+                  (window.location.href = "/home/publicgames/pickoneandhope")
+                }
+              />
+            </div>
+            <div className="mt-4">
+              <CustomButton
+                type="submit"
+                color={ColorEnum.FAILURE}
                 text={"Exit Game"}
                 bg={true}
-                onClick={() => onClose()}
+                onClick={() => (window.location.href = "/home")}
               />
             </div>
           </div>
@@ -180,10 +200,12 @@ const PickOneAndHopeInGame = ({ client, roomInfo, onClose }: InGameProps) => {
           </div>
         )}
       </div>
-      <div className="flex justify-center items-center flex-col">
-        {roomInfo.players[1].username}
+      <div className="flex justify-center items-center flex-col bg-gray-50 text-primary p-2 rounded-md mb-2 border border-primary w-36">
+        <p className="py-2 text-xl">{roomInfo.players[1].username}</p>
         {objectRenderer(roomInfo.players[1].object)}
-        {playersScore[roomInfo.players[1].username]}
+        <p className="py-2 text-3xl">
+          {playersScore[roomInfo.players[1].username]}
+        </p>
         {scoreDelta[roomInfo.players[1].username] ? (
           <span className="text-green-500 animate-fade-in-up">
             +{scoreDelta[roomInfo.players[1].username]}

@@ -1,5 +1,6 @@
 "use client";
 import LoginOrRegister from "@/components/auth/LoginOrRegister";
+import BackgroundSVGs from "@/components/common/BackgroundSVGs";
 import Loader from "@/components/common/Loader";
 import LogoWithText from "@/components/common/logo/LogoWithText";
 import { useSession } from "next-auth/react";
@@ -34,6 +35,7 @@ function Home() {
           <LoginOrRegister />
         </div>
         <div className="flex-1 bg-linear-primary bg-cover">
+          <BackgroundSVGs />
           <div className="flex flex-col justify-center items-center h-full">
             <LogoWithText />
             <p className="text-white mt-2">Join the fun and start guessing!</p>

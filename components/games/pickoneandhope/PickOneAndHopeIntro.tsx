@@ -19,7 +19,7 @@ const PickOneAndHopeIntro = ({
     <div className="flex flex-col justify-center items-center text-primary">
       <div>
         <p>1. Select one object.</p>
-        <p>2. Join a room.</p>
+        <p>2. Search a room.</p>
         <p>3. Earn points as much as the object appears on the grid.</p>
         <p>
           4. You win the game if you have the most points after 5 grid changes.
@@ -30,7 +30,7 @@ const PickOneAndHopeIntro = ({
         <p className="text-center my-2">Select an object:</p>
         <div className="flex justify-center">
           {Object.values(PickOneAndHopeObjectsEnum).map((object) => (
-            <div
+            <button
               key={object}
               className={`w-16 h-16 m-2 rounded-full flex items-center justify-center cursor-pointer ${
                 selectedObject === object
@@ -42,9 +42,9 @@ const PickOneAndHopeIntro = ({
               <img
                 src={`/icons/games/pickoneandhope/${object}.svg`}
                 alt={object}
-                className="w-12 h-12"
+                className="w-8 h-8"
               />
-            </div>
+            </button>
           ))}
         </div>
       </div>
@@ -52,7 +52,7 @@ const PickOneAndHopeIntro = ({
       <div className="w-1/2 m-2">
         <CustomButton
           type="button"
-          text="Join A Room"
+          text="Search A Room"
           onClick={() => handleJoinARoom()}
           bg={true}
         />

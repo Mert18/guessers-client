@@ -1,14 +1,8 @@
 import React from "react";
-import CustomButton from "../../common/CustomButton";
-import PickOneAndHope from "./PickOneAndHope";
 import { ColorEnum } from "@/enum/enum";
+import CustomLink from "@/components/common/CustomLink";
 
 const PickOneAndHopeInit = () => {
-  const [pickOneAndHopeOpen, setPickOneAndHopeOpen] = React.useState(false);
-  const handlePlayPickOneAndHope = () => {
-    setPickOneAndHopeOpen(true);
-  };
-
   return (
     <li className="rounded-md w-48 h-48 p-2 border border-primary bg-gradient-white text-primary text-center flex flex-col justify-around items-center">
       <h1 className="font-semibold tracking-wide group-hover:scale-105 transition-transform">
@@ -20,18 +14,13 @@ const PickOneAndHopeInit = () => {
       </div>
 
       <div className="w-full">
-        <CustomButton
+        <CustomLink
+          href="/home/publicgames/pickoneandhope"
           color={ColorEnum.PRIMARY}
-          type="button"
           text="Play"
-          onClick={() => handlePlayPickOneAndHope()}
           bg={true}
         />
       </div>
-
-      {pickOneAndHopeOpen && (
-        <PickOneAndHope onClose={() => setPickOneAndHopeOpen(false)} />
-      )}
     </li>
   );
 };

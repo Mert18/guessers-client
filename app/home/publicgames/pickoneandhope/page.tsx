@@ -1,18 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
-import GameWrapper from "../GameWrapper";
-import PickOneAndHopeIntro from "./PickOneAndHopeIntro";
+"use client";
+import GameWrapper from "@/components/games/GameWrapper";
+import PickOneAndHopeInGame from "@/components/games/pickoneandhope/PickOneAndHopeInGame";
+import PickOneAndHopeIntro from "@/components/games/pickoneandhope/PickOneAndHopeIntro";
+import PickOneAndHopeSearchingRoom from "@/components/games/pickoneandhope/PickOneAndHopeSearchingRoom";
 import { GameStateEnum, PickOneAndHopeObjectsEnum } from "@/enum/enum";
-import PickOneAndHopeSearchingRoom from "./PickOneAndHopeSearchingRoom";
-import { Client } from "@stomp/stompjs";
-import { getAccessToken } from "@/util/sessionTokenAccessor";
 import { IGameRoom } from "@/types/IPickOneAndHope";
-import PickOneAndHopeInGame from "./PickOneAndHopeInGame";
+import { getAccessToken } from "@/util/sessionTokenAccessor";
+import { Client } from "@stomp/stompjs";
+import React, { useEffect, useRef, useState } from "react";
 
-interface IPickOneAndHope {
-  onClose: () => void;
-}
-
-const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
+const PickOneAndHope = () => {
   const clientRef = useRef<Client | null>(null);
   const [connected, setConnected] = useState(false);
 
@@ -25,8 +22,7 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
   const [roomInfo, setRoomInfo] = useState<IGameRoom>(null);
 
   const handleExitGame = () => {
-    console.log("Exiting game...");
-    onClose();
+    window.location.href = "/home";
   };
 
   const handleJoinARoom = () => {
@@ -36,7 +32,7 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
     }
     clientRef.current?.publish({
       destination: "/app/join",
-      body: JSON.stringify({ object: selectedObject }), // or your payload
+      body: JSON.stringify({ object: selectedObject }),
     });
     setGameState(GameStateEnum.SEARCHING_ROOM);
   };
@@ -54,39 +50,38 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
   };
 
   useEffect(() => {
-    getAccessToken()
-      .then((token) => {
-        const client = new Client({
-          brokerURL: `ws://localhost:8080/ws/websocket?token=${token}`,
-          connectHeaders: {
-            Authorization: `Bearer ${token}`,
-          },
-          debug: (str) => console.log(str),
-          reconnectDelay: 5000,
-          onConnect: () => {
-            setConnected(true);
+    getAccessToken().then((token) => {
+      const client = new Client({
+        brokerURL: `ws://localhost:8080/ws/websocket?token=${token}`,
+        connectHeaders: {
+          Authorization: `Bearer ${token}`,
+        },
+        debug: (str) => console.log(str),
+        reconnectDelay: 5000,
+        onConnect: () => {
+          setConnected(true);
 
-            client.subscribe(`/user/queue/room`, (message) => {
-              const room = JSON.parse(message.body);
-              setGameState(GameStateEnum.IN_GAME);
-              setRoomInfo(room);
-            });
-          },
-          onStompError: (frame) => {
-            console.error("Broker error:", frame);
-          },
-          onWebSocketError: (error) => {
-            console.error("WebSocket error:", error);
-          },
-        });
+          client.subscribe(`/user/queue/room`, (message) => {
+            const room = JSON.parse(message.body);
+            setGameState(GameStateEnum.IN_GAME);
+            setRoomInfo(room);
+          });
+        },
+        onStompError: (frame) => {
+          console.error("Broker error:", frame);
+        },
+        onWebSocketError: (error) => {
+          console.error("WebSocket error:", error);
+        },
+      });
 
-        client.activate();
-        clientRef.current = client;
+      client.activate();
+      clientRef.current = client;
 
-        return () => {
-          client.deactivate();
-        };
-      })
+      return () => {
+        client.deactivate();
+      };
+    });
   }, []);
 
   const gameStateRender = () => {
@@ -112,7 +107,6 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
           <PickOneAndHopeInGame
             client={clientRef.current}
             roomInfo={roomInfo}
-            onClose={onClose}
           />
         );
       case GameStateEnum.GAME_ENDED:
@@ -122,7 +116,9 @@ const PickOneAndHope = ({ onClose }: IPickOneAndHope) => {
     }
   };
 
-  return <GameWrapper>{gameStateRender()}</GameWrapper>;
+  return (
+    <GameWrapper name="Pick One and Hope">{gameStateRender()}</GameWrapper>
+  );
 };
 
 export default PickOneAndHope;
