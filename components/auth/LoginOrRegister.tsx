@@ -3,12 +3,13 @@ import CustomButton from "../common/CustomButton";
 import { signIn } from "next-auth/react";
 import { Form, Formik } from "formik";
 import Loader from "../common/Loader";
-import { createUser } from "@/api/authentication";
+import { createUser, banUsername, checkUsername } from "@/api/authentication";
 import CustomInputField from "../common/CustomInputField";
 import * as Yup from "yup";
 import Image from "next/image";
 import Logo from "../common/logo/Logo";
 import { ColorEnum } from "@/enum/enum";
+import LuckGame from "./LuckGame";
 
 const RegisterSchema = Yup.object().shape({
   username: Yup.string()
@@ -28,9 +29,39 @@ const RegisterSchema = Yup.object().shape({
 const LoginOrRegister = () => {
   const [loading, setLoading] = useState(false);
   const [isRegisterFormVisible, setIsRegisterFormVisible] = useState(false);
+  const [gameActive, setGameActive] = useState(false);
+  const [usernameError, setUsernameError] = useState<string | null>(null);
+  const [pendingRegistration, setPendingRegistration] = useState<{
+    username: string;
+    password: string;
+  } | null>(null);
+
   const initialValues = {
     username: "",
     password: "",
+  };
+
+  const handleGameSuccess = () => {
+    if (!pendingRegistration) return;
+
+    setLoading(true);
+    createUser(pendingRegistration).finally(() => {
+      setPendingRegistration(null);
+      setGameActive(false);
+      setLoading(false);
+      setIsRegisterFormVisible(false);
+    });
+  };
+
+  const handleGameFailure = () => {
+    if (!pendingRegistration) return;
+
+    setLoading(true);
+    banUsername(pendingRegistration.username).finally(() => {
+      setPendingRegistration(null);
+      setGameActive(false);
+      setLoading(false);
+    });
   };
 
   return (
@@ -63,19 +94,48 @@ const LoginOrRegister = () => {
         </div>
 
         <p className="my-4 text-primary">or</p>
-        {isRegisterFormVisible && (
+        {gameActive && pendingRegistration && (
+          <LuckGame
+            username={pendingRegistration.username}
+            onSuccess={handleGameSuccess}
+            onFailure={handleGameFailure}
+          />
+        )}
+        {isRegisterFormVisible && !gameActive && (
           <Formik
             initialValues={initialValues}
             validationSchema={RegisterSchema}
             validateOnChange={false}
             validateOnBlur={false}
-            onSubmit={(values, { resetForm }) => {
-              setLoading(true);
+            onSubmit={async (values, { resetForm }) => {
               values.username = values.username.toLowerCase();
-              createUser(values).finally(() => {
-                resetForm();
+              setUsernameError(null);
+              setLoading(true);
+
+              try {
+                const response = await checkUsername(values.username);
+
+                // Check if username already exists
+                if (response.data.exists) {
+                  setUsernameError(`Username "${values.username}" already exists. Please choose a different username.`);
+                  setLoading(false);
+                  return;
+                }
+
+                // Check if username is banned
+                if (response.data.banned) {
+                  setUsernameError(`Username "${values.username}" is banned. Please choose a different username.`);
+                  setLoading(false);
+                  return;
+                }
+
+                // Username is available, proceed to game
+                setPendingRegistration(values);
+                setGameActive(true);
                 setLoading(false);
-              });
+              } catch (error) {
+                setLoading(false);
+              }
             }}
           >
             {({ errors, touched }) => (
@@ -101,6 +161,9 @@ const LoginOrRegister = () => {
                 <CustomButton type="submit" text={"Register"} bg={true} />
 
                 <div className="w-full">
+                  {usernameError && (
+                    <div className="my-2 text-failure">{usernameError}</div>
+                  )}
                   {errors.username && touched.username ? (
                     <div className="my-2 text-failure">{errors.username}</div>
                   ) : null}
@@ -112,22 +175,24 @@ const LoginOrRegister = () => {
             )}
           </Formik>
         )}
-        <div className="flex flex-col w-full text-center">
-          {loading ? (
-            <div className="text-primary">
-              <Loader />
-            </div>
-          ) : (
-            !isRegisterFormVisible && (
-              <CustomButton
-                type="button"
-                text={"Register"}
-                bg={true}
-                onClick={() => setIsRegisterFormVisible(true)}
-              />
-            )
-          )}
-        </div>
+        {!gameActive && (
+          <div className="flex flex-col w-full text-center">
+            {loading ? (
+              <div className="text-primary">
+                <Loader />
+              </div>
+            ) : (
+              !isRegisterFormVisible && (
+                <CustomButton
+                  type="button"
+                  text={"Register"}
+                  bg={true}
+                  onClick={() => setIsRegisterFormVisible(true)}
+                />
+              )
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

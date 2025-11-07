@@ -16,6 +16,27 @@ export const createUser = async (user: IUserRegister) => {
     });
 };
 
+export const banUsername = async (username: string) => {
+  return await axios
+    .post(baseURLAuthentication + "/ban-username", { username: username })
+    .then(() => {
+      toast.error(`Username "${username}" is now banned. You were unlucky! Try again with a different username.`);
+    })
+    .catch((err) => {
+      toast.error("Error banning username. " + err?.response?.data?.message);
+    });
+};
+
+export const checkUsername = async (username: string) => {
+  return await axios
+    .get(baseURLAuthentication + "/check-username/" + username)
+    .then((res) => res.data)
+    .catch((err) => {
+      toast.error("Error checking username. " + err?.response?.data?.message);
+      throw err;
+    });
+};
+
 export const getStats = async () => {
   return await axios.get(baseURLAuthentication + "/stats");
 };
