@@ -14,7 +14,7 @@ const LuckGame = ({ username, onSuccess, onFailure }: LuckGameProps) => {
   const [isRevealing, setIsRevealing] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
 
-  const totalSteps = 3;
+  const totalSteps = 2;
 
   const startGame = () => {
     setGameStarted(true);
@@ -80,10 +80,10 @@ const LuckGame = ({ username, onSuccess, onFailure }: LuckGameProps) => {
           You must prove your luck to register as <span className="font-bold text-secondary">{username}</span>
         </p>
         <p className="text-primary text-center mb-6">
-          Choose the correct box in 3 consecutive rounds (50% chance each)
+          Choose the correct box in 2 consecutive rounds (50% chance each)
         </p>
         <p className="text-sm text-gray-400 mb-6">
-          If you fail, this username will be banned and you'll need to try with a different one.
+          If you fail, this username will be banned and you'll need to choose a different one.
         </p>
         <CustomButton
           type="button"
@@ -128,7 +128,7 @@ const LuckGame = ({ username, onSuccess, onFailure }: LuckGameProps) => {
 
       {isRevealing && (
         <p className={`text-lg font-bold ${selectedBox === correctBox ? 'text-success' : 'text-failure'}`}>
-          {selectedBox === correctBox ? '🎉 Correct! Moving to next step...' : '💀 Wrong choice! This username is now banned...'}
+          {selectedBox === correctBox ? '🎉 Correct! Moving to next step...' : '💀 Wrong choice!'}
         </p>
       )}
     </div>
