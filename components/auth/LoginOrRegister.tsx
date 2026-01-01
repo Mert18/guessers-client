@@ -65,20 +65,25 @@ const LoginOrRegister = () => {
   };
 
   return (
-    <div className="flex flex-col justify-evenly items-center w-full h-full">
-      <div className="flex flex-col justify-center items-center w-1/2">
-        <Logo />
-        <p className="text-2xl text-primary font-bold">Guessers.io</p>
+    <div className="flex flex-col justify-center items-center w-full h-full py-8">
+      <div className="flex flex-col justify-center items-center mb-8">
+        <div className="mb-4">
+          <Logo />
+        </div>
+        <h2 className="text-3xl md:text-4xl text-primary font-bold mb-2">Guessers.io</h2>
+        <p className="text-gray-600 text-lg text-center max-w-sm">
+          Sign in to join prediction rooms and compete with friends
+        </p>
       </div>
 
-      <p className="text-primary p-2 rounded-md">
-        Invite your friends and start guessing.
-      </p>
-      <div className="flex flex-col justify-center items-center w-1/2">
-        <div className="w-full">
+      <div className="flex flex-col justify-center items-center w-full max-w-md px-4">
+        <h3 className="text-xl font-semibold text-primary mb-4 text-center">
+          Already have an account?
+        </h3>
+        <div className="w-full mb-6">
           <CustomButton
             type="button"
-            text={"Login"}
+            text={"Login with Keycloak"}
             onClick={() => signIn("keycloak")}
             bg={true}
             color={ColorEnum.SECONDARY}
@@ -86,20 +91,30 @@ const LoginOrRegister = () => {
               <Image
                 src="/icons/keycloak.svg"
                 alt="keycloak"
-                width={20}
-                height={20}
+                width={24}
+                height={24}
               />
             }
           />
         </div>
 
-        <p className="my-4 text-primary">or</p>
+        <div className="flex items-center w-full my-6">
+          <div className="flex-1 border-t border-gray-300"></div>
+          <p className="mx-4 text-gray-500 font-semibold">OR</p>
+          <div className="flex-1 border-t border-gray-300"></div>
+        </div>
+
+        <h3 className="text-xl font-semibold text-primary mb-4 text-center">
+          New to Guessers?
+        </h3>
         {gameActive && pendingRegistration && (
-          <LuckGame
-            username={pendingRegistration.username}
-            onSuccess={handleGameSuccess}
-            onFailure={handleGameFailure}
-          />
+          <div className="w-full">
+            <LuckGame
+              username={pendingRegistration.username}
+              onSuccess={handleGameSuccess}
+              onFailure={handleGameFailure}
+            />
+          </div>
         )}
         {isRegisterFormVisible && !gameActive && (
           <Formik
@@ -143,32 +158,43 @@ const LoginOrRegister = () => {
                 className="flex flex-col justify-start items-start w-full my-2"
                 autoComplete="off"
               >
-                <CustomInputField
-                  withLabel={true}
-                  name="username"
-                  type="text"
-                  placeholder={"username"}
-                />
+                <div className="w-full mb-4">
+                  <CustomInputField
+                    withLabel={true}
+                    name="username"
+                    type="text"
+                    placeholder={"Choose a username"}
+                  />
+                </div>
 
-                <CustomInputField
-                  withLabel={true}
-                  name="password"
-                  type="password"
-                  placeholder={"password"}
-                />
+                <div className="w-full mb-4">
+                  <CustomInputField
+                    withLabel={true}
+                    name="password"
+                    type="password"
+                    placeholder={"Create a password"}
+                  />
+                </div>
 
-                <div className="my-1"></div>
-                <CustomButton type="submit" text={"Register"} bg={true} />
+                <div className="w-full">
+                  <CustomButton type="submit" text={"Create Account"} bg={true} />
+                </div>
 
                 <div className="w-full">
                   {usernameError && (
-                    <div className="my-2 text-failure">{usernameError}</div>
+                    <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded text-failure text-sm">
+                      {usernameError}
+                    </div>
                   )}
                   {errors.username && touched.username ? (
-                    <div className="my-2 text-failure">{errors.username}</div>
+                    <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded text-failure text-sm">
+                      {errors.username}
+                    </div>
                   ) : null}
                   {errors.password && touched.password ? (
-                    <div className="my-2 text-failure">{errors.password}</div>
+                    <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded text-failure text-sm">
+                      {errors.password}
+                    </div>
                   ) : null}
                 </div>
               </Form>
@@ -183,12 +209,19 @@ const LoginOrRegister = () => {
               </div>
             ) : (
               !isRegisterFormVisible && (
-                <CustomButton
-                  type="button"
-                  text={"Register"}
-                  bg={true}
-                  onClick={() => setIsRegisterFormVisible(true)}
-                />
+                <>
+                  <div className="w-full mb-3">
+                    <CustomButton
+                      type="button"
+                      text={"Create New Account"}
+                      bg={true}
+                      onClick={() => setIsRegisterFormVisible(true)}
+                    />
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    Join for free and start making predictions
+                  </p>
+                </>
               )
             )}
           </div>

@@ -11,6 +11,7 @@ import SelfRoomsList from "./SelfRoomsList";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import InvitesList from "./InvitesList";
+import WelcomeBanner from "./WelcomeBanner";
 
 const HomeContent = () => {
   const { data: session, status } = useSession();
@@ -45,6 +46,7 @@ const HomeContent = () => {
   });
 
   const [invitesVisible, setInvitesVisible] = useState<boolean>(false);
+  const [showWelcome, setShowWelcome] = useState<boolean>(false);
 
   const fetchSelfRooms = async () => {
     setSelfRoomsLoading(true);
@@ -134,11 +136,30 @@ const HomeContent = () => {
     }
     fetchSelfRooms();
   }, [selfGuessPapersPaging.page]);
+
+  // Check if user is new (no rooms and no guess papers)
+  useEffect(() => {
+    const welcomeDismissed = localStorage.getItem("welcomeBannerDismissed");
+    if (
+      !welcomeDismissed &&
+      selfRooms.length === 0 &&
+      selfGuessPapers.length === 0 &&
+      !selfRoomsLoading &&
+      !selfGuessPapersLoading
+    ) {
+      setShowWelcome(true);
+    }
+  }, [selfRooms, selfGuessPapers, selfRoomsLoading, selfGuessPapersLoading]);
+
   return (
     <div className="w-full">
-      <div className="text-gray-400 mt-4">
-        Create a room to guess things with your friends.
-      </div>
+      {showWelcome && <WelcomeBanner onDismiss={() => setShowWelcome(false)} />}
+
+      {!showWelcome && (
+        <div className="text-gray-400 mt-4">
+          Create a room to guess things with your friends.
+        </div>
+      )}
       <SelfRoomsList
         selfRooms={selfRooms}
         paging={selfRoomsPaging}

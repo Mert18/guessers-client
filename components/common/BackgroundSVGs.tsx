@@ -52,7 +52,7 @@ const BackgroundSVGs = () => {
   return (
     <>
       {/* Left side */}
-      <div className="hidden lg:flex fixed left-18 top-0 bottom-0 w-[16.67%] flex-wrap content-start gap-4 p-4 pointer-events-none">
+      <div className="hidden lg:flex fixed left-18 top-0 bottom-0 w-[16.67%] flex-wrap content-start gap-4 p-4 pointer-events-none z-0">
         {leftIcons.map((svg, index) => (
           <div key={`left-${index}`} className="w-12 h-12 opacity-10">
             <img
@@ -65,7 +65,7 @@ const BackgroundSVGs = () => {
       </div>
 
       {/* Right side */}
-      <div className="hidden lg:flex fixed right-0 top-0 bottom-0 w-[16.67%] flex-wrap content-start gap-4 p-4 pointer-events-none">
+      <div className="hidden lg:flex fixed right-0 top-0 bottom-0 w-[16.67%] flex-wrap content-start gap-4 p-4 pointer-events-none z-0">
         {rightIcons.map((svg, index) => (
           <div key={`right-${index}`} className="w-12 h-12 opacity-10">
             <img
