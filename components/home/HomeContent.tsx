@@ -11,7 +11,6 @@ import SelfRoomsList from "./SelfRoomsList";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import InvitesList from "./InvitesList";
-import PublicGames from "./PublicGames";
 
 const HomeContent = () => {
   const { data: session, status } = useSession();
@@ -137,11 +136,8 @@ const HomeContent = () => {
   }, [selfGuessPapersPaging.page]);
   return (
     <div className="w-full">
-      <div className="text-gray-400 mt-4">Play public games</div>
-      <PublicGames />
-
       <div className="text-gray-400 mt-4">
-        or create a room to guess things with your friends.
+        Create a room to guess things with your friends.
       </div>
       <SelfRoomsList
         selfRooms={selfRooms}
