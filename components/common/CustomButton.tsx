@@ -44,7 +44,7 @@ const CustomButton = ({
           {icon}
         </div>
       )}
-      <p>{text}</p>
+      <p className="text-base">{text}</p>
     </button>
   );
 };

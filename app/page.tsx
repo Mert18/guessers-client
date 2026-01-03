@@ -266,7 +266,7 @@ function Home() {
               Create your account or sign in to join the competition
             </p>
 
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-12xl mx-auto">
               <div className="bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-100">
                 <div className="grid lg:grid-cols-5">
                   <div className="lg:col-span-2 p-12 bg-linear-primary flex items-center justify-center">

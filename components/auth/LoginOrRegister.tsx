@@ -182,17 +182,17 @@ const LoginOrRegister = () => {
 
                 <div className="w-full">
                   {usernameError && (
-                    <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded text-failure text-sm">
+                    <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded text-failure text-base">
                       {usernameError}
                     </div>
                   )}
                   {errors.username && touched.username ? (
-                    <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded text-failure text-sm">
+                    <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded text-failure text-base">
                       {errors.username}
                     </div>
                   ) : null}
                   {errors.password && touched.password ? (
-                    <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded text-failure text-sm">
+                    <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded text-failure text-base">
                       {errors.password}
                     </div>
                   ) : null}
@@ -218,7 +218,7 @@ const LoginOrRegister = () => {
                       onClick={() => setIsRegisterFormVisible(true)}
                     />
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-base text-gray-500">
                     Join for free and start making predictions
                   </p>
                 </>

@@ -58,7 +58,7 @@ const CustomInputField = ({
   };
   return (
     <div
-      className={`flex flex-col text-primary justify-start items-start w-${width} my-0.5`}
+      className={`flex flex-col text-primary justify-start text-lg items-start w-${width} my-0.5`}
     >
       {withLabel && <span className="text-primary">{placeholder}</span>}
       {renderField(type)}

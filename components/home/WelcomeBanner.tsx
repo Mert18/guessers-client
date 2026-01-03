@@ -23,7 +23,7 @@ const WelcomeBanner = ({ onDismiss }: WelcomeBannerProps) => {
   if (dismissed) return null;
 
   return (
-    <div className="bg-gradient-to-r from-primary to-secondary rounded-lg shadow-lg p-6 mb-6 relative overflow-hidden">
+    <div className="bg-gradient-to-r from-primary to-secondary rounded-lg shadow-lg p-6 mb-6 relative overflow-hidden my-4">
       <button
         onClick={handleDismiss}
         className="absolute top-4 right-4 text-white hover:opacity-80 transition-opacity"

@@ -74,7 +74,7 @@ const LuckGame = ({ username, onSuccess, onFailure }: LuckGameProps) => {
 
   if (!gameStarted) {
     return (
-      <div className="flex flex-col items-center justify-center p-8 bg-background rounded-lg border-2 border-primary">
+      <div className="flex flex-col items-center justify-center p-8 bg-background rounded-lg border-2 border-primary text-lg">
         <h2 className="text-2xl font-bold text-primary mb-4">Registration Challenge</h2>
         <p className="text-primary text-center mb-2">
           You must prove your luck to register as <span className="font-bold text-secondary">{username}</span>
@@ -82,7 +82,7 @@ const LuckGame = ({ username, onSuccess, onFailure }: LuckGameProps) => {
         <p className="text-primary text-center mb-6">
           Choose the correct box in 2 consecutive rounds (50% chance each)
         </p>
-        <p className="text-sm text-gray-400 mb-6">
+        <p className="text-gray-400 mb-6">
           If you fail, this username will be banned and you'll need to choose a different one.
         </p>
         <CustomButton
@@ -98,7 +98,7 @@ const LuckGame = ({ username, onSuccess, onFailure }: LuckGameProps) => {
   return (
     <div className="flex flex-col items-center justify-center p-8 bg-background rounded-lg border-2 border-primary">
       <h2 className="text-2xl font-bold text-primary mb-2">Step {currentStep} of {totalSteps}</h2>
-      <p className="text-primary mb-6">Choose your box wisely...</p>
+      <p className="text-primary mb-6 text-lg">Choose your box wisely...</p>
 
       {/* Progress bar */}
       <div className="w-full bg-gray-700 h-2 rounded-full mb-8">

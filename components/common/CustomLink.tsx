@@ -14,7 +14,7 @@ const CustomLink = ({ href, bg, icon, text, color = ColorEnum.PRIMARY }: ICustom
   return (
     <Link href={href} className="flex-1 text-center">
       <div
-        className={`font-bold flex justify-center h-full p-2 rounded-md
+        className={`font-bold flex justify-center items-center h-full p-2 rounded-md
           ${
             bg
               ? `${
